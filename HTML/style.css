@@ -30,11 +30,18 @@
   padding: 10px;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  /* align-self: center; */
   width: 1920px;
   height: 622px;
   margin: 10px;
@@ -42,9 +49,12 @@ header {
   background: radial-gradient(50% 50% at 50% 50%, rgba(69, 49, 89, 0) 6.98%, rgba(69, 49, 89, 0.17) 96.04%);
   background-image: url('../img/banner.png');
 
-  /* position: absolute; */
-  
 }
+
+  /* main {
+    align-self: center;
+  } */
+
 
 .scrolling {
   display: flex;
@@ -52,8 +62,15 @@ header {
   justify-content: space-between;
   align-items: center;
   overflow-y: hidden;
-  overflow-x: auto;
+  overflow-x:scroll;
   padding: 10px;
   margin: 10px;
 
+}
+
+.card-img-top {
+  width: 364px;
+  height: 557px;
+  margin: 10px;
+  padding: 10px;
 }
