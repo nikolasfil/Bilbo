@@ -38,6 +38,9 @@
     flex-direction: row;
     border: 1px solid black;
     justify-content: flex-start;
+    overflow: scroll;
+    overflow-y: hidden;
+    overflow-x: auto;
     /* overflow-y: scroll; */
     margin: 10px;
 }
