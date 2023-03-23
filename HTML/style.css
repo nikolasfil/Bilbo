@@ -1,3 +1,16 @@
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+header {
+  margin: 10px;
+  padding: 10px;
+}
+
+
 .layout {
   display: flex;
   flex-direction: column;
@@ -19,33 +32,43 @@
   padding: 10px;
 }
 
-.row {
+.columns-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  padding: 10px;
+}
+
+.rows {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  /* width: 100%;
-  height: 100%; */
   margin: 10px;
   padding: 10px;
 }
 
-body {
+.row-center {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  padding: 10px;
 }
 
-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  /* align-self: center; */
+
+
+.cover-page {
   width: 1920px;
   height: 622px;
   margin: 10px;
   padding: 10px;
+}
+
+.cover-page-img {
   background: radial-gradient(50% 50% at 50% 50%, rgba(69, 49, 89, 0) 6.98%, rgba(69, 49, 89, 0.17) 96.04%);
   background-image: url('../img/banner.png');
 
@@ -62,7 +85,7 @@ header {
   justify-content: space-between;
   align-items: center;
   overflow-y: hidden;
-  overflow-x:scroll;
+  overflow-x: auto;
   padding: 10px;
   margin: 10px;
 
@@ -74,3 +97,23 @@ header {
   margin: 10px;
   padding: 10px;
 }
+
+.searchbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 22px 20px 36px;
+  gap: 645px;
+
+  /* position: absolute; */
+  width: 735px;
+  /* width: 80%; */
+  height: 55px;
+  left: 587px;
+  top: 456px;
+
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 34.5px;
+} 
