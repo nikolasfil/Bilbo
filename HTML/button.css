@@ -1,0 +1,102 @@
+/*  */
+
+
+.button-dark {
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+
+  width: 117px;
+  height: 34px;
+  left: 20px;
+  top: 20px;
+
+  background: #453159;
+  border-radius: 17px;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.button-light {
+  /* position: absolute; */
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+
+  width: 117px;
+  height: 34px;
+  left: 20px;
+  top: 74px;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+
+  color: #ffffff;
+
+  background: #ac8fbf;
+  border-radius: 17px;
+  /* border-bottom: #ac8fbf; */
+  border: transparent;
+}
+
+.button-white {
+  width: 117px;
+  height: 34px;
+  left: 20px;
+  top: 128px;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+
+  color: #ffffff;
+
+  border-radius: 17px;
+  border-color: #ffffff;
+  /* border: transparent; */
+  background: transparent;
+}
+
+.sign-in:hover {
+  background: #453159;
+  border-radius: 17px;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.sign-up:hover {
+  background: #453159;
+  border-radius: 17px;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  color: #ffffff;
+  border: transparent;
+}
+
+
