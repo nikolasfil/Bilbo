@@ -11,6 +11,17 @@
   width: 280px;
 } */
 
+/* Add styles to the form container */
+.form-container {
+  width: 686px;
+  height: 361px;
+  padding: 10px;
+  background-color: white;
+  /* border: 0; */
+  border-radius: 24px;
+}
+
+
 /* The popup form - hidden by default */
 .form-popup {
   display: none;
@@ -48,15 +59,7 @@
   margin-bottom: 55px;
 }
 
-/* Add styles to the form container */
-.form-container {
-  width: 686px;
-  height: 361px;
-  padding: 10px;
-  background-color: white;
-  /* border: 0; */
-  border-radius: 24px;
-}
+
 
 /* Full-width input fields */
 .form-container input[type="text"],

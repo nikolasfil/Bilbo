@@ -1,7 +1,7 @@
 function openForm() {
-    document.getElementById("myForm").style.display = "block";
+    document.getElementById("sign-in-popup").style.display = "block";
   }
 
   function closeForm() {
-    document.getElementById("myForm").style.display = "none";
+    document.getElementById("sign-in-popup").style.display = "none";
   }
