@@ -22,7 +22,7 @@
     justify-content: space-between;
     align-items: left;
     padding: 10px;
-    margin-left: 141px;
+    margin-left: 7%;
     margin-top: 50px;
     margin-bottom: 50px;
     height: 557px;
@@ -36,7 +36,7 @@
   overflow-y: hidden;
   overflow-x: auto;
   /* padding: 10px; */
-  margin: 10px;
+  /* margin: 10px; */
   height: 557px;
 }
 
@@ -134,7 +134,8 @@
 
 
 .sign-space {
-  margin-top: 50px;
+  /* margin-top: 40px; */
   margin-bottom: 29px;
+  margin-right: 5%;
 
 }
