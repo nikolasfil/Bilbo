@@ -1,4 +1,4 @@
-.open-button {
+/* .open-button {
   background-color: #555;
   color: white;
   padding: 16px 20px;
@@ -9,35 +9,71 @@
   bottom: 23px;
   right: 28px;
   width: 280px;
-}
+} */
 
 /* The popup form - hidden by default */
 .form-popup {
   display: none;
-  position: fixed;
-  bottom: 0;    
+  bottom: 0;
   right: 15px;
-  border: 3px solid #f1f1f1;
   z-index: 9;
+  position: absolute;
+  width: 686px;
+  height: 361px;
   border-radius: 24px;
+}
+
+.form-popup > label {
+  position: absolute;
+  width: 96px;
+  height: 23px;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23px;
+
+  color: #8f9fb5;
+}
+
+.form-popup div {
+  margin-left: 63px;
+  /* margin-top: 15px; */
+  margin-right: 64px;
+}
+
+.form-popup .horizontally-between-nm {
+  margin-top: 33px;
+  margin-bottom: 55px;
 }
 
 /* Add styles to the form container */
 .form-container {
-  max-width: 300px;
+  width: 686px;
+  height: 361px;
   padding: 10px;
   background-color: white;
+  /* border: 0; */
   border-radius: 24px;
 }
 
 /* Full-width input fields */
 .form-container input[type="text"],
 .form-container input[type="password"] {
-  width: 100%;
+  /* Rectangle 17 */
+
+  /* position: absolute; */
+  width: 559px;
+  height: 69px;
+
+  background: #ecf1f7;
+  border-radius: 11px;
+  /* width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
   border: none;
-  background: #f1f1f1;
+  background: #f1f1f1; */
 }
 
 /* When the inputs get focus, do something */
@@ -49,19 +85,43 @@
 
 /* Set a style for the submit/login button */
 .form-container .btn {
-  background-color: #04aa6d;
-  color: white;
-  padding: 16px 20px;
+  width: 117px;
+  height: 34px;
+  left: 0%;
+  right: 0%;
+  top: 0%;
+  bottom: 0%;
+
+  background: #d8dde4;
+  border-radius: 17px;
+
+  color: black;
   border: none;
   cursor: pointer;
-  width: 100%;
-  margin-bottom: 10px;
   opacity: 0.8;
 }
 
 /* Add a red background color to the cancel button */
 .form-container .cancel {
-  background-color: red;
+  background-color: #d8dde4;
+}
+
+.form-container .forgot {
+  left: 0.49%;
+  right: -0.24%;
+  top: 0%;
+  bottom: 0%;
+
+  background-color: transparent;
+  border: none;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23px;
+
+  color: #8f9fb5;
 }
 
 /* Add some hover effects to buttons */

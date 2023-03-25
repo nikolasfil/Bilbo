@@ -53,6 +53,12 @@
     align-items: center;
 }
 
+.horizontally-between-nm {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .horizontally-end-nm {
     display: flex;
