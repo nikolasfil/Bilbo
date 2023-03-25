@@ -1,8 +1,8 @@
-body {
+/* body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
+} */
 
 .layout {
   display: flex;
@@ -175,4 +175,13 @@ body {
   margin-left: 147px;
   margin-right: 147px;
   margin-top: 57px;
+}
+
+
+
+
+.img-button {
+  background: transparent;
+  border: 0;
+    
 }
