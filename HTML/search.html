@@ -1,68 +1,371 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=\, initial-scale=1.0">
-    <title>User Profile</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
-    
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=\, initial-scale=1.0">
+  <title>User Profile</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../CSS/style.css">
+  <link rel="stylesheet" href="../CSS/button.css">
+  <link rel="stylesheet" href="../CSS/card.css">
+  <link rel="stylesheet" href="../CSS/layout.css">
+  <link rel="stylesheet" href="../CSS/sign_in.css">
+  <script src="../JS/sign_in.js"></script>
+
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+  <script>
+    $(function () {
+      $("#slider-range").slider({
+        range: true,
+        min: 1800,
+        max: 2023,
+        values: [1800, 2000, 20001, 2002, 2023],
+        slide: function (event, ui) {
+          $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+        }
+      });
+      $("#amount").val("$" + $("#slider-range").slider("values", 0) +
+        " - $" + $("#slider-range").slider("values", 1));
+    });
+  </script>
+
 
 </head>
+
 <body>
-    
-    <header>
-      <div class="horizontally m57_147"> 
 
-        <a href="index.html"><img src="../img/logo_vertical.png" alt="" width="175" height="34"></a>
-        
-        <div class="searchboxbox ">
-          <input class="searchinput" type="text" placeholder="Search.." size="">
-          <button class="searchbutton" id="search-function"> <i class="bi bi-search">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor"
-                      class="bi bi-search" viewBox="0 0 16 16">
-                      <path
-                          d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+  <header>
+    <div class="horizontally m57_147">
 
-                  </svg>
-              </i> </button>
+      <a href="index.html"><img src="../img/logo_vertical.png" alt="" width="175" height="34"></a>
+
+      <div class="searchboxbox ">
+        <input class="searchinput" type="text" placeholder="Search.." size="">
+        <button class="searchbutton" id="search-function"> <i class="bi bi-search">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor" class="bi bi-search"
+              viewBox="0 0 16 16">
+              <path
+                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+
+            </svg>
+          </i> </button>
 
       </div>
 
       <img src="../img/ellipse_1.png" alt="" width="65" height="65">
-      </div>  
+    </div>
 
-    </header>
+  </header>
 
 
-    <main>
-      <div>
+  <main>
+    <div class="horizontally-start-nm">
+      <div class="vertically" id="filters">
         <!-- filters  -->
-        <div class="filters">
-          
+
+
+        <div class="filters vertically" id="genre-filter">
+
+          <div class="vertically">
+            <h3>Genre</h3>
+
+            <div class="form-check">
+              <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Fantasy
+
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Science
+
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Horror
+
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Comedy
+
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Sci-fi
+
+              </label>
+            </div>
+
+
+
+
+          </div>
+
         </div>
-        <div>
-          <!-- show selected options -->
-          <!-- gallery of books -->
+
+        <div class="filters vertically" id="availability-filter">
+
+          <div class="vertically">
+            <h3>
+              Availability
+            </h3>
+
+            <div class="form-check">
+              <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Available in more than a week
+
+
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Available This Week
+
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Available
+
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                All
+
+              </label>
+            </div>
+
+
+          </div>
+
         </div>
+
+
+
+        <div class="filters vertically" id="release-filter">
+
+          <div class="vertically">
+            <h3>Release Date</h3>
+            <label for="customRange3" class="form-label">Example range</label>
+            <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
+            <input type="text" id="amount" class="filter-range">
+            <div id="slider-range"></div>
+            <div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 15%; width: 45%;"></div><span
+              tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 15%;"></span><span
+              tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 60%;"></span>
+          </div>
+
+        </div>
+
+
+
+
+        <div class="filters vertically" id="edition-filter">
+
+          <div class="vertically">
+            <h3>Edition</h3>
+
+            <div class="form-check">
+              <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                1st Edition
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                2nd Edition
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                3rd Edition
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Greater than 3rd Edition
+              </label>
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+
+
+        <div class="filters vertically" id="publisher-filter">
+
+          <div class="vertically">
+            <h3>Publisher</h3>
+
+            <div class="form-check">
+              <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Tziola
+              </label>
+            </div>
+
+
+            <div class="form-check">
+              <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Gotsis
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Κλειδαριθμος
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Ψυχογιος
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Κεδρος
+              </label>
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+
+        <div class="filters vertically" id="library-filter">
+
+          <div class="vertically">
+            <h3>Library</h3>
+
+            <input type="text" name="" id="">
+            <div class="form-check">
+              <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Βιβλιοθηκη Πανεπιστημιου πατρων
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Δημοτικη βιβλιοθηκη Ναυπακτου
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
+              <label class="form-check-label" for="defaultCheck1">
+                Δημοτικη Βιβλιοθηκη Αιγαιου
+              </label>
+            </div>
+
+
+
+
+          </div>
+
+        </div>
+
+
+
+
+
       </div>
-    </main>
 
 
-    <footer class="py-3 my-4">
-        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-          <li class="nav-item"><a href="about.html" class="nav-link px-2 text-muted">About us</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Contact</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Profil</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Lending Progress</a></li>
-          
-        </ul>
-        <p class="text-center text-muted">© Copyright 2023</p>
-      </footer>
+      <div class="horizontally-start-nm selected-filter-list" id="filter-selection">
+
+        <div class="selected-filters">
+          <p>Filter</p>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x"
+              viewBox="0 0 16 16">
+              <path
+                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+            </svg>
+        </div>
+
+        <div class="selected-filters">
+          <p>Filter <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x"
+              viewBox="0 0 16 16">
+              <path
+                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+            </svg>
+          <p>
+        </div>
+
+        <div class="selected-filters">
+          <p>Filter <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x"
+              viewBox="0 0 16 16">
+              <path
+                d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+            </svg>
+          <p>
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <footer class="py-3 my-4">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+      <li class="nav-item"><a href="about.html" class="nav-link px-2 text-muted">About us</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Contact</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Profil</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Lending Progress</a></li>
+
+    </ul>
+    <p class="text-center text-muted">© Copyright 2023</p>
+  </footer>
 
 
 </body>
+
 </html>

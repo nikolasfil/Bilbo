@@ -21,7 +21,6 @@
   border-radius: 24px;
 }
 
-
 /* The popup form - hidden by default */
 .form-popup {
   display: none;
@@ -34,8 +33,9 @@
   border-radius: 24px;
 }
 
+
 .form-popup > label {
-  position: absolute;
+  position: relative;
   width: 96px;
   height: 23px;
 
@@ -58,8 +58,6 @@
   margin-top: 33px;
   margin-bottom: 55px;
 }
-
-
 
 /* Full-width input fields */
 .form-container input[type="text"],

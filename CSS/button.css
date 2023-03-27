@@ -1,6 +1,5 @@
 /*  */
 
-
 .button-dark {
   left: 0%;
   right: 0%;
@@ -99,9 +98,33 @@
   border: transparent;
 }
 
-
-
 .searchbutton {
   background: transparent;
   border: transparent;
 }
+
+.selected-filters {
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+  align-items: center;
+  
+  /* position: absolute; */
+  width: 113px;
+  height: 32px;
+  /* left: 601px;
+  top: 125px; */
+  /* margin: 10px; */
+  
+  /* padding: 4px 8px 4px 4px; */
+  /* gap: 8px; */
+  padding: 10px;
+  background: #ece5f1;
+  border-radius: 30px;
+}
+
+
+

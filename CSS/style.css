@@ -74,7 +74,7 @@
   left: 587px;
   top: 456px;
 
-  background: #ffffff;
+  background-color: #ECE5F1;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 34.5px;
 }
@@ -85,6 +85,7 @@
   width: 80%;
   border: transparent;
   outline: none;
+  background-color: #ECE5F1;
   /* border-radius: 34.5px; */
   
 }
@@ -135,3 +136,20 @@
   margin-right: 5%;
 
 }
+
+
+.filter-checkbox[type="checkbox"]:checked {
+  background-color: #AC8FBF;
+  border: 1px solid #AC8FBF;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+.filter-range { 
+  /* input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;"> */
+  border: 1px;
+  width: auto;
+}
+
+
+
