@@ -36,7 +36,7 @@ function addBook(page, title, src, summary, copies) {
     container.appendChild(div);
 }
 
-function addBook(page, title, src, summary, copies) {
+function addLibrary(page, title, src, summary) {
     // change it to handle more pages
     let container = document.getElementById(page);
 
@@ -61,13 +61,10 @@ function addBook(page, title, src, summary, copies) {
     p.classList.add("card-text");
     p.textContent = summary;
     div2.appendChild(p);
-    let p2 = document.createElement("p");
-    p2.classList.add("card-box-info");
-    p2.textContent = "Available Copies: " + copies;
-    div2.appendChild(p2);
     div.appendChild(div2);
     container.appendChild(div);
 }
+
 
 function recommendedBooks() {
     addBook('scrolling-recommended-books', 'Book1', '../img/card_book_1.png', 'This is a book about polaroids', 5);
@@ -92,5 +89,20 @@ function resultBooks() {
     addBook('page1', 'Book5', '../img/card_book_5.png', 'This is a book ', 5);
     addBook('page1', 'Book5', '../img/card_book_5.png', 'This is a book ', 5);
     addBook('page1', 'Book5', '../img/card_book_5.png', 'This is a book ', 5);
+
+}
+
+
+function recommendedLibraries() {
+
+    addBook('scrolling-recommended-libraries', 'Library2', '../img/card_library_2.png', 'Info about a library');
+    addBook('scrolling-recommended-libraries', 'Library1', '../img/card_library_1.png', 'Info about a library');
+    addBook('scrolling-recommended-libraries', 'Library3', '../img/card_library_3.png', 'Info about a library');
+    addBook('scrolling-recommended-libraries', 'Library4', '../img/card_library_4.png', 'Info about a library');
+    addBook('scrolling-recommended-libraries', 'Library5', '../img/card_library_5.png', 'Info about a library');
+    addBook('scrolling-recommended-libraries', 'Library5', '../img/card_library_5.png', 'Info about a library');
+    addBook('scrolling-recommended-libraries', 'Library5', '../img/card_library_5.png', 'Info about a library');
+    addBook('scrolling-recommended-libraries', 'Library5', '../img/card_library_5.png', 'Info about a library');
+    addBook('scrolling-recommended-libraries', 'Library5', '../img/card_library_5.png', 'Info about a library');
 
 }
