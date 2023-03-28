@@ -142,6 +142,12 @@
   width : 421px;
 }
 
+
+.filters {
+  width : 421px;
+}
+
+
 .page-selector {
   display: flex;
   flex-direction: row;

@@ -21,6 +21,48 @@ function createPages(number){
 
 }
 
+function nextPage1(){
+    let selected = document.getElementsByClassName('selected');
+    let next = selected[0].nextSibling;
+    if (next){
+        selected[0].classList.remove('selected');
+        next.classList.add('selected');
+        let page = next.textContent;
+        showPage(page);
+    }
+}
+
+
+function nextPage(){
+    let pages = document.getElementsByClassName('page-link');
+    let selected = document.getElementsByClassName('selected');
+
+
+    for (let i=1 ; i < pages.length-1; i++){
+        if (selected[0].id == pages[i].id && i < pages.length-2){
+            selected[0].classList.remove('selected');
+            pages[i+1].classList.add('selected');
+            let page = pages[i+1].textContent;
+            showPage(page);
+        }
+    }
+}
+
+
+function previousPage(){
+    let pages = document.getElementsByClassName('page-link');
+    let selected = document.getElementsByClassName('selected');
+
+
+    for (let i=1 ; i < pages.length-1; i++){
+        if (selected[0].id == pages[i].id && i > 1){
+            selected[0].classList.remove('selected');
+            pages[i-1].classList.add('selected');
+            let page = pages[i-1].textContent;
+            showPage(page);
+        }
+    }
+}
 
 function pageSelector(number = 2) {
     let container = document.getElementById('page-selector');
@@ -43,7 +85,9 @@ function pageSelector(number = 2) {
     let previousA = document.createElement('a');
     previousA.classList.add('page-link')
     previousA.setAttribute('href', '#')
+    previousA.setAttribute('id', 'page-previous')
     previousA.textContent = 'Previous';
+    previousA.addEventListener('click', function(){previousPage();});
 
     previousLi.appendChild(previousA);
 
@@ -67,7 +111,7 @@ function pageSelector(number = 2) {
         if (i==0){
             a.classList.add('selected')
         }
-
+        a.setAttribute('id', 'page-'+(i+1));
         li.appendChild(a);
     }
 
@@ -80,6 +124,8 @@ function pageSelector(number = 2) {
     nextA.classList.add('page-link')
     nextA.setAttribute('href', '#')
     nextA.textContent = 'Next';
+    nextA.setAttribute('id', 'page-next')
+    nextA.addEventListener('click', function(){nextPage();});
 
     nextLi.appendChild(nextA);
 
