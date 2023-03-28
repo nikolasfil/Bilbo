@@ -43,6 +43,11 @@ function addFilter(categoryId, filterCategory, filterList) {
 function addingFilters() {
     // alert('test');
     addFilter('genre-filter', 'Genre', ['Fantasy', 'Science', 'Horror','Comedy','Sci-fi']);
-
-
+    // addFilter('author-filter', 'Author', ['J.K. Rowling', 'Stephen King', 'J.R.R. Tolkien', 'George R.R. Martin', 'J.R.R. Tolkien']);
+    addFilter('availability-filter', 'Availability', ['Available', 'Available in more than a week','Available this week','All']);
+    addFilter('edition-filter', 'Edition', ['1st Edition', '2nd Edition', '3rd Edition', 'Greater than 3rd Edition']);
+    // addFilter('language-filter', 'Language', ['English', 'German', 'French', 'Spanish', 'Italian']);
+    addFilter('publisher-filter', 'Publisher', ['Tziola', 'Gotsis', 'Hachette Livre', 'Random House', 'Simon & Schuster']);
+    addFilter('library-filter', 'Library', ['Library 1', 'Library 2', 'Library 3', 'Library 4', 'Library 5']);
 }
+
