@@ -19,10 +19,13 @@
     <link rel="stylesheet" href="../CSS/card.css">
     <link rel="stylesheet" href="../CSS/layout.css">
     <link rel="stylesheet" href="../CSS/sign_in.css">
+
+    <link rel="shortcut icon" type="image/ico" href="../img/logo_small.svg"/>
+
     <script src="../JS/sign_in.js"></script>
     <script src="../JS/cardbox.js" defer></script>
     <!-- <link rel="stylesheet" href="search-bar.css"> -->
-    <script type="text/javascript">window.onload = function() { recommendedBooks(); recommendedLibraries();};</script>
+    <script type="text/javascript">window.onload = function () { recommendedBooks(); recommendedLibraries(); };</script>
 
 </head>
 
@@ -30,10 +33,32 @@
 
     <header class=" vertically-center-nm cover-page-img cover-page">
 
-
+        <!--  -->
         <div class="horizontally-end-nm sign-space" id="sign-space">
             <button class="button-light sign-in" onclick="openForm()">Sign In</button>
             <button class="button-white sign-up">Sign Up</button>
+
+            <div class="form-popup" id="sign-in-popup">
+                <form action="/HTML/index.html" class="form-container">
+
+                    <div class="vertically-center-nm">
+                        <label for="email" style="margin-top:52px;">Username</label>
+                        <input type="text" placeholder="Enter Email" name="email" required>
+                    </div>
+
+                    <div class="vertically-center-nm">
+                        <label for="psw">Password</label>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
+                    </div>
+
+                    <div class="horizontally-between-nm">
+                        <button type="button" class="forgot" onclick="closeForm()">Forgot your password?</button>
+                        <!-- <button type="button" class="btn forgotten" onclick="closeForm()">Close</button> -->
+                        <button type="submit" class="btn">Log-in</button>
+                    </div>
+                </form>
+            </div>
+
         </div>
 
         <div class="horizontally-center-nm">
@@ -44,7 +69,8 @@
             <div class="searchboxbox ">
                 <!-- make the button viable for the box -->
                 <input class="searchinput" type="text" placeholder="Search.." size="">
-                <button class="searchbutton" id="search-button" type="submit" onclick="window.location='search.html'"> <i class="bi bi-search">
+                <button class="searchbutton" id="search-button" type="submit" onclick="window.location='search.html'">
+                    <i class="bi bi-search">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor"
                             class="bi bi-search" viewBox="0 0 16 16">
                             <path
@@ -57,26 +83,6 @@
         </div>
 
 
-        <div class="form-popup" id="sign-in-popup">
-            <form action="/HTML/index.html" class="form-container">
-
-                <div class="vertically-center-nm">
-                    <label for="email" style="margin-top:52px;">Username</label>
-                    <input type="text" placeholder="Enter Email" name="email" required>
-                </div>
-
-                <div class="vertically-center-nm">
-                    <label for="psw">Password</label>
-                    <input type="password" placeholder="Enter Password" name="psw" required>
-                </div>
-
-                <div class="horizontally-between-nm">
-                    <button type="button" class="forgot" onclick="closeForm()">Forgot your password?</button>
-                    <!-- <button type="button" class="btn forgotten" onclick="closeForm()">Close</button> -->
-                    <button type="submit" class="btn">Log-in</button>
-                </div>
-            </form>
-        </div>
 
 
     </header>
