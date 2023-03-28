@@ -32,9 +32,17 @@ function addFilter(categoryId, filterCategory, filterList, extra = null) {
             if (this.checked) {
                 addedFilter(filterList[i])
             }
-            // else {
+            
+            else {
+                let container = document.getElementById('filter-selection');
+                let divs = container.getElementsByClassName('selected-filters');
+                for (let j = 0; j < divs.length; j++) {
+                    if (divs[j].textContent == filterList[i]) {
+                        container.removeChild(divs[j]);
+                    }
+                }
 
-            // }
+            }
         });
 
         div.appendChild(input);
@@ -65,7 +73,7 @@ function addedFilter(filterName) {
     image.setAttribute('viewBox', '0 0 16 16');
     image.setAttribute('fill', 'currentColor');
     image.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-
+    
     let path = document.createElement('path');
     // path.setAttribute('fill-rule', 'evenodd');
     path.setAttribute('d', 'M3.646 3.646a.5.5 0 0 1 .708 0L8 7.293l3.646-3.647a.5.5 0 0 1 .708.708L8.707 8l3.647 3.646a.5.5 0 0 1-.708.708L8 8.707l-3.646 3.647a.5.5 0 0 1-.708-.708L7.293 8 3.646 4.354a.5.5 0 0 1 0-.708z');

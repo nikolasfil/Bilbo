@@ -83,12 +83,12 @@ function resultBooks() {
     addBook('page1', 'The Polaroid Book', '../img/card_book_1.png', 'This is a book about polaroids', 5);
     addBook('page1', 'Book2', '../img/card_book_2.png', 'This is a book ', 5);
     addBook('page1', 'Book3', '../img/card_book_3.png', 'This is a book ', 5);
-    addBook('page1', 'Book4', '../img/card_book_4.png', 'This is a book ', 5);
-    addBook('page1', 'Book5', '../img/card_book_5.png', 'This is a book ', 5);
-    addBook('page1', 'Book5', '../img/card_book_5.png', 'This is a book ', 5);
-    addBook('page1', 'Book5', '../img/card_book_5.png', 'This is a book ', 5);
-    addBook('page1', 'Book5', '../img/card_book_5.png', 'This is a book ', 5);
-    addBook('page1', 'Book5', '../img/card_book_5.png', 'This is a book ', 5);
+    // addBook('page1', 'Book4', '../img/card_book_4.png', 'This is a book ', 5);
+    // addBook('page1', 'Book5', '../img/card_book_5.png', 'This is a book ', 5);
+    // addBook('page1', 'Book5', '../img/card_book_5.png', 'This is a book ', 5);
+    // addBook('page1', 'Book5', '../img/card_book_5.png', 'This is a book ', 5);
+    // addBook('page1', 'Book5', '../img/card_book_5.png', 'This is a book ', 5);
+    // addBook('page1', 'Book5', '../img/card_book_5.png', 'This is a book ', 5);
 
 }
 

@@ -32,3 +32,8 @@
 .results .card-img-top {
   margin: 10px;
 }
+
+
+.card-img-top:hover{
+  cursor: pointer;
+}
