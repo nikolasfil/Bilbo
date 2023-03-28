@@ -57,6 +57,12 @@ function pageSelector(number = 2) {
         a.classList.add('page-link')
         a.setAttribute('href', '#')
         a.textContent = i+1;
+        a.addEventListener('click', function(){
+            showPage(i+1);
+            let selected = document.getElementsByClassName('selected');
+            selected[0].classList.remove('selected');
+            a.classList.add('selected');
+        });
         
         if (i==0){
             a.classList.add('selected')
@@ -78,4 +84,14 @@ function pageSelector(number = 2) {
     nextLi.appendChild(nextA);
 
 
+}
+
+
+function showPage(number){
+    let pages = document.getElementsByClassName('results');
+    for (let i=0; i<pages.length; i++){
+        pages[i].classList.add('hidden');
+    }
+    let page = document.getElementById('page'+number);
+    page.classList.remove('hidden');
 }
