@@ -13,11 +13,13 @@
   border-radius: 12px;
 }
 
-.recommend > .scrolling > .card-img-top > img {
+
+.card-img-class {
+  
+  border-radius: 12px 12px 0px 0px;
   width: 364px;
   height: 364px;
 }
-
 
 .results {
   display: flex;

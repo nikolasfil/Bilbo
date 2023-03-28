@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="../CSS/sign_in.css">
   <script src="../JS/sign_in.js"></script>
   <script src="../JS/filters.js" defer></script>
+  <script src="../JS/books.js" defer></script>
 
 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
@@ -41,6 +42,7 @@
         " - $" + $("#slider-range").slider("values", 1));
     });
   </script>
+  <script type="text/javascript">window.onload = function() { resultBooks(); };</script>
 
 
 </head>
@@ -121,78 +123,9 @@
         <div class="selected-filter-list" id="filter-selection">
           <!-- add js -->
         </div>
-          
-          <div class="results" id="page1">
 
 
-
-          <div class="card-img-top">
-            <img src="../img/card_book_1.png" alt="cover">
-            <div class="card-body">
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                the card's content</p>
-              <p class="card-box-info">Copies Available: 0</p>
-            </div>
-          </div>
-
-
-          <div class="card-img-top">
-            <img src="../img/card_book_2.png" alt="cover">
-            <div class="card-body">
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                the card's content</p>
-              <p class="card-box-info">Copies Available: 0</p>
-            </div>
-          </div>
-
-          <div class="card-img-top">
-            <img src="../img/card_book_3.png" alt="cover">
-            <div class="card-body">
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                the card's content</p>
-              <p class="card-box-info">Copies Available: 0</p>
-            </div>
-          </div>
-
-
-
-
-          <div class="card-img-top">
-            <img src="../img/card_book_4.png" alt="cover">
-            <div class="card-body">
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                the card's content</p>
-              <p class="card-box-info">Copies Available: 0</p>
-            </div>
-          </div>
-
-
-
-
-          <div class="card-img-top">
-            <img src="../img/card_book_5.png" alt="cover">
-            <div class="card-body">
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                the card's content</p>
-              <p class="card-box-info">Copies Available: 0</p>
-            </div>
-          </div>
-
-
-
-          <div class="card-img-top">
-            <img src="../img/card_book_5.png" alt="cover">
-            <div class="card-body">
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                the card's content</p>
-              <p class="card-box-info">Copies Available: 0</p>
-            </div>
-          </div>
-
-
-
-
-
+        <div class="results" id="page1">
         </div>
 
 
