@@ -50,9 +50,6 @@ window.onclick = function (event) {
   if (event.target == modalSignIn) {
     modalSignIn.style.display = "none";
   }
-}
-// When the user clicks anywhere outside of the modalSignIn, close it
-window.onclick = function (event) {
   if (event.target == modalSignUp) {
     modalSignUp.style.display = "none";
   }
