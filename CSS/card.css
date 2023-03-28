@@ -17,3 +17,16 @@
   width: 364px;
   height: 364px;
 }
+
+
+.results {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+}
+
+.results .card-img-top {
+  margin: 10px;
+}

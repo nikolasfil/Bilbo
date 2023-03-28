@@ -103,28 +103,64 @@
   border: transparent;
 }
 
+.selected-filter-list{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  /* align-items: center; */
+  flex-wrap: wrap;
+  max-width: 1711px;
+}
+
 .selected-filters {
   /* Auto layout */
 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  
-  align-items: center;
-  
+  text-align: center;
+  /* align-items: center; */
   /* position: absolute; */
+
   width: 113px;
   height: 32px;
   /* left: 601px;
   top: 125px; */
   /* margin: 10px; */
   
-  /* padding: 4px 8px 4px 4px; */
+  padding: 4px 8px 4px 4px;
   /* gap: 8px; */
+
   padding: 10px;
+  margin: 10px;
   background: #ece5f1;
   border-radius: 30px;
 }
 
+.selected-filters:hover {
+  cursor: pointer;  
+}
 
+
+/* .form-check-input:focus ~ .form-check-label::before {
+  box-shadow: 0 0 0 0.2rem #AC8FBF;
+} */
+
+.form-check-input:focus{
+  box-shadow: 0 0 0 0.2rem #ece5f1;
+  border: #ece5f1;
+}
+
+.filter-checkbox[type="checkbox"]:checked {
+  background-color: #AC8FBF;
+  border: 1px solid #AC8FBF;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+.filter-range { 
+  /* input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;"> */
+  border: 1px;
+  width: auto;
+}
 

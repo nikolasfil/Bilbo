@@ -128,7 +128,7 @@
   margin-top: 29px;
   margin-bottom: 62px;
 }
-
+/*  */
 
 .sign-space {
   /* margin-top: 40px; */
@@ -138,18 +138,7 @@
 }
 
 
-.filter-checkbox[type="checkbox"]:checked {
-  background-color: #AC8FBF;
-  border: 1px solid #AC8FBF;
-  box-sizing: border-box;
-  border-radius: 4px;
+#filters {
+  width : 421px;
 }
-
-.filter-range { 
-  /* input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;"> */
-  border: 1px;
-  width: auto;
-}
-
-
 
