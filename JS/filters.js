@@ -3,7 +3,7 @@
 addingFilters()
 // addFilter('genre-filter','Test','test')
 
-function addFilter(categoryId, filterCategory, filterList) {
+function addFilter(categoryId, filterCategory, filterList, extra = null) {
 
     let container = document.getElementById(categoryId);
     let header = document.createElement('h3');
@@ -11,7 +11,9 @@ function addFilter(categoryId, filterCategory, filterList) {
     container.appendChild(header);
     // header.innerHTML=filterCategory;
 
-
+    if (extra != null) {
+        container.appendChild(extra);
+    }
 
     for (let i = 0; i < filterList.length; i++) {
 
@@ -63,7 +65,7 @@ function addedFilter(filterName) {
     image.setAttribute('viewBox', '0 0 16 16');
     image.setAttribute('fill', 'currentColor');
     image.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-    
+
     let path = document.createElement('path');
     // path.setAttribute('fill-rule', 'evenodd');
     path.setAttribute('d', 'M3.646 3.646a.5.5 0 0 1 .708 0L8 7.293l3.646-3.647a.5.5 0 0 1 .708.708L8.707 8l3.647 3.646a.5.5 0 0 1-.708.708L8 8.707l-3.646 3.647a.5.5 0 0 1-.708-.708L7.293 8 3.646 4.354a.5.5 0 0 1 0-.708z');
@@ -74,8 +76,7 @@ function addedFilter(filterName) {
         container.removeChild(div);
         let checkbox = document.getElementById(filterName);
         checkbox.checked = false;
-    }
-    )
+    });
 }
 
 function addingFilters() {
@@ -86,6 +87,13 @@ function addingFilters() {
     addFilter('edition-filter', 'Edition', ['1st Edition', '2nd Edition', '3rd Edition', 'Greater than 3rd Edition']);
     // addFilter('language-filter', 'Language', ['English', 'German', 'French', 'Spanish', 'Italian']);
     addFilter('publisher-filter', 'Publisher', ['Tziola', 'Gotsis', 'Hachette Livre', 'Random House', 'Simon & Schuster']);
+    // addFilter('library-filter', 'Library', ['Library 1', 'Library 2', 'Library 3', 'Library 4', 'Library 5'], function () {
+    //     let input = document.createElement('input');
+    //     input.setAttribute('type', 'text');
+    //     input.setAttribute('id', 'library-filter-input');
+    //     input.setAttribute('placeholder', 'Search library or Region');
+    //     return input;
+    // });
     addFilter('library-filter', 'Library', ['Library 1', 'Library 2', 'Library 3', 'Library 4', 'Library 5']);
 }
 
