@@ -171,7 +171,19 @@
   background-color: #ac8fbf;
 }
 
+*::selection{
+  color: #ffffff;
+  background-color: #ac8fbf;
+}
 
+.page-selector nav *:focus{
+  color: #ffffff;
+  /* color: #AC8FBF; */
+  /* background-color: #ffffff; */
+  background-color: #ac8fbf;
+  box-shadow: 0 0 0 0.2rem #ece5f1;
+  border: #ece5f1;
+}
 
 .page-selector a {
   color: #AC8FBF;
