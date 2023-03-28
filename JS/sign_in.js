@@ -26,6 +26,8 @@ let btnSignUp = document.getElementById("sign-up-btn");
 let spanSignIn = document.getElementsByClassName("close")[0];
 let spanSignUp = document.getElementsByClassName("close")[1];
 
+let forgot = document.getElementsByClassName("forgot")[0];
+
 // When the user clicks the button, open the modalSignIn 
 btnSignIn.onclick = function () {
   modalSignIn.style.display = "block";
@@ -45,6 +47,10 @@ spanSignUp.onclick = function () {
   modalSignUp.style.display = "none";
 }
 
+forgot.onclick = function () {
+  alert('Not implemented yet');
+}
+
 // When the user clicks anywhere outside of the modalSignIn, close it
 window.onclick = function (event) {
   if (event.target == modalSignIn) {
@@ -53,6 +59,7 @@ window.onclick = function (event) {
   if (event.target == modalSignUp) {
     modalSignUp.style.display = "none";
   }
+
 }
 
 
