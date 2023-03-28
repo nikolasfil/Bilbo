@@ -25,12 +25,19 @@
   <script src="../JS/filters.js" defer></script>
   <script src="../JS/cardbox.js" defer></script>
   <script src="../JS/page.js" defer></script>
-
+  <script src="../JS/footer.js" ></script>
+  
+  <script type="text/javascript">window.onload = function () {
+     createFooter(); createHeader(); 
+     createPages(2); resultBooks(); pageSelector();  };</script>
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  
 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  
 
   <!-- <script>
     $(function () {
@@ -48,7 +55,6 @@
     });
   </script> -->
 
-  <script type="text/javascript">window.onload = function () { createPages(2); resultBooks(); pageSelector();  };</script>
 
 
 </head>
@@ -56,25 +62,6 @@
 <body>
 
   <header>
-    <div class="horizontal-profile-search">
-
-      <a href="index.html"><img src="../img/logo-horizontal.svg" alt="" width="175" height="34"></a>
-
-      <div class="searchboxbox ">
-        <input class="searchinput" type="text" placeholder="Search.." size="">
-        <button class="searchbutton" id="search-function"> <i class="bi bi-search">
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor" class="bi bi-search"
-              viewBox="0 0 16 16">
-              <path
-                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-
-            </svg>
-          </i> </button>
-
-      </div>
-      
-      <img src="../img/person-fill.svg" alt="" width="65" height="65">
-    </div>
 
   </header>
 
@@ -167,7 +154,6 @@
       <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Contact</a></li>
       <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Profil</a></li>
       <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Lending Progress</a></li>
-
     </ul>
     <p class="text-center text-muted">© Copyright 2023</p>
   </footer>
