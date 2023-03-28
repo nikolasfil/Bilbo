@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="../CSS/layout.css">
   <link rel="stylesheet" href="../CSS/sign_in.css">
   <script src="../JS/sign_in.js"></script>
-  <script src="../JS/filters.js"></script>
+  <script src="../JS/filters.js" defer></script>
 
 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
@@ -73,11 +73,12 @@
 
   <main>
     <div class="horizontally-start-nm">
-      <div class="vertically" id="filters">
+
+      <div class="vertically" id="filters" >
         <!-- filters  -->
 
 
-        <div class="filters vertically" id="genre-filter">
+        <div class="filters vertically" id="genre-filter" >
 
 
           <h3>Genre</h3>
@@ -88,40 +89,41 @@
               Fantasy
 
             </label>
-
-            <div class="form-check">
-              <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
-              <label class="form-check-label" for="defaultCheck1">
-                Science
-
-              </label>
-            </div>
-
-            <div class="form-check">
-              <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
-              <label class="form-check-label" for="defaultCheck1">
-                Horror
-
-              </label>
-            </div>
-
-            <div class="form-check">
-              <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
-              <label class="form-check-label" for="defaultCheck1">
-                Comedy
-
-              </label>
-            </div>
-
-            <div class="form-check">
-              <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
-              <label class="form-check-label" for="defaultCheck1">
-                Sci-fi
-
-              </label>
-            </div>
-
           </div>
+
+          <div class="form-check">
+            <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+              Science
+
+            </label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+              Horror
+
+            </label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+              Comedy
+
+            </label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input filter-checkbox" type="checkbox" value="" id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+              Sci-fi
+
+            </label>
+          </div>
+
+
 
         </div>
 
@@ -285,7 +287,7 @@
 
       <div class="vertically" id="search-content">
 
-        
+
         <div class="selected-filter-list" id="filter-selection">
           <!-- add js -->
 
