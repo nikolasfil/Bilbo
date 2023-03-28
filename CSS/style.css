@@ -161,18 +161,30 @@
   /* border-radius: 34.5px; */
 }
 
+.page-selector a:hover ,.page-selector .selected{
+  color: #ffffff;
+  background-color: #ac8fbf;
+}
+
+.page-selector>a:active{
+  color: #ffffff;
+  background-color: #ac8fbf;
+}
+
+
+
 .page-selector a {
   color: #AC8FBF;
   border: 1px solid #DEE2E6;
   /* background-color: #ac8fbf; */
 }
 
-.page-selector a:hover {
-  color: #ffffff;
-  background-color: #ac8fbf;
+
+.hiden {
+  display: none;
 }
 
-.page-selector a: active {
-  color: #ffffff;
-  background-color: #ac8fbf;
+.result-pages {
+  padding: 0;
+  margin: 0;
 }

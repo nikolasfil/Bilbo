@@ -18,6 +18,20 @@
   padding: 10px;
 }
 
+
+
+.vertically-between-nm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* align-items: center; */
+  /* width: 100%;
+  height: 100%; */
+  margin: 0px;
+  padding: 0px;
+}
+
+
 .vertically-center {
   display: flex;
   flex-direction: column;
