@@ -1,3 +1,8 @@
+// todo 
+// 1. create page selector
+// 2. modfy the search bar to go to the search page 
+// 
+// remove the hidden class from the page when another page is selected 
 
 
 function createPages(number){
