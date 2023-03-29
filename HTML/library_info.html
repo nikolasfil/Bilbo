@@ -27,11 +27,11 @@
 
   <script type="text/javascript">window.onload = function () {
       createFooter(); createHeader(); assignAttr();
-      mapInit();recommendedBooks();
-};</script>
+      mapInit(); recommendedBooks();
+    };</script>
 
   <script src="../resources/OpenLayers-2.13.1/OpenLayers.js"></script>
-  
+
 </head>
 
 <body>
@@ -51,14 +51,16 @@
             <h1>Library Of Patras</h1>
             <h3>Ypatias 4, Panepstimioupoli Patron, 265 04</h3>
           </div>
-          <div id="library-info"></div>
+          <div id="library-info">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero possimus hic laboriosam perferendis, veritatis corrupti assumenda reprehenderit ducimus dignissimos quia, doloribus unde! Fugit quas minus est ex ratione dolor possimus!Lorem</p>
+          </div>
         </div>
 
       </div>
 
     </div>
 
-    <div id="location-working-hours" class="vertically-center-nm">
+    <div class="vertically-center-nm div-paragraph-margins-55-160" id="location-working-hours" >
 
       <h2>Location & Working Hours</h2>
 
@@ -67,7 +69,7 @@
         <div class="vertically-start-nm">
           <!-- map -->
           <div id="basicMap" class="map-div"></div>
-        
+
         </div>
 
         <div class="vertically-start-nm" id="library-info-a-c-w">
@@ -145,7 +147,8 @@
       <div class="scrolling" id="scrolling-recommended-books">
 
       </div>
-  </div>
+    </div>
+
 
   </main>
 
