@@ -33,6 +33,7 @@ function addBook(page, title, src, summary, copies) {
     p2.textContent = "Available Copies: " + copies;
     div2.appendChild(p2);
     div.appendChild(div2);
+    div.addEventListener('click', function () {window.location='../HTML/book_info.html'});
     container.appendChild(div);
 }
 
@@ -44,15 +45,16 @@ function addLibrary(page, title, src, summary) {
     // div.className = "card-img-top";
     div.classList.add("card-img-top");
 
+    
     let img = document.createElement("img");
     img.setAttribute("src", src);
     img.setAttribute("alt", title);
     img.classList.add("card-img-class");
     div.appendChild(img);
-
+    
     let div2 = document.createElement("div");
     div2.classList.add("card-body");
-
+    
     let h5 = document.createElement("h5");
     // h5.classList.add("card-title");
     h5.textContent = title;
@@ -63,6 +65,8 @@ function addLibrary(page, title, src, summary) {
     div2.appendChild(p);
     div.appendChild(div2);
     container.appendChild(div);
+    
+    div.addEventListener('click', function () {window.location='../HTML/library_info.html'});
 }
 
 
@@ -102,14 +106,14 @@ function resultBooks() {
 
 function recommendedLibraries() {
 
-    addBook('scrolling-recommended-libraries', 'Library2', '../img/card_library_2.png', 'Info about a library');
-    addBook('scrolling-recommended-libraries', 'Library1', '../img/card_library_1.png', 'Info about a library');
-    addBook('scrolling-recommended-libraries', 'Library3', '../img/card_library_3.png', 'Info about a library');
-    addBook('scrolling-recommended-libraries', 'Library4', '../img/card_library_4.png', 'Info about a library');
-    addBook('scrolling-recommended-libraries', 'Library5', '../img/card_library_5.png', 'Info about a library');
-    addBook('scrolling-recommended-libraries', 'Library5', '../img/card_library_5.png', 'Info about a library');
-    addBook('scrolling-recommended-libraries', 'Library5', '../img/card_library_5.png', 'Info about a library');
-    addBook('scrolling-recommended-libraries', 'Library5', '../img/card_library_5.png', 'Info about a library');
-    addBook('scrolling-recommended-libraries', 'Library5', '../img/card_library_5.png', 'Info about a library');
+    addLibrary('scrolling-recommended-libraries', 'Library2', '../img/card_library_2.png', 'Info about a library');
+    addLibrary('scrolling-recommended-libraries', 'Library1', '../img/card_library_1.png', 'Info about a library');
+    addLibrary('scrolling-recommended-libraries', 'Library3', '../img/card_library_3.png', 'Info about a library');
+    addLibrary('scrolling-recommended-libraries', 'Library4', '../img/card_library_4.png', 'Info about a library');
+    addLibrary('scrolling-recommended-libraries', 'Library5', '../img/card_library_5.png', 'Info about a library');
+    addLibrary('scrolling-recommended-libraries', 'Library5', '../img/card_library_5.png', 'Info about a library');
+    addLibrary('scrolling-recommended-libraries', 'Library5', '../img/card_library_5.png', 'Info about a library');
+    addLibrary('scrolling-recommended-libraries', 'Library5', '../img/card_library_5.png', 'Info about a library');
+    addLibrary('scrolling-recommended-libraries', 'Library5', '../img/card_library_5.png', 'Info about a library');
 
 }

@@ -68,10 +68,10 @@ function addedFilter(filterName) {
     let image = document.createElement('svg');
     image.classList.add('bi');
     image.classList.add('bi-x-lg');
-    image.setAttribute('width', '16');
-    image.setAttribute('height', '16');
-    image.setAttribute('viewBox', '0 0 16 16');
-    image.setAttribute('fill', 'currentColor');
+    // image.setAttribute('width', '32');
+    // image.setAttribute('height', '32');
+    // image.setAttribute('viewBox', '0 0 128 128');
+    // image.setAttribute('fill', 'currentColor');
     image.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
     
     let path = document.createElement('path');
