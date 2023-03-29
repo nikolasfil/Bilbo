@@ -146,7 +146,7 @@
 
 
 .filters {
-  margin 0;
+  margin: 0;
   width : 421px;
 }
 
@@ -216,4 +216,15 @@
   flex-direction: row;
   justify-content: space-between;
   margin: 46px 160px;
+}
+
+
+.div-paragraph-margins-55-160 {
+  margin: 55px 160px;
+}
+
+
+.paragraph-margins-58-79 {
+  margin:  79px 58px;
+  padding: 58px 79px;
 }

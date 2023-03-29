@@ -1,3 +1,6 @@
+
+// assignAttr();
+
 function clickPress(event) {
     if (event.key == "Enter") {
         if (event.target.value != "") {
@@ -10,7 +13,12 @@ function clickPress(event) {
 }
 
 
-let searchbar = window.document.getElementsByClassName("searchinput")[0];
+function assignAttr(){
 
-// searchbar.addEventListener("onkeydown", function(event) {clickPress(event);});
-searchbar.setAttribute("onkeydown", "clickPress(event);");
+    let searchbar = window.document.getElementsByClassName("searchinput")[0];
+    // searchbar.addEventListener("onkeydown", function(event) {clickPress(event);});
+    searchbar.setAttribute("onkeydown", "clickPress(event);");
+}
+
+
+
