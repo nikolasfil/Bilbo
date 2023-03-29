@@ -238,7 +238,9 @@
 #basicMap:hover{
   cursor: pointer;
   overflow: hidden;
+  /* position: absolute; */
 }
+
 
 
 .map-div {
@@ -254,3 +256,5 @@
   margin-left: 82px;
   margin-right: 160px;
 }
+
+
