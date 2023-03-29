@@ -1,22 +1,15 @@
-// Where you want to render the map.
-let element = document.getElementById('osm-map');
+function init() {
+    map = new OpenLayers.Map("basicMap");
+    let mapnik         = new OpenLayers.Layer.OSM();
+    let fromProjection = new OpenLayers.Projection("EPSG:4326");   // Transform from WGS 1984
+    let toProjection   = new OpenLayers.Projection("EPSG:900913"); // to Spherical Mercator Projection
+    // 38.2903577,21.7911003
+    let position       = new OpenLayers.LonLat(13.41,52.52).transform( fromProjection, toProjection);
 
-// Height has to be set. You can do this in CSS too.
-element.style = 'height:300px;';
+    // let position       = new OpenLayers.LonLat(38.29,21.79).transform( fromProjection, toProjection);
+    let zoom           = 15; 
 
-// Create Leaflet map on map element.
-let map = L.map(element);
+    map.addLayer(mapnik);
+    map.setCenter(position, zoom );
+  }
 
-// Add OSM tile layer to the Leaflet map.
-L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-
-// Target's GPS coordinates.
-let target = L.latLng('47.50737', '19.04611');
-
-// Set map's center to target with zoom 14.
-map.setView(target, 14);
-
-// Place a marker on the same location.
-L.marker(target).addTo(map);

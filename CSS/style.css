@@ -228,3 +228,9 @@
   margin:  79px 58px;
   padding: 58px 79px;
 }
+
+#basicMap {
+  height: 400px;
+  width: 400px;
+  margin: 10px;
+}
