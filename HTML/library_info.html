@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="../CSS/card.css">
   <link rel="stylesheet" href="../CSS/layout.css">
   <link rel="stylesheet" href="../CSS/sign_in.css">
+  <link rel="stylesheet" href="../CSS/map.css">
 
   <link rel="shortcut icon" type="image/ico" href="../img/logo_small.svg" />
   <script src="../JS/html_attributes.js"></script>
@@ -40,12 +41,12 @@
 
   <main>
 
-    <div id="library-info-main" class="vertically-center-nm">
+    <div id="library-info-main" class="d-flex flex-column justify-content-center ">
 
 
-      <div class="horizontally-start-nm div-paragraph-margins-55-160" id="library-info-">
+      <div class="d-flex flex-row justify-content-start div-paragraph-margins-55-160" id="library-info-">
         <img src="../img/library_image_1.svg" alt="library image" style="width:282; height:282;">
-        <div class="vertically-start-nm paragraph-margins-58-79">
+        <div class="d-flex flex-column justify-content-start paragraph-margins-58-79">
           <!-- the margins are not working -->
           <div id="library-title ">
             <h1>Library Of Patras</h1>
@@ -60,32 +61,32 @@
 
     </div>
 
-    <div class="vertically-center-nm div-paragraph-margins-55-160" id="location-working-hours" >
+    <div class="d-flex flex-column justify-content-center div-paragraph-margins-55-160" id="location-working-hours" >
 
       <h2>Location & Working Hours</h2>
 
-      <div class="horizontally-start-nm map-hours">
+      <div class="d-flex flex-row justify-content-start ">
 
-        <div class="vertically-start-nm">
+        <div class="d-flex flex-column justify-content-start">
           <!-- map -->
           <div id="basicMap" class="map-div"></div>
 
         </div>
 
-        <div class="vertically-start-nm" id="library-info-a-c-w">
+        <div class="d-flex flex-column justify-content-start" id="library-info-a-c-w">
 
-          <div class="vertically-start-nm" id="libary-address">
+          <div class="d-flex flex-column justify-content-start" id="libary-address">
             <h3>Address</h3>
             <p>Ypatias 4, panepistimioupoli Patron 265 04</p>
           </div>
 
-          <div class="vertically-start-nm" id="libary-contact">
+          <div class="d-flex flex-column justify-content-start" id="libary-contact">
             <h3>Contact</h3>
             <p>Telephone: 2610398949</p>
             <p>Email: bibliothiki@bilbo.gr</p>
           </div>
 
-          <div class="vertically-start-nm" id="libary-working">
+          <div class="d-flex flex-column justify-content-start" id="libary-working">
             <h3>Working Hours</h3>
 
             <table>
@@ -143,9 +144,7 @@
 
     <div class="recommend" id="recommended-books">
       <p class="h2"> Recommended Books</p>
-
       <div class="scrolling" id="scrolling-recommended-books">
-
       </div>
     </div>
 

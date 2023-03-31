@@ -229,28 +229,6 @@
   padding: 58px 79px;
 }
 
-#basicMap {
-  height: 336px;
-  width: 828px;
-  margin: 30px 206px 50px 82px;
-}
-
-#basicMap:hover{
-  cursor: pointer;
-  overflow: hidden;
-  /* position: absolute; */
-}
-
-
-
-.map-div {
-  margin: 50px;
-}
-
-.map-hours {
-  margin-left: 206px;
-  margin-right: 160px;
-}
 
 #library-info-a-c-w {
   margin-left: 82px;
