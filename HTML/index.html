@@ -34,10 +34,11 @@
 
 <body>
 
-    <header class=" vertically-center-nm cover-page-img cover-page">
+    <!-- <header class="vertically--center-nm cover-page-img cover-page"> -->
+    <header class="d-flex flex-column justify-content-center cover-page-img cover-page">
 
         <!--  -->
-        <div class="horizontally-end-nm sign-space" id="sign-space">
+        <div class="d-flex flex-row justify-content-end sign-space" id="sign-space">
             <button class="button-light sign-in" id="sign-in-btn">Sign In</button>
             <button class="button-white sign-up" id="sign-up-btn">Sign Up</button>
 
@@ -50,17 +51,17 @@
                     <form action="/HTML/index.html" class="form-container">
                         <span class="close">&times;</span>
 
-                        <div class="vertically-center-nm">
+                        <div class="d-flex flex-column justify-content-center ">
                             <label for="email" style="margin-top:52px;">Username</label>
                             <input type="text" placeholder="Enter Email" name="email" required>
                         </div>
 
-                        <div class="vertically-center-nm">
+                        <div class="d-flex flex-column justify-content-center ">
                             <label for="psw">Password</label>
                             <input type="password" placeholder="Enter Password" name="psw" required>
                         </div>
 
-                        <div class="horizontally-end-nm">
+                        <div class="d-flex flex-row justify-content-end ">
                             <button type="submit" class="btn">Sign In</button>
                         </div>
                     </form>
@@ -75,18 +76,18 @@
                     <form action="/HTML/index.html" class="form-container">
                         <span class="close">&times;</span>
 
-                        <div class="vertically-center-nm">
+                        <div class="d-flex flex-column justify-content-center ">
                             
                             <label for="email" style="margin-top:52px;">Username</label>
                             <input type="text" placeholder="Enter Email" name="email" required>
                         </div>
 
-                        <div class="vertically-center-nm">
+                        <div class="d-flex flex-column justify-content-center ">
                             <label for="psw">Password</label>
                             <input type="password" placeholder="Enter Password" name="psw" required>
                         </div>
 
-                        <div class="horizontally-between-nm">
+                        <div class="d-flex flex-row justify-content-between">
                             <button type="button" class="forgot" onclick="closeForm()"></button>
                             <button type="submit" class="btn">Sign Up</button>
                         </div>
@@ -98,7 +99,7 @@
 
         </div>
 
-        <div class="horizontally-center-nm">
+        <div class="d-flex flex-row justify-content-center">
             <img src="../img/logo_vertical.svg" alt="Logo" class="logo-vertical">
         </div>
 
