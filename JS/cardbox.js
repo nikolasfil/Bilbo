@@ -34,6 +34,7 @@ function addBook(page, title, src, summary, copies) {
     div2.appendChild(p2);
     div.appendChild(div2);
     div.addEventListener('click', function () {window.location='../HTML/book_info.html'});
+    
     container.appendChild(div);
 }
 

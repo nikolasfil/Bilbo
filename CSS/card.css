@@ -13,9 +13,7 @@
   border-radius: 12px;
 }
 
-
 .card-img-class {
-  
   border-radius: 12px 12px 0px 0px;
   width: 364px;
   height: 364px;
@@ -26,14 +24,17 @@
   flex-direction: row;
   justify-content: flex-start;
   flex-wrap: wrap;
-
 }
 
 .results .card-img-top {
   margin: 10px;
 }
 
-
-.card-img-top:hover{
+.card-img-top:hover {
   cursor: pointer;
+}
+
+.book-info-img {
+  width: "417";
+  height: "417";
 }
