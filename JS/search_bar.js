@@ -1,6 +1,4 @@
 
-// assignAttr();
-
 function clickPress(event) {
     if (event.key == "Enter") {
         if (event.target.value != "") {

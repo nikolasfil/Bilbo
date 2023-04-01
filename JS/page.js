@@ -1,8 +1,3 @@
-// todo 
-// 1. create page selector
-// 2. modfy the search bar to go to the search page 
-// 
-// remove the hidden class from the page when another page is selected 
 
 
 function createPages(number){
@@ -21,16 +16,7 @@ function createPages(number){
 
 }
 
-function nextPage1(){
-    let selected = document.getElementsByClassName('selected');
-    let next = selected[0].nextSibling;
-    if (next){
-        selected[0].classList.remove('selected');
-        next.classList.add('selected');
-        let page = next.textContent;
-        showPage(page);
-    }
-}
+
 
 
 function nextPage(){
