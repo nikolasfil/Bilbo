@@ -62,7 +62,7 @@ function addedFilter(filterName) {
     let div = document.createElement('div');
     div.classList.add('selected-filters');
     container.appendChild(div);
-    let p = document.createElement('p');
+    let p = document.createElement('span');
     p.textContent = filterName;
     div.appendChild(p);
     let image = document.createElement('svg');
