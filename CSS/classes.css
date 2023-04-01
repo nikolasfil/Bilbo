@@ -8,6 +8,8 @@
 .who-we-are-img {
     margin-right: 147px;
     margin-left: 134px;
+    width: 282vw;
+    height: 282vh;
 }
 
 
@@ -15,11 +17,14 @@
     margin-right: 179px;
     margin-left: 100px;
     width: 742px;
+
 }
 
 
 .who-we-are-profile-pics {
-    margin-right:100 px;
+    margin-right:100px;
     margin-left: 108px;
+    width: 282px;
+    height: 282px;
 }
 
