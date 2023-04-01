@@ -110,6 +110,7 @@
 /* Filter buttons */
 
 .selected-filter-list{
+  
   flex-wrap: wrap;
   max-width: 70vw;
 }
