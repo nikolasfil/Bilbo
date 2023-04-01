@@ -1,0 +1,38 @@
+.who-we-are-css {
+  margin-left: 6.625vw;
+  margin-right: 8.375vw;
+  width: 60vw;
+}
+
+.who-we-are-img {
+  margin-right: 9.1875vw;
+  margin-left: 8.375vw;
+  width: 282vw;
+  height: 282vh;
+}
+
+.who-we-are-profiles {
+  margin-left: 2vw;
+  width: 38.25vw;
+  height: 11.8125vw;
+}
+
+.who-we-are-profile-pics {
+  margin-right: 2vw;
+  margin-left: 6.625vw;
+  width: 17.625vw;
+  height: 17.625vw;
+}
+
+.about-background {
+  /*width: 971px;
+    height: 980px;
+    */
+  position: absolute;
+  width: 971px;
+  height: 980px;
+  left: 62.4375vw;
+  top: 4.4375vw;
+  /* overflow: hidden; */
+/* background: linear-gradient(180.08deg, #E08AB1 -102.48%, #6A1B4A 95.37%); */
+}
