@@ -50,7 +50,9 @@ function createSearchBar() {
   let header = document.querySelector("header");
   
   let div = document.createElement("div");
-  div.classList.add("horizontally-center-nm");
+  div.classList.add("d-flex");
+  div.classList.add("flex-row");
+  div.classList.add("justify-content-center");
 
   // <div class="horizontally-center-nm">
   div.innerHTML = `
