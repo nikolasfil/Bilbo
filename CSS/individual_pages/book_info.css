@@ -1,0 +1,26 @@
+#book {
+    margin: 55px 160px ;
+}
+
+#book-img {
+    margin-right: 77px;
+}
+
+#book-title-summary {
+    width: 758px;
+    height: 364px;
+    margin-right: 80px;
+}
+
+/* #book-info {
+    height: 364px;
+} */
+
+.p-title{
+    font-size:20px;
+    font-weight: bold;
+}
+
+.p-info {
+    font-size: 16px;
+}
