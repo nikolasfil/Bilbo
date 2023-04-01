@@ -17,6 +17,9 @@
   <link rel="stylesheet" href="../CSS/card.css">
   <link rel="stylesheet" href="../CSS/layout.css">
   <link rel="stylesheet" href="../CSS/sign_in.css">
+  <link rel="stylesheet" href="../CSS/carousel.css">
+  <link rel="stylesheet" href="../CSS/searchbar.css">
+
 
   <link rel="shortcut icon" type="image/ico" href="../img/logo_small.svg" />
   
@@ -25,7 +28,7 @@
   
 
   <script type="text/javascript">window.onload = function () {
-     createFooter(); createHeader(); };</script>
+     createFooter(); createHeader(); recommendedBooks(); };</script>
   
 
 </head>
@@ -107,81 +110,14 @@
 
       </div>
 
-      <div class="recommend">
-        <h1>Lended Books</h1>
-        <div class="scrolling">
+      <div class="recommend" id="recommended-books">
+        <p class="h2"> Recommended Books</p>
 
-          <div class="card-img-top">
-            <img src="../img/card_book_1.png" alt="cover">
-            <div class="card-body">
-              <p c;ass="card-text">Some quick example text to build on the card title and make up the bulk of
-                the card's content</p>
-              <p class="card-box-info">Copies Available: 0</p>
-            </div>
-          </div>
-
-
-          <div class="card-img-top">
-            <img src="../img/card_book_2.png" alt="cover">
-            <div class="card-body">
-              <p c;ass="card-text">Some quick example text to build on the card title and make up the bulk of
-                the card's content</p>
-              <p class="card-box-info">Copies Available: 0</p>
-            </div>
-          </div>
-
-
-          <div class="card-img-top">
-            <img src="../img/card_book_3.png" alt="cover">
-            <div class="card-body">
-              <p c;ass="card-text">Some quick example text to build on the card title and make up the bulk of
-                the card's content</p>
-              <p class="card-box-info">Copies Available: 0</p>
-            </div>
-          </div>
-
-
-
-
-          <div class="card-img-top">
-            <img src="../img/card_book_4.png" alt="cover">
-            <div class="card-body">
-              <p c;ass="card-text">Some quick example text to build on the card title and make up the bulk of
-                the card's content</p>
-              <p class="card-box-info">Copies Available: 0</p>
-            </div>
-          </div>
-
-
-
-
-          <div class="card-img-top">
-            <img src="../img/card_book_5.png" alt="cover">
-            <div class="card-body">
-              <p c;ass="card-text">Some quick example text to build on the card title and make up the bulk of
-                the card's content</p>
-              <p class="card-box-info">Copies Available: 0</p>
-            </div>
-          </div>
-
-
-
-          <div class="card-img-top">
-            <img src="../img/card_book_5.png" alt="cover">
-            <div class="card-body">
-              <p c;ass="card-text">Some quick example text to build on the card title and make up the bulk of
-                the card's content</p>
-              <p class="card-box-info">Copies Available: 0</p>
-            </div>
-          </div>
-
-
-
-
-
+        <div class="scrolling" id="scrolling-recommended-books">
 
         </div>
-      </div>
+    </div>
+
 
 
   </main>
