@@ -175,14 +175,16 @@ function createFooter() {
 
 
 function createHeader() {
+    // change the onkeydown to assign listener
     // <header>
+
     document.querySelector("header").innerHTML = `
       <div class="horizontal-profile-search">
   
         <a href="index.html"><img src="../img/logo-horizontal.svg" alt="" width="175" height="34"></a>
   
         <div class="searchboxbox ">
-          <input class="searchinput" type="text" placeholder="Search.." size="" onkeydown="clickPress(event)">
+          <input class="searchinput" type="text" placeholder="Search.." size="" onkeydown="searchbarClickPress(event)">
           <button class="searchbutton" id="search-function"> <i class="bi bi-search">
               <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor" class="bi bi-search"
                 viewBox="0 0 16 16">
@@ -215,7 +217,7 @@ function createSearchBar() {
     div.innerHTML = `
     <div class="searchboxbox ">
         <!-- make the button viable for the box -->
-        <input class="searchinput" type="text" placeholder="Search.." size="" onkeydown="clickPress(event)">
+        <input class="searchinput" type="text" placeholder="Search.." size="" onkeydown="searchbarClickPress(event)">
         <button class="searchbutton" id="search-button" type="submit" onclick="window.location='search.html'">
             <i class="bi bi-search">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="30" fill="currentColor"
@@ -381,7 +383,6 @@ function mapInit() {
 
 
 
-addingFilters()
 // addFilter('genre-filter','Test','test')
 
 function addFilter(categoryId, filterCategory, filterList, extra = null) {
