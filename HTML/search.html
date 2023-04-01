@@ -12,15 +12,17 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
     crossorigin="anonymous"></script>
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-  
-    <link rel="stylesheet" href="../CSS/style.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+  <link rel="stylesheet" href="../CSS/style.css">
   <link rel="stylesheet" href="../CSS/button.css">
   <link rel="stylesheet" href="../CSS/card.css">
   <link rel="stylesheet" href="../CSS/layout.css">
   <link rel="stylesheet" href="../CSS/sign_in.css">
   <link rel="stylesheet" href="../CSS/searchbar.css">
+  <link rel="stylesheet" href="../CSS/pages.css">
+  <link rel="stylesheet" href="../CSS/filters.css">
 
 
   <!-- <link rel="shortcut icon" type="image/ico" href="../img/logo_small.svg"/> -->
@@ -30,16 +32,17 @@
   <script src="../JS/app.js"></script>
 
   <script type="text/javascript">window.onload = function () {
-     createFooter(); createHeader(); 
-     createPages(2); resultBooks(); pageSelector();  addingFilters();};</script>
-  
+      createFooter(); createHeader();
+      createPages(2); resultBooks(); pageSelector(); addingFilters();
+    };</script>
+
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-  
+
 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
-  
+
 
   <!-- <script>
     $(function () {
@@ -120,12 +123,12 @@
 
 
         <div class="result-pages" id="results">
-        
+
         </div>
 
         <div class="page-selector" id="page-selector">
           <!-- <nav aria-label="Page navigation example"> -->
-            <!-- <ul class="pagination">
+          <!-- <ul class="pagination">
               <li class="page-item"><a class="page-link" href="#">Previous</a></li>
               <li class="page-item"><a class="page-link" href="#">1</a></li>
               <li class="page-item"><a class="page-link" href="#">2</a></li>

@@ -15,3 +15,10 @@
   );
   background-image: url("../../img/banner.png");
 }
+
+.logo-vertical {
+  width: 221.59px;
+  height: 285px;
+  margin-top: 29px;
+  margin-bottom: 62px;
+}

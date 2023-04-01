@@ -179,7 +179,7 @@ function createHeader() {
     // <header>
 
     document.querySelector("header").innerHTML = `
-      <div class="horizontal-profile-search">
+      <div class="d-flex flex-row justify-content-between horizontal-profile-search">
   
         <a href="index.html"><img src="../img/logo-horizontal.svg" alt="" width="175" height="34"></a>
   
