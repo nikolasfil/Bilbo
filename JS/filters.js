@@ -63,7 +63,8 @@ function addedFilter(filterName) {
     div.classList.add('selected-filters');
     container.appendChild(div);
     let span = document.createElement('span');
-    span.textContent = filterName;
+    // + &#xF659
+    span.textContent = filterName ;
     div.appendChild(span);
     let image = document.createElement('svg');
     image.classList.add('bi');
