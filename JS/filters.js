@@ -63,9 +63,10 @@ function addedFilter(filterName) {
     div.classList.add('selected-filters');
     container.appendChild(div);
     let span = document.createElement('span');
-    // + &#xF659
-    span.textContent = filterName ;
+
+    span.textContent = filterName;
     div.appendChild(span);
+    // link bootstrap icons CDN in the html file
     let image = document.createElement('svg');
     image.classList.add('bi');
     image.classList.add('bi-x-lg');
