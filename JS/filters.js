@@ -62,16 +62,16 @@ function addedFilter(filterName) {
     let div = document.createElement('div');
     div.classList.add('selected-filters');
     container.appendChild(div);
-    let p = document.createElement('span');
-    p.textContent = filterName;
-    div.appendChild(p);
+    let span = document.createElement('span');
+    span.textContent = filterName;
+    div.appendChild(span);
     let image = document.createElement('svg');
     image.classList.add('bi');
     image.classList.add('bi-x-lg');
-    // image.setAttribute('width', '32');
-    // image.setAttribute('height', '32');
-    // image.setAttribute('viewBox', '0 0 128 128');
-    // image.setAttribute('fill', 'currentColor');
+    image.setAttribute('width', '32');
+    image.setAttribute('height', '32');
+    image.setAttribute('viewBox', '0 0 128 128');
+    image.setAttribute('fill', 'currentColor');
     image.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
     
     let path = document.createElement('path');
