@@ -22,7 +22,6 @@
 
 .who-we-are-profiles {
   margin-left: 1vw;
-  height: 11.8125vw;
 }
 
 .who-we-are-profile-pics {
@@ -37,6 +36,7 @@
 .about-background {
   width: 38.84vw;
   height: 39.2vw;
+  align-self: center;
   /* overflow: hidden; */
 /* background: linear-gradient(180.08deg, #E08AB1 -102.48%, #6A1B4A 95.37%); */
 }
