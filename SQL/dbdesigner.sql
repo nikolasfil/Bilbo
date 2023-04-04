@@ -1,51 +1,75 @@
-CREATE TABLE library (
-    id binary PRIMARY KEY AUTOINCREMENT,
-    location binary PRIMARY KEY AUTOINCREMENT
+CREATE TABLE IF NOT EXISTS LIBRARY (
+	id			binary 		NOT NULL , 
+	location	binary 		NOT NULL ,
+	profile_picture		binary 		NOT NULL,
+	summary	varchar(1000) 	NOT NULL,
+	working_hours 	varchar(1000) 	NOT NULL,
+	PRIMARY KEY (id)
 );
 
-CREATE TABLE book (
-    id binary PRIMARY KEY AUTOINCREMENT,
-    title varchar PRIMARY KEY AUTOINCREMENT,
-    publisher varchar PRIMARY KEY AUTOINCREMENT,
-    author varchar PRIMARY KEY AUTOINCREMENT,
-    edition varchar PRIMARY KEY AUTOINCREMENT,
-    release date datetime PRIMARY KEY AUTOINCREMENT,
-    genre varchar PRIMARY KEY AUTOINCREMENT,
-    summary varchar
+CREATE TABLE IF NOT EXISTS BOOK (
+	isbn binary NOT NULL ,
+	title varchar(1000) NOT NULL,
+	author varchar(100) ,
+	edition varchar(100) ,
+	publisher varchar(100) ,
+	release date datetime ,
+	genre varchar(100) ,
+	language varchar(100) NOT NULL,
+	summary varchar(1000) NOT NULL,
+	cover_image binary NOT NULL,
+	PRIMARY KEY (isbn)
 );
 
-CREATE TABLE copy (
-    book_id binary,
-    copy integer PRIMARY KEY AUTOINCREMENT,
-    libary_id binary
+
+
+CREATE TABLE IF NOT EXISTS COPIES (
+	book_isbn binary NOT NULL,
+	copy_num INTEGER NOT NULL,
+	libary_id binary NOT NULL,
+	PRIMARY KEY (book_isbn, copy_num, library_id),
+	FOREIGN KEY (book_isbn) REFERENCES BOOK(isbn) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (library_id) REFERENCES LIBRARY(id) ON DELETE CASCADE ON UPDATE CASCADE
+
 );
 
-CREATE TABLE user (
-    id binary PRIMARY KEY AUTOINCREMENT,
-    fname varchar PRIMARY KEY AUTOINCREMENT,
-    lname varchar PRIMARY KEY AUTOINCREMENT,
-    birthdate datetime PRIMARY KEY AUTOINCREMENT,
-    password varchar PRIMARY KEY AUTOINCREMENT,
-    salt varchar PRIMARY KEY AUTOINCREMENT
+CREATE TABLE IF NOT EXISTS USER (
+	id binary NOT NULL  ,
+	fname varchar(255) NOT NULL,
+	lname varchar(255) NOT NULL,
+	birthdate datetime NOT NULL,
+	password varchar(255) NOT NULL,
+	salt varchar(255) NOT NULL,
+	profile_picture binary NOT NULL,
+	PRIMARY KEY (id)
 );
 
-CREATE TABLE borrowing (
-    book_id binary,
-    copy binary,
-    library_id binary,
-    user_id binary,
-    date_borrowing datetime,
-    date_return datetime
+CREATE TABLE IF NOT EXISTS Borrowing (
+	book_isbn binary NOT NULL,
+	copy_num binary NOT NULL,
+	library_id binary NOT NULL,
+	user_id binary NOT NULL,
+	date_borrowing datetime NOT NULL,
+	date_return datetime,
+	PRIMARY KEY (book_isbn, copy_num, library_id, user_id, date_borrowing),
+	FOREIGN KEY (book_isbn, copy_num, library_id) REFERENCES COPIES(book_isbn, copy_num, library_id) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (user_id) REFERENCES USER(id) ON DELETE CASCADE ON UPDATE CASCADE
+
 );
 
-CREATE TABLE return (
-    book_id binary,
-    copy binary,
-    library_id binary,
-    user_id binary,
-    date_of_borrowing datetime,
-    date_of_return datetime PRIMARY KEY AUTOINCREMENT
+CREATE TABLE IF NOT EXISTS Return (
+	book_isbn binary NOT NULL,
+	copy_num binary NOT NULL,
+	library_id binary	NOT NULL,
+	user_id binary 		NOT NULL,
+	date_of_borrowing datetime 		NOT NULL,
+	date_of_return datetime NOT NULL,
+	PRIMARY KEY (book_isbn, copy_num, library_id, user_id, date_of_borrowing, date_of_return),
+	FOREIGN KEY (book_isbn, copy_num, library_id) REFERENCES COPIES(book_isbn, copy_num, library_id) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (user_id) REFERENCES USER(id) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (date_of_borrowing) REFERENCES Borrowing(date_borrowing) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
 
 
 
