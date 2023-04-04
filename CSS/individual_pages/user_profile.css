@@ -2,5 +2,9 @@
 display: flex;
 justify-content: space-evenly;
 margin-bottom: 5%;
+flex: 1 1 auto;
 }
 
+.borrowingCardBG{
+    filter: drop-shadow(2px 5px 10px #0000000f);
+}
