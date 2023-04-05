@@ -66,8 +66,7 @@ class Creation:
         self.insert_data('COPIES',('book_isbn','1'))
 
         # Users
-        # self.hashing_password(fname[i]) ,self.stringing_from_double(self.salt)
-        self.insert_data('USER',('id','fname','lname','birthdate',self.hashing_password('password') ,self.stringing_from_double(self.salt),'profile_picture'))
+        self.insert_data('USER',('id','fname','lname','birthdate',self.hashing_password('password') ,self.binary_to_string(self.salt),'profile_picture'))
         
         self.insert_data('Borrowing',('book_isbn','copy_num','library_id','user_id','date_borrowing','date_return'))
         
@@ -76,22 +75,22 @@ class Creation:
 
     # make it clearer
     
-    def stringify(self, string):
+    def double_quoting(self, string):
         return f"'{str(string)}'"
     
-    def stringing_from_double(self,string):
+    def binary_to_string(self,string):
         # return f"'{str(string)[2:-1]}'"
         return f"{str(string)[2:-1]}"
 
     def insert_data(self,table_name,data):
-        command = f"INSERT INTO {table_name}({','.join(self.tables[table_name])}) VALUES ({','.join(list(map(self.stringify,data)))})"
+        command = f"INSERT INTO {table_name}({','.join(self.tables[table_name])}) VALUES ({','.join(list(map(self.double_quoting,data)))})"
         print(command)
         self.conn.execute(command)
         self.conn.commit()
     
 
     def hashing_password(self,password):
-        return self.stringing_from_double(bcrypt.hashpw(password.encode('utf-8'),self.salt))
+        return self.binary_to_string(bcrypt.hashpw(password.encode('utf-8'),self.salt))
 
 
 
