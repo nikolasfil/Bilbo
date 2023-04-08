@@ -1,0 +1,52 @@
+.card-info{
+display: flex;
+justify-content: space-evenly;
+margin-bottom: 5%;
+flex: 1 1 auto;
+flex-wrap: wrap;
+
+}
+
+.borrowingCardBG{
+    filter: drop-shadow(2px 5px 10px #0000000f);
+}
+
+.profileInfoDetails{
+    margin-top: 3rem;
+    align-content: bottom;
+    border-collapse: collapse;
+}
+
+.profile_info{
+    min-width: 38%;
+}
+
+.borrowingCard{
+    position: relative;
+}
+
+.borrowingCardInfo1{
+    position: absolute;
+    top: 195px;
+    left: 35px;
+}
+
+.borrowingCardInfo2{
+    position: absolute;
+    top: 215px;
+    left: 35px;
+}
+
+.borrowing_state{
+    display: flex;
+    flex-direction: column;
+}
+
+.borrowingTitles{
+    display: grid;
+    grid-template: 1fr 1fr / 1fr 1fr;
+}
+
+.borrowingInfo{
+    
+}

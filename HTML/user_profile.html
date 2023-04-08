@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="../CSS/sign_in.css">
   <link rel="stylesheet" href="../CSS/carousel.css">
   <link rel="stylesheet" href="../CSS/searchbar.css">
-
+  <link rel="stylesheet" href="../CSS/individual_pages/user_profile.css">
 
   <link rel="shortcut icon" type="image/ico" href="../img/logo_small.svg" />
   
@@ -33,90 +33,81 @@
 
 </head>
 
-<body>
+<body class="background">
 
   <header></header>
   
   <main>
-
-    <div class="horizontally shadow-box">
-
-
-      <img src="../img/ellipse_1.png" alt="" width="190" height="190">
-
-      <div class="vertically-center">
-
-        <h3>Firstname Lastname</h3>
-        <p>address</p>
-
-        <div class="horizontally">
-
-          <div class="vertically">
-            <p>info</p>
-            <p>info</p>
+    <div class="pageborder">
+      
+      <div class="card-info">
+        <!-- card -->
+        <div class="borrowingCard">
+          <img src="../img/borrowing_card.svg" class="borrowingCardBG">
+          <div >
+            <h5 class="borrowingCardInfo1"><strong>Konstantinos Kotorenis</strong></h5>
+            <p class="borrowingCardInfo2">38459834759384</p>
           </div>
-
-
-          <div class="vertically">
-            <p>info</p>
-            <p>info</p>
-          </div>
-
-
-          <div class="vertically">
-            <p>info</p>
-            <p>info</p>
-          </div>
-
-
-
+          
         </div>
-
+        <!-- Personal information -->
+        <div class="profile_info">
+          <h2><strong>Konstantinos Kotorenis</strong></h2>
+          <div class="profileInfoDetails">
+            <h6><strong>ID</strong></h6>
+            <p>38459834759384</p>
+            <h6><strong>Address</strong></h6>
+            <p>Manolaki 45 Patra 26222</p>
+            <h6><strong>Date of birth</strong></h6>
+            <p>30/2/1960</p>
+          </div>
+        </div>
       </div>
-
-
-    </div>
-    <!--  -->
-
-    <div class="row" id="lending-progress">
-      <h3>Lending Progress</h3>
-
-      <div class="horizontally-center">
-
-        <div class="horizontally">
-          <p>list of books</p>
+      
+      <!-- Borrowing State -->
+      <div class="borrowing_state">
+        <h2><strong>Borrowing state</strong></h2>
+        <div class="borrowingTitles">
+          <h6><strong>Details</strong></h6>
+          <h6><strong>Timeline</strong></h6>
         </div>
-
-        <div class="horizontally">
-          <img src="../img/progress.png" alt="progress">
+        <div class="borrowingInfo">
+          <ul class="timeline" id="timeline">
+            <li class="li complete">
+              <div class="timestamp">
+                <span class="status">Reserved</span>
+                <span class="date">11/15/2014</span>
+              </div> 
+            </li>   
+            <li class="li complete">
+              <div class="timestamp">
+                <span class="status">Borrowed</span>
+                <span class="date">11/15/2014</span>
+              </div> 
+            </li>    
+            <li class="li complete">
+              <div class="timestamp">
+                <span class="status">Returned</span>
+                <span class="date">11/15/2014</span>
+              </div> 
+            </li>            
+           </ul>     
         </div>
-
       </div>
-
-      <div class="vertically" id="library-card">
-
-        <h3>Card</h3>
-
-        <div class="horizontally">
-          <img src="../img/demo_pic_311_281.png" alt="Library Card" width="527" height="371">
-
-          <div class="vertically">
-            <h5>Card Name</h5>
-            <p>details</p>
-            <p>download it </p>
-          </div>
-        </div>
-
-
-      </div>
-
+      
+      <!-- Previous Rentals -->
       <div class="recommend" id="recommended-books">
-        <p class="h2"> Recommended Books</p>
+        <p class="h2">Previous Borrowings</p>
+        <div class="scrolling" id="scrolling-recommended-books"></div>
+      </div>
 
-        <div class="scrolling" id="scrolling-recommended-books">
-
-        </div>
     </div>
+    
+    
+
+   
+
+      
 
 
 
