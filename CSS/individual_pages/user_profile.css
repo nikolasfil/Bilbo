@@ -47,13 +47,17 @@ flex-wrap: wrap;
     grid-template: 1fr 1fr / 1fr 1fr;
 }
 
+.borrowingInfo{
+    display: grid;
+    grid-template: 1fr 1fr / 1fr 1fr;
+}
 
 
 .timeline{
     list-style-type: none;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     
 }
   
