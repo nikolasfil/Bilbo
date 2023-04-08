@@ -3,6 +3,7 @@ display: flex;
 justify-content: space-evenly;
 margin-bottom: 5%;
 flex: 1 1 auto;
+flex-wrap: wrap;
 
 }
 
@@ -44,4 +45,8 @@ flex: 1 1 auto;
 .borrowingTitles{
     display: grid;
     grid-template: 1fr 1fr / 1fr 1fr;
+}
+
+.borrowingInfo{
+    
 }
