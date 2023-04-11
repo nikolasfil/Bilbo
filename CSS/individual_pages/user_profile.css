@@ -1,7 +1,7 @@
 .card-info{
 display: flex;
 justify-content: space-evenly;
-margin-bottom: 5%;
+margin-bottom: 50px;
 flex: 1 1 auto;
 flex-wrap: wrap;
 
@@ -14,7 +14,6 @@ flex-wrap: wrap;
 .profileInfoDetails{
     margin-top: 3rem;
     align-content: bottom;
-    border-collapse: collapse;
 }
 
 .profile_info{
@@ -37,31 +36,47 @@ flex-wrap: wrap;
     left: 35px;
 }
 
+/* borrowing state */
+
 .borrowing_state{
     display: flex;
     flex-direction: column;
 }
 
-.borrowingTitles{
-    display: grid;
-    grid-template: 1fr 1fr / 1fr 1fr;
-}
+/* borrowing each book */
 
 .borrowingInfo{
-    display: grid;
-    grid-template: 1fr 1fr / 1fr 1fr;
+    display: flex;
+    align-items: top;
+    flex-wrap: wrap;
+    border-collapse: collapse;
+    justify-content: space-between;
+}
+/* borrowing details */
+
+.borrowedBookDetails{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-right: 20%;
+    margin-left: 3%;
+}
+.borrowedBookimg{
+    height: 60px;
+    margin-right: 20px;
 }
 
+/* borrowing timeline */
 
 .timeline{
     list-style-type: none;
     display: flex;
     align-items: center;
-    justify-content: left;
-    
+    justify-content: right;
+    margin-top: 50px;
 }
   
-
 .timestamp{
     margin-bottom: 20px;
     display: flex;
@@ -70,14 +85,14 @@ flex-wrap: wrap;
     font-weight: 100;
 }
   
-.status{
-    padding: 15px 60px 0px 60px;
+.status1{
+    padding: 15px 5vw 0px 0px;
     display: flex;
-    justify-content: center;
     border-top: 2px solid #D6DCE0;
     position: relative;
+    text-align: left;
 }
-.status::before{
+.status1::before{
     content: '';
     width: 15px;
     height: 15px;
@@ -86,17 +101,68 @@ flex-wrap: wrap;
     border: 1px solid #ddd;
     position: absolute;
     top: -8px;
-    left: 42%;
+}
+
+.status2{
+    padding: 15px 5vw 0px 5vw;
+    display: flex;
+    justify-content: center;
+    border-top: 2px solid #D6DCE0;
+    position: relative;
+    text-align: center;
+}
+.status2::before{
+    content: '';
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    position: absolute;
+    top: -8px;
+    left: 46.5%;
+}
+
+.status3{
+    padding: 15px 0px 0px 5vw;
+    display: flex;
+    justify-content: right;
+    border-top: 2px solid #D6DCE0;
+    position: relative;
+    text-align: right;
+}
+.status3::before{
+    content: '';
+    width: 15px;
+    height: 15px;
+    background-color: white;
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    position: absolute;
+    top: -8px;
 }
     
   
-.li.complete .status{
+.li.complete .status1{
     border-top: 2px solid #AC8FBF;}
-.li.complete .status::before{
+.li.complete .status1::before{
     background-color: #AC8FBF;
     border: none;
 }
    
+.li.complete .status2{
+    border-top: 2px solid #AC8FBF;}
+.li.complete .status2::before{
+    background-color: #AC8FBF;
+    border: none;
+}
+
+.li.complete .status3{
+    border-top: 2px solid #AC8FBF;}
+.li.complete .status3::before{
+    background-color: #AC8FBF;
+    border: none;
+}
 
   @media (min-device-width: 320px) and (max-device-width: 700px){
     .timeline{
