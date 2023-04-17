@@ -33,42 +33,42 @@ function addBook(page, title, src, summary, copies) {
     p2.textContent = "Available Copies: " + copies;
     div2.appendChild(p2);
     div.appendChild(div2);
-    div.addEventListener('click', function () { window.location = '../HTML/book_info.html' });
+    div.addEventListener('click', function () { window.location = '/book_info' });
 
     container.appendChild(div);
 }
 
 
 function recommendedBooks() {
-    addBook('scrolling-recommended-books', 'Book1', '../img/card_book_1.png', 'This is a book about polaroids', 5);
-    addBook('scrolling-recommended-books', 'Book2', '../img/card_book_2.png', 'This is a book ', 5);
-    addBook('scrolling-recommended-books', 'Book3', '../img/card_book_3.png', 'This is a book ', 5);
-    addBook('scrolling-recommended-books', 'Book4', '../img/card_book_4.png', 'This is a book ', 5);
-    addBook('scrolling-recommended-books', 'Book5', '../img/card_book_5.png', 'This is a book ', 5);
-    addBook('scrolling-recommended-books', 'Book5', '../img/card_book_5.png', 'This is a book ', 5);
-    addBook('scrolling-recommended-books', 'Book5', '../img/card_book_5.png', 'This is a book ', 5);
-    addBook('scrolling-recommended-books', 'Book5', '../img/card_book_5.png', 'This is a book ', 5);
-    addBook('scrolling-recommended-books', 'Book5', '../img/card_book_5.png', 'This is a book ', 5);
+    addBook('scrolling-recommended-books', 'Book1', 'img/card_book_1.png', 'This is a book about polaroids', 5);
+    addBook('scrolling-recommended-books', 'Book2', 'img/card_book_2.png', 'This is a book ', 5);
+    addBook('scrolling-recommended-books', 'Book3', 'img/card_book_3.png', 'This is a book ', 5);
+    addBook('scrolling-recommended-books', 'Book4', 'img/card_book_4.png', 'This is a book ', 5);
+    addBook('scrolling-recommended-books', 'Book5', 'img/card_book_5.png', 'This is a book ', 5);
+    addBook('scrolling-recommended-books', 'Book5', 'img/card_book_5.png', 'This is a book ', 5);
+    addBook('scrolling-recommended-books', 'Book5', 'img/card_book_5.png', 'This is a book ', 5);
+    addBook('scrolling-recommended-books', 'Book5', 'img/card_book_5.png', 'This is a book ', 5);
+    addBook('scrolling-recommended-books', 'Book5', 'img/card_book_5.png', 'This is a book ', 5);
 
 }
 
 function resultBooks() {
     addBook('page1', 'The Polaroid Book', '../img/card_book_1.png', 'This is a book about polaroids', 5);
-    addBook('page1', 'Book2', '../img/card_book_2.png', 'This is a book ', 5);
-    addBook('page1', 'Book3', '../img/card_book_3.png', 'This is a book ', 5);
-    addBook('page1', 'Book3', '../img/card_book_3.png', 'This is a book ', 5);
-    addBook('page1', 'Book3', '../img/card_book_3.png', 'This is a book ', 5);
-    addBook('page1', 'Book3', '../img/card_book_3.png', 'This is a book ', 5);
+    addBook('page1', 'Book2', 'img/card_book_2.png', 'This is a book ', 5);
+    addBook('page1', 'Book3', 'img/card_book_3.png', 'This is a book ', 5);
+    addBook('page1', 'Book3', 'img/card_book_3.png', 'This is a book ', 5);
+    addBook('page1', 'Book3', 'img/card_book_3.png', 'This is a book ', 5);
+    addBook('page1', 'Book3', 'img/card_book_3.png', 'This is a book ', 5);
 
     // addBook('page1', 'Book4', '../img/card_book_4.png', 'This is a book ', 5);
     // addBook('page1', 'Book5', '../img/card_book_5.png', 'This is a book ', 5);
     // addBook('page1', 'Book5', '../img/card_book_5.png', 'This is a book ', 5);
 
 
-    addBook('page2', 'Book4', '../img/card_book_4.png', 'This is a book ', 5);
-    addBook('page2', 'Book5', '../img/card_book_5.png', 'This is a book ', 5);
-    addBook('page2', 'Book5', '../img/card_book_5.png', 'This is a book ', 5);
-    addBook('page2', 'Book5', '../img/card_book_5.png', 'This is a book ', 5);
+    addBook('page2', 'Book4', 'img/card_book_4.png', 'This is a book ', 5);
+    addBook('page2', 'Book5', 'img/card_book_5.png', 'This is a book ', 5);
+    addBook('page2', 'Book5', 'img/card_book_5.png', 'This is a book ', 5);
+    addBook('page2', 'Book5', 'img/card_book_5.png', 'This is a book ', 5);
 
 }
 
