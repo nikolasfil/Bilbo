@@ -1,0 +1,27 @@
+{{>header}}
+<h1>Welcome to my app</h1>
+
+{{#if isCompleted}}
+
+{{ name }}
+
+{{else}}
+<p>No name found</p>
+{{/if}}
+
+{{calculation 50 }}
+
+{{!-- {{#list title}} --}}
+{{!-- anything that we have inputed --}}
+{{!-- {{test}} --}}
+{{!-- {{/list}} --}}
+
+{{#list people}}
+{{firstName}} {{lastName}}
+{{/list}}
+
+{{>footer}}
+
+
+{{!-- {{{ renders the variable to the html }}} --}}
+{{!-- {{ prints the value of the variable}} --}}
