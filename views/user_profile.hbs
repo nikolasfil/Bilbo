@@ -1,0 +1,146 @@
+<script src="javascript/user_profile.js" defer></script>
+
+
+
+{{>header}}
+
+<main>
+
+  {{!-- make it better at a later date --}}
+
+  <div class="pageborder">
+
+    <div class="card-info">
+      <!-- card -->
+      <div class="borrowingCard">
+        <img src="img/borrowing_card.svg" class="borrowingCardBG">
+        <div>
+          <h5 class="borrowingCardInfo1"><strong>Konstantinos Kotorenis</strong></h5>
+          <p class="borrowingCardInfo2">38459834759384</p>
+        </div>
+
+      </div>
+      <!-- Personal information -->
+      <div class="profile_info">
+        <h2><strong>Konstantinos Kotorenis</strong></h2>
+        <div class="profileInfoDetails">
+          <h6><strong>ID</strong></h6>
+          <p>38459834759384</p>
+          <h6><strong>Address</strong></h6>
+          <p>Manolaki 45 Patra 26222</p>
+          <h6><strong>Date of birth</strong></h6>
+          <p>30/2/1960</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Borrowing State -->
+    <div class="borrowing_state">
+      <h2><strong>Borrowing state</strong></h2>
+      <div class="borrowingInfo">
+        <div class="borrowedBookDetails">
+          <img class="borrowedBookimg" src="img/card_book_1.png">
+          <div>
+            <h7>
+              Name: The Polaroid Book <br>
+              ISBN: HGGJHGjh8787348793 <br>
+              Edition: 1st <br>
+            </h7>
+          </div>
+        </div>
+
+        <ul class="timeline">
+          <li class="li complete">
+            <div class="timestamp">
+              <span class="status1">Reserved<br>11/15/2014</span>
+            </div>
+          </li>
+          <li class="li complete">
+            <div class="timestamp">
+              <span class="status2">Borrowed<br>11/15/2014</span>
+            </div>
+          </li>
+          <li class="li">
+            <div class="timestamp">
+              <span class="status3">Returned<br>11/15/2014</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="borrowingInfo">
+        <div class="borrowedBookDetails">
+          <img class="borrowedBookimg" src="img/card_book_1.png">
+          <div>
+            <h7>
+              Name: The Polaroid Book <br>
+              ISBN: HGGJHGjh8787348793 <br>
+              Edition: 1st <br>
+            </h7>
+          </div>
+        </div>
+
+        <ul class="timeline">
+          <li class="li complete">
+            <div class="timestamp">
+              <span class="status1">Reserved<br>11/15/2014</span>
+            </div>
+          </li>
+          <li class="li">
+            <div class="timestamp">
+              <span class="status2">Borrowed<br>11/15/2014</span>
+            </div>
+          </li>
+          <li class="li">
+            <div class="timestamp">
+              <span class="status3">Returned<br>11/15/2014</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="borrowingInfo">
+        <div class="borrowedBookDetails">
+          <img class="borrowedBookimg" src="img/card_book_1.png">
+          <div>
+            <h7>
+              Name: The Polaroid Book <br>
+              ISBN: HGGJHGjh8787348793 <br>
+              Edition: 1st <br>
+            </h7>
+          </div>
+        </div>
+
+        <ul class="timeline">
+          <li class="li complete">
+            <div class="timestamp">
+              <span class="status1">Reserved<br>11/15/2014</span>
+            </div>
+          </li>
+          <li class="li complete">
+            <div class="timestamp">
+              <span class="status2">Borrowed<br>11/15/2014</span>
+            </div>
+          </li>
+          <li class="li complete">
+            <div class="timestamp">
+              <span class="status3">Returned<br>11/15/2014</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    {{!-- fix this dependency sometime !!! --}}
+    <script src="javascript/books.js"></script>
+    <script type="text/javascript">window.onload = function () { recommendedBooks(); };</script>
+
+    {{>recommended_books info="Previous Borrowings"}}
+
+
+
+
+
+
+
+
+
+</main>

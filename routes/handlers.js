@@ -20,6 +20,16 @@ router.get('/about', (req, res) => {
 });
 
 
+router.get('/user_profile', (req, res) => {
+    res.render('user_profile', {
+        // to be changed later ? 
+        title: 'User Profile',
+        style: 'user_profile.css'
+    });
+});
+
+
+
 router.get('/dashboard', (req, res) => {
     res.render('dashboard', {
         title: 'Dashboard',
