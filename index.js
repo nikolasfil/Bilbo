@@ -14,15 +14,15 @@ const hbs = expbs.create({
     // create custom helpers
     helpers: {
         // use them as {{calculation value}}
-        calculation: function(value){
+        calculation: function (value) {
             return value + 100;
         },
-        list: function(value,options){
+        list: function (value, options) {
             // return "<h2>"+options.fn({test: value})+"</h2>";
             let out = "<ul>";
-            for(let i=0; i<value.length; i++){
+            for (let i = 0; i < value.length; i++) {
                 // out = out + "<li>"+options.fn({firstName: '',lastName: ''})+"</li>";
-                out = out + "<li>"+options.fn(value[i])+"</li>";
+                out = out + "<li>" + options.fn(value[i]) + "</li>";
             }
             return out + "</ul>";
         }
@@ -35,18 +35,21 @@ app.engine('.hbs', hbs.engine);
 app.set('view engine', '.hbs');
 
 
+// using css
 
+app.use(express.static(path.join(__dirname, 'public')));
 
 // routing 
 app.get('/', (req, res) => {
     res.render('index', {
+        style: 'home.css',
         title: 'Home',
         name: 'Hello World!',
         isCompleted: true,
         people: [
-            {firstName: 'John', lastName: 'Doe'},
-            {firstName: 'Jane', lastName: 'Doe'},
-            {firstName: 'Joe', lastName: 'Doe'},
+            { firstName: 'John', lastName: 'Doe' },
+            { firstName: 'Jane', lastName: 'Doe' },
+            { firstName: 'Joe', lastName: 'Doe' },
         ]
     });
 });
@@ -60,7 +63,15 @@ app.get('/about', (req, res) => {
 app.get('/dashboard', (req, res) => {
     res.render('dashboard', {
         title: 'Dashboard',
-        isListEnabled: false
+        isListEnabled: false,
+        author: {
+            firstName: 'John',
+            lastName: 'Doe',
+            project: {
+                name: 'Project 1',
+            }
+
+        }
     });
 });
 
@@ -96,7 +107,7 @@ app.get('/each/helper', (req, res) => {
 
 
 app.get('/look', (req, res) => {
-    res.render('lookup',{
+    res.render('lookup', {
         user: {
             name: "John Doe",
             age: 30,

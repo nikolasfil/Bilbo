@@ -7,3 +7,19 @@
     </ul>
 
 {{/unless}}
+
+
+{{#with author}}
+    {{!-- have access to the object --}}
+    <h2>{{firstName}} and {{lastName}}</h2>
+{{/with}}
+
+
+{{#with author as |x| }}
+    {{!-- have access to the object --}}
+    <h2>{{x.firstName}} and {{x.lastName}}</h2>
+
+    <p>{{x.project.name}}</p>
+{{/with}}
+
+
