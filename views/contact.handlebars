@@ -1,0 +1,26 @@
+
+{{#each people as |value key|}} {{!-- {{#each people}} --}}
+    <p>{{key}}:{{value}}</p>    {{!-- {{this}} or {{.}}--}} 
+
+{{/each}}
+
+
+
+{{#each user }} {{!-- as |value key| --}}
+    {{!-- {{this}} or {{.}} refers to valuee  --}}
+    {{@key}} {{!-- refers to key --}} 
+    {{@index}} {{!-- refers to index --}}
+{{/each}}
+
+<hr>
+{{#each lists}}
+
+    {{!-- {{log this}} log this: appear to the console log --}}
+
+    {{#each this.items as |value key| }}
+        
+        {{key}}:{{value}}
+        <br>
+    {{/each}}
+    <hr>
+{{/each}}
