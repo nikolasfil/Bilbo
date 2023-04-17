@@ -6,10 +6,8 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
     res.render('homepage.hbs', {
-        layout: 'index_layout',
         style: 'index.css',
-        title: 'Home',
-        searchbar: 'searchbar.hbs'
+        title: 'Home'
     });
 });
 

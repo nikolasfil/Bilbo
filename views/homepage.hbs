@@ -1,19 +1,15 @@
 <script src="javascript/sign_in.js" defer></script>
-<script src="javascript/books.js"></script>
 <script src="javascript/library.js"></script>
+<script src="javascript/books.js" ></script>
 
-{{!-- this is script material --}}
 
-<script type="text/javascript">window.onload = function () { recommendedBooks(); recommendedLibraries(); };</script>
-
+<script type="text/javascript">window.onload = function () { recommendedBooks();recommendedLibraries();};</script>
 
 <header class="d-flex flex-column justify-content-center cover-page-img cover-page">
 
     <div class="d-flex flex-row justify-content-end sign-space" id="sign-space">
         <button class="button-light sign-in" id="sign-in-btn">Sign In</button>
         <button class="button-white sign-up" id="sign-up-btn">Sign Up</button>
-
-
 
         {{>sign_in}}
 
@@ -32,23 +28,10 @@
 
 <main>
 
-    <div class="recommend" id="recommended-books">
-        <p class="h2"> Recommended Books</p>
+    {{>recommended_books}}
 
-        <div class="scrolling" id="scrolling-recommended-books">
+    {{>recommended_libraries}}
 
-        </div>
-    </div>
-
-    <div class="recommend" id="recommended-libraries">
-        <h1 class="h1">Recommended Libraries</h1>
-        <div class="scrolling" id="scrolling-recommended-libraries">
-            <!-- Library -->
-
-        </div>
-
-
-    </div>
 
 
 
