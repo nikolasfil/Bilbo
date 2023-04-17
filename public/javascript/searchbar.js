@@ -2,8 +2,9 @@
 
 function searchbarClickPress(event) {
     if (event.key == "Enter") {
+
         if (event.target.value != "") {
-            window.location = "search.html";
+            window.location = "/search";
             event.target.value = "";
         }
     }
