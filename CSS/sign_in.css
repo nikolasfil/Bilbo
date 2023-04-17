@@ -31,7 +31,6 @@
   border-radius: 24px;
   margin: auto;
   /* padding: 20px; */
-  border: 1px solid #888;
   /* width: 80%; */
 }
 
@@ -99,11 +98,14 @@
 /* Full-width input fields */
 .form-container input[type="email"],
 .form-container input[type="password"] {
-  width: 559px;
+  width: 100%;
   height: 69px;
 
   background: #ecf1f7;
-  border-radius: 11px;
+  border-radius: 12px;
+  border: none;
+  padding: 4%;
+  margin: 1% 0% 2% 0% ;
 }
 
 /* When the inputs get focus, do something */
@@ -115,20 +117,27 @@
 
 /* Set a style for the submit/login button */
 .form-container .btn {
-  width: 117px;
-  height: 34px;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
+  box-sizing: border-box;
+  width: fit-content;
+  height: fit-content;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin: 0.5rem;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+
+  color: #453159;
 
   background: #d8dde4;
-  border-radius: 17px;
-
-  color: black;
-  border: none;
-  cursor: pointer;
-  opacity: 0.8;
+  border-radius: 2rem;
+  border: transparent;
 }
 
 .form-container .forgot {
@@ -152,7 +161,16 @@
 /* Add some hover effects to buttons */
 .form-container .btn:hover,
 .open-button:hover {
-  opacity: 1;
+  background: #453159;
+  border-radius: 17px;
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  color: #ffffff;
 }
 
 .sign-space {
