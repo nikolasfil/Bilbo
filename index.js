@@ -4,6 +4,11 @@ const port = 8080;
 const expbs = require('express-handlebars');
 const path = require('path');
 
+const routes = require('./routes/handlers');
+
+// using css
+app.use(express.static(path.join(__dirname, 'public')));
+
 // helpers
 const hbs = expbs.create({
     defaultLayout: 'main',
@@ -35,93 +40,8 @@ app.engine('.hbs', hbs.engine);
 app.set('view engine', '.hbs');
 
 
-// using css
 
-app.use(express.static(path.join(__dirname, 'public')));
-
-// routing 
-app.get('/', (req, res) => {
-    res.render('index', {
-        style: 'home.css',
-        title: 'Home',
-        name: 'Hello World!',
-        isCompleted: true,
-        people: [
-            { firstName: 'John', lastName: 'Doe' },
-            { firstName: 'Jane', lastName: 'Doe' },
-            { firstName: 'Joe', lastName: 'Doe' },
-        ]
-    });
-});
-
-
-app.get('/about', (req, res) => {
-    res.render('about', { title: 'About' });
-});
-
-
-app.get('/dashboard', (req, res) => {
-    res.render('dashboard', {
-        title: 'Dashboard',
-        isListEnabled: false,
-        author: {
-            firstName: 'John',
-            lastName: 'Doe',
-            project: {
-                name: 'Project 1',
-            }
-
-        }
-    });
-});
-
-
-app.get('/each/helper', (req, res) => {
-    res.render('contact', {
-        people: [
-            "John",
-            "Jane",
-            "Joe",
-            "Jill"
-        ],
-        user: {
-            name: "John Doe",
-            age: 30,
-            email: "test"
-        },
-
-        lists: [
-            {
-                items: ['item1', 'item2', 'item3']
-            },
-            {
-                items: ['list1', 'list2', 'list3']
-            },
-            {
-                items: ['pos1', 'pos2', 'pos3']
-            }
-        ]
-
-    })
-})
-
-
-app.get('/look', (req, res) => {
-    res.render('lookup', {
-        user: {
-            name: "John Doe",
-            age: 30,
-            email: "test"
-        },
-        people: [
-            'John',
-            'Jane',
-            'Joe'
-        ]
-    });
-});
-
-
+app.use('/', routes)    ;
 
 // final command to have the server running
 
