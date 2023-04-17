@@ -4,9 +4,10 @@ const port = 8080;
 const expbs = require('express-handlebars');
 const path = require('path');
 
+// handles the routes
 const routes = require('./routes/handlers');
 
-// using css
+// using css,javascript, images and other public files 
 app.use(express.static(path.join(__dirname, 'public')));
 
 // helpers
@@ -17,21 +18,8 @@ const hbs = expbs.create({
     extname: '.hbs',
 
     // create custom helpers
-    helpers: {
-        // use them as {{calculation value}}
-        calculation: function (value) {
-            return value + 100;
-        },
-        list: function (value, options) {
-            // return "<h2>"+options.fn({test: value})+"</h2>";
-            let out = "<ul>";
-            for (let i = 0; i < value.length; i++) {
-                // out = out + "<li>"+options.fn({firstName: '',lastName: ''})+"</li>";
-                out = out + "<li>" + options.fn(value[i]) + "</li>";
-            }
-            return out + "</ul>";
-        }
-    }
+    helpers: require('./controllers/helpers.js'),
+    
 });
 
 
