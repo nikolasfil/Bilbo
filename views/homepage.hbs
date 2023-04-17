@@ -1,0 +1,97 @@
+<header class="d-flex flex-column justify-content-center cover-page-img cover-page">
+
+    <div class="d-flex flex-row justify-content-end sign-space" id="sign-space">
+        <button class="button-light sign-in" id="sign-in-btn">Sign In</button>
+        <button class="button-white sign-up" id="sign-up-btn">Sign Up</button>
+
+
+
+        <div id="sign-in-popup" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <form action="/HTML/index.html" class="form-container">
+                    <span class="close">&times;</span>
+
+                    <div class="d-flex flex-column justify-content-center ">
+                        <label for="email" style="margin-top:52px;">Username</label>
+                        <input type="email" placeholder="Enter Email" name="email" required>
+                    </div>
+
+                    <div class="d-flex flex-column justify-content-center ">
+                        <label for="psw">Password</label>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
+                    </div>
+
+                    <div class="d-flex flex-row justify-content-end ">
+                        <button type="submit" class="btn">Sign In</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <div id="sign-up-popup" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <form action="/" class="form-container">
+                    <span class="close">&times;</span>
+
+                    <div class="d-flex flex-column justify-content-center ">
+
+                        <label for="email" style="margin-top:52px;">Username</label>
+                        <input type="email" placeholder="Enter Email" name="email" required>
+                    </div>
+
+                    <div class="d-flex flex-column justify-content-center ">
+                        <label for="psw">Password</label>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
+                    </div>
+
+                    <div class="d-flex flex-row justify-content-between">
+                        <button type="button" class="forgot" onclick="closeForm()"></button>
+                        <button type="submit" class="btn">Sign Up</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="d-flex flex-row justify-content-center">
+        <img src="img/logo_vertical.svg" alt="Logo" class="logo-vertical">
+    </div>
+
+
+
+
+</header>
+
+<main>
+
+    <div class="recommend" id="recommended-books">
+        <p class="h2"> Recommended Books</p>
+
+        <div class="scrolling" id="scrolling-recommended-books">
+
+        </div>
+    </div>
+
+    <div class="recommend" id="recommended-libraries">
+        <h1 class="h1">Recommended Libraries</h1>
+        <div class="scrolling" id="scrolling-recommended-libraries">
+            <!-- Library -->
+
+        </div>
+
+
+    </div>
+
+
+
+
+</main>
+

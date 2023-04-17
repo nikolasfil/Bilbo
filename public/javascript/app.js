@@ -157,20 +157,6 @@ function searchbarAssignAttr() {
 // Create header and footer
 
 
-function createFooter() {
-    // <footer class="py-3 my-4">
-    document.querySelector("footer").innerHTML = `
-      <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-        <li class="nav-item"><a href="about.html" class="nav-link px-2 text-muted">About us</a></li>
-        <li class="nav-item"><a href="user_profile.html" class="nav-link px-2 text-muted">Profile</a></li>
-      </ul>
-      <p class="text-center text-muted">© Copyright 2023</p>
-      `
-    document.querySelector("footer").classList.add("py-3");
-    document.querySelector("footer").classList.add("my-4");
-    // </footer>
-}
-
 
 function createHeader() {
     // change the onkeydown to assign listener

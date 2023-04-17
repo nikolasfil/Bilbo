@@ -5,16 +5,10 @@ const router = express.Router();
 
 
 router.get('/', (req, res) => {
-    res.render('index', {
-        style: 'home.css',
+    res.render('homepage.hbs', {
+        layout: 'index_layout',
+        style: 'index.css',
         title: 'Home',
-        name: 'Hello World!',
-        isCompleted: true,
-        people: [
-            { firstName: 'John', lastName: 'Doe' },
-            { firstName: 'Jane', lastName: 'Doe' },
-            { firstName: 'Joe', lastName: 'Doe' },
-        ]
     });
 });
 
