@@ -1,3 +1,5 @@
+recommendedLibraries();
+
 
 function addLibrary(page, title, src, summary) {
     // change it to handle more pages

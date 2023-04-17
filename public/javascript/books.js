@@ -1,6 +1,7 @@
 
 //  Create book cards
 
+recommendedBooks();
 
 function addBook(page, title, src, summary, copies) {
     // change it to handle more pages
