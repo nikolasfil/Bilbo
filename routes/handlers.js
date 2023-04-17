@@ -9,6 +9,7 @@ router.get('/', (req, res) => {
         layout: 'index_layout',
         style: 'index.css',
         title: 'Home',
+        searchbar: 'searchbar.hbs'
     });
 });
 
