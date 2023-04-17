@@ -44,5 +44,14 @@ router.get('/book_info', (req, res) => {
     });
 });
 
+router.get('/search', (req, res) => {
+    // more to be added later
+    res.render('search', {
+        title: 'Search',
+        style: 'search.css'
+    });
+});
+
+
 
 module.exports = router;

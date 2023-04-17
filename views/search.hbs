@@ -1,0 +1,81 @@
+
+
+<script src="javascript/filters.js" ></script>
+<script src="javascript/show_pages.js"></script>
+<script src="javascript/books.js"></script>
+
+
+<script type="text/javascript">window.onload = function() {
+      
+      createPages(2); resultBooks(); pageSelector(); addingFilters();
+    };</script>
+
+{{>header}}
+
+<main>
+    <div class="d-flex flex-row justify-content-start">
+
+        <div class="d-flex flex-column justify-content-start" id="filters">
+
+
+            <div class="filters d-flex flex-column justify-content-start " id="genre-filter">
+            </div>
+
+
+            <div class="filters d-flex flex-column justify-content-start " id="availability-filter">
+            </div>
+
+
+            <div class="filters d-flex flex-column justify-content-start " id="release-filter">
+
+                <h3>Release Date</h3>
+                <label for="customRange3" class="form-label">Example range</label>
+                <!-- <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3" style="width: 420px;"> -->
+                <!-- <input type="text" id="amount" class="filter-range"> -->
+                <!-- <div id="slider-range"></div>
+          <div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 10%; width: 10%;"></div><span
+            tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 15%;"></span><span
+            tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 60%;"></span>
+ -->
+
+            </div>
+
+
+            <div class="filters d-flex flex-column justify-content-start " id="edition-filter">
+            </div>
+
+
+            <div class="filters d-flex flex-column justify-content-start " id="publisher-filter">
+            </div>
+
+
+            <div class="filters d-flex flex-column justify-content-start " id="library-filter">
+                <input type="text" name="" id="library-filter-input" placeholder="Region or Library"
+                    style="width: 70%;">
+            </div>
+
+        </div>
+
+
+        <div class="d-flex flex-column justify-content-between" id="search-content">
+
+            <div class="selected-filter-list d-flex flex-row justify-content-start " id="filter-selection">
+            </div>
+
+
+
+            <div class="result-pages" id="results">
+            </div>
+
+
+            <div class="page-selector" id="page-selector">
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+
+</main>
