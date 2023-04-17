@@ -1,6 +1,8 @@
 // ------------------  Map ------------------
 
 
+mapInit();
+
 function mapInit() {
     map = new OpenLayers.Map("basicMap");
     let mapnik = new OpenLayers.Layer.OSM();

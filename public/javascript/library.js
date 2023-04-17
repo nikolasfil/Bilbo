@@ -30,20 +30,20 @@ function addLibrary(page, title, src, summary) {
     div.appendChild(div2);
     container.appendChild(div);
 
-    div.addEventListener('click', function () { window.location = '../HTML/library_info.html' });
+    div.addEventListener('click', function () { window.location = '/library_info' });
 }
 
 
 function recommendedLibraries() {
 
-    addLibrary('scrolling-recommended-libraries', 'Library2', '../img/card_library_2.png', 'Info about a library');
-    addLibrary('scrolling-recommended-libraries', 'Library1', '../img/card_library_1.png', 'Info about a library');
-    addLibrary('scrolling-recommended-libraries', 'Library3', '../img/card_library_3.png', 'Info about a library');
-    addLibrary('scrolling-recommended-libraries', 'Library4', '../img/card_library_4.png', 'Info about a library');
-    addLibrary('scrolling-recommended-libraries', 'Library5', '../img/card_library_5.png', 'Info about a library');
-    addLibrary('scrolling-recommended-libraries', 'Library5', '../img/card_library_5.png', 'Info about a library');
-    addLibrary('scrolling-recommended-libraries', 'Library5', '../img/card_library_5.png', 'Info about a library');
-    addLibrary('scrolling-recommended-libraries', 'Library5', '../img/card_library_5.png', 'Info about a library');
-    addLibrary('scrolling-recommended-libraries', 'Library5', '../img/card_library_5.png', 'Info about a library');
+    addLibrary('scrolling-recommended-libraries', 'Library2', 'img/card_library_2.png', 'Info about a library');
+    addLibrary('scrolling-recommended-libraries', 'Library1', 'img/card_library_1.png', 'Info about a library');
+    addLibrary('scrolling-recommended-libraries', 'Library3', 'img/card_library_3.png', 'Info about a library');
+    addLibrary('scrolling-recommended-libraries', 'Library4', 'img/card_library_4.png', 'Info about a library');
+    addLibrary('scrolling-recommended-libraries', 'Library5', 'img/card_library_5.png', 'Info about a library');
+    addLibrary('scrolling-recommended-libraries', 'Library5', 'img/card_library_5.png', 'Info about a library');
+    addLibrary('scrolling-recommended-libraries', 'Library5', 'img/card_library_5.png', 'Info about a library');
+    addLibrary('scrolling-recommended-libraries', 'Library5', 'img/card_library_5.png', 'Info about a library');
+    addLibrary('scrolling-recommended-libraries', 'Library5', 'img/card_library_5.png', 'Info about a library');
 
 }

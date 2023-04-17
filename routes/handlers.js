@@ -29,67 +29,14 @@ router.get('/user_profile', (req, res) => {
 });
 
 
-
-router.get('/dashboard', (req, res) => {
-    res.render('dashboard', {
-        title: 'Dashboard',
-        isListEnabled: false,
-        author: {
-            firstName: 'John',
-            lastName: 'Doe',
-            project: {
-                name: 'Project 1',
-            }
-
-        }
+router.get('/library_info', (req, res) => {
+    res.render('library_info', {
+        title: 'Library Info',
+        style: 'library_info.css'
     });
 });
 
 
-router.get('/each/helper', (req, res) => {
-    res.render('contact', {
-        people: [
-            "John",
-            "Jane",
-            "Joe",
-            "Jill"
-        ],
-        user: {
-            name: "John Doe",
-            age: 30,
-            email: "test"
-        },
-
-        lists: [
-            {
-                items: ['item1', 'item2', 'item3']
-            },
-            {
-                items: ['list1', 'list2', 'list3']
-            },
-            {
-                items: ['pos1', 'pos2', 'pos3']
-            }
-        ]
-
-    })
-})
-
-
-router.get('/look', (req, res) => {
-    res.render('lookup', {
-        user: {
-            name: "John Doe",
-            age: 30,
-            email: "test"
-        },
-        people: [
-            'John',
-            'Jane',
-            'Joe'
-        ]
-    });
-});
 
 
 module.exports = router;

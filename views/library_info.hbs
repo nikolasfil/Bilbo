@@ -1,0 +1,113 @@
+<script type="text/javascript">window.onload = function () {
+        searchbarAssignAttr();
+    };</script>
+
+{{>header}}
+
+<main>
+
+    <div id="library-info-main" class="d-flex flex-column justify-content-center ">
+
+
+        <div class="d-flex flex-row justify-content-start div-paragraph-margins-55-160" id="library-info-">
+            <img src="../img/library_image_1.svg" alt="library image" style="width:282; height:282;">
+            <div class="d-flex flex-column justify-content-start paragraph-margins-58-79">
+                <!-- the margins are not working -->
+                <div id="library-title ">
+                    <h1>Library Of Patras</h1>
+                    <h3>Ypatias 4, Panepstimioupoli Patron, 265 04</h3>
+                </div>
+                <div id="library-info">
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero possimus hic laboriosam
+                        perferendis,
+                        veritatis corrupti assumenda reprehenderit ducimus dignissimos quia, doloribus unde! Fugit quas
+                        minus est
+                        ex ratione dolor possimus!Lorem</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="d-flex flex-column justify-content-center div-paragraph-margins-55-160" id="location-working-hours">
+
+        <h2>Location & Working Hours</h2>
+
+        <div class="d-flex flex-row justify-content-start ">
+
+            {{>map}}
+
+            <div class="d-flex flex-column justify-content-start" id="library-info-a-c-w">
+
+                <div class="d-flex flex-column justify-content-start" id="libary-address">
+                    <h3>Address</h3>
+                    <p>Ypatias 4, panepistimioupoli Patron 265 04</p>
+                </div>
+
+                <div class="d-flex flex-column justify-content-start" id="libary-contact">
+                    <h3>Contact</h3>
+                    <p>Telephone: 2610398949</p>
+                    <p>Email: bibliothiki@bilbo.gr</p>
+                </div>
+
+                <div class="d-flex flex-column justify-content-start" id="libary-working">
+                    <h3>Working Hours</h3>
+                    <!-- to be fixed -->
+                    <table>
+                        <tr>
+                            <td>Monday:</td>
+                            <td>8:30 AM–7 PM</td>
+                        </tr>
+                        <tr>
+                            <td> Tuesday:</td>
+                            <td>8:30 AM–7 PM</td>
+                        </tr>
+                        <tr>
+                            <td> Wednesday:</td>
+                            <td>8:30 AM–7 PM</td>
+
+                        </tr>
+                        <tr>
+                            <td> Thursday:</td>
+                            <td>8:30 AM–7 PM</td>
+
+                        </tr>
+                        <tr>
+                            <td> Friday:</td>
+                            <td>8:30 AM–7 PM</td>
+
+                        </tr>
+                        <tr>
+                            <td> Saturday:</td>
+                            <td>closed</td>
+
+                        </tr>
+                        <tr>
+                            <td> Sunday:</td>
+                            <td>closed</td>
+
+                        </tr>
+
+
+
+
+                    </table>
+
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    {{>recommended_books info='Recommended Books'}}
+
+
+</main>
