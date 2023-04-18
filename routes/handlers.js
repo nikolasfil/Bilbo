@@ -7,7 +7,7 @@ let signedIn = module.exports.signedIn;
 // let signedIn = { signedIn };
 
 router.get('/', (req, res) => {
-    res.render('homepage.hbs', {
+    res.render('homepage', {
         style: 'index.css',
         title: 'Home',
         signedIn: signedIn
@@ -61,5 +61,24 @@ router.get('/search', (req, res) => {
 });
 
 
+// router.get('/sign_in+*', (req, res) => {
+//     // alert(req.url);
+//     let array = req.url.split("+")[1].split('/');
+//     let url = ''
+//     if(array.length ==4){
+//         url='homepage'
+//         console.log(array);
+//     }
+//     else{
+//         url = array[3].split('?')[0];
+//         // alert(url);
+//         console.log(array);
+//     }
+//     res.render(url, {
+//         title: 'Sign In',
+//         style: url+'.css',
+//         signedIn: true
+//     });
+// });
 
 module.exports = router;
