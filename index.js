@@ -4,6 +4,9 @@ const port = 8080;
 const expbs = require('express-handlebars');
 const path = require('path');
 
+let signedIn = false;
+module.exports = {signedIn };   
+
 // handles the routes
 const routes = require('./routes/handlers');
 

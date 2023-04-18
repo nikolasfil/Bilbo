@@ -3,6 +3,7 @@ module.exports = {
     calculation: function (value) {
         return value + 100;
     },
+    
     list: function (value, options) {
         // return "<h2>"+options.fn({test: value})+"</h2>";
         let out = "<ul>";

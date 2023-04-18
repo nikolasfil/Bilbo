@@ -5,9 +5,10 @@
 
     <!-- Modal content -->
     <div class="modal-content">
-        <form action="/HTML/index.html" class="form-container">
+        <form action="/" class="form-container">
             <span class="close">&times;</span>
 
+        {{!-- add the coloring of the box for validation from front2 --}}
             <div class="d-flex flex-column justify-content-center ">
                 <label for="email" style="margin-top:52px;">Username</label>
                 <input type="email" placeholder="Enter Email" name="email" required>
@@ -19,7 +20,7 @@
             </div>
 
             <div class="d-flex flex-row justify-content-end ">
-                <button type="submit" class="btn">Sign In</button>
+                <button type="submit" class="btn" id="submit-sign-in">Sign In</button>
             </div>
         </form>
     </div>

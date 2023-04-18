@@ -1,12 +1,3 @@
-// function openForm() {
-//   document.getElementById("sign-in-popup").style.display = "block";
-// }
-
-// function closeForm() {
-//   document.getElementById("sign-in-popup").style.display = "none";
-// }
-
-
 
 // Get the modalSignIn
 let modalSignIn = document.getElementById("sign-in-popup");
@@ -27,6 +18,9 @@ let spanSignIn = document.getElementsByClassName("close")[0];
 let spanSignUp = document.getElementsByClassName("close")[1];
 
 let forgot = document.getElementsByClassName("forgot")[0];
+
+let submit_sign_in = document.getElementById("submit-sign-in");
+
 
 // When the user clicks the button, open the modalSignIn 
 btnSignIn.onclick = function () {
@@ -61,6 +55,14 @@ window.onclick = function (event) {
   }
 
 }
+
+
+// submit_sign_in.onclick = function () {
+//   // signedIn = true;
+//   module.exports.signedIn = true;
+//   // alert('wprls'+module.exports.signedIn);
+//   alert('Not implemented yet');
+// }
 
 
 

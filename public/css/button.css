@@ -71,6 +71,31 @@
   
 }
 
+.button-purple {
+  box-sizing: border-box;
+  width: fit-content;
+  height: fit-content;
+  padding-top: 0.35rem;
+  padding-bottom: 0.35rem;
+  padding-left: 1.85rem;
+  padding-right: 1.85rem;
+  margin: 0.5rem;
+  
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+
+  color: #453159;
+
+  border-radius: 2rem;
+  border: 0.15rem solid #453159;
+  background: transparent;
+  
+}
+
 .button-light:hover {
   background: #453159;
   border-radius: 17px;
@@ -83,6 +108,8 @@
   text-align: center;
   color: #ffffff;
 }
+
+
 
 .button-white:hover {
   background: #453159;
@@ -98,7 +125,18 @@
   border-color: #453159;
 }
 
+.button-purple:hover {
+  background: #453159;
+  border-radius: 17px;
 
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  color: #ffffff;
+}
 /* Search related buttons */
 
 .searchbutton {

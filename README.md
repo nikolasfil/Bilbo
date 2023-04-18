@@ -19,4 +19,7 @@ It gets the dependencies from the package.json file. The dependencies are listed
 npm start
 ```
 
-And it automatically loads the changes while working on the files 
+And it automatically loads the changes while working on the files.
+
+Added a signedIn variable in the index.js (don't know how we will use it later )
+So that it shows the login and register buttons only if the user is not signed in and the logout button only if the user is signed in.
