@@ -3,13 +3,20 @@
     flex-wrap: wrap;
 }
 
-#book-img {
-    margin-right: 5%;
+.book-img {
+    width: 100%;
+    height: 100%;
     border-radius: 20px;
 }
 
+#book-img{
+    margin-right: 5%; 
+    width: 400px;
+    height: 400px;
+
+}
+
 #book-title-summary {
-    width: 758px;
-    height: 364px;
+    width: 50%;
     margin-right: 5%;
 }

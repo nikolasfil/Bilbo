@@ -1,18 +1,20 @@
 {{>header}}
 
-<main>
+<main class="d-flex flex-column align-content-center pageborder">
 
-    <div class="d-flex flex-row justify-content-start pageborder" id="book">
+    <div class="d-flex flex-row justify-content-between" id="book">
 
-        <div class="" id="book-img">
-            <img src="img/card_book_1.png" alt="book cover" class="book-img">
-        </div>
+        <div class="d-flex flex-row justify-content-start">
+            <div class="" id="book-img">
+                <img src="img/card_book_1.png" alt="book cover" class="book-img">
+            </div>
 
-        <div class="d-flex flex-column justify-content-start" id="book-title-summary">
-            <h2 id="title"><strong>Book Title</strong></h2>
-            <p id="summary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae autem nemo doloribus
-                asperiores illum quasi vel cum, in, placeat quos inventore repudiandae accusantium distinctio
-                praesentium, necessitatibus sit eum laborum unde?</p>
+            <div class="d-flex flex-column justify-content-start" id="book-title-summary">
+                <h2 id="title"><strong>Book Title</strong></h2>
+                <p id="summary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae autem nemo doloribus
+                    asperiores illum quasi vel cum, in, placeat quos inventore repudiandae accusantium distinctio
+                    praesentium, necessitatibus sit eum laborum unde?</p>
+            </div>
         </div>
 
         <div class="d-flex flex-column justify-content-start" id="book-info">
@@ -54,7 +56,7 @@
 
 
 
-
+    <h2><strong>Reservation points</strong></h2>
     <div class="d-flex flex-row justify-content-center" id="book-location">
 
         {{>map}}
