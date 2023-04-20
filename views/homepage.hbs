@@ -1,0 +1,34 @@
+<header class="d-flex flex-column justify-content-center cover-page-img cover-page">
+
+    <div class="d-flex flex-row justify-content-end sign-space" id="sign-space">
+        {{!-- <script type="text/javascript">alert(module.exports.signedIn) </script> --}}
+        {{#unless signedIn}}
+        <button class="button-light sign-in" id="sign-in-btn">Sign In</button>
+        <button class="button-white sign-up" id="sign-up-btn">Sign Up</button>
+
+        {{>sign_in_up}}
+        {{else}}
+        
+        {{>profile_picture}}
+        {{/unless}}
+    </div>
+
+    <div class="d-flex flex-row justify-content-center">
+        <img src="img/logo_vertical.svg" alt="Logo" class="logo-vertical">
+    </div>
+
+    {{>searchbar}}
+
+
+</header>
+
+<main>
+
+    {{>recommended_books info="Recommended Books"}}
+
+    {{>recommended_libraries info="Recommended Libraries"}}
+
+
+
+
+</main>

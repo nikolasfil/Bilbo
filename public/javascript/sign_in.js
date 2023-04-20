@@ -1,11 +1,3 @@
-// function openForm() {
-//   document.getElementById("sign-in-popup").style.display = "block";
-// }
-
-// function closeForm() {
-//   document.getElementById("sign-in-popup").style.display = "none";
-// }
-
 
 
 // Get the modalSignIn
@@ -27,6 +19,9 @@ let spanSignIn = document.getElementsByClassName("close")[0];
 let spanSignUp = document.getElementsByClassName("close")[1];
 
 let forgot = document.getElementsByClassName("forgot")[0];
+
+const form_sign_in = document.getElementById("form_sign_in");
+const form_sign_up = document.getElementById("form_sign_up");
 
 // When the user clicks the button, open the modalSignIn 
 btnSignIn.onclick = function () {
@@ -59,8 +54,10 @@ window.onclick = function (event) {
   if (event.target == modalSignUp) {
     modalSignUp.style.display = "none";
   }
-
 }
 
-
-
+// form_sign_in.setAttribute('action', '/sign_in+'+window.location.href);
+// form_sign_in.addEventListener('submit', (e) => {
+//   alert(window.location)
+//   window.location.href = '/sign_in/' + window.location;
+// })
