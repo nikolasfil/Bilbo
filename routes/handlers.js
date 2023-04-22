@@ -10,7 +10,62 @@ router.get('/', (req, res) => {
     res.render('homepage', {
         style: 'index.css',
         title: 'Home',
-        signedIn: signedIn
+        signedIn: signedIn,
+        book: [
+            {title: 'Polaroid', 
+            photo: 'img/card_book_1.png', 
+            description: 'This is a description',
+            copies: '5'
+            },
+            {title: 'Book tile 2', 
+            photo: 'img/card_book_2.png', 
+            description: 'This is a description 2',
+            copies: '6'
+            },
+            {title: 'Book tile 2', 
+            photo: 'img/card_book_2.png', 
+            description: 'This is a description 2',
+            copies: '6'
+            },
+            {title: 'Book tile 2', 
+            photo: 'img/card_book_2.png', 
+            description: 'This is a description 2',
+            copies: '6'
+            },
+            {title: 'Book tile 2', 
+            photo: 'img/card_book_2.png', 
+            description: 'This is a description 2',
+            copies: '6'
+            },
+            {title: 'Book tile 2', 
+            photo: 'img/card_book_2.png', 
+            description: 'This is a description 2',
+            copies: '6'
+            },
+        ],
+        library: [
+            {title: 'Uni of Patras', 
+            photo: 'img/card_library_1.png', 
+            description: 'This is a description'
+            },
+            {title: 'Not Uni of Patras', 
+            photo: 'img/card_library_2.png', 
+            description: 'This is a description'
+            },
+            {title: 'Not Uni of Patras', 
+            photo: 'img/card_library_2.png', 
+            description: 'This is a description'
+            },
+            {title: 'Not Uni of Patras', 
+            photo: 'img/card_library_2.png', 
+            description: 'This is a description'
+            },
+            {title: 'Not Uni of Patras', 
+            photo: 'img/card_library_2.png', 
+            description: 'This is a description'
+            },
+        ]
+            
     });
 });
 

@@ -4,11 +4,9 @@
     <h2 class="h2"><strong> {{info}} </strong></h2>
 
     <div class="scrolling" id="scrolling-recommended-books">
-        <div class="card-img-top">
-            <img src="img/card_book_1.png" alt="book cover">
-            <h4>{{title}}</h4>
-            <p>This is a book about polaroids</p>
-            <p>Available Copies: 5</p>
-        </div>
+        {{> card photo="img/card_book_1.png" title="Polaroid" description="This is a description" copies="5"}}
+        {{> card photo="img/card_book_1.png" title="Polaroid" description="This is a description" copies="5"}}
+        {{> card photo="img/card_book_1.png" title="Polaroid" description="This is a description"}}
+        
     </div>
 </div>

@@ -23,12 +23,30 @@
 </header>
 
 <main>
+    <div class="recommend" id="recommended-books">
+        <h2 class="h2"><strong> Recommended Books </strong></h2>
 
-    {{>recommended_books info="Recommended Books" title='book title'}}
+        <div class="scrolling" id="scrolling-recommended-books">
+            {{#each book}}
+                {{> card photo=photo title=title description=description copies=copies}}
+            {{/each}}
+            
+            
+        </div>
+    </div>
+    
+    
 
-    {{>recommended_libraries info="Recommended Libraries"}}
+    
 
-
+    <div class="recommend" id="recommended-libraries">
+        <h1 class="h1"><strong>Recommended Libraries</strong></h1>
+        <div class="scrolling" id="scrolling-recommended-libraries">
+            {{#each library}}
+                {{> card photo=photo title=title description=description}}
+            {{/each}}
+        </div>
+    </div>
 
 
 </main>
