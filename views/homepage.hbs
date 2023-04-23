@@ -28,7 +28,7 @@
 
         <div class="scrolling" id="scrolling-recommended-books">
             {{#each book}}
-                {{> card photo=photo title=title description=description copies=copies}}
+                {{> card photo=photo title=title description=description copies=copies location="'/book_info'"}}
             {{/each}}
             
             
@@ -43,7 +43,7 @@
         <h1 class="h1"><strong>Recommended Libraries</strong></h1>
         <div class="scrolling" id="scrolling-recommended-libraries">
             {{#each library}}
-                {{> card photo=photo title=title description=description}}
+                {{> card photo=photo title=title description=description location="'/library_info'"}}
             {{/each}}
         </div>
     </div>

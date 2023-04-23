@@ -93,7 +93,39 @@ router.get('/library_info', (req, res) => {
     res.render('library_info', {
         title: 'Library Info',
         style: 'library_info.css',
-        signedIn: signedIn
+        signedIn: signedIn,
+        book: [
+            {title: 'Polaroid', 
+            photo: 'img/card_book_1.png', 
+            description: 'This is a description',
+            copies: '5'
+            },
+            {title: 'Book tile 2', 
+            photo: 'img/card_book_2.png', 
+            description: 'This is a description 2',
+            copies: '6'
+            },
+            {title: 'Book tile 2', 
+            photo: 'img/card_book_2.png', 
+            description: 'This is a description 2',
+            copies: '6'
+            },
+            {title: 'Book tile 2', 
+            photo: 'img/card_book_2.png', 
+            description: 'This is a description 2',
+            copies: '6'
+            },
+            {title: 'Book tile 2', 
+            photo: 'img/card_book_2.png', 
+            description: 'This is a description 2',
+            copies: '6'
+            },
+            {title: 'Book tile 2', 
+            photo: 'img/card_book_2.png', 
+            description: 'This is a description 2',
+            copies: '6'
+            },
+        ],
     });
 });
 
