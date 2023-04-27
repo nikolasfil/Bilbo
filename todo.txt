@@ -7,4 +7,4 @@
 7: search function in the bar, sth with autocompletion maybe and regex for clclose enough matches . 
 8: handle close enough matches ? different hbs handlebar 
 9: cookies and security (more along the lessons tho ) 
-
+10: change the way the books appear 
