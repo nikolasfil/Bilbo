@@ -1,0 +1,10 @@
+1: fix for mobile view
+2: fix map
+3: individual pages load individual book information
+4: connect the database 
+5: insert more data in the database 
+6: make the filters working in the search 
+7: search function in the bar, sth with autocompletion maybe and regex for clclose enough matches . 
+8: handle close enough matches ? different hbs handlebar 
+9: cookies and security (more along the lessons tho ) 
+
