@@ -91,7 +91,7 @@ router.get('/user_profile', (req, res) => {
 
 router.get('/library_info', (req, res) => {
     res.render('library_info', {
-        title: 'Library Info',
+        title: req.query.title,
         style: 'library_info.css',
         signedIn: signedIn,
         book: [
@@ -132,7 +132,7 @@ router.get('/library_info', (req, res) => {
 router.get('/book_info', (req, res) => {
     // more to be added later
     res.render('book_info', {
-        title: 'Book Info',
+        title: req.query.title,
         style: 'book_info.css',
         signedIn: signedIn
     });

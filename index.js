@@ -12,6 +12,8 @@ const routes = require('./routes/handlers');
 
 // using css,javascript, images and other public files 
 app.use(express.static(path.join(__dirname, 'public')));
+// app use node_module 
+// app.use('/scripts', express.static(`${__dirname}/node_modules/`));
 
 // helpers
 const hbs = expbs.create({

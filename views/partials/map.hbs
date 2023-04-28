@@ -1,10 +1,13 @@
-{{!-- for some reason this is not working --}}
 
-<script src="resources/OpenLayers-2.13.1/OpenLayers.js" async></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.15.1/css/ol.css"
+    type="text/css">
+
+<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.15.1/build/ol.js"></script>
+
+<div id="map" class="map"></div>
 
 <script src="javascript/map.js" defer></script>
-
-<div class="d-flex flex-column justify-content-start">
-    <div id="basicMap" class="map-div"></div>
-
-</div>
+{{!-- change the window on load to a listener --}}
+<script type="text/javascript" defer>window.onload = function () {
+        mapInit({{ lon }}, {{ lat }}, {{ zoom }});
+} </script>

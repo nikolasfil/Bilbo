@@ -1,18 +1,77 @@
-// ------------------  Map ------------------
-mapInit();
 
-function mapInit() {
-    map = new OpenLayers.Map("basicMap");
-    let mapnik = new OpenLayers.Layer.OSM();
-    let fromProjection = new OpenLayers.Projection("EPSG:4326");   // Transform from WGS 1984
-    let toProjection = new OpenLayers.Projection("EPSG:900913"); // to Spherical Mercator Projection
-    // 38.2903577,21.7911003
-    let position = new OpenLayers.LonLat(13.41, 52.52).transform(fromProjection, toProjection);
-    // bounding box 
-    // let position       = new OpenLayers.LonLat(38.2903577,21.7911003).transform( fromProjection, toProjection);
-    let zoom = 5;
 
-    map.addLayer(mapnik);
-    map.setCenter(position, zoom);
+// 
+function mapInit(lon, lat, zoom) {
+    // console.log(lon,lat,zoom);
+
+
+    const iconFeature = new ol.Feature({
+        geometry: new ol.geom.Point(ol.proj.fromLonLat([lon, lat])),
+        name: 'Patras',
+    });
+
+    const map = new ol.Map({
+        target: 'map',
+        layers: [
+            new ol.layer.Tile({
+                source: new ol.source.OSM(),
+            }),
+            new ol.layer.Vector({
+                source: new ol.source.Vector({
+                    features: [iconFeature]
+                }),
+                style: new ol.style.Style({
+                    image: new ol.style.Icon({
+                        anchor: [0.5, 40],
+                        anchorXUnits: 'fraction',
+                        anchorYUnits: 'pixels',
+                        // src: 'https://openlayers.org/en/latest/examples/data/icon.png'
+                        src: 'img/logo_background.png',
+                        scale: 0.02
+                    })
+                })
+            })
+        ],
+        view: new ol.View({
+            center: ol.proj.fromLonLat([lon, lat]),
+            zoom: zoom
+        })
+    });
+
+
+    // const iconFeature = new ol.Feature({
+    //     geometry: new ol.geom.Point(ol.proj.fromLonLat([lon, lat])),
+    //     name: 'Null Island',
+    // });
+
+    // let map = new ol.Map({
+    //     target: 'map',
+    //     layers: [
+    //         new ol.layer.Tile({
+    //             source: new ol.source.OSM()
+    //         })
+    //     ],
+    //     view: new ol.View({
+    //         center: ol.proj.fromLonLat([lon, lat]),
+    //         zoom: zoom
+    //     })
+    // });
+
+    // const center = map.getView().getCenter();
+    // const pinnedLocation = ol.proj.transform(center, 'EPSG:3857', 'EPSG:4326');
+    // const feature = new ol.Feature(new ol.geom.Point(center));
+    // const pinLayer = new ol.layer.Vector({
+    //     source: new ol.source.Vector({
+    //         features: [feature]
+    //     }),
+    //     style: new ol.style.Style({
+    //         image: new ol.style.Icon({
+    //             // src: 'http://openlayers.org/en/v3.8.2/examples/data/icon.png'
+    //             src: 'images/pin'
+    //         })
+    //     })
+    // });
+    // map.addLayer(pinLayer);
+
+
 }
-

@@ -35,7 +35,11 @@
         <h2>Location & Working Hours</h2>
 
         <div class="d-flex flex-row justify-content-start ">
-            {{>map}}
+            
+            {{>map lon=21.79127500966751 lat=38.29039542648134 zoom=16}}
+
+            {{!-- add an openlayer map here in a div  --}}
+            <div id="map" style="width: 100%, height: 400px"></div>
 
             <div class="d-flex flex-column justify-content-start" id="library-info-a-c-w">
 
@@ -111,10 +115,10 @@
 
         <div class="scrolling" id="scrolling-recommended-books">
             {{#each book}}
-                {{> card photo=photo title=title description=description copies=copies location="'/book_info'"}}
+            {{> card photo=photo title=title description=description copies=copies location="'/book_info'"}}
             {{/each}}
-            
-            
+
+
         </div>
     </div>
 

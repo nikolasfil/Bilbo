@@ -1,12 +1,30 @@
 <card>
-    <div class="card-img-top " onclick= "window.location={{location}}">
-        <img class="rounded-corners" src={{photo}} alt="photo">
-        <div class = "p-2">
-            <h4><strong>{{title}}</strong></h4>
+    <style>
+        {
+                {
+                !-- change every element after a to have the default style --
+            }
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover {
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+    {{!-- onclick="window.location={{location}}" --}}
+    <div class="card-img-top">
+        <a href={{location}}>
+            <img src={{photo}} alt="photo">
+            <h4>{{title}}</h4>
             <p>{{description}}</p>
             {{#if copies}}
-                <p>Available Copies: {{copies}}</p>
+            <p>Available Copies: {{copies}}</p>
             {{/if}}
-        </div>
+        </a>
     </div>
 </card>
