@@ -35,7 +35,10 @@
         <h2>Location & Working Hours</h2>
 
         <div class="d-flex flex-row justify-content-start ">
-            {{>map}}
+            {{!-- {{>map}} --}}
+
+            <div id="map"></div>
+            <script type="module" src="javascript/map.js"></script>
 
             <div class="d-flex flex-column justify-content-start" id="library-info-a-c-w">
 
@@ -111,10 +114,10 @@
 
         <div class="scrolling" id="scrolling-recommended-books">
             {{#each book}}
-                {{> card photo=photo title=title description=description copies=copies location="'/book_info'"}}
+            {{> card photo=photo title=title description=description copies=copies location="'/book_info'"}}
             {{/each}}
-            
-            
+
+
         </div>
     </div>
 
