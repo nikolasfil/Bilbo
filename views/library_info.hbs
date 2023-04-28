@@ -106,7 +106,16 @@
 
     </div>
 
-    {{>recommended_books info='Recommended Books'}}
+    <div class="recommend" id="recommended-books">
+        <h2 class="h2"><strong> Recommended Books </strong></h2>
 
+        <div class="scrolling" id="scrolling-recommended-books">
+            {{#each book}}
+                {{> card photo=photo title=title description=description copies=copies location="'/book_info'"}}
+            {{/each}}
+            
+            
+        </div>
+    </div>
 
 </main>
