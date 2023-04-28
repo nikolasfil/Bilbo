@@ -7,7 +7,7 @@ function mapInit(lon, lat, zoom) {
 
     const iconFeature = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.fromLonLat([lon, lat])),
-        name: 'Somewhere near Nottingham',
+        name: 'Patras',
     });
 
     const map = new ol.Map({
@@ -22,7 +22,7 @@ function mapInit(lon, lat, zoom) {
                 }),
                 style: new ol.style.Style({
                     image: new ol.style.Icon({
-                        anchor: [0.5, 46],
+                        // anchor: [1,10],
                         anchorXUnits: 'fraction',
                         anchorYUnits: 'pixels',
                         src: 'https://openlayers.org/en/latest/examples/data/icon.png'
