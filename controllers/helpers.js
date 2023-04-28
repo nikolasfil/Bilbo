@@ -12,5 +12,16 @@ module.exports = {
             out = out + "<li>" + options.fn(value[i]) + "</li>";
         }
         return out + "</ul>";
+    },
+
+    // concat function that takes arguments and concats them
+    concat: function () {
+        let outStr = '';
+        for (let arg in arguments) {
+            if (typeof arguments[arg] != 'object') {
+                outStr += arguments[arg];
+            }
+        }
+        return outStr;
     }
 }

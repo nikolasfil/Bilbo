@@ -22,10 +22,12 @@ function mapInit(lon, lat, zoom) {
                 }),
                 style: new ol.style.Style({
                     image: new ol.style.Icon({
-                        // anchor: [1,10],
+                        anchor: [0.5, 40],
                         anchorXUnits: 'fraction',
                         anchorYUnits: 'pixels',
-                        src: 'https://openlayers.org/en/latest/examples/data/icon.png'
+                        // src: 'https://openlayers.org/en/latest/examples/data/icon.png'
+                        src: 'img/logo_background.png',
+                        scale: 0.02
                     })
                 })
             })

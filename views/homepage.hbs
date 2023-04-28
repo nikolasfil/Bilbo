@@ -1,14 +1,15 @@
 <header class="d-flex flex-column justify-content-center cover-page-img cover-page">
 
     <div class="d-flex flex-row justify-content-end sign-space" id="sign-space">
-        {{!-- <script type="text/javascript">alert(module.exports.signedIn) </script> --}}
+        {{!--
+        <script type="text/javascript">alert(module.exports.signedIn) </script> --}}
         {{#unless signedIn}}
         <button class="button-light sign-in" id="sign-in-btn">Sign In</button>
         <button class="button-white sign-up" id="sign-up-btn">Sign Up</button>
 
         {{>sign_in_up}}
         {{else}}
-        
+
         {{>profile_picture}}
         {{/unless}}
     </div>
@@ -28,22 +29,25 @@
 
         <div class="scrolling" id="scrolling-recommended-books">
             {{#each book}}
-                {{> card photo=photo title=title description=description copies=copies location="'/book_info'"}}
+            {{> card photo=photo title=title description=description copies=copies location=(concat 'book_info?' 'title=' title)  }}
+            {{!-- {{> card photo=photo title=title description=description copies=copies location={{ concat
+            "/book_info?title=" title }} }} --}}
+
             {{/each}}
-            
-            
+
+
         </div>
     </div>
-    
-    
 
-    
+
+
+
 
     <div class="recommend" id="recommended-libraries">
         <h2 class="h2"><strong>Recommended Libraries</strong></h2>
         <div class="scrolling" id="scrolling-recommended-libraries">
             {{#each library}}
-                {{> card photo=photo title=title description=description location="'/library_info'"}}
+            {{> card photo=photo title=title description=description location="'/library_info'"}}
             {{/each}}
         </div>
     </div>
