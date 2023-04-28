@@ -29,9 +29,10 @@
 
         <div class="scrolling" id="scrolling-recommended-books">
             {{#each book}}
-            {{> card photo=photo title=title description=description copies=copies location=(concat 'book_info?' 'title=' title)  }}
-            {{!-- {{> card photo=photo title=title description=description copies=copies location={{ concat
-            "/book_info?title=" title }} }} --}}
+
+            {{!-- change into isbn --}}
+            {{> card photo=photo title=title description=description copies=copies location=(concat 'book_info?'
+            'title=' title) }}
 
             {{/each}}
 
@@ -47,7 +48,11 @@
         <h2 class="h2"><strong>Recommended Libraries</strong></h2>
         <div class="scrolling" id="scrolling-recommended-libraries">
             {{#each library}}
-            {{> card photo=photo title=title description=description location="'/library_info'"}}
+
+            {{> card photo=photo title=title description=description copies=copies location=(concat 'library_info?' 'title=' title) }}
+
+            {{!-- {{> card photo=photo title=title description=description location="'/library_info'"}} --}}
+            
             {{/each}}
         </div>
     </div>
