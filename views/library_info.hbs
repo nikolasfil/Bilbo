@@ -115,7 +115,7 @@
 
         <div class="scrolling" id="scrolling-recommended-books">
             {{#each book}}
-            {{> card photo=photo title=title description=description copies=copies location="'/book_info'"}}
+            {{> card photo=photo title=title description=description copies=copies location=(concat 'book_info?' 'title=' title) }}
             {{/each}}
 
 

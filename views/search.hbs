@@ -1,12 +1,10 @@
-
-
-<script src="javascript/filters.js" ></script>
+<script src="javascript/filters.js"></script>
 <script src="javascript/show_pages.js"></script>
 
 
-<script type="text/javascript">window.onload = function() {
-      
-      createPages(2); pageSelector(); addingFilters();
+<script type="text/javascript">window.onload = function () {
+
+        createPages(2); pageSelector(); addingFilters();
     };</script>
 
 {{>header}}
@@ -65,7 +63,9 @@
 
             <div class="result-pages d-flex flex-row justify-content-start flex-wrap" id="results">
                 {{#each book}}
-                    {{> card photo=photo title=title description=description copies=copies location="'/book_info'"}}
+
+                {{> card photo=photo title=title description=description copies=copies location=(concat 'book_info?'
+                'title=' title) }}
                 {{/each}}
             </div>
 
