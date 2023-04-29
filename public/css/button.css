@@ -216,4 +216,28 @@
   width: auto;
 }
 
+.btn{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color:#F0E4BB;
+  border: transparent;
+  color: black;
+}
+.btn:hover{
+  background-color:#E3D7B1;
+  color: black;
+}
 
+.bi{
+  margin-left: 4px;
+}
+
+.btn.active {
+  background-color:#E5AE5E;
+  color: black;
+}
+.btn.active:hover{ 
+  background-color:#C79752;
+  color: black;
+}
