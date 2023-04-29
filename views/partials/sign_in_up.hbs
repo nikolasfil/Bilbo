@@ -1,4 +1,3 @@
-
 <script src="javascript/sign_in.js" defer></script>
 
 <div id="sign-in-popup" class="modal">
@@ -8,7 +7,7 @@
         <form class="form-container" id="form_sign_in">
             <span class="close">&times;</span>
 
-        {{!-- add the coloring of the box for validation from front2 --}}
+            {{!-- add the coloring of the box for validation from front2 --}}
             <div class="d-flex flex-column justify-content-center ">
                 <label for="email" style="margin-top:52px;">Username</label>
                 <input type="email" placeholder="Enter Email" name="email" required>
@@ -20,6 +19,7 @@
             </div>
 
             <div class="d-flex flex-row justify-content-end ">
+                <button type="button" class="forgot" onclick="closeForm()"></button>
                 <button type="submit" class="btn" id="submit-sign-in">Sign In</button>
             </div>
         </form>
@@ -27,29 +27,30 @@
 
 </div>
 
-<div id="sign-up-popup align-items-center" class="modal">
-
+<div id="sign-up-popup " class="modal">
+    {{!-- <div class="modal-content align-items-center"></div> --}}
     <!-- Modal content -->
-    <div class="modal-content">
-        <form class="form-container" id="form_sign_up">
-            <span class="close">&times;</span>
+    {{!-- <div class="modal-content"> --}}
+        <div class="modal-content align-items-center">
+            <form class="form-container" id="form_sign_up">
+                <span class="close">&times;</span>
 
-            <div class="d-flex flex-column justify-content-center ">
+                <div class="d-flex flex-column justify-content-center ">
 
-                <label for="email" style="margin-top:52px;">Username</label>
-                <input type="email" placeholder="Enter Email" name="email" required>
-            </div>
+                    <label for="email" style="margin-top:52px;">Username</label>
+                    <input type="email" placeholder="Enter Email" name="email" required>
+                </div>
 
-            <div class="d-flex flex-column justify-content-center ">
-                <label for="psw">Password</label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
-            </div>
+                <div class="d-flex flex-column justify-content-center ">
+                    <label for="psw">Password</label>
+                    <input type="password" placeholder="Enter Password" name="psw" required>
+                </div>
 
-            <div class="d-flex flex-row justify-content-between">
-                <button type="button" class="forgot" onclick="closeForm()"></button>
-                <button type="submit" class="btn">Sign Up</button>
-            </div>
-        </form>
+                <div class="d-flex flex-row justify-content-between">
+                    <button type="button" class="forgot" onclick="closeForm()"></button>
+                    <button type="submit" class="btn">Sign Up</button>
+                </div>
+            </form>
+        </div>
+
     </div>
-
-</div>
