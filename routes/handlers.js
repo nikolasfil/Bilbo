@@ -184,8 +184,16 @@ router.get('/search', (req, res) => {
     });
 });
 
+// https://www.digitalocean.com/community/tutorials/nodejs-req-object-in-expressjs
+// router.all('/sign', (req, res,next) => {
+//     // console.log(req.path);
+//     res.render('homepage',{
+//         title: 'Signed int',
+//     })
 
-// router.get('/sign_in+*', (req, res) => {
+//     next();
+// });
+
 //     // alert(req.url);
 //     let array = req.url.split("+")[1].split('/');
 //     let url = ''
