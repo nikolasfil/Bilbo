@@ -63,7 +63,7 @@ class Creation:
         # self.insert_data('LIBRARY',('a','location','profile_picture','summary','working_hours'))
         self.insert_data('LIBRARY',('University of Patra','Ypatias 4, Panepstimioupoli Patron, 265 04','img/library_image_1.svg','Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero possimus hic laboriosam perferendis, veritatis corrupti assumenda reprehenderit ducimus dignissimos quia, doloribus unde! Fugit quas minus est ex ratione dolor possimus!Lorem','Monday:	8:30 AM–7 PMTuesday:	8:30 AM–7 PM,Wednesday:	8:30 AM–7 PM,Thursday:	8:30 AM–7 PM,Friday:	8:30 AM–7 PM,Saturday:	closed,Sunday:	closed'))
         self.insert_data('LIBRARY',('Not','location','img/library_image_1.svg','summary','working_hours'))
-        
+
         
         
         self.insert_data('BOOK',('isbn','title','author','edition','publisher','release','genre','language',
@@ -99,15 +99,10 @@ class Creation:
         return self.binary_to_string(bcrypt.hashpw(password.encode('utf-8'),self.salt))
 
 
-    def bookdata(self,num=1):
-        
-        api_title = lambda x: f'https://www.googleapis.com/books/v1/volumes?q=title:{x}'
-        api_isbn = lambda x: f'https://www.googleapis.com/books/v1/volumes?q=isbn:{x}'
+    def load_bookdata(self,title,num=1):
 
-        # get the data from the api and load them into a dictionary
-        get_data = lambda url: requests.get(url).json()
-
-        file = get_data(api_title('python'))
+        with open(f'../bookdata/{title}.json','r') as f:
+            file = eval(f.read())
 
         books = lambda num : [{'title': file['items'][i]['volumeInfo']['title'],
                 'publisher': file['items'][i]['volumeInfo']['publisher'],
@@ -120,9 +115,8 @@ class Creation:
                 'language': file['items'][i]['volumeInfo']['language'],
                 'edition': file['items'][i]['volumeInfo']['contentVersion']
                 } for i in range(num) ]
-
-        return books
-
+        
+        return books(num)
 
     def main(self):
         self.create_database()
@@ -134,6 +128,8 @@ class Creation:
 
 
 if __name__ == '__main__':
+    
+    
     database ='data.db'
     sqlfile = 'dbdesigner.sql'
     app = Creation(database, sqlfile)
