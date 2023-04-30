@@ -1,7 +1,9 @@
 // routing
 const express = require('express');
 // const signedIn = require('..');
+const sqlite3 = require('sqlite3').verbose();
 const router = express.Router();
+
 
 let signedIn = module.exports.signedIn;
 // let signedIn = { signedIn };
@@ -17,7 +19,7 @@ router.get('/', (req, res) => {
             description: 'This is a description',
             copies: '5'
             },
-            {title: 'Book tile 2', 
+            {title: "Java and Sql", 
             photo: 'img/card_book_2.png', 
             description: 'This is a description 2',
             copies: '6'
@@ -92,7 +94,7 @@ router.get('/user_profile', (req, res) => {
 
 router.get('/library_info', (req, res) => {
     res.render('library_info', {
-        title: req.query.title,
+        title: 'Library Info',
         style: 'library_info.css',
         signedIn: signedIn,
         book: [
@@ -130,10 +132,38 @@ router.get('/library_info', (req, res) => {
     });
 });
 
+
+
 router.get('/book_info', (req, res) => {
-    // more to be added later
+    
+
+    // const db = new sqlite3.Database('./docs/database/SQL/data.db', (err) => {
+    //     console.log('Connected to the database.');
+    // });
+    // let booktitle = req.query['booktitle'];
+
+    // db.serialize(() => {
+    //     db.run('SELECT * FROM BOOK WHERE title = `${booktitle}`', (err, row) => {
+    //         if (err) {
+    //             console.error(err.message);
+    //         }
+    //         console.log(row['title']);
+    //     }
+    //     );
+    // });
+    // db.close((err) => {
+    //     if (err) {
+    //         console.error(err.message);
+    //     }
+    //     console.log('Close the database connection.');
+    // });
+
+
+
+
     res.render('book_info', {
-        title: req.query.title,
+        title: 'Book Info',
+        booktitle: req.query['booktitle'],
         style: 'book_info.css',
         signedIn: signedIn
     });

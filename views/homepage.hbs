@@ -32,8 +32,8 @@
             {{#each book}}
 
             {{!-- change into isbn --}}
-            {{> card photo=photo title=title description=description copies=copies location=(concat 'book_info?'
-            'title=' title )}}
+            {{> card photo=photo title=title description=description copies=copies location=( encode (concat 'book_info?'
+            'booktitle=' title ))}}
 
             {{/each}}
 

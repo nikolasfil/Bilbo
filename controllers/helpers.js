@@ -40,6 +40,12 @@ module.exports = {
             outStr+= 'connected';
         });
         return outStr;
+    },
+
+    // encode url 
+    encode: function (url) {
+        return encodeURI(url);
     }
+    
 
 }
