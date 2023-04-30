@@ -3,6 +3,9 @@ const app = express();
 const port = 8080;
 const expbs = require('express-handlebars');
 const path = require('path');
+const sqlite3 = require('sqlite3').verbose();
+// import * as model from './model/index.mjs'
+const model = require('./model/index.js');
 
 let signedIn = false;
 module.exports = {signedIn };   
@@ -24,6 +27,8 @@ const hbs = expbs.create({
 
     // create custom helpers
     helpers: require('./controllers/helpers.js'),
+
+
     
 });
 

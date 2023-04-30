@@ -68,13 +68,7 @@ class Creation:
         self.conn.commit()
 
     def insert_book_data(self, table_name, data):
-        # command = f"INSERT INTO {table_name}({','.join(self.tables[table_name])}) VALUES ({','.join(list(map(self.double_quoting,data)))})"
-        # print(command)
-        # self.conn.execute(command)
-        
         command = f"""INSERT INTO {table_name}({','.join(self.tables[table_name])}) VALUES ({','.join(['?' for i in range(len(data))])})"""
-        # print(command)
-        # print(data)
         self.conn.execute(command,data)
         
         

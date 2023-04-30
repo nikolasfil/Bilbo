@@ -1,9 +1,11 @@
+const sqlite3 = require('sqlite3').verbose();
+
 module.exports = {
     // use them as {{calculation value}}
     calculation: function (value) {
         return value + 100;
     },
-    
+
     list: function (value, options) {
         // return "<h2>"+options.fn({test: value})+"</h2>";
         let out = "<ul>";
@@ -23,5 +25,21 @@ module.exports = {
             }
         }
         return outStr;
+    },
+
+    // supposes returns an object with the book properties
+    booking: function () {
+
+        let outStr = 'Test';
+
+        let db = new sqlite3.Database('./docs/database/SQL/data.db', sqlite3.OPEN_READONLY, (err) => {
+            if (err) {
+                outStr+='error';
+            }
+            // console.log('Connected to the database.');
+            outStr+= 'connected';
+        });
+        return outStr;
     }
+
 }
