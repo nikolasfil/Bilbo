@@ -26,8 +26,8 @@ function mapInit(lon, lat, zoom) {
                         anchorXUnits: 'fraction',
                         anchorYUnits: 'pixels',
                         // src: 'https://openlayers.org/en/latest/examples/data/icon.png'
-                        src: 'img/logo_background.png',
-                        scale: 0.02
+                        src: 'img/geo-alt-fill.svg',
+                        scale: 2
                     })
                 })
             })

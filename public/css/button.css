@@ -160,16 +160,13 @@
   flex-direction: row;
   justify-content: space-between;
   text-align: center;
-  align-self: center;
+  align-items: center;
   /* align-items: center; */
   /* position: absolute; */
 
   width: fit-content;
   height: fit-content;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding: 6px 18px 6px 18px;
 
   font-family: "Roboto";
   font-style: normal;
@@ -189,6 +186,13 @@
   cursor: pointer; 
 }
 
+.btn-close{
+  margin-left: 8px;
+  width: 7px;
+  height: 7px;
+  align-self: center;
+  justify-self: center;
+}
 
 /* .form-check-input:focus ~ .form-check-label::before {
   box-shadow: 0 0 0 0.2rem #AC8FBF;
@@ -212,4 +216,28 @@
   width: auto;
 }
 
+.btn{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color:#F0E4BB;
+  border: transparent;
+  color: black;
+}
+.btn:hover{
+  background-color:#E3D7B1;
+  color: black;
+}
 
+.bi{
+  margin-left: 4px;
+}
+
+.btn.active {
+  background-color:#E5AE5E;
+  color: black;
+}
+.btn.active:hover{ 
+  background-color:#C79752;
+  color: black;
+}

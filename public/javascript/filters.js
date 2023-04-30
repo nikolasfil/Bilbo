@@ -68,21 +68,12 @@ function addedFilter(filterName) {
 
     span.textContent = filterName;
     div.appendChild(span);
+    // <button type="button" class="btn-close" aria-label="Close"></button>
+    let button = document.createElement('button');
+    button.classList.add('btn-close');
+    div.appendChild(button);
     // link bootstrap icons CDN in the html file
-    let image = document.createElement('svg');
-    image.classList.add('bi');
-    image.classList.add('bi-x-lg');
-    image.setAttribute('width', '32');
-    image.setAttribute('height', '32');
-    image.setAttribute('viewBox', '0 0 128 128');
-    image.setAttribute('fill', 'currentColor');
-    image.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-
-    let path = document.createElement('path');
-    // path.setAttribute('fill-rule', 'evenodd');
-    path.setAttribute('d', 'M3.646 3.646a.5.5 0 0 1 .708 0L8 7.293l3.646-3.647a.5.5 0 0 1 .708.708L8.707 8l3.647 3.646a.5.5 0 0 1-.708.708L8 8.707l-3.646 3.647a.5.5 0 0 1-.708-.708L7.293 8 3.646 4.354a.5.5 0 0 1 0-.708z');
-    image.appendChild(path);
-    div.appendChild(image);
+    
 
     div.addEventListener('click', function () {
         container.removeChild(div);
