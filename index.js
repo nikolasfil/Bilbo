@@ -5,7 +5,7 @@ const expbs = require('express-handlebars');
 const path = require('path');
 const sqlite3 = require('sqlite3').verbose();
 // import * as model from './model/index.mjs'
-const model = require('./model/index.js');
+// const model = require('./model/index.js');
 
 let signedIn = false;
 module.exports = {signedIn };   

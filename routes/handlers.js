@@ -79,6 +79,7 @@ router.get('/about', (req, res) => {
 });
 
 
+
 router.get('/user_profile', (req, res) => {
     res.render('user_profile', {
         // to be changed later ? 
