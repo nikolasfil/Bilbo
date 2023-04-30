@@ -27,7 +27,9 @@ function mapInit(lon, lat, zoom) {
                         anchorYUnits: 'pixels',
                         // src: 'https://openlayers.org/en/latest/examples/data/icon.png'
                         src: 'img/geo-alt-fill.svg',
-                        scale: 2
+                        scale: 2,
+                        // add event lister tho
+
                     })
                 })
             })
@@ -38,40 +40,21 @@ function mapInit(lon, lat, zoom) {
         })
     });
 
+    map.layers = map.getLayers();
 
-    // const iconFeature = new ol.Feature({
-    //     geometry: new ol.geom.Point(ol.proj.fromLonLat([lon, lat])),
-    //     name: 'Null Island',
-    // });
+    map.layers.getArray()[1].getSource().getFeatures()[0]
+    // .getStyle().addEventListener('click', function () {
+    //     console.log('clicked');
+    // }
+    // );
 
-    // let map = new ol.Map({
-    //     target: 'map',
-    //     layers: [
-    //         new ol.layer.Tile({
-    //             source: new ol.source.OSM()
-    //         })
-    //     ],
-    //     view: new ol.View({
-    //         center: ol.proj.fromLonLat([lon, lat]),
-    //         zoom: zoom
-    //     })
-    // });
-
-    // const center = map.getView().getCenter();
-    // const pinnedLocation = ol.proj.transform(center, 'EPSG:3857', 'EPSG:4326');
-    // const feature = new ol.Feature(new ol.geom.Point(center));
-    // const pinLayer = new ol.layer.Vector({
-    //     source: new ol.source.Vector({
-    //         features: [feature]
-    //     }),
-    //     style: new ol.style.Style({
-    //         image: new ol.style.Icon({
-    //             // src: 'http://openlayers.org/en/v3.8.2/examples/data/icon.png'
-    //             src: 'images/pin'
-    //         })
-    //     })
-    // });
-    // map.addLayer(pinLayer);
-
-
+    // let m = map.layers.getArray()[1].getSource().getFeatures()[0].getStyle().getImage().on('click', function () {
+    //     console.log('clicked');
+    // }
+    // );
+    
 }
+
+
+// access the image of the second layer in mapInit.map
+
