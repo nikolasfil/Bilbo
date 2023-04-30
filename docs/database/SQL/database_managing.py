@@ -4,8 +4,7 @@ import sys
 import datetime
 from codecs import open
 import bcrypt
-import requests
-
+import os 
 
 # https://www.tutorialspoint.com/sqlite/sqlite_python.htm
 
@@ -99,36 +98,83 @@ class Creation:
         return self.binary_to_string(bcrypt.hashpw(password.encode('utf-8'),self.salt))
 
 
-    def load_bookdata(self,title,num=1):
-
-        with open(f'../bookdata/{title}.json','r') as f:
-            file = eval(f.read())
-
-        books = lambda num : [{'title': file['items'][i]['volumeInfo']['title'],
-                'publisher': file['items'][i]['volumeInfo']['publisher'],
-                'authors': file['items'][i]['volumeInfo']['authors'],
-                'isbn': file['items'][i]['volumeInfo']['industryIdentifiers'][0]['identifier'],
-                'summary': file['items'][i]['volumeInfo']['description'],
-                'cover_image': file['items'][i]['volumeInfo']['imageLinks']['thumbnail'],
-                'release_date': file['items'][i]['volumeInfo']['publishedDate'],
-                'genre': file['items'][i]['volumeInfo']['categories'],
-                'language': file['items'][i]['volumeInfo']['language'],
-                'edition': file['items'][i]['volumeInfo']['contentVersion']
-                } for i in range(num) ]
-        
-        return books(num)
-
     def main(self):
         self.create_database()
         self.fill_database()
         self.conn.close()
         
     
+class Data: 
+    def __innit__(self):
+        pass
+    
+    def get_titles(self):
+        from os import listdir 
+        from os.path import isfile, join
 
+        path = '../bookdata'
+        files = [f for f in listdir(path) if isfile(join(path, f))]
+        return files
+
+
+    def load_bookdata(self,title, num=1):
+
+        with open(f'../bookdata/{title}', 'r') as f:
+            file = eval(f.read())
+
+        def books(num): return [self.bookformat(file['items'][i]) for i in range(num)]
+
+        return books(num)
+
+
+    def bookformat(self,file):
+
+        book = {i: None for i in ['title', 'publisher', 'authors', 'isbn',
+                                'summary', 'cover_image', 'release_date', 'genre', 'language', 'edition']}
+
+        if 'title' in file['volumeInfo']:
+            book['title'] = file['volumeInfo']['title']
+
+        if 'publisher' in file['volumeInfo']:
+            book['publisher'] = file['volumeInfo']['publisher']
+
+        if 'authors' in file['volumeInfo']:
+            book['authors'] = file['volumeInfo']['authors']
+
+        if 'industryIdentifiers' in file['volumeInfo']:
+            book['isbn'] = file['volumeInfo']['industryIdentifiers'][0]['identifier']
+
+        if 'description' in file['volumeInfo']:
+            book['summary'] = file['volumeInfo']['description']
+
+        if 'imageLinks' in file['volumeInfo']:
+            book['cover_image'] = file['volumeInfo']['imageLinks']['thumbnail']
+
+        if 'publishedDate' in file['volumeInfo']:
+            book['release_date'] = file['volumeInfo']['publishedDate']
+
+        if 'categories' in file['volumeInfo']:
+            book['genre'] = file['volumeInfo']['categories']
+
+        if 'language' in file['volumeInfo']:
+            book['language'] = file['volumeInfo']['language']
+
+        if 'contentVersion' in file['volumeInfo']:
+            book['edition'] = file['volumeInfo']['contentVersion']
+        return book
+
+
+    def get_data(self):
+        books = []
+        for title in self.get_titles():
+            books += self.load_bookdata(title)
+        return books
 
 
 if __name__ == '__main__':
     
+    data = Data()
+    # print(data.get_data())
     
     database ='data.db'
     sqlfile = 'dbdesigner.sql'
