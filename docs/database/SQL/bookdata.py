@@ -70,13 +70,13 @@ def main():
               'the lord of the rings', 'the hobbit', 'the silmarillion', 'the children of hurin', 'the fall of gondolin', 'the book of lost tales', 'the book of lost tales part 2', 'the lay of aotrou and itroun', 'the lay of leithian', 'the shaping of middle-earth', 'the lost road and other writings', 'the return of the shadow', 'the treason of isengard', 'the war of the ring', 'sauron defeated', 'morgoths ring', 'the war of the jewels', 'the peoples of middle-earth',
               ]
 
+    for title in titles:
+        # print(title)
+        save_bookdata(title)
+
     # for title in titles:
     #     print(title)
-    #     save_bookdata(title)
-
-    for title in titles:
-        print(title)
-        print(load_bookdata(title))
+    #     print(load_bookdata(title))
 
 
 if __name__ == '__main__':
