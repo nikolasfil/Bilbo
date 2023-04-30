@@ -40,19 +40,16 @@
         </div>
     </div>
 
-
-
-
-
     <div class="recommend" id="recommended-libraries">
         <h1 class="h1"><strong>Recommended Libraries</strong></h1>
         <div class="scrolling" id="scrolling-recommended-libraries">
             {{#each library}}
             {{!-- The title ? should be with promises and async await and sending requests with javascript --}}
-            {{> card photo=photo title=title description=description copies=copies location=(concat 'library_info?' 'title=' '"' title '"') }}
+            {{> card photo=photo title=title description=description copies=copies location=(concat 'library_info?'
+            'title=' '"' title '"') }}
 
             {{!-- {{> card photo=photo title=title description=description location="'/library_info'"}} --}}
-            
+
             {{/each}}
         </div>
     </div>
