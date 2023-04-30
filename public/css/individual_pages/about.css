@@ -40,3 +40,8 @@
   /* overflow: hidden; */
 /* background: linear-gradient(180.08deg, #E08AB1 -102.48%, #6A1B4A 95.37%); */
 }
+
+body {
+  /* width: 100%; */
+  overflow-x: hidden;
+}
