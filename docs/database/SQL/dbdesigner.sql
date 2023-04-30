@@ -8,25 +8,39 @@ CREATE TABLE IF NOT EXISTS LIBRARY (
 );
 
 CREATE TABLE IF NOT EXISTS BOOK (
-	isbn binary NOT NULL ,
-	title varchar(1000) NOT NULL,
+	isbn varchar(100)  ,
+	title varchar(100) ,
 	author varchar(100) ,
 	edition varchar(100) ,
 	publisher varchar(100) ,
-	release date datetime ,
+	release varchar(100)  ,
 	genre varchar(100) ,
-	language varchar(100) NOT NULL,
-	summary varchar(1000) NOT NULL,
-	cover_image binary NOT NULL,
+	language varchar(100) ,
+	summary varchar(1000) ,
+	cover_image binary ,
 	PRIMARY KEY (isbn)
 );
+
+-- CREATE TABLE IF NOT EXISTS BOOK (
+-- 	isbn binary NOT NULL ,
+-- 	title varchar(1000) NOT NULL,
+-- 	author varchar(100) ,
+-- 	edition varchar(100) ,
+-- 	publisher varchar(100) ,
+-- 	release date datetime ,
+-- 	genre varchar(100) ,
+-- 	language varchar(100) NOT NULL,
+-- 	summary varchar(1000) NOT NULL,
+-- 	cover_image binary NOT NULL,
+-- 	PRIMARY KEY (isbn)
+-- );
 
 
 
 CREATE TABLE IF NOT EXISTS COPIES (
 	book_isbn binary NOT NULL,
 	copy_num INTEGER NOT NULL,
-	libary_id binary NOT NULL,
+	library_id binary NOT NULL,
 	PRIMARY KEY (book_isbn, copy_num, library_id),
 	FOREIGN KEY (book_isbn) REFERENCES BOOK(isbn) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (library_id) REFERENCES LIBRARY(id) ON DELETE CASCADE ON UPDATE CASCADE

@@ -49,28 +49,78 @@ class Creation:
         for table in self.table_names:
             self.clearing(table)
 
+
+    # make it clearer
+
+    def double_quoting(self, string):
+        return f"'{str(string)}'"
+
+    def binary_to_string(self, string):
+        # return f"'{str(string)[2:-1]}'"
+        return f"{str(string)[2:-1]}"
+
+    # string to byte function 
+    
+    def insert_data(self, table_name, data):
+        command = f"""INSERT INTO {table_name}({','.join(self.tables[table_name])}) VALUES ({','.join(list(map(self.double_quoting,data)))})"""
+        print(command)
+        self.conn.execute(command)
+        self.conn.commit()
+
+    def insert_book_data(self, table_name, data):
+        # command = f"INSERT INTO {table_name}({','.join(self.tables[table_name])}) VALUES ({','.join(list(map(self.double_quoting,data)))})"
+        # print(command)
+        # self.conn.execute(command)
+        
+        command = f"""INSERT INTO {table_name}({','.join(self.tables[table_name])}) VALUES ({','.join(['?' for i in range(len(data))])})"""
+        # print(command)
+        # print(data)
+        self.conn.execute(command,data)
+        
+        
+        self.conn.commit()
+
+
+
+    def hashing_password(self, password):
+        return self.binary_to_string(bcrypt.hashpw(password.encode('utf-8'), self.salt))
+
+    def main(self):
+        self.data = Data()
+        self.create_database()
+        self.fill_database()
+        self.conn.close()
+
     def fill_database(self):
+
         self.clear_all()
 
-        # Change the binary data !!!
 
-        # {'LIBRARY':   ['id', 'location', 'profile_picture', 'summary', 'working_hours'],
-        #  'BOOK':      ['isbn', 'title', 'author', 'edition', 'publisher', 'release', 'genre', 'language', 'summary', 'cover_image'],
-        #  'USER':      ['id', 'fname', 'lname', 'birthdate', 'password', 'salt', 'profile_picture'],
-        #  'Borrowing': ['book_isbn', 'copy_num', 'library_id', 'user_id', 'date_borrowing', 'date_return'],
-        #  'Return':    ['book_isbn', 'copy_num', 'library_id', 'user_id', 'date_of_borrowing', 'date_of_return'],
-        #  'COPIES':    ['book_isbn', 'copy_num']}
-
-        # self.insert_data('LIBRARY',('a','location','profile_picture','summary','working_hours'))
         self.insert_data('LIBRARY', ('University of Patra', 'Ypatias 4, Panepstimioupoli Patron, 265 04', 'img/library_image_1.svg', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero possimus hic laboriosam perferendis, veritatis corrupti assumenda reprehenderit ducimus dignissimos quia, doloribus unde! Fugit quas minus est ex ratione dolor possimus!Lorem',
                          'Monday:	8:30 AM–7 PMTuesday:	8:30 AM–7 PM,Wednesday:	8:30 AM–7 PM,Thursday:	8:30 AM–7 PM,Friday:	8:30 AM–7 PM,Saturday:	closed,Sunday:	closed'))
+        
         self.insert_data('LIBRARY', ('Not', 'location',
                          'img/library_image_1.svg', 'summary', 'working_hours'))
 
-        self.insert_data('BOOK', ('isbn', 'title', 'author', 'edition', 'publisher', 'release', 'genre', 'language',
-                                  'summary', 'cover_image'))
+        def string_to_byte(string):
+            return bytes(string, 'utf-8')
 
-        self.insert_data('COPIES', ('book_isbn', '1'))
+        for book in self.data.books : 
+            # print(book)
+            # print(book['summary'])
+            titles = ['isbn', 'title', 'authors', 'edition', 'publisher', 'release_date', 'genre', 'language','summary', 'cover_image']
+            # self.insert_book_data('BOOK', (f"""{book['isbn']}""", f"""{book['title']}""",
+            #                             ' '.join(book['authors']), book['edition'],
+            #                             book['publisher'], book['release_date'],
+            #                             ' '.join(book['genre']), book['language'],
+            #                             book['summary'], book['cover_image']))
+
+            self.insert_book_data('BOOK',[book[key] if type(book[key]) is not list else ','.join(book[key]) for key in titles ])            
+
+        # self.insert_data('BOOK', ('isbn', 'title', 'author', 'edition', 'publisher', 'release', 'genre', 'language',
+        #                           'summary', 'cover_image'))
+
+        # self.insert_data('COPIES', ('book_isbn', '1'))
 
         # Users
         self.insert_data('USER', ('id', 'fname', 'lname', 'birthdate', self.hashing_password(
@@ -82,28 +132,6 @@ class Creation:
         self.insert_data('Return', ('book_isbn', 'copy_num', 'library_id',
                          'user_id', 'date_of_borrowing', 'date_of_return'))
 
-    # make it clearer
-
-    def double_quoting(self, string):
-        return f"'{str(string)}'"
-
-    def binary_to_string(self, string):
-        # return f"'{str(string)[2:-1]}'"
-        return f"{str(string)[2:-1]}"
-
-    def insert_data(self, table_name, data):
-        command = f"INSERT INTO {table_name}({','.join(self.tables[table_name])}) VALUES ({','.join(list(map(self.double_quoting,data)))})"
-        print(command)
-        self.conn.execute(command)
-        self.conn.commit()
-
-    def hashing_password(self, password):
-        return self.binary_to_string(bcrypt.hashpw(password.encode('utf-8'), self.salt))
-
-    def main(self):
-        self.create_database()
-        self.fill_database()
-        self.conn.close()
 
 
 class Data:
@@ -113,7 +141,9 @@ class Data:
             os.mkdir(path)
         #  if path is empty
         if not listdir(path):
-            self.get_books()
+            self.download_book_json()
+        
+        self.main()
 
     def get_titles(self):
 
@@ -167,11 +197,11 @@ class Data:
             book['edition'] = file['volumeInfo']['contentVersion']
         return book
 
-    def get_data(self):
-        books = []
+    def load_books(self):
+        self.books = []
         for title in self.get_titles():
-            books += self.load_bookdata(title)
-        return books
+            self.books += self.load_bookdata(title)
+        
 
     def save_bookdata(self, title):
         def api_title(
@@ -184,21 +214,22 @@ class Data:
         with open(f'../bookdata/{title}.json', 'w') as f:
             f.write(str(get_data(api_title(title))))
 
-    def get_books(self):
-        titles = ['python', 'java', 'javascript', 'html', 'css', 'php', 'sql', 'ruby', 'perl', 'r', 'go', 'swift', 'kotlin', 'rust', 'typescript', 'bash', 'powershell', 'matlab', 'assembly', 'vba', 'visual basic', 'dart', 'groovy', 'scala',
-                  'history', 'calculus',
-                  'the lord of the rings', 'the hobbit', 'the silmarillion', 'the children of hurin', 'the fall of gondolin', 'the book of lost tales', 'the book of lost tales part 2', 'the lay of aotrou and itroun', 'the lay of leithian', 'the shaping of middle-earth', 'the lost road and other writings', 'the return of the shadow', 'the treason of isengard', 'the war of the ring', 'sauron defeated', 'morgoths ring', 'the war of the jewels', 'the peoples of middle-earth',
-                  ]
+    def download_book_json(self, titles=None):
+        if titles is None:
+            self.titles = ['python', 'java', 'javascript', 'html', 'css', 'php', 'sql', 'ruby', 'perl', 'r', 'go', 'swift', 'kotlin', 'rust', 'typescript', 'bash', 'powershell', 'matlab', 'assembly', 'vba', 'visual basic', 'dart', 'groovy', 'scala',
+                      'history', 'calculus',
+                      'the lord of the rings', 'the hobbit', 'the silmarillion', 'the children of hurin', 'the fall of gondolin', 'the book of lost tales', 'the book of lost tales part 2', 'the lay of aotrou and itroun', 'the lay of leithian', 'the shaping of middle-earth', 'the lost road and other writings', 'the return of the shadow', 'the treason of isengard', 'the war of the ring', 'sauron defeated', 'morgoths ring', 'the war of the jewels', 'the peoples of middle-earth',
+                      ]
 
-        for title in titles:
+        for title in self.titles:
             # print(title)
-            self.save_bookdata(title)
+            self.save_bookdata(self.title)
+
+    def main(self):
+        self.load_books()
 
 
 if __name__ == '__main__':
-
-    data = Data()
-    # print(data.get_data())
 
     database = 'data.db'
     sqlfile = 'dbdesigner.sql'
