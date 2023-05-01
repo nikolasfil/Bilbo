@@ -47,6 +47,40 @@ module.exports = {
         return encodeURI(url);
     },
 
+
+
+    bookinfo: function (isbn) {
+        let db = new sqlite3.Database('model/data.db', sqlite3.OPEN_READONLY, (err) => {
+            if (err) {
+                console.error(err.message);
+            }
+            console.log('Connected to the database.');
+        });
+
+        let row 
+        db.each(`Select * from BOOK where title = '${isbn}'`, (err, rows) => {
+            if (err) {
+                console.log("error")
+                console.error(err.message);
+            }
+
+            for (let i = 0; i < rows.length; i++) {
+                row = rows[i];
+            }
+            console.log(row);
+        });
+
+        db.close((err) => {
+            if (err) {
+                console.error(err.message);
+            }
+            console.log('Close the database connection.');
+        });
+
+
+        return row;
+    },
+
     // redirecting: function()
 
 }

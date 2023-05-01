@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
         signedIn: signedIn,
         book: [
             {
-                title: 'Polaroid',
+                title: 'Programming Python',
                 photo: 'img/card_book_1.png',
                 description: 'This is a description',
                 copies: '5'
@@ -27,25 +27,25 @@ router.get('/', (req, res) => {
                 copies: '6'
             },
             {
-                title: 'Book tile 2',
+                title: 'JavaScript Tutorials - Herong\'s Tutorial Examples',
                 photo: 'img/card_book_2.png',
                 description: 'This is a description 2',
                 copies: '6'
             },
             {
-                title: 'Book tile 2',
+                title: 'HTML for the World Wide Web',
                 photo: 'img/card_book_2.png',
                 description: 'This is a description 2',
                 copies: '6'
             },
             {
-                title: 'Book tile 2',
+                title: 'CSS, DHTML, and Ajax, Fourth Edition',
                 photo: 'img/card_book_2.png',
                 description: 'This is a description 2',
                 copies: '6'
             },
             {
-                title: 'Book tile 2',
+                title: 'Practical symfony - Propel edition',
                 photo: 'img/card_book_2.png',
                 description: 'This is a description 2',
                 copies: '6'
@@ -110,37 +110,37 @@ router.get('/library_info', (req, res) => {
         signedIn: signedIn,
         book: [
             {
-                title: 'Polaroid',
+                title: 'Programming Python',
                 photo: 'img/card_book_1.png',
                 description: 'This is a description',
                 copies: '5'
             },
             {
-                title: 'Book tile 2',
+                title: 'Java and Sql',
                 photo: 'img/card_book_2.png',
                 description: 'This is a description 2',
                 copies: '6'
             },
             {
-                title: 'Book tile 2',
+                title: 'JavaScript Tutorials - Herong\'s Tutorial Examples',
                 photo: 'img/card_book_2.png',
                 description: 'This is a description 2',
                 copies: '6'
             },
             {
-                title: 'Book tile 2',
+                title: 'HTML for the World Wide Web',
                 photo: 'img/card_book_2.png',
                 description: 'This is a description 2',
                 copies: '6'
             },
             {
-                title: 'Book tile 2',
+                title: 'CSS, DHTML, and Ajax, Fourth Edition',
                 photo: 'img/card_book_2.png',
                 description: 'This is a description 2',
                 copies: '6'
             },
             {
-                title: 'Book tile 2',
+                title: 'Practical symfony - Propel edition',
                 photo: 'img/card_book_2.png',
                 description: 'This is a description 2',
                 copies: '6'
@@ -230,43 +230,37 @@ router.get('/search', (req, res) => {
         signedIn: signedIn,
         book: [
             {
-                title: 'Polaroid',
-                photo: 'img/card_book_1.png',
-                description: 'This is a description',
-                copies: '5'
-            },
-            {
-                title: 'Book tile 2',
+                title: 'Programming Python',
                 photo: 'img/card_book_2.png',
                 description: 'This is a description 2',
                 copies: '6'
             },
             {
-                title: 'Book tile 2',
+                title: 'Java and Sql',
                 photo: 'img/card_book_2.png',
                 description: 'This is a description 2',
                 copies: '6'
             },
             {
-                title: 'Book tile 2',
+                title: 'JavaScript Tutorials - Herong\'s Tutorial Examples',
                 photo: 'img/card_book_2.png',
                 description: 'This is a description 2',
                 copies: '6'
             },
             {
-                title: 'Book tile 2',
+                title: 'HTML for the World Wide Web',
                 photo: 'img/card_book_2.png',
                 description: 'This is a description 2',
                 copies: '6'
             },
             {
-                title: 'Book tile 2',
+                title: 'CSS, DHTML, and Ajax, Fourth Edition',
                 photo: 'img/card_book_2.png',
                 description: 'This is a description 2',
                 copies: '6'
             },
             {
-                title: 'Book tile 2',
+                title: 'Practical symfony - Propel edition',
                 photo: 'img/card_book_2.png',
                 description: 'This is a description 2',
                 copies: '6'

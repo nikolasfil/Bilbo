@@ -35,7 +35,10 @@
             {{!-- {{> card photo=photo title=title description=description copies=copies location=( encode (concat 'book_info/isbn/10'
             'booktitle=' title ))}} --}}
 
+            {{!-- {{> card photo=photo title=title description=description copies=copies location=( encode (concat 'book_info/' title ))}} --}}
+            {{!-- {{ bookinfo 'Java and Sql'}} --}}
             {{> card photo=photo title=title description=description copies=copies location=( encode (concat 'book_info/' title ))}}
+            {{!-- {{> card photo=photo title=title description=description copies=copies location=( encode (concat 'book_infoisbn=' title ))}} --}}
 
 
             {{/each}}
