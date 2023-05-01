@@ -29,6 +29,9 @@
         <h2 class="h2"><strong> Recommended Books </strong></h2>
 
         <div class="scrolling" id="scrolling-recommended-books">
+            {{!-- {{ bookinfo 'Java and Sql' }} --}}
+            {{!-- {{ booksing ['01','02','03','04','05','06','07','08','09','10']}} --}}
+            {{!-- {{ booking.title}} --}}
             {{#each book}}
 
             {{!-- change into isbn --}}
@@ -36,7 +39,7 @@
             'booktitle=' title ))}} --}}
 
             {{!-- {{> card photo=photo title=title description=description copies=copies location=( encode (concat 'book_info/' title ))}} --}}
-            {{!-- {{ bookinfo 'Java and Sql'}} --}}
+
             {{> card photo=photo title=title description=description copies=copies location=( encode (concat 'book_info/' title ))}}
             {{!-- {{> card photo=photo title=title description=description copies=copies location=( encode (concat 'book_infoisbn=' title ))}} --}}
 

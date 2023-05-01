@@ -3,7 +3,8 @@ const express = require('express');
 // const signedIn = require('..');
 const sqlite3 = require('sqlite3').verbose();
 const router = express.Router();
-
+// use controllers/helpers.js
+const helpers = require('../controllers/helpers.js');
 
 let signedIn = module.exports.signedIn;
 // let signedIn = { signedIn };
@@ -180,44 +181,18 @@ router.get('/book_info/:isbn',
 router.get('/book_info',
 
     (req, res) => {
-        const sqlite3 = require('sqlite3').verbose();
-        let db = new sqlite3.Database('model/data.db', (err) => {
-            if (err) {
-                console.error(err.message);
-            }
-            console.log('Connected to the database.');
-        });
-
         
-
-        db.each(`Select * from BOOK where title = '${req.query['isbn']}'`, (err, rows) => {
-            if (err) {
-                console.log("error")
-                console.error(err.message);
-            }
-
-            console.log(rows);
-            if (rows == undefined) {
-                console.log("rows undefined")
-                res.send('Not found');
-            }
-
-            console.log(rows);
-            res.render('book_info', {
-                title: 'Book Info',
-                book: rows,
-                style: 'book_info.css',
-                signedIn: signedIn
-            });
-    
+        let command = `Select * from BOOK where title = '${req.query['isbn']}'`;
+        
+        let rows = helpers.databaseCommand(command);
+        
+        res.render('book_info', {
+            title: 'Book Info',
+            book: rows,
+            style: 'book_info.css',
+            signedIn: signedIn
         });
 
-        db.close((err) => {
-            if (err) {
-                console.error(err.message);
-            }
-            console.log('Close the database connection.');
-        });
         
         // console.log(db_rows.title);
         });

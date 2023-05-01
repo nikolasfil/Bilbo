@@ -2,20 +2,7 @@ const sqlite3 = require('sqlite3').verbose();
 
 module.exports = {
     // use them as {{calculation value}}
-    calculation: function (value) {
-        return value + 100;
-    },
-
-    list: function (value, options) {
-        // return "<h2>"+options.fn({test: value})+"</h2>";
-        let out = "<ul>";
-        for (let i = 0; i < value.length; i++) {
-            // out = out + "<li>"+options.fn({firstName: '',lastName: ''})+"</li>";
-            out = out + "<li>" + options.fn(value[i]) + "</li>";
-        }
-        return out + "</ul>";
-    },
-
+    
     // concat function that takes arguments and concats them
     concat: function () {
         let outStr = '';
@@ -27,21 +14,6 @@ module.exports = {
         return outStr;
     },
 
-    // supposes returns an object with the book properties
-    booking: function () {
-
-        let outStr = 'Test';
-
-        let db = new sqlite3.Database('./docs/database/SQL/data.db', sqlite3.OPEN_READONLY, (err) => {
-            if (err) {
-                outStr+='error';
-            }
-            // console.log('Connected to the database.');
-            outStr+= 'connected';
-        });
-        return outStr;
-    },
-
     // encode url 
     encode: function (url) {
         return encodeURI(url);
@@ -49,7 +21,7 @@ module.exports = {
 
 
 
-    bookinfo: function (isbn) {
+    bookinfo: function () {
         let db = new sqlite3.Database('model/data.db', sqlite3.OPEN_READONLY, (err) => {
             if (err) {
                 console.error(err.message);
@@ -57,17 +29,17 @@ module.exports = {
             console.log('Connected to the database.');
         });
 
-        let row 
-        db.each(`Select * from BOOK where title = '${isbn}'`, (err, rows) => {
+        let row = {};
+        db.each(`Select * from BOOK where title = '${arguments[0]}'`, (err, rows) => {
             if (err) {
                 console.log("error")
                 console.error(err.message);
             }
 
-            for (let i = 0; i < rows.length; i++) {
-                row = rows[i];
+            for (i in rows) {
+                row[i] = rows[i];
             }
-            console.log(row);
+
         });
 
         db.close((err) => {
@@ -81,6 +53,56 @@ module.exports = {
         return row;
     },
 
+    booksing: function () {
+        // parse the list of isbn given by the user and return the list of books with attributes from bookinfo 
+        let book_list = [];
+        for (let i=0; i<arguments[0].length; i++) {
+            // let this be only the isbn
+            // book_list.push(this.bookinfo(arguments[0][i]));
+            book_list.push(arguments[0][i]);
+
+        }
+        return book_list;
+    },
+
+    databaseCommand : function (command) {
+        let db = new sqlite3.Database('model/data.db', (err) => {
+            if (err) {
+                console.error(err.message);
+            }
+            console.log('Connected to the database.');
+        });
+
+        let row = {};
+        
+
+        db.each(command, (err, rows) => {
+            if (err) {
+                console.log("error")
+                console.error(err.message);
+            }
+
+            console.log(rows);
+            if (rows == undefined) {
+                console.log("rows undefined")
+                res.send('Not found');
+            }
+
+            for (i in rows) {
+                row[i] = rows[i];
+            }
+            console.log(rows);
+            
+        });
+
+        db.close((err) => {
+            if (err) {
+                console.error(err.message);
+            }
+            console.log('Close the database connection.');
+        });
+        return row;
+    },
     // redirecting: function()
 
 }

@@ -63,9 +63,9 @@
 
             <div class="result-pages d-flex flex-row justify-content-start flex-wrap" id="results">
                 {{#each book}}
+                {{> card photo=photo title=title description=description copies=copies location=( encode (concat
+                'book_info/' title ))}}
 
-                {{> card photo=photo title=title description=description copies=copies location=(concat 'book_info?'
-                'title=' title) }}
                 {{/each}}
             </div>
 
