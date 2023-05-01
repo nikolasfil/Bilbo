@@ -188,19 +188,30 @@ router.get('/book_info',
             console.log('Connected to the database.');
         });
 
-        // db.run(`Select isbn from BOOK where title = '${req.query['isbn']}'`, (err, rows) => {
-        // db.run(`Select isbn from BOOK where title = 'Java and Sql'`, (err, rows) => {
+        const db_rows={};
         db.each(`Select * from BOOK where title = '${req.query['isbn']}'`, (err, rows) => {
             if (err) {
                 console.log("error")
                 console.error(err.message);
             }
-            console.log(rows);
+            // console.log(rows);
+            Object.assign(db_rows, rows);
+            // db_rows. = rows;
+            // console.log(db_rows.title)
+        });
+
+        db.close((err) => {
+            if (err) {
+                console.error(err.message);
+            }
+            console.log('Close the database connection.');
         });
         
+        // console.log(db_rows.title);
         res.render('book_info', {
             title: 'Book Info',
             booktitle: req.query['isbn'],
+            book: db_rows.title,
             style: 'book_info.css',
             signedIn: signedIn
         });
