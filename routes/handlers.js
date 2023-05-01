@@ -188,16 +188,28 @@ router.get('/book_info',
             console.log('Connected to the database.');
         });
 
-        const db_rows={};
+        
+
         db.each(`Select * from BOOK where title = '${req.query['isbn']}'`, (err, rows) => {
             if (err) {
                 console.log("error")
                 console.error(err.message);
             }
-            // console.log(rows);
-            Object.assign(db_rows, rows);
-            // db_rows. = rows;
-            // console.log(db_rows.title)
+
+            console.log(rows);
+            if (rows == undefined) {
+                console.log("rows undefined")
+                res.send('Not found');
+            }
+
+            console.log(rows);
+            res.render('book_info', {
+                title: 'Book Info',
+                book: rows,
+                style: 'book_info.css',
+                signedIn: signedIn
+            });
+    
         });
 
         db.close((err) => {
@@ -208,14 +220,7 @@ router.get('/book_info',
         });
         
         // console.log(db_rows.title);
-        res.render('book_info', {
-            title: 'Book Info',
-            booktitle: req.query['isbn'],
-            book: db_rows.title,
-            style: 'book_info.css',
-            signedIn: signedIn
         });
-    });
 
 router.get('/search', (req, res) => {
     // more to be added later
