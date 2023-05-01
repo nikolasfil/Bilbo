@@ -150,54 +150,36 @@ router.get('/library_info', (req, res) => {
 });
 
 
-router.get('/book_info/:isbn', (req, res, next) => {
-    // console.log(req.params.isbn);
-    // res.redirect('/book_info?isbn=' + req.params.isbn);
-    // res.send(req.params.isbn)
-    res.json({isbn:req.params.isbn})
-    // res.params.isbn = req.params.isbn;
-    next();
-},
+// https://www.youtube.com/watch?v=_I6gP_nIFIA
+router.get('/book_info/:isbn',
     (req, res, next) => {
+        console.log('Request URL:', req.originalUrl);
+        next();
+    }, (req, res, next) => {
+        console.log('Request Type:', req.method);
+        next();
+    },
+    (req, res, next) => {
+        res.redirect('/book_info?isbn=' + req.params.isbn);
+
+    },
+    (req, res) => {
+
         res.render('book_info', {
-            title: 'Book Info',
-            booktitle: res.json['isbn'],
-            // booktitle: req.query['isbn'],
-            style: 'book_info.css',
-            signedIn: signedIn
-        });
-    });
+         title: 'Book Info',
+         booktitle: req.query['isbn'],
+         style: 'book_info.css',
+         signedIn: signedIn
+     });
+ }
+    
+);
 
 
 
 router.get('/book_info', (req, res) => {
 
-
-    // const db = new sqlite3.Database('./docs/database/SQL/data.db', (err) => {
-    //     console.log('Connected to the database.');
-    // });
-    // let booktitle = req.query['booktitle'];
-
-    // db.serialize(() => {
-    //     db.run('SELECT * FROM BOOK WHERE title = `${booktitle}`', (err, row) => {
-    //         if (err) {
-    //             console.error(err.message);
-    //         }
-    //         console.log(row['title']);
-    //     }
-    //     );
-    // });
-    // db.close((err) => {
-    //     if (err) {
-    //         console.error(err.message);
-    //     }
-    //     console.log('Close the database connection.');
-    // });
-
-
-
-
-    res.render('book_info', {
+       res.render('book_info', {
         title: 'Book Info',
         booktitle: req.query['isbn'],
         style: 'book_info.css',

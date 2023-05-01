@@ -45,7 +45,8 @@ module.exports = {
     // encode url 
     encode: function (url) {
         return encodeURI(url);
-    }
-    
+    },
+
+    // redirecting: function()
 
 }
