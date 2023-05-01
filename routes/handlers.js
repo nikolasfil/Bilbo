@@ -14,66 +14,77 @@ router.get('/', (req, res) => {
         title: 'Home',
         signedIn: signedIn,
         book: [
-            {title: 'Polaroid', 
-            photo: 'img/card_book_1.png', 
-            description: 'This is a description',
-            copies: '5'
+            {
+                title: 'Polaroid',
+                photo: 'img/card_book_1.png',
+                description: 'This is a description',
+                copies: '5'
             },
-            {title: "Java and Sql", 
-            photo: 'img/card_book_2.png', 
-            description: 'This is a description 2',
-            copies: '6'
+            {
+                title: "Java and Sql",
+                photo: 'img/card_book_2.png',
+                description: 'This is a description 2',
+                copies: '6'
             },
-            {title: 'Book tile 2', 
-            photo: 'img/card_book_2.png', 
-            description: 'This is a description 2',
-            copies: '6'
+            {
+                title: 'Book tile 2',
+                photo: 'img/card_book_2.png',
+                description: 'This is a description 2',
+                copies: '6'
             },
-            {title: 'Book tile 2', 
-            photo: 'img/card_book_2.png', 
-            description: 'This is a description 2',
-            copies: '6'
+            {
+                title: 'Book tile 2',
+                photo: 'img/card_book_2.png',
+                description: 'This is a description 2',
+                copies: '6'
             },
-            {title: 'Book tile 2', 
-            photo: 'img/card_book_2.png', 
-            description: 'This is a description 2',
-            copies: '6'
+            {
+                title: 'Book tile 2',
+                photo: 'img/card_book_2.png',
+                description: 'This is a description 2',
+                copies: '6'
             },
-            {title: 'Book tile 2', 
-            photo: 'img/card_book_2.png', 
-            description: 'This is a description 2',
-            copies: '6'
+            {
+                title: 'Book tile 2',
+                photo: 'img/card_book_2.png',
+                description: 'This is a description 2',
+                copies: '6'
             },
         ],
         library: [
-            {title: 'Uni of Patras', 
-            photo: 'img/card_library_1.png', 
-            description: 'This is a description'
+            {
+                title: 'Uni of Patras',
+                photo: 'img/card_library_1.png',
+                description: 'This is a description'
             },
-            {title: 'Not Uni of Patras', 
-            photo: 'img/card_library_2.png', 
-            description: 'This is a description'
+            {
+                title: 'Not Uni of Patras',
+                photo: 'img/card_library_2.png',
+                description: 'This is a description'
             },
-            {title: 'Not Uni of Patras', 
-            photo: 'img/card_library_2.png', 
-            description: 'This is a description'
+            {
+                title: 'Not Uni of Patras',
+                photo: 'img/card_library_2.png',
+                description: 'This is a description'
             },
-            {title: 'Not Uni of Patras', 
-            photo: 'img/card_library_2.png', 
-            description: 'This is a description'
+            {
+                title: 'Not Uni of Patras',
+                photo: 'img/card_library_2.png',
+                description: 'This is a description'
             },
-            {title: 'Not Uni of Patras', 
-            photo: 'img/card_library_2.png', 
-            description: 'This is a description'
+            {
+                title: 'Not Uni of Patras',
+                photo: 'img/card_library_2.png',
+                description: 'This is a description'
             },
         ]
-            
+
     });
 });
 
 
 router.get('/about', (req, res) => {
-    res.render('about', { 
+    res.render('about', {
         title: 'About us',
         style: 'about.css',
         signedIn: signedIn
@@ -98,51 +109,69 @@ router.get('/library_info', (req, res) => {
         style: 'library_info.css',
         signedIn: signedIn,
         book: [
-            {title: 'Polaroid', 
-            photo: 'img/card_book_1.png', 
-            description: 'This is a description',
-            copies: '5'
+            {
+                title: 'Polaroid',
+                photo: 'img/card_book_1.png',
+                description: 'This is a description',
+                copies: '5'
             },
-            {title: 'Book tile 2', 
-            photo: 'img/card_book_2.png', 
-            description: 'This is a description 2',
-            copies: '6'
+            {
+                title: 'Book tile 2',
+                photo: 'img/card_book_2.png',
+                description: 'This is a description 2',
+                copies: '6'
             },
-            {title: 'Book tile 2', 
-            photo: 'img/card_book_2.png', 
-            description: 'This is a description 2',
-            copies: '6'
+            {
+                title: 'Book tile 2',
+                photo: 'img/card_book_2.png',
+                description: 'This is a description 2',
+                copies: '6'
             },
-            {title: 'Book tile 2', 
-            photo: 'img/card_book_2.png', 
-            description: 'This is a description 2',
-            copies: '6'
+            {
+                title: 'Book tile 2',
+                photo: 'img/card_book_2.png',
+                description: 'This is a description 2',
+                copies: '6'
             },
-            {title: 'Book tile 2', 
-            photo: 'img/card_book_2.png', 
-            description: 'This is a description 2',
-            copies: '6'
+            {
+                title: 'Book tile 2',
+                photo: 'img/card_book_2.png',
+                description: 'This is a description 2',
+                copies: '6'
             },
-            {title: 'Book tile 2', 
-            photo: 'img/card_book_2.png', 
-            description: 'This is a description 2',
-            copies: '6'
+            {
+                title: 'Book tile 2',
+                photo: 'img/card_book_2.png',
+                description: 'This is a description 2',
+                copies: '6'
             },
         ],
     });
 });
 
 
-router.get('/book_info/:isbn', (req,res,next) => {
+router.get('/book_info/:isbn', (req, res, next) => {
     // console.log(req.params.isbn);
-    res.redirect('/book_info?isbn=' + req.params.isbn);
+    // res.redirect('/book_info?isbn=' + req.params.isbn);
+    // res.send(req.params.isbn)
+    res.json({isbn:req.params.isbn})
+    // res.params.isbn = req.params.isbn;
     next();
-})
+},
+    (req, res, next) => {
+        res.render('book_info', {
+            title: 'Book Info',
+            booktitle: res.json['isbn'],
+            // booktitle: req.query['isbn'],
+            style: 'book_info.css',
+            signedIn: signedIn
+        });
+    });
 
 
 
 router.get('/book_info', (req, res) => {
-    
+
 
     // const db = new sqlite3.Database('./docs/database/SQL/data.db', (err) => {
     //     console.log('Connected to the database.');
@@ -181,42 +210,49 @@ router.get('/search', (req, res) => {
     res.render('search', {
         title: 'Search',
         style: 'search.css',
-        signedIn: signedIn, 
+        signedIn: signedIn,
         book: [
-            {title: 'Polaroid', 
-            photo: 'img/card_book_1.png', 
-            description: 'This is a description',
-            copies: '5'
+            {
+                title: 'Polaroid',
+                photo: 'img/card_book_1.png',
+                description: 'This is a description',
+                copies: '5'
             },
-            {title: 'Book tile 2', 
-            photo: 'img/card_book_2.png', 
-            description: 'This is a description 2',
-            copies: '6'
+            {
+                title: 'Book tile 2',
+                photo: 'img/card_book_2.png',
+                description: 'This is a description 2',
+                copies: '6'
             },
-            {title: 'Book tile 2', 
-            photo: 'img/card_book_2.png', 
-            description: 'This is a description 2',
-            copies: '6'
+            {
+                title: 'Book tile 2',
+                photo: 'img/card_book_2.png',
+                description: 'This is a description 2',
+                copies: '6'
             },
-            {title: 'Book tile 2', 
-            photo: 'img/card_book_2.png', 
-            description: 'This is a description 2',
-            copies: '6'
+            {
+                title: 'Book tile 2',
+                photo: 'img/card_book_2.png',
+                description: 'This is a description 2',
+                copies: '6'
             },
-            {title: 'Book tile 2', 
-            photo: 'img/card_book_2.png', 
-            description: 'This is a description 2',
-            copies: '6'
+            {
+                title: 'Book tile 2',
+                photo: 'img/card_book_2.png',
+                description: 'This is a description 2',
+                copies: '6'
             },
-            {title: 'Book tile 2', 
-            photo: 'img/card_book_2.png', 
-            description: 'This is a description 2',
-            copies: '6'
+            {
+                title: 'Book tile 2',
+                photo: 'img/card_book_2.png',
+                description: 'This is a description 2',
+                copies: '6'
             },
-            {title: 'Book tile 2', 
-            photo: 'img/card_book_2.png', 
-            description: 'This is a description 2',
-            copies: '6'
+            {
+                title: 'Book tile 2',
+                photo: 'img/card_book_2.png',
+                description: 'This is a description 2',
+                copies: '6'
             },
         ],
     });

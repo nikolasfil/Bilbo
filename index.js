@@ -7,6 +7,10 @@ const sqlite3 = require('sqlite3').verbose();
 // import * as model from './model/index.mjs'
 // const model = require('./model/index.js');
 
+// app.use(express.urlencoded({ extended: false }));
+// app.use(express.json());
+
+
 let signedIn = false;
 module.exports = {signedIn };   
 
