@@ -133,6 +133,13 @@ router.get('/library_info', (req, res) => {
 });
 
 
+router.get('/book_info/:isbn', (req,res,next) => {
+    // console.log(req.params.isbn);
+    res.redirect('/book_info?isbn=' + req.params.isbn);
+    next();
+})
+
+
 
 router.get('/book_info', (req, res) => {
     
@@ -163,7 +170,7 @@ router.get('/book_info', (req, res) => {
 
     res.render('book_info', {
         title: 'Book Info',
-        booktitle: req.query['booktitle'],
+        booktitle: req.query['isbn'],
         style: 'book_info.css',
         signedIn: signedIn
     });
