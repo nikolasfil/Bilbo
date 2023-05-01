@@ -22,6 +22,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app use node_module 
 // app.use('/scripts', express.static(`${__dirname}/node_modules/`));
 
+// app use model 
+app.use('/model', express.static(`${__dirname}/model/`));
+
 // helpers
 const hbs = expbs.create({
     defaultLayout: 'main',

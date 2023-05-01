@@ -166,26 +166,45 @@ router.get('/book_info/:isbn',
     (req, res) => {
 
         res.render('book_info', {
-         title: 'Book Info',
-         booktitle: req.query['isbn'],
-         style: 'book_info.css',
-         signedIn: signedIn
-     });
- }
-    
+            title: 'Book Info',
+            booktitle: req.query['isbn'],
+            style: 'book_info.css',
+            signedIn: signedIn
+        });
+    }
+
 );
 
 
 
-router.get('/book_info', (req, res) => {
+router.get('/book_info',
 
-       res.render('book_info', {
-        title: 'Book Info',
-        booktitle: req.query['isbn'],
-        style: 'book_info.css',
-        signedIn: signedIn
+    (req, res) => {
+        const sqlite3 = require('sqlite3').verbose();
+        let db = new sqlite3.Database('model/data.db', (err) => {
+            if (err) {
+                console.error(err.message);
+            }
+            console.log('Connected to the database.');
+        });
+
+        // db.run(`Select isbn from BOOK where title = '${req.query['isbn']}'`, (err, rows) => {
+        // db.run(`Select isbn from BOOK where title = 'Java and Sql'`, (err, rows) => {
+        db.each(`Select * from BOOK where title = '${req.query['isbn']}'`, (err, rows) => {
+            if (err) {
+                console.log("error")
+                console.error(err.message);
+            }
+            console.log(rows);
+        });
+        
+        res.render('book_info', {
+            title: 'Book Info',
+            booktitle: req.query['isbn'],
+            style: 'book_info.css',
+            signedIn: signedIn
+        });
     });
-});
 
 router.get('/search', (req, res) => {
     // more to be added later
