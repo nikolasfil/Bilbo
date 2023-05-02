@@ -65,7 +65,10 @@ module.exports = {
         return book_list;
     },
 
-    databaseCommand : function (command) {
+    databaseCommand : function () {
+        let command = arguments[0];
+        let row = {};
+
         let db = new sqlite3.Database('model/data.db', (err) => {
             if (err) {
                 console.error(err.message);
@@ -73,7 +76,6 @@ module.exports = {
             console.log('Connected to the database.');
         });
 
-        let row = {};
         
 
         db.each(command, (err, rows) => {
@@ -82,16 +84,16 @@ module.exports = {
                 console.error(err.message);
             }
 
-            console.log(rows);
+            // console.log(rows);
             if (rows == undefined) {
                 console.log("rows undefined")
-                res.send('Not found');
+                // res.send('Not found');
             }
 
             for (i in rows) {
                 row[i] = rows[i];
             }
-            console.log(rows);
+            // console.log(rows);
             
         });
 
@@ -101,6 +103,7 @@ module.exports = {
             }
             console.log('Close the database connection.');
         });
+
         return row;
     },
     // redirecting: function()

@@ -35,13 +35,12 @@
             {{#each book}}
 
             {{!-- change into isbn --}}
-            {{!-- {{> card photo=photo title=title description=description copies=copies location=( encode (concat 'book_info/isbn/10'
-            'booktitle=' title ))}} --}}
 
-            {{!-- {{> card photo=photo title=title description=description copies=copies location=( encode (concat 'book_info/' title ))}} --}}
+            {{!-- {{> card photo=cover_image title=title description='Description' copies=5 location=( encode (concat 'book_info/' title ))}} --}}
+            {{!-- {{> card photo=image title=title description='Description' copies=5 location=( encode (concat 'book_info/' title ))}} --}}
 
+            {{!-- {{> card photo=photo title=title description='Description' copies=5 location=( encode (concat 'book_info/' title ))}} --}}
             {{> card photo=photo title=title description=description copies=copies location=( encode (concat 'book_info/' title ))}}
-            {{!-- {{> card photo=photo title=title description=description copies=copies location=( encode (concat 'book_infoisbn=' title ))}} --}}
 
 
             {{/each}}

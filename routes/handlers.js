@@ -5,17 +5,37 @@ const sqlite3 = require('sqlite3').verbose();
 const router = express.Router();
 // use controllers/helpers.js
 const helpers = require('../controllers/helpers.js');
+// const help = require('/controllers/helpers.js')
 
 let signedIn = module.exports.signedIn;
 // let signedIn = { signedIn };
 
 router.get('/', (req, res) => {
+
+    let titles = ["Programming Python","Java and Sql","Discovering SQL","HTML for the World Wide Web","CSS, DHTML, and Ajax, Fourth Edition","Practical symfony - Propel edition"]
+    let books = [];
+
+    let command = `Select * from BOOK where title = '${titles[0]}'`;
+    let rows = helpers.databaseCommand(command);
+    // let rows = help.databaseCommand(command);
+    console.log(rows);
+
+    console.log(helpers.databaseCommand(`Select title,cover_image from BOOK where title = '${titles[0]}'`));
+    for (let i = 0; i < titles.length; i++) {
+        books.push(helpers.databaseCommand(`Select title,cover_image from BOOK where title = '${titles[i]}'`));
+    }
+    
+    // console.log(books)
+
     res.render('homepage', {
         style: 'index.css',
         title: 'Home',
         signedIn: signedIn,
+        // book : books,
         book: [
             {
+                // helpers.databaseCommand("Select * from BOOK where title = 'Programming Python'"),  
+            
                 title: 'Programming Python',
                 photo: 'img/card_book_1.png',
                 description: 'This is a description',
@@ -24,31 +44,31 @@ router.get('/', (req, res) => {
             {
                 title: "Java and Sql",
                 photo: 'img/card_book_2.png',
-                description: 'This is a description 2',
+                description: 'This is a description',
                 copies: '6'
             },
             {
-                title: 'JavaScript Tutorials - Herong\'s Tutorial Examples',
+                title: 'Discovering SQL',
                 photo: 'img/card_book_2.png',
-                description: 'This is a description 2',
+                description: 'This is a description',
                 copies: '6'
             },
             {
                 title: 'HTML for the World Wide Web',
                 photo: 'img/card_book_2.png',
-                description: 'This is a description 2',
+                description: 'This is a description',
                 copies: '6'
             },
             {
                 title: 'CSS, DHTML, and Ajax, Fourth Edition',
                 photo: 'img/card_book_2.png',
-                description: 'This is a description 2',
+                description: 'This is a description',
                 copies: '6'
             },
             {
                 title: 'Practical symfony - Propel edition',
                 photo: 'img/card_book_2.png',
-                description: 'This is a description 2',
+                description: 'This is a description',
                 copies: '6'
             },
         ],
@@ -119,19 +139,19 @@ router.get('/library_info', (req, res) => {
             {
                 title: 'Java and Sql',
                 photo: 'img/card_book_2.png',
-                description: 'This is a description 2',
+                description: 'This is a description',
                 copies: '6'
             },
             {
-                title: 'JavaScript Tutorials - Herong\'s Tutorial Examples',
+                title: 'Discovering SQL',
                 photo: 'img/card_book_2.png',
-                description: 'This is a description 2',
+                description: 'This is a description',
                 copies: '6'
             },
             {
                 title: 'HTML for the World Wide Web',
                 photo: 'img/card_book_2.png',
-                description: 'This is a description 2',
+                description: 'This is a description',
                 copies: '6'
             },
             {
@@ -217,7 +237,7 @@ router.get('/search', (req, res) => {
                 copies: '6'
             },
             {
-                title: 'JavaScript Tutorials - Herong\'s Tutorial Examples',
+                title: 'Discovering SQL',
                 photo: 'img/card_book_2.png',
                 description: 'This is a description 2',
                 copies: '6'

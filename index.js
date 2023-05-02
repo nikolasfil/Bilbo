@@ -24,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // app use model 
 app.use('/model', express.static(`${__dirname}/model/`));
+app.use('/controllers', express.static(`${__dirname}/controllers/`));
 
 // helpers
 const hbs = expbs.create({
