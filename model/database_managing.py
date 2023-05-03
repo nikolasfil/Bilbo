@@ -89,7 +89,7 @@ class Creation:
                                      'Ypatias 4, Panepstimioupoli Patron, 265 04',
                                      '2610398949', 'bibliothiki@bilbo.gr',
                                      'img/library_image_1.svg', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero possimus hic laboriosam perferendis, veritatis corrupti assumenda reprehenderit ducimus dignissimos quia, doloribus unde! Fugit quas minus est ex ratione dolor possimus!Lorem',
-                         'Monday: 8:30 AM–7 PM,Tuesday: 8:30 AM–7 PM,Wednesday: 8:30 AM–7 PM,Thursday: 8:30 AM–7 PM,Friday: 8:30 AM–7 PM,Saturday: closed,Sunday: closed'))
+                         '8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,closed,closed'))
 
         # self.insert_data('LIBRARY', ('Not', 'location',
         #                  'img/library_image_1.svg', 'summary', 'working_hours'))

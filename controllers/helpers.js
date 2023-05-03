@@ -108,4 +108,36 @@ module.exports = {
     },
     // redirecting: function()
 
+    lonlat : function () {
+        let lon = arguments[0].split(", ")[0].split(":")[1];
+
+        let lat = arguments[0].split(",")[1].split(":")[1];
+        return [lon,lat];
+    },
+
+    longtitude: function () {
+        let lon = arguments[0].split(", ")[0].split(":")[1];
+        return lon;
+    },
+
+    latitude: function () {
+        let lat = arguments[0].split(",")[1].split(":")[1];
+        return lat;
+    },
+
+    workingHours: function () {
+        // split arguments[0] by comma and return a list of lists split by space 
+        let schedule = {"Monday": "Closed", "Tuesday": "Closed", "Wednesday": "Closed", "Thursday": "Closed", "Friday": "Closed", "Saturday": "Closed", "Sunday": "Closed"}
+        let hours = arguments[0].split(",");
+        let i=0;
+        
+        for ( key in schedule) {
+            schedule[key] = hours[i]
+            i++;
+        }
+               
+        return schedule;
+    }
+
+
 }

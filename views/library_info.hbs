@@ -28,8 +28,10 @@
         <h2><strong>Location & Working Hours</strong></h2>
 
         <div class="d-flex flex-row justify-content-start ">
-            
-            {{>map lon=21.79127500966751 lat=38.29039542648134 zoom=16}}
+            {{!-- {{library.location }}{{library.lolt}} --}}
+            {{!-- {{>map lon=library.location.lon lat=38.29039542648134 zoom=16}} --}}
+            {{log (workingHours library.working_hours)}}
+            {{>map lon=(longtitude library.location) lat=(latitude library.location) zoom=16}}
 
             {{!-- add an openlayer map here in a div  --}}
             <div id="map" style="width: 100%, height: 400px"></div>
@@ -51,42 +53,12 @@
                     <h3>Working Hours</h3>
                     <!-- to be fixed -->
                     <table>
+                        {{#each (workingHours library.working_hours) as |value key|}}
                         <tr>
-                            <td>Monday:</td>
-                            <td>8:30 AM–7 PM</td>
+                            <td>{{key}}:</td>
+                            <td>{{value}}</td>
                         </tr>
-                        <tr>
-                            <td> Tuesday:</td>
-                            <td>8:30 AM–7 PM</td>
-                        </tr>
-                        <tr>
-                            <td> Wednesday:</td>
-                            <td>8:30 AM–7 PM</td>
-
-                        </tr>
-                        <tr>
-                            <td> Thursday:</td>
-                            <td>8:30 AM–7 PM</td>
-
-                        </tr>
-                        <tr>
-                            <td> Friday:</td>
-                            <td>8:30 AM–7 PM</td>
-
-                        </tr>
-                        <tr>
-                            <td> Saturday:</td>
-                            <td>closed</td>
-
-                        </tr>
-                        <tr>
-                            <td> Sunday:</td>
-                            <td>closed</td>
-
-                        </tr>
-
-
-
+                        {{/each}}
 
                     </table>
 

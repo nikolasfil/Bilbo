@@ -234,6 +234,16 @@ router.get('/library_info', (req, res) => {
     
     // fix rows['time'] to be a json file - dicriotant 
 
+    // turns rows['location'] to a json file
+    // let test = JSON.parse(rows);
+
+    // console.log(test);
+    // rows['lolt'] = JSON.parse(rows['location']);
+    
+    // rows['lonlat'] = '{ "lat": '+rows['location']['lat']+', "lng": '+rows['location']['lng']+' }';
+    // console.log(rows['location']['lat']);
+    // console.log(rows['location']['lng']);
+    // rows[]
 
     res.render('library_info', {
         title: 'Library Info',
