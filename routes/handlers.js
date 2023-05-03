@@ -211,82 +211,7 @@ router.get('/user_profile', (req, res) => {
     });
 });
 
-router.get('/library/:id', 
-    (req, res,next) => {
-        console.log('Request URL:', req.originalUrl);
 
-        res.locals.url = req.originalUrl;
-        
-        // let authData = (AuthData)context.Items["AuthData"];
-
-        next();
-    }, (req, res,next) => {
-        console.log('Request Type:', req.method);
-        console.log(res.locals.url);
-        next();
-    }, (req, res) => {
-        res.redirect('/library?id='+req.params.id);
-    }
-);
-
-router.get('/library', (req, res, next) => {
-
-
-
-    
-    let command = `Select * from LIBRARY where id=${req.query['id']}`;
-    // let command = `Select * from BOOK where title= 'Java and Sql'`;
-    
-    let rows = helpers.databaseCommand(command);
-    // console.log(req.query['id']);
-    console.log(rows);
-    // rows['location'] = rows['location'].replace(/,/g, '<br>');
-
-    res.render('library_info', {
-        title: 'Library Info',
-        style: 'library_info.css',
-        signedIn: signedIn,
-        library: rows,
-        book: [
-            {
-                title: 'Programming Python',
-                photo: 'img/card_book_1.png',
-                description: 'This is a description',
-                copies: '5'
-            },
-            {
-                title: 'Java and Sql',
-                photo: 'img/card_book_2.png',
-                description: 'This is a description',
-                copies: '6'
-            },
-            {
-                title: 'Discovering SQL',
-                photo: 'img/card_book_2.png',
-                description: 'This is a description',
-                copies: '6'
-            },
-            {
-                title: 'HTML for the World Wide Web',
-                photo: 'img/card_book_2.png',
-                description: 'This is a description',
-                copies: '6'
-            },
-            {
-                title: 'CSS, DHTML, and Ajax, Fourth Edition',
-                photo: 'img/card_book_2.png',
-                description: 'This is a description 2',
-                copies: '6'
-            },
-            {
-                title: 'Practical symfony - Propel edition',
-                photo: 'img/card_book_2.png',
-                description: 'This is a description 2',
-                copies: '6'
-            },
-        ],
-    });
-});
 
 router.get('/library_info/:id', 
     (req, res,next) => {
@@ -302,13 +227,13 @@ router.get('/library_info/:id',
 
 router.get('/library_info', (req, res) => {
     
-    // let command = `Select * from LIBRARY where id=${req.query['id']}`;
-    let command = `Select * from BOOK where title= 'Java and Sql'`;
+    let command = `Select * from LIBRARY where id=${req.query['id']}`;
+    // let command = `Select * from BOOK where title= 'Java and Sql'`;
     
     let rows = helpers.databaseCommand(command);
-    // console.log(req.query['id']);
-    console.log(rows);
-    // rows['location'] = rows['location'].replace(/,/g, '<br>');
+    
+    // fix rows['time'] to be a json file - dicriotant 
+
 
     res.render('library_info', {
         title: 'Library Info',

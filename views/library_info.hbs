@@ -1,6 +1,3 @@
-<script type="text/javascript">window.onload = function () {
-        searchbarAssignAttr();
-    };</script>
 
 {{>header}}
 
@@ -10,19 +7,15 @@
 
 
         <div class="d-flex flex-row justify-content-start div-paragraph-margins-55-160" id="library-info-">
-            <img src="img/library_image_1.svg" alt="library image" style="width:282; height:282;">
+            <img src="{{library.profile_picture}}" alt="library image" style="width:282; height:282;">
             <div class="d-flex flex-column justify-content-start paragraph-margins-58-79">
                 <!-- the margins are not working -->
                 <div id="library-title ">
-                    <h1><strong>Library Of Patras</strong></h1>
-                    <h3>Ypatias 4, Panepstimioupoli Patron, 265 04</h3>
+                    <h1><strong>{{ library.name }}</strong></h1>
+                    <h3>{{library.address}}</h3>
                 </div>
                 <div id="library-info">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero possimus hic laboriosam
-                        perferendis,
-                        veritatis corrupti assumenda reprehenderit ducimus dignissimos quia, doloribus unde! Fugit quas
-                        minus est
-                        ex ratione dolor possimus!Lorem</p>
+                    <p>{{library.summary}}</p>
                 </div>
             </div>
 
@@ -45,13 +38,13 @@
 
                 <div class="d-flex flex-column justify-content-start" id="libary-address">
                     <h3>Address</h3>
-                    <p>Ypatias 4, panepistimioupoli Patron 265 04</p>
+                    <p>{{library.address}}</p>
                 </div>
 
                 <div class="d-flex flex-column justify-content-start" id="libary-contact">
                     <h3>Contact</h3>
-                    <p>Telephone: 2610398949</p>
-                    <p>Email: bibliothiki@bilbo.gr</p>
+                    <p>Telephone: {{library.phone}}</p>
+                    <p>Email: {{library.email}}</p>
                 </div>
 
                 <div class="d-flex flex-column justify-content-start" id="libary-working">
