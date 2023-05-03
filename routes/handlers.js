@@ -5,103 +5,14 @@ const sqlite3 = require('sqlite3').verbose();
 const router = express.Router();
 // use controllers/helpers.js
 const helpers = require('../controllers/helpers.js');
-// const help = require('/controllers/helpers.js')
 
 let signedIn = module.exports.signedIn;
-// let signedIn = { signedIn };
-
-// router.get('', (req, res) => {
-//     res.redirect('/homepage');
-//     });
-    
-
-// router.get('/homepage', (req, res) => {
-//     res.render('homepage', {
-//         style: 'index.css',
-//         title: 'Home',
-//         signedIn: signedIn,
-//         // book : books,
-//         book: [
-//             {
-//                 // helpers.databaseCommand("Select * from BOOK where title = 'Programming Python'"),  
-            
-//                 title: 'Programming Python',
-//                 photo: 'img/card_book_1.png',
-//                 description: 'This is a description',
-//                 copies: '5'
-//             },
-//             {
-//                 title: "Java and Sql",
-//                 photo: 'img/card_book_2.png',
-//                 description: 'This is a description',
-//                 copies: '6'
-//             },
-//             {
-//                 title: 'Discovering SQL',
-//                 photo: 'img/card_book_2.png',
-//                 description: 'This is a description',
-//                 copies: '6'
-//             },
-//             {
-//                 title: 'HTML for the World Wide Web',
-//                 photo: 'img/card_book_2.png',
-//                 description: 'This is a description',
-//                 copies: '6'
-//             },
-//             {
-//                 title: 'CSS, DHTML, and Ajax, Fourth Edition',
-//                 photo: 'img/card_book_2.png',
-//                 description: 'This is a description',
-//                 copies: '6'
-//             },
-//             {
-//                 title: 'Practical symfony - Propel edition',
-//                 photo: 'img/card_book_2.png',
-//                 description: 'This is a description',
-//                 copies: '6'
-//             },
-//         ],
-//         library: [
-//             {
-//                 title: 'Uni of Patras',
-//                 photo: 'img/card_library_1.png',
-//                 description: 'This is a description',
-//                 id: '0'
-//             },
-//             {
-//                 title: 'Not Uni of Patras',
-//                 photo: 'img/card_library_2.png',
-//                 description: 'This is a description',
-//                 id: '2'
-//             },
-//             {
-//                 title: 'Not Uni of Patras',
-//                 photo: 'img/card_library_2.png',
-//                 description: 'This is a description',
-//                 id: '2'
-//             },
-//             {
-//                 title: 'Not Uni of Patras',
-//                 photo: 'img/card_library_2.png',
-//                 description: 'This is a description',
-//                 id: '2'
-//             },
-//             {
-//                 title: 'Not Uni of Patras',
-//                 photo: 'img/card_library_2.png',
-//                 description: 'This is a description',
-//                 id: '2'
-//             },
-//         ]
-
-//     });
-// });
 
 
 
 router.get('/', (req, res) => {
 
-    let command = `Select title,cover_image as photo from BOOK `;
+    let command = `Select isbn,title,cover_image as photo from BOOK `;
     let books = helpers.databaseAllCommand(command);
 
     command = `Select id,name as title,address,profile_picture as photo from LIBRARY `;
@@ -111,8 +22,6 @@ router.get('/', (req, res) => {
         style: 'index.css',
         title: 'Home',
         signedIn: signedIn,
-        // book : books,
-        // booklist: list,
         booklist: books,
         library: libraries
 
@@ -157,7 +66,7 @@ router.get('/library_info', (req, res) => {
     
     let libraries = helpers.databaseCommand(command);
     
-    command = `Select title,cover_image as photo from BOOK `;
+    command = `Select isbn,title,cover_image as photo from BOOK `;
     let books = helpers.databaseAllCommand(command);
 
     res.render('library_info', {
@@ -182,15 +91,6 @@ router.get('/book_info/:isbn',
     (req, res, next) => {
         res.redirect('/book_info?isbn=' + req.params.isbn);
 
-    },
-    (req, res) => {
-
-        res.render('book_info', {
-            title: 'Book Info',
-            booktitle: req.query['isbn'],
-            style: 'book_info.css',
-            signedIn: signedIn
-        });
     }
 
 );
@@ -201,13 +101,13 @@ router.get('/book_info',
 
     (req, res) => {
         
-        let command = `Select * from BOOK where title = '${req.query['isbn']}'`;
+        let command = `Select * from BOOK where isbn = '${req.query['isbn']}'`;
         
-        let rows = helpers.databaseCommand(command);
+        let books = helpers.databaseCommand(command);
         
         res.render('book_info', {
             title: 'Book Info',
-            book: rows,
+            book: books,
             style: 'book_info.css',
             signedIn: signedIn
         });

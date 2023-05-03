@@ -32,7 +32,7 @@
 
             {{#each booklist }}
 
-            {{> card photo=photo title=title description="This is a description" copies=5 location=( encode (concat 'book_info/' title ))}}
+            {{> card photo=photo title=title description="This is a description" copies=5 location=( encode (concat 'book_info/' isbn ))}}
 
             {{/each}}
 
