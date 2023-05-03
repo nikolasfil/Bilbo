@@ -92,11 +92,18 @@ class Creation:
              '2610398949', 'bibliothiki@bilbo.gr',
              'img/card_library_1.png', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero possimus hic laboriosam perferendis, veritatis corrupti assumenda reprehenderit ducimus dignissimos quia, doloribus unde! Fugit quas minus est ex ratione dolor possimus!Lorem',
              '8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,closed,closed'),
-            ('2', 'Not University of Patra', '21.79127500966751,38.29039542648134',
-             'Ypatias 4, Panepstimioupoli Patron, 265 04',
-             '2610398949', 'bibliothiki@bilbo.gr',
+            # ('1', 'Not University of Patra', '21.79127500966751,38.29039542648134',
+            #  'Ypatias 4, Panepstimioupoli Patron, 265 04',
+            #  '2610398949', 'bibliothiki@bilbo.gr',
+            #  'img/card_library_2.png', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero possimus hic laboriosam perferendis, veritatis corrupti assumenda reprehenderit ducimus dignissimos quia, doloribus unde! Fugit quas minus est ex ratione dolor possimus!Lorem',
+            #  '8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,closed,closed'),
+
+            ('2', 'Poliendro', '21.735480538324822,38.24616051679194',
+             ' Kanakari 147, Patra 262 21, 265 04',
+             '261 027 7342', 'poliendro@bilbo.gr',
              'img/card_library_2.png', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero possimus hic laboriosam perferendis, veritatis corrupti assumenda reprehenderit ducimus dignissimos quia, doloribus unde! Fugit quas minus est ex ratione dolor possimus!Lorem',
-             '8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,closed,closed')
+             '09:00 AM–09:00 PM,09:00 AM–09:00 PM,09:00 AM–09:00 PM,09:00 AM–09:00 PM,09:00 AM–09:00 PM,closed,closed')
+
 
         ]
 
@@ -119,8 +126,9 @@ class Creation:
             # for i in range(1, 6):
             # isbn , copy_num , library_id
             copy_num = random.randint(1, 5)
-            library_id = random.choice(list(map(int,[i[0] for i in libraries])))
-            self.insert_data('COPIES', (book['isbn'],copy_num, library_id))
+            library_id = random.choice(
+                list(map(int, [i[0] for i in libraries])))
+            self.insert_data('COPIES', (book['isbn'], copy_num, library_id))
 
         self.insert_data('USER', ('1', 'Nick', 'Fil', '01/01/2001', self.hashing_password(
             'password'), self.binary_to_string(self.salt), 'img/nikolas_profile.png'))
