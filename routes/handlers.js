@@ -101,98 +101,20 @@ let signedIn = module.exports.signedIn;
 
 router.get('/', (req, res) => {
 
-    // let titles = ["Programming Python","Java and Sql","Discovering SQL","HTML for the World Wide Web","CSS, DHTML, and Ajax, Fourth Edition","Practical symfony - Propel edition"]
-    // let books = [];
+    let command = `Select title,cover_image as photo from BOOK `;
+    let books = helpers.databaseAllCommand(command);
 
-    // let command = `Select * from BOOK where title = '${titles[0]}'`;
-    // let rows = helpers.databaseCommand(command);
-    // // let rows = help.databaseCommand(command);
-    // console.log(rows);
-
-    // console.log(helpers.databaseCommand(`Select title,cover_image from BOOK where title = '${titles[0]}'`));
-    // for (let i = 0; i < titles.length; i++) {
-    //     books.push(helpers.databaseCommand(`Select title,cover_image from BOOK where title = '${titles[i]}'`));
-    // }
-    
-    // console.log(books)
+    command = `Select id,name as title,address,profile_picture as photo from LIBRARY `;
+    let libraries = helpers.databaseAllCommand(command);
 
     res.render('homepage', {
         style: 'index.css',
         title: 'Home',
         signedIn: signedIn,
         // book : books,
-        book: [
-            {
-                // helpers.databaseCommand("Select * from BOOK where title = 'Programming Python'"),  
-            
-                title: 'Programming Python',
-                photo: 'img/card_book_1.png',
-                description: 'This is a description',
-                copies: '5'
-            },
-            {
-                title: "Java and Sql",
-                photo: 'img/card_book_2.png',
-                description: 'This is a description',
-                copies: '6'
-            },
-            {
-                title: 'Discovering SQL',
-                photo: 'img/card_book_2.png',
-                description: 'This is a description',
-                copies: '6'
-            },
-            {
-                title: 'HTML for the World Wide Web',
-                photo: 'img/card_book_2.png',
-                description: 'This is a description',
-                copies: '6'
-            },
-            {
-                title: 'CSS, DHTML, and Ajax, Fourth Edition',
-                photo: 'img/card_book_2.png',
-                description: 'This is a description',
-                copies: '6'
-            },
-            {
-                title: 'Practical symfony - Propel edition',
-                photo: 'img/card_book_2.png',
-                description: 'This is a description',
-                copies: '6'
-            },
-        ],
-        library: [
-            {
-                title: 'Uni of Patras',
-                photo: 'img/card_library_1.png',
-                description: 'This is a description',
-                id: '0'
-            },
-            {
-                title: 'Not Uni of Patras',
-                photo: 'img/card_library_2.png',
-                description: 'This is a description',
-                id: '2'
-            },
-            {
-                title: 'Not Uni of Patras',
-                photo: 'img/card_library_2.png',
-                description: 'This is a description',
-                id: '2'
-            },
-            {
-                title: 'Not Uni of Patras',
-                photo: 'img/card_library_2.png',
-                description: 'This is a description',
-                id: '2'
-            },
-            {
-                title: 'Not Uni of Patras',
-                photo: 'img/card_library_2.png',
-                description: 'This is a description',
-                id: '2'
-            },
-        ]
+        // booklist: list,
+        booklist: books,
+        library: libraries
 
     });
 });

@@ -29,21 +29,27 @@
         <h2 class="h2"><strong> Recommended Books </strong></h2>
 
         <div class="scrolling">
-            {{!-- {{ bookinfo 'Java and Sql' }} --}}
-            {{!-- {{ booksing ['01','02','03','04','05','06','07','08','09','10']}} --}}
-            {{!-- {{ booking.title}} --}}
-            {{#each book}}
+
+            {{!-- {{ log booklist }} --}}
+            {{#each booklist }}
+
+            
+
+            {{> card photo=photo title=title description="This is a description" copies=5 location=( encode (concat 'book_info/' title ))}}
+
+            {{/each}}
+
+            
+            {{!-- {{#each book}} --}}
+            
 
             {{!-- change into isbn --}}
 
-            {{!-- {{> card photo=cover_image title=title description='Description' copies=5 location=( encode (concat 'book_info/' title ))}} --}}
-            {{!-- {{> card photo=image title=title description='Description' copies=5 location=( encode (concat 'book_info/' title ))}} --}}
-
-            {{!-- {{> card photo=photo title=title description='Description' copies=5 location=( encode (concat 'book_info/' title ))}} --}}
-            {{> card photo=photo title=title description=description copies=copies location=( encode (concat 'book_info/' title ))}}
+            {{!-- {{> card photo=cover_image title=title description="Demo Description" copies=5 location=( encode (concat 'book_info/' title ))}} --}}
+            {{!-- {{> card photo=photo title=title description=description copies=copies location=( encode (concat 'book_info/' title ))}} --}}
 
 
-            {{/each}}
+            {{!-- {{/each}} --}}
 
 
         </div>
@@ -54,7 +60,7 @@
         <div class="scrolling">
             {{#each library}}
             {{!-- The title ? should be with promises and async await and sending requests with javascript --}}
-            {{> card photo=photo title=title description=description copies=copies location=(concat 'library_info/' id ) }}
+            {{> card photo=photo title=title description=address copies=copies location=(concat 'library_info/' id ) }}
 
             {{!-- {{> card photo=photo title=title description=description location="'/library_info'"}} --}}
 

@@ -113,6 +113,55 @@ module.exports = {
         return row;
     },
 
+
+    databaseAllCommand : function () {
+        // connects to the database, executed the given command (arguments[0]) and returns the row that holds the result
+        let command = arguments[0];
+        let row = {};
+
+        // model is a public folder for node 
+
+        let db = new sqlite3.Database('model/data.db', (err) => {
+            if (err) {
+                console.error(err.message);
+            }
+            // this is for debugging reasons, can be removed
+            // see if we can change it with status
+            console.log(`Connected to the database. ${command}`);
+        });
+
+        
+
+        db.all(command, (err, rows) => {
+            if (err) {
+                console.log("error")
+                console.error(err.message);
+            }
+
+            // console.log(rows);
+            if (rows == undefined) {
+                console.log("rows undefined")
+                // res.send('Not found');
+            }
+
+            // assign the rows to the row variable so that we can return it 
+            for (i in rows) {
+                row[i] = rows[i];
+            }
+            
+        });
+
+        // close the database to avoid errors
+        db.close((err) => {
+            if (err) {
+                console.error(err.message);
+            }
+            console.log('Close the database connection.');
+        });
+
+        return row;
+    },
+
     longtitude: function () {
         // "lon"= 23.7275390625, "lat"= 37.9838096
         // can be simplified
