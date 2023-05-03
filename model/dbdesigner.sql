@@ -1,6 +1,11 @@
 CREATE TABLE IF NOT EXISTS LIBRARY (
 	id			binary 		NOT NULL , 
+	name 		binary 		NOT NULL,
 	location	binary 		NOT NULL ,
+	address 	binary 		NOT NULL,
+	phone 		binary 		NOT NULL,
+	email 		binary 		NOT NULL,
+
 	profile_picture		binary 		NOT NULL,
 	summary	varchar(1000) 	NOT NULL,
 	working_hours 	varchar(1000) 	NOT NULL,

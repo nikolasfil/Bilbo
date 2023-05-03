@@ -89,12 +89,14 @@ class Creation:
 
         self.clear_all()
 
-
-        self.insert_data('LIBRARY', ('University of Patra', 'Ypatias 4, Panepstimioupoli Patron, 265 04', 'img/library_image_1.svg', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero possimus hic laboriosam perferendis, veritatis corrupti assumenda reprehenderit ducimus dignissimos quia, doloribus unde! Fugit quas minus est ex ratione dolor possimus!Lorem',
+        self.insert_data('LIBRARY', (0 ,'University of Patra','lon=21.79127500966751 lat=38.29039542648134', 
+                                     'Ypatias 4, Panepstimioupoli Patron, 265 04',
+                                      '2610398949','bibliothiki@bilbo.gr'
+                                       'img/library_image_1.svg', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero possimus hic laboriosam perferendis, veritatis corrupti assumenda reprehenderit ducimus dignissimos quia, doloribus unde! Fugit quas minus est ex ratione dolor possimus!Lorem',
                          'Monday: 8:30 AM–7 PM,Tuesday: 8:30 AM–7 PM,Wednesday: 8:30 AM–7 PM,Thursday: 8:30 AM–7 PM,Friday: 8:30 AM–7 PM,Saturday: closed,Sunday: closed'))
         
-        self.insert_data('LIBRARY', ('Not', 'location',
-                         'img/library_image_1.svg', 'summary', 'working_hours'))
+        # self.insert_data('LIBRARY', ('Not', 'location',
+        #                  'img/library_image_1.svg', 'summary', 'working_hours'))
 
         def string_to_byte(string):
             return bytes(string, 'utf-8')
