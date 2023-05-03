@@ -10,9 +10,16 @@
 
         <div class="d-flex flex-column justify-content-start mx-3" id="book-title-summary">
             <h1 id="title"><strong>{{ book.title }}</strong></h1>
+            {{!-- if there is no book.summary print no summary --}}
+
+            {{#if book.summary}}
             <p id="summary">{{book.summary}}</p>
+            {{else}}
+            <p id="summary">No summary</p>
+            {{/if}}
+
         </div>
-      
+
 
         <div class="d-flex flex-row justify-content-start " id="book-info">
 
@@ -34,7 +41,7 @@
                     <p class="p-info" id="genre-p">{{ book.genre }}</p>
                 </div>
             </div>
-            
+
             <div class="d-flex flex-column mx-3">
                 <div id="release">
                     <h5 class="p-title" id="release-h"><strong>Release</strong></h5>
@@ -49,9 +56,9 @@
                     <p class="p-info" id="isbn-p">{{ book.isbn }}</p>
                 </div>
             </div>
-            
-    
-            
+
+
+
 
 
         </div>
@@ -64,42 +71,50 @@
     <h2><strong>Reservation points</strong></h2>
     <div class="d-flex flex-row justify-content-start" id="book-location">
 
-        {{>map lon=21.79127500966751 lat=38.29039542648134 zoom=16}}
 
 
         <div class="d-flex flex-row justify-content-between">
             <!-- libraries and locations -->
             <div class="d-flex flex-column justify-content-start mx-3">
                 <h4>Library</h4>
-                {{!-- get the list of libraries that the book exists and make it into a link rather than just a p  --}}
-                <p>Patras Library</p>
+                {{!-- get the list of libraries that the book exists and make it into a link rather than just a p --}}
+                <a href="/library_info/{{library.id}}" style="text-decoration: none; color:black;">
+                <p>{{library.name}}</p>
+                </a>
             </div>
 
             <div class="d-flex flex-column justify-content-start mx-3">
                 <h4>Address</h4>
                 {{!-- get the address from the libraries --}}
-                <p>Manolaki 45, Patras, 26222</p>
+                <p>{{library.address}}</p>
             </div>
 
             <div class="d-flex flex-column justify-content-start mx-3">
                 <h4>Copies</h4>
-                <p>5</p>
+                <p>{{library.copy_num}}</p>
             </div>
 
             <div class="d-flex flex-column justify-content-start mx-3">
                 <!-- reservation buttons -->
                 <h4><br></h4>
-                <button type="button" class="btn btn-primary rounded-pill" data-bs-toggle="button" autocomplete="off" aria-pressed="false">
+                <button type="button" class="btn btn-primary rounded-pill" data-bs-toggle="button" autocomplete="off"
+                    aria-pressed="false">
                     <span>Reserve</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
-                        <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
-                        <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-cart-plus" viewBox="0 0 16 16">
+                        <path
+                            d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z" />
+                        <path
+                            d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
                     </svg>
                 </button>
-                <button type="button" class="btn btn-primary rounded-pill active" data-bs-toggle="button" autocomplete="off" aria-pressed="true">
+                <button type="button" class="btn btn-primary rounded-pill active" data-bs-toggle="button"
+                    autocomplete="off" aria-pressed="true">
                     <span>Reserved</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-x-fill" viewBox="0 0 16 16">
-                        <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7.354 5.646 8.5 6.793l1.146-1.147a.5.5 0 0 1 .708.708L9.207 7.5l1.147 1.146a.5.5 0 0 1-.708.708L8.5 8.207 7.354 9.354a.5.5 0 1 1-.708-.708L7.793 7.5 6.646 6.354a.5.5 0 1 1 .708-.708z"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-cart-x-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM7.354 5.646 8.5 6.793l1.146-1.147a.5.5 0 0 1 .708.708L9.207 7.5l1.147 1.146a.5.5 0 0 1-.708.708L8.5 8.207 7.354 9.354a.5.5 0 1 1-.708-.708L7.793 7.5 6.646 6.354a.5.5 0 1 1 .708-.708z" />
                     </svg>
                 </button>
             </div>

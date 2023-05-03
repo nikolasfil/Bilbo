@@ -132,7 +132,7 @@ module.exports = {
 
         
 
-        db.all(command, (err, rows) => {
+            db.all(command, (err, rows) => {
             if (err) {
                 console.log("error")
                 console.error(err.message);
