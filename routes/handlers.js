@@ -289,6 +289,7 @@ router.post('/sign_in', (req, res) => {
 });
 
 
+
 router.get('/sign_out', (req, res) => {
     // console.log(req.body);
     signedIn = false;

@@ -113,8 +113,12 @@ class Creation:
                 book[key]) is not list else ','.join(book[key]) for key in titles])
 
         # Users
-        self.insert_data('USER', ('id', 'fname', 'lname', 'birthdate', self.hashing_password(
-            'password'), self.binary_to_string(self.salt), 'profile_picture'))
+        self.insert_data('USER', ('1', 'Nick', 'Fil', '01/01/2001', self.hashing_password(
+            'password'), self.binary_to_string(self.salt), 'img/nikolas_profile.png'))
+
+        self.insert_data('USER', ('2', 'Konstantinos', 'Kotorenis', '30/2/1960', self.hashing_password(
+            'password'), self.binary_to_string(self.salt), 'img/kotorenis_profile.png'))
+        
 
         self.insert_data('Borrowing', ('book_isbn', 'copy_num',
                          'library_id', 'user_id', 'date_borrowing', 'date_return'))
