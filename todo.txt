@@ -1,16 +1,19 @@
 1: fix for mobile view
-2: fix map
-3: individual pages load individual book information
-4: connect the database 
-5: insert more data in the database 
+
+5: insert more data in the database | Fix the libraries 
+
 6: make the filters working in the search 
 
 9: handle close enough matches ? different hbs handlebar 
 10: cookies and security (more along the lessons tho ) 
 11: change the way the books appear 
+
 12: setup docker image 
 
-Map pins hover pop-up name of library and click to go that profile 
+13: Map pins hover pop-up name of library and click to go that profile 
 
-Set up requests for data and rendering them to show information 
+14: Set up requests for data and rendering them to show information 
+
+15: fix the sign in sign up requests 
+
 
