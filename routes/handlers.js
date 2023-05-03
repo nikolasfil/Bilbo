@@ -66,7 +66,7 @@ router.get('/library_info', (req, res) => {
     
     let libraries = helpers.databaseCommand(command);
     
-    command = `Select isbn,title,cover_image as photo from BOOK `;
+    command = `Select b.isbn as isbn,b.title as title,b.cover_image as photo from BOOK as b join COPIES as c on c.book_isbn = b.isbn where c.library_id=${req.query['id']}`;
     let books = helpers.databaseAllCommand(command);
 
     res.render('library_info', {

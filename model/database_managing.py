@@ -8,7 +8,7 @@ import os
 from os import listdir
 from os.path import isfile, join
 import requests
-
+import random
 
 
 # https://www.tutorialspoint.com/sqlite/sqlite_python.htm
@@ -86,21 +86,22 @@ class Creation:
 
         self.clear_all()
 
-        self.insert_data('LIBRARY', ('0', 'University of Patra', '21.79127500966751,38.29039542648134',
-                                     'Ypatias 4, Panepstimioupoli Patron, 265 04',
-                                     '2610398949', 'bibliothiki@bilbo.gr',
-                                     'img/card_library_1.png', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero possimus hic laboriosam perferendis, veritatis corrupti assumenda reprehenderit ducimus dignissimos quia, doloribus unde! Fugit quas minus est ex ratione dolor possimus!Lorem',
-                         '8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,closed,closed'))
+        libraries = [
+            ('0', 'University of Patra', '21.79127500966751,38.29039542648134',
+             'Ypatias 4, Panepstimioupoli Patron, 265 04',
+             '2610398949', 'bibliothiki@bilbo.gr',
+             'img/card_library_1.png', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero possimus hic laboriosam perferendis, veritatis corrupti assumenda reprehenderit ducimus dignissimos quia, doloribus unde! Fugit quas minus est ex ratione dolor possimus!Lorem',
+             '8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,closed,closed'),
+            ('2', 'Not University of Patra', '21.79127500966751,38.29039542648134',
+             'Ypatias 4, Panepstimioupoli Patron, 265 04',
+             '2610398949', 'bibliothiki@bilbo.gr',
+             'img/card_library_2.png', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero possimus hic laboriosam perferendis, veritatis corrupti assumenda reprehenderit ducimus dignissimos quia, doloribus unde! Fugit quas minus est ex ratione dolor possimus!Lorem',
+             '8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,closed,closed')
 
+        ]
 
-
-        self.insert_data('LIBRARY', ('2', 'Not University of Patra', '21.79127500966751,38.29039542648134',
-                                     'Ypatias 4, Panepstimioupoli Patron, 265 04',
-                                     '2610398949', 'bibliothiki@bilbo.gr',
-                                     'img/card_library_2.png', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero possimus hic laboriosam perferendis, veritatis corrupti assumenda reprehenderit ducimus dignissimos quia, doloribus unde! Fugit quas minus est ex ratione dolor possimus!Lorem',
-                         '8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,closed,closed'))
-
-
+        for library in libraries:
+            self.insert_data('LIBRARY', library)
 
         def string_to_byte(string):
             return bytes(string, 'utf-8')
@@ -113,12 +114,19 @@ class Creation:
                 book[key]) is not list else ','.join(book[key]) for key in titles])
 
         # Users
+
+        for book in self.data.books:
+            # for i in range(1, 6):
+            # isbn , copy_num , library_id
+            copy_num = random.randint(1, 5)
+            library_id = random.choice(list(map(int,[i[0] for i in libraries])))
+            self.insert_data('COPIES', (book['isbn'],copy_num, library_id))
+
         self.insert_data('USER', ('1', 'Nick', 'Fil', '01/01/2001', self.hashing_password(
             'password'), self.binary_to_string(self.salt), 'img/nikolas_profile.png'))
 
         self.insert_data('USER', ('2', 'Konstantinos', 'Kotorenis', '30/2/1960', self.hashing_password(
             'password'), self.binary_to_string(self.salt), 'img/kotorenis_profile.png'))
-        
 
         self.insert_data('Borrowing', ('book_isbn', 'copy_num',
                          'library_id', 'user_id', 'date_borrowing', 'date_return'))
