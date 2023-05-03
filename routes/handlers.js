@@ -150,66 +150,18 @@ router.get('/library_info/:id',
 router.get('/library_info', (req, res) => {
     
     let command = `Select * from LIBRARY where id=${req.query['id']}`;
-    // let command = `Select * from BOOK where title= 'Java and Sql'`;
     
-    let rows = helpers.databaseCommand(command);
+    let libraries = helpers.databaseCommand(command);
     
-    // fix rows['time'] to be a json file - dicriotant 
-
-    // turns rows['location'] to a json file
-    // let test = JSON.parse(rows);
-
-    // console.log(test);
-    // rows['lolt'] = JSON.parse(rows['location']);
-    
-    // rows['lonlat'] = '{ "lat": '+rows['location']['lat']+', "lng": '+rows['location']['lng']+' }';
-    // console.log(rows['location']['lat']);
-    // console.log(rows['location']['lng']);
-    // rows[]
+    command = `Select title,cover_image as photo from BOOK `;
+    let books = helpers.databaseAllCommand(command);
 
     res.render('library_info', {
         title: 'Library Info',
         style: 'library_info.css',
         signedIn: signedIn,
-        library: rows,
-        book: [
-            {
-                title: 'Programming Python',
-                photo: 'img/card_book_1.png',
-                description: 'This is a description',
-                copies: '5'
-            },
-            {
-                title: 'Java and Sql',
-                photo: 'img/card_book_2.png',
-                description: 'This is a description',
-                copies: '6'
-            },
-            {
-                title: 'Discovering SQL',
-                photo: 'img/card_book_2.png',
-                description: 'This is a description',
-                copies: '6'
-            },
-            {
-                title: 'HTML for the World Wide Web',
-                photo: 'img/card_book_2.png',
-                description: 'This is a description',
-                copies: '6'
-            },
-            {
-                title: 'CSS, DHTML, and Ajax, Fourth Edition',
-                photo: 'img/card_book_2.png',
-                description: 'This is a description 2',
-                copies: '6'
-            },
-            {
-                title: 'Practical symfony - Propel edition',
-                photo: 'img/card_book_2.png',
-                description: 'This is a description 2',
-                copies: '6'
-            },
-        ],
+        library: libraries,
+        book: books,
     });
 });
 
@@ -316,33 +268,9 @@ router.get('/about', (req, res) => {
     });
 });
 
-// https://www.digitalocean.com/community/tutorials/nodejs-req-object-in-expressjs
-// router.all('/sign', (req, res,next) => {
-//     // console.log(req.path);
-//     res.render('homepage',{
-//         title: 'Signed int',
-//     })
+router.get('/contact', (req, res) => {
+    res.redirect('/about');
+});
 
-//     next();
-// });
-
-//     // alert(req.url);
-//     let array = req.url.split("+")[1].split('/');
-//     let url = ''
-//     if(array.length ==4){
-//         url='homepage'
-//         console.log(array);
-//     }
-//     else{
-//         url = array[3].split('?')[0];
-//         // alert(url);
-//         console.log(array);
-//     }
-//     res.render(url, {
-//         title: 'Sign In',
-//         style: url+'.css',
-//         signedIn: true
-//     });
-// });
 
 module.exports = router;
