@@ -12,10 +12,10 @@ let signedIn = module.exports.signedIn;
 
 router.get('/', (req, res) => {
 
-    let command = `Select isbn,title,cover_image as photo from BOOK `;
+    let command = `Select isbn,title,cover_image as photo from BOOK limit 6`;
     let books = helpers.databaseAllCommand(command);
 
-    command = `Select id,name as title,address,profile_picture as photo from LIBRARY `;
+    command = `Select id,name as title,address,profile_picture as photo from LIBRARY  limit 6`;
     let libraries = helpers.databaseAllCommand(command);
 
     res.render('homepage', {
@@ -66,7 +66,7 @@ router.get('/library_info', (req, res) => {
     
     let libraries = helpers.databaseCommand(command);
     
-    command = `Select b.isbn as isbn,b.title as title,b.cover_image as photo from BOOK as b join COPIES as c on c.book_isbn = b.isbn where c.library_id=${req.query['id']}`;
+    command = `Select b.isbn as isbn,b.title as title,b.cover_image as photo from BOOK as b join COPIES as c on c.book_isbn = b.isbn where c.library_id=${req.query['id']} limit 6`;
     let books = helpers.databaseAllCommand(command);
 
     res.render('library_info', {
