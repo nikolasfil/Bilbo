@@ -66,13 +66,18 @@ module.exports = {
     },
 
     databaseCommand : function () {
+        // connects to the database, executed the given command (arguments[0]) and returns the row that holds the result
         let command = arguments[0];
         let row = {};
+
+        // model is a public folder for node 
 
         let db = new sqlite3.Database('model/data.db', (err) => {
             if (err) {
                 console.error(err.message);
             }
+            // this is for debugging reasons, can be removed
+            // see if we can change it with status
             console.log(`Connected to the database. ${command}`);
         });
 
@@ -90,13 +95,14 @@ module.exports = {
                 // res.send('Not found');
             }
 
+            // assign the rows to the row variable so that we can return it 
             for (i in rows) {
                 row[i] = rows[i];
             }
-            // console.log(rows);
             
         });
 
+        // close the database to avoid errors
         db.close((err) => {
             if (err) {
                 console.error(err.message);
@@ -106,22 +112,20 @@ module.exports = {
 
         return row;
     },
-    // redirecting: function()
-
-    lonlat : function () {
-        let lon = arguments[0].split(", ")[0].split(":")[1];
-
-        let lat = arguments[0].split(",")[1].split(":")[1];
-        return [lon,lat];
-    },
 
     longtitude: function () {
-        let lon = arguments[0].split(", ")[0].split(":")[1];
+        // "lon"= 23.7275390625, "lat"= 37.9838096
+        // can be simplified
+        // let lon = arguments[0].split(", ")[0].split(":")[1];
+        let lon = arguments[0].split(",")[0];
+
         return lon;
     },
 
     latitude: function () {
-        let lat = arguments[0].split(",")[1].split(":")[1];
+        // let lat = arguments[0].split(",")[1].split(":")[1];
+        let lat = arguments[0].split(",")[1];
+
         return lat;
     },
 

@@ -1,8 +1,8 @@
+
+
 <header class="d-flex flex-column justify-content-center cover-page-img cover-page">
 
     <div class="d-flex flex-row justify-content-end sign-space" id="sign-space">
-        {{!--
-        <script type="text/javascript">alert(module.exports.signedIn) </script> --}}
         {{#unless signedIn}}
         <button class="button-light sign-in" id="sign-in-btn">Sign In</button>
         <button class="button-white sign-up" id="sign-up-btn">Sign Up</button>
@@ -28,7 +28,7 @@
     <div class="recommend" id="recommended-books">
         <h2 class="h2"><strong> Recommended Books </strong></h2>
 
-        <div class="scrolling" id="scrolling-recommended-books">
+        <div class="scrolling">
             {{!-- {{ bookinfo 'Java and Sql' }} --}}
             {{!-- {{ booksing ['01','02','03','04','05','06','07','08','09','10']}} --}}
             {{!-- {{ booking.title}} --}}
@@ -51,7 +51,7 @@
 
     <div class="recommend" id="recommended-libraries">
         <h2 class="h2"><strong>Recommended Libraries</strong></h2>
-        <div class="scrolling" id="scrolling-recommended-libraries">
+        <div class="scrolling">
             {{#each library}}
             {{!-- The title ? should be with promises and async await and sending requests with javascript --}}
             {{> card photo=photo title=title description=description copies=copies location=(concat 'library_info/' id ) }}

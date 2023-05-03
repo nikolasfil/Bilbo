@@ -1,4 +1,3 @@
-
 {{>header}}
 
 <main>
@@ -7,6 +6,7 @@
 
 
         <div class="d-flex flex-row justify-content-start div-paragraph-margins-55-160" id="library-info-">
+            {{!-- get the library json file, the rows from the database --}}
             <img src="{{library.profile_picture}}" alt="library image" style="width:282px; height:282px;">
             <div class="d-flex flex-column justify-content-start paragraph-margins-58-79">
                 <!-- the margins are not working -->
@@ -23,17 +23,16 @@
 
     </div>
 
-    <div class="d-flex flex-column justify-content-center div-paragraph-margins-55-160 flex-wrap" id="location-working-hours">
+    <div class="d-flex flex-column justify-content-center div-paragraph-margins-55-160 flex-wrap"
+        id="location-working-hours">
 
         <h2><strong>Location & Working Hours</strong></h2>
 
         <div class="d-flex flex-row justify-content-start ">
-            {{!-- {{library.location }}{{library.lolt}} --}}
-            {{!-- {{>map lon=library.location.lon lat=38.29039542648134 zoom=16}} --}}
-            {{log (workingHours library.working_hours)}}
+
+            {{!-- longtitude helper get the format of the location and keeps the first part --}}
             {{>map lon=(longtitude library.location) lat=(latitude library.location) zoom=16}}
 
-            {{!-- add an openlayer map here in a div  --}}
             <div id="map" style="width: 100%, height: 400px"></div>
 
             <div class="d-flex flex-column justify-content-start" id="library-info-a-c-w">
@@ -53,6 +52,10 @@
                     <h3>Working Hours</h3>
                     <!-- to be fixed -->
                     <table>
+                        {{!-- gets the key and value of the dictionary working hours --}}
+                        {{!-- the helper function working hours in controllers/helpers parses the data from the database
+                        and returns a dictionary with the keys being dates and the values being the data from the
+                        database --}}
                         {{#each (workingHours library.working_hours) as |value key|}}
                         <tr>
                             <td>{{key}}:</td>
@@ -80,7 +83,13 @@
 
         <div class="scrolling" id="scrolling-recommended-books">
             {{#each book}}
-            {{> card photo=photo title=title description=description copies=copies location=( encode (concat 'book_info/' title ))}}
+            {{!-- book is a list of json dictionaries rendered in views --}}
+            {{!-- location is the url location send when clicked . --}}
+            {{!-- encode : turns the stirng of location into a url appropriate string  --}}
+            {{!-- book_info/title returns the page of the book with that titled --}}
+            {{!-- should be replaced with isbn --}}
+            {{> card photo=photo title=title description=description copies=copies location=( encode (concat
+            'book_info/' title ))}}
             {{/each}}
 
 
