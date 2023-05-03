@@ -10,6 +10,7 @@ from os.path import isfile, join
 import requests
 
 
+
 # https://www.tutorialspoint.com/sqlite/sqlite_python.htm
 
 # database='../dbdesigner/database-data'
@@ -100,30 +101,16 @@ class Creation:
                          '8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,closed,closed'))
 
 
-        # self.insert_data('LIBRARY', ('Not', 'location',
-        #                  'img/library_image_1.svg', 'summary', 'working_hours'))
 
         def string_to_byte(string):
             return bytes(string, 'utf-8')
 
         for book in self.data.books:
-            # print(book)
-            # print(book['summary'])
             titles = ['isbn', 'title', 'authors', 'edition', 'publisher',
                       'release_date', 'genre', 'language', 'summary', 'cover_image']
-            # self.insert_book_data('BOOK', (f"""{book['isbn']}""", f"""{book['title']}""",
-            #                             ' '.join(book['authors']), book['edition'],
-            #                             book['publisher'], book['release_date'],
-            #                             ' '.join(book['genre']), book['language'],
-            #                             book['summary'], book['cover_image']))
 
             self.insert_book_data('BOOK', [book[key] if type(
                 book[key]) is not list else ','.join(book[key]) for key in titles])
-
-        # self.insert_data('BOOK', ('isbn', 'title', 'author', 'edition', 'publisher', 'release', 'genre', 'language',
-        #                           'summary', 'cover_image'))
-
-        # self.insert_data('COPIES', ('book_isbn', '1'))
 
         # Users
         self.insert_data('USER', ('id', 'fname', 'lname', 'birthdate', self.hashing_password(

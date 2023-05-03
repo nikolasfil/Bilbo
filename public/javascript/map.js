@@ -10,6 +10,11 @@ function mapInit(lon, lat, zoom) {
         name: 'Patras',
     });
 
+    // const iconFeature2 = new ol.Feature({
+    //     geometry: new ol.geom.Point(ol.proj.fromLonLat([lon+0.01, lat+0.01])),
+    //     name: 'Patras',
+    // });
+
     const map = new ol.Map({
         target: 'map',
         layers: [
@@ -18,7 +23,10 @@ function mapInit(lon, lat, zoom) {
             }),
             new ol.layer.Vector({
                 source: new ol.source.Vector({
+                    // for adding more than one icon
+                    // features: [iconFeature, iconFeature2]
                     features: [iconFeature]
+
                 }),
                 style: new ol.style.Style({
                     image: new ol.style.Icon({
@@ -37,7 +45,8 @@ function mapInit(lon, lat, zoom) {
         view: new ol.View({
             center: ol.proj.fromLonLat([lon, lat]),
             zoom: zoom
-        })
+        }),
+
     });
 
     map.layers = map.getLayers();
@@ -57,4 +66,11 @@ function mapInit(lon, lat, zoom) {
 
 
 // access the image of the second layer in mapInit.map
+
+//  mapInit.map.layers.getArray()[1].getSource().getFeatures()[0].getStyle().getImage().on('click', function () {
+//         console.log('clicked');
+//     }
+//     );
+
+// https://stackoverflow.com/questions/38114655/openlayers-3-show-vector-labels-on-hover
 
