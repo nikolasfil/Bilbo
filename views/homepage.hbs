@@ -30,26 +30,11 @@
 
         <div class="scrolling">
 
-            {{!-- {{ log booklist }} --}}
             {{#each booklist }}
-
-            
 
             {{> card photo=photo title=title description="This is a description" copies=5 location=( encode (concat 'book_info/' title ))}}
 
             {{/each}}
-
-            
-            {{!-- {{#each book}} --}}
-            
-
-            {{!-- change into isbn --}}
-
-            {{!-- {{> card photo=cover_image title=title description="Demo Description" copies=5 location=( encode (concat 'book_info/' title ))}} --}}
-            {{!-- {{> card photo=photo title=title description=description copies=copies location=( encode (concat 'book_info/' title ))}} --}}
-
-
-            {{!-- {{/each}} --}}
 
 
         </div>

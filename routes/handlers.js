@@ -272,5 +272,30 @@ router.get('/contact', (req, res) => {
     res.redirect('/about');
 });
 
+router.get('/sign_in', (req, res) => {
+    console.log(req.query)
+    
+    // stays in the same page 
+    res.redirect(req.get('referer'));    
+});
+
+
+router.post('/sign_in', (req, res) => {
+    console.log(req.body);
+    signedIn = true;
+
+    // stays in the same page
+    res.redirect(req.get('referer'));
+});
+
+
+router.get('/sign_out', (req, res) => {
+    // console.log(req.body);
+    signedIn = false;
+
+    // stays in the same page
+    res.redirect('/');
+});
+
 
 module.exports = router;
