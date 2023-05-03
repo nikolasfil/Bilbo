@@ -125,6 +125,10 @@ router.get('/', (req, res) => {
 
 
 router.get('/user_profile', (req, res) => {
+    if (!signedIn) {
+        res.redirect('/');
+    }
+
     res.render('user_profile', {
         // to be changed later ? 
         title: 'User Profile',
@@ -281,7 +285,7 @@ router.get('/sign_in', (req, res) => {
 
 
 router.post('/sign_in', (req, res) => {
-    console.log(req.body);
+    console.log(req.body.email,req.body.psw);
     signedIn = true;
 
     // stays in the same page
