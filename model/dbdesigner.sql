@@ -1,11 +1,11 @@
 CREATE TABLE IF NOT EXISTS LIBRARY (
-	id			binary 		NOT NULL , 
-	name 		binary 		NOT NULL,
-	location	binary 		NOT NULL ,
-	address 	binary 		NOT NULL,
-	phone 		binary 		NOT NULL,
-	email 		binary 		NOT NULL,
-	profile_picture		binary 		NOT NULL,
+	id			varchar(100) 		NOT NULL , 
+	name 		varchar(100) 		NOT NULL,
+	location	varchar(100) 		NOT NULL ,
+	address 	varchar(100) 		NOT NULL,
+	phone 		varchar(100) 		NOT NULL,
+	email 		varchar(100) 		NOT NULL,
+	profile_picture		varchar(100) 		NOT NULL,
 	summary	varchar(1000) 	NOT NULL,
 	working_hours 	varchar(1000) 	NOT NULL,
 	PRIMARY KEY (id)

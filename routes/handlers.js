@@ -10,6 +10,95 @@ const helpers = require('../controllers/helpers.js');
 let signedIn = module.exports.signedIn;
 // let signedIn = { signedIn };
 
+// router.get('', (req, res) => {
+//     res.redirect('/homepage');
+//     });
+    
+
+// router.get('/homepage', (req, res) => {
+//     res.render('homepage', {
+//         style: 'index.css',
+//         title: 'Home',
+//         signedIn: signedIn,
+//         // book : books,
+//         book: [
+//             {
+//                 // helpers.databaseCommand("Select * from BOOK where title = 'Programming Python'"),  
+            
+//                 title: 'Programming Python',
+//                 photo: 'img/card_book_1.png',
+//                 description: 'This is a description',
+//                 copies: '5'
+//             },
+//             {
+//                 title: "Java and Sql",
+//                 photo: 'img/card_book_2.png',
+//                 description: 'This is a description',
+//                 copies: '6'
+//             },
+//             {
+//                 title: 'Discovering SQL',
+//                 photo: 'img/card_book_2.png',
+//                 description: 'This is a description',
+//                 copies: '6'
+//             },
+//             {
+//                 title: 'HTML for the World Wide Web',
+//                 photo: 'img/card_book_2.png',
+//                 description: 'This is a description',
+//                 copies: '6'
+//             },
+//             {
+//                 title: 'CSS, DHTML, and Ajax, Fourth Edition',
+//                 photo: 'img/card_book_2.png',
+//                 description: 'This is a description',
+//                 copies: '6'
+//             },
+//             {
+//                 title: 'Practical symfony - Propel edition',
+//                 photo: 'img/card_book_2.png',
+//                 description: 'This is a description',
+//                 copies: '6'
+//             },
+//         ],
+//         library: [
+//             {
+//                 title: 'Uni of Patras',
+//                 photo: 'img/card_library_1.png',
+//                 description: 'This is a description',
+//                 id: '0'
+//             },
+//             {
+//                 title: 'Not Uni of Patras',
+//                 photo: 'img/card_library_2.png',
+//                 description: 'This is a description',
+//                 id: '2'
+//             },
+//             {
+//                 title: 'Not Uni of Patras',
+//                 photo: 'img/card_library_2.png',
+//                 description: 'This is a description',
+//                 id: '2'
+//             },
+//             {
+//                 title: 'Not Uni of Patras',
+//                 photo: 'img/card_library_2.png',
+//                 description: 'This is a description',
+//                 id: '2'
+//             },
+//             {
+//                 title: 'Not Uni of Patras',
+//                 photo: 'img/card_library_2.png',
+//                 description: 'This is a description',
+//                 id: '2'
+//             },
+//         ]
+
+//     });
+// });
+
+
+
 router.get('/', (req, res) => {
 
     // let titles = ["Programming Python","Java and Sql","Discovering SQL","HTML for the World Wide Web","CSS, DHTML, and Ajax, Fourth Edition","Practical symfony - Propel edition"]
@@ -77,7 +166,7 @@ router.get('/', (req, res) => {
                 title: 'Uni of Patras',
                 photo: 'img/card_library_1.png',
                 description: 'This is a description',
-                id: '1'
+                id: '0'
             },
             {
                 title: 'Not Uni of Patras',
@@ -109,13 +198,7 @@ router.get('/', (req, res) => {
 });
 
 
-router.get('/about', (req, res) => {
-    res.render('about', {
-        title: 'About us',
-        style: 'about.css',
-        signedIn: signedIn
-    });
-});
+
 
 
 
@@ -125,6 +208,83 @@ router.get('/user_profile', (req, res) => {
         title: 'User Profile',
         style: 'user_profile.css',
         signedIn: signedIn
+    });
+});
+
+router.get('/library/:id', 
+    (req, res,next) => {
+        console.log('Request URL:', req.originalUrl);
+
+        res.locals.url = req.originalUrl;
+        
+        // let authData = (AuthData)context.Items["AuthData"];
+
+        next();
+    }, (req, res,next) => {
+        console.log('Request Type:', req.method);
+        console.log(res.locals.url);
+        next();
+    }, (req, res) => {
+        res.redirect('/library?id='+req.params.id);
+    }
+);
+
+router.get('/library', (req, res, next) => {
+
+
+
+    
+    let command = `Select * from LIBRARY where id=${req.query['id']}`;
+    // let command = `Select * from BOOK where title= 'Java and Sql'`;
+    
+    let rows = helpers.databaseCommand(command);
+    // console.log(req.query['id']);
+    console.log(rows);
+    // rows['location'] = rows['location'].replace(/,/g, '<br>');
+
+    res.render('library_info', {
+        title: 'Library Info',
+        style: 'library_info.css',
+        signedIn: signedIn,
+        library: rows,
+        book: [
+            {
+                title: 'Programming Python',
+                photo: 'img/card_book_1.png',
+                description: 'This is a description',
+                copies: '5'
+            },
+            {
+                title: 'Java and Sql',
+                photo: 'img/card_book_2.png',
+                description: 'This is a description',
+                copies: '6'
+            },
+            {
+                title: 'Discovering SQL',
+                photo: 'img/card_book_2.png',
+                description: 'This is a description',
+                copies: '6'
+            },
+            {
+                title: 'HTML for the World Wide Web',
+                photo: 'img/card_book_2.png',
+                description: 'This is a description',
+                copies: '6'
+            },
+            {
+                title: 'CSS, DHTML, and Ajax, Fourth Edition',
+                photo: 'img/card_book_2.png',
+                description: 'This is a description 2',
+                copies: '6'
+            },
+            {
+                title: 'Practical symfony - Propel edition',
+                photo: 'img/card_book_2.png',
+                description: 'This is a description 2',
+                copies: '6'
+            },
+        ],
     });
 });
 
@@ -140,14 +300,14 @@ router.get('/library_info/:id',
     }
 );
 
-
-
 router.get('/library_info', (req, res) => {
     
-    let command = `Select * from LIBRARY where id='${req.query['id']}'`;
+    // let command = `Select * from LIBRARY where id=${req.query['id']}`;
+    let command = `Select * from BOOK where title= 'Java and Sql'`;
+    
     let rows = helpers.databaseCommand(command);
-    console.log(req.query['id']);
-    // console.log(rows);
+    // console.log(req.query['id']);
+    console.log(rows);
     // rows['location'] = rows['location'].replace(/,/g, '<br>');
 
     res.render('library_info', {
@@ -287,6 +447,15 @@ router.get('/search', (req, res) => {
                 copies: '6'
             },
         ],
+    });
+});
+
+
+router.get('/about', (req, res) => {
+    res.render('about', {
+        title: 'About us',
+        style: 'about.css',
+        signedIn: signedIn
     });
 });
 

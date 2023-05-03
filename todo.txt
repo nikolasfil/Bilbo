@@ -19,3 +19,5 @@
 16: fix margings to be dynamic based on vw | especially in library_info
 17: fix size of cards 
 
+
+καπου τρωει σκαλωμα και πηγαινει για αρχικη σελιδα στην about !!!

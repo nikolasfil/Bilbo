@@ -73,7 +73,7 @@ module.exports = {
             if (err) {
                 console.error(err.message);
             }
-            console.log('Connected to the database.');
+            console.log(`Connected to the database. ${command}`);
         });
 
         
