@@ -54,7 +54,7 @@
         <div class="scrolling" id="scrolling-recommended-libraries">
             {{#each library}}
             {{!-- The title ? should be with promises and async await and sending requests with javascript --}}
-            {{> card photo=photo title=title description=description copies=copies location=(concat 'library_info/' title ) }}
+            {{> card photo=photo title=title description=description copies=copies location=(concat 'library_info/' id ) }}
 
             {{!-- {{> card photo=photo title=title description=description location="'/library_info'"}} --}}
 

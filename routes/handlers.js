@@ -12,18 +12,18 @@ let signedIn = module.exports.signedIn;
 
 router.get('/', (req, res) => {
 
-    let titles = ["Programming Python","Java and Sql","Discovering SQL","HTML for the World Wide Web","CSS, DHTML, and Ajax, Fourth Edition","Practical symfony - Propel edition"]
-    let books = [];
+    // let titles = ["Programming Python","Java and Sql","Discovering SQL","HTML for the World Wide Web","CSS, DHTML, and Ajax, Fourth Edition","Practical symfony - Propel edition"]
+    // let books = [];
 
-    let command = `Select * from BOOK where title = '${titles[0]}'`;
-    let rows = helpers.databaseCommand(command);
-    // let rows = help.databaseCommand(command);
-    console.log(rows);
+    // let command = `Select * from BOOK where title = '${titles[0]}'`;
+    // let rows = helpers.databaseCommand(command);
+    // // let rows = help.databaseCommand(command);
+    // console.log(rows);
 
-    console.log(helpers.databaseCommand(`Select title,cover_image from BOOK where title = '${titles[0]}'`));
-    for (let i = 0; i < titles.length; i++) {
-        books.push(helpers.databaseCommand(`Select title,cover_image from BOOK where title = '${titles[i]}'`));
-    }
+    // console.log(helpers.databaseCommand(`Select title,cover_image from BOOK where title = '${titles[0]}'`));
+    // for (let i = 0; i < titles.length; i++) {
+    //     books.push(helpers.databaseCommand(`Select title,cover_image from BOOK where title = '${titles[i]}'`));
+    // }
     
     // console.log(books)
 
@@ -76,27 +76,32 @@ router.get('/', (req, res) => {
             {
                 title: 'Uni of Patras',
                 photo: 'img/card_library_1.png',
-                description: 'This is a description'
+                description: 'This is a description',
+                id: '1'
             },
             {
                 title: 'Not Uni of Patras',
                 photo: 'img/card_library_2.png',
-                description: 'This is a description'
+                description: 'This is a description',
+                id: '2'
             },
             {
                 title: 'Not Uni of Patras',
                 photo: 'img/card_library_2.png',
-                description: 'This is a description'
+                description: 'This is a description',
+                id: '2'
             },
             {
                 title: 'Not Uni of Patras',
                 photo: 'img/card_library_2.png',
-                description: 'This is a description'
+                description: 'This is a description',
+                id: '2'
             },
             {
                 title: 'Not Uni of Patras',
                 photo: 'img/card_library_2.png',
-                description: 'This is a description'
+                description: 'This is a description',
+                id: '2'
             },
         ]
 
@@ -123,12 +128,33 @@ router.get('/user_profile', (req, res) => {
     });
 });
 
+router.get('/library_info/:id', 
+    (req, res,next) => {
+        console.log('Request URL:', req.originalUrl);
+        next();
+    }, (req, res,next) => {
+        console.log('Request Type:', req.method);
+        next();
+    }, (req, res) => {
+        res.redirect('/library_info?id='+req.params.id);
+    }
+);
+
+
 
 router.get('/library_info', (req, res) => {
+    
+    let command = `Select * from LIBRARY where id='${req.query['id']}'`;
+    let rows = helpers.databaseCommand(command);
+    console.log(req.query['id']);
+    // console.log(rows);
+    // rows['location'] = rows['location'].replace(/,/g, '<br>');
+
     res.render('library_info', {
         title: 'Library Info',
         style: 'library_info.css',
         signedIn: signedIn,
+        library: rows,
         book: [
             {
                 title: 'Programming Python',
