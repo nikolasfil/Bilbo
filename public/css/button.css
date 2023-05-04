@@ -224,6 +224,9 @@
   border: transparent;
   color: black;
 }
+.btn.active::before{
+  content: url('http://www.w3.org/2000/svg');
+}
 .btn:hover{
   background-color:#E3D7B1;
   color: black;
