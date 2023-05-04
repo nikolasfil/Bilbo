@@ -127,6 +127,7 @@ flex-wrap: wrap;
     border-top: 2px solid #D6DCE0;
     position: relative;
     text-align: right;
+    color: rgba(0, 0, 0, 0);
 }
 .status3::before{
     content: '';
@@ -139,7 +140,10 @@ flex-wrap: wrap;
     top: -8px;
 }
     
-  
+.status3.borrowed{
+    color: rgb(0, 0, 0);
+}
+
 .li.complete .status1{
     border-top: 2px solid #AC8FBF;}
 .li.complete .status1::before{
@@ -149,7 +153,7 @@ flex-wrap: wrap;
    
 .li.complete .status2{
     border-top: 2px solid #AC8FBF;
-    color: rgb(0, 0, 0)}
+    color: rgb(0, 0, 0);}
     
 .li.complete .status2::before{
     background-color: #AC8FBF;
@@ -157,7 +161,8 @@ flex-wrap: wrap;
 }
 
 .li.complete .status3{
-    border-top: 2px solid #AC8FBF;}
+    border-top: 2px solid #AC8FBF;
+    color: rgb(0, 0, 0);}
 .li.complete .status3::before{
     background-color: #AC8FBF;
     border: none;
@@ -179,7 +184,8 @@ flex-wrap: wrap;
 }
 
 .li.overdue .status3{
-    border-top: 2px solid #EC7777;}
+    border-top: 2px solid #EC7777;
+    color: rgb(0, 0, 0);}
 .li.overdue .status3::before{
     background-color: #EC7777;
     border: none;
