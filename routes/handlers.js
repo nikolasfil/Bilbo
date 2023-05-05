@@ -159,7 +159,6 @@ router.get('/search', (req, res) => {
 
     res.render('search', {
         title: 'Search',
-        style: 'search.css',
         genre: genreList,
         availability: availabilityList,
         publisher: publisherList,

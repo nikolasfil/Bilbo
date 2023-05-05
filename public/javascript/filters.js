@@ -5,57 +5,6 @@
 
 // addFilter('genre-filter','Test','test')
 
-function addFilter(categoryId, filterCategory, filterList, extra = null) {
-
-    let container = document.getElementById(categoryId);
-    let header = document.createElement('h3');
-    header.textContent = filterCategory;
-    container.appendChild(header);
-    // header.innerHTML=filterCategory;
-
-    if (extra != null) {
-        container.appendChild(extra);
-    }
-
-    for (let i = 0; i < filterList.length; i++) {
-
-        let div = document.createElement('div');
-        div.classList.add('form-check');
-        container.appendChild(div);
-
-        let input = document.createElement('input');
-        input.classList.add('form-check-input');
-        input.classList.add('filter-checkbox');
-
-        input.setAttribute('type', 'checkbox');
-        input.setAttribute('value', '');
-        input.setAttribute('id', filterList[i]);
-        input.addEventListener('change', function () {
-            if (this.checked) {
-                addedFilter(filterList[i])
-            }
-
-            else {
-                let container = document.getElementById('filter-selection');
-                let divs = container.getElementsByClassName('selected-filters');
-                for (let j = 0; j < divs.length; j++) {
-                    if (divs[j].textContent == filterList[i]) {
-                        container.removeChild(divs[j]);
-                    }
-                }
-
-            }
-        });
-
-        div.appendChild(input);
-        let label = document.createElement('label');
-        label.classList.add('form-check-label');
-        label.setAttribute('for', filterList[i]);
-        label.textContent = filterList[i];
-        div.appendChild(label);
-    }
-}
-
 function addFilterListeners() {
 
     let input = document.getElementsByClassName('form-check-input')
