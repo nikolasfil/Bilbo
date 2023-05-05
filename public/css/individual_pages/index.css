@@ -13,7 +13,7 @@
     rgba(69, 49, 89, 0) 6.98%,
     rgba(69, 49, 89, 0.17) 96.04%
   );
-  background-image: url("../../img/banner.png");
+  background-image: url("/img/banner.png");
 }
 
 .logo-vertical {

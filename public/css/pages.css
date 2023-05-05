@@ -28,10 +28,6 @@
   background-color: #ac8fbf;
 }
 
-*::selection {
-  color: #ffffff;
-  background-color: #ac8fbf;
-}
 
 .page-selector nav *:focus {
   color: #ffffff;
