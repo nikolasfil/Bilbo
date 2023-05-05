@@ -216,7 +216,7 @@
   width: auto;
 }
 
-.btn{
+.btn-reserve{
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -225,8 +225,13 @@
   color: black;
 }
 
-.btn:hover{
+.btn-reserve:hover{
   background-color:#E3D7B1;
+  color: black;
+}
+
+.btn-reserve:active:focus {
+  background-color:#C79752;
   color: black;
 }
 
@@ -234,11 +239,11 @@
   margin-left: 4px;
 }
 
-.btn.active {
+.btn-reserve.active {
   background-color:#E5AE5E;
   color: black;
 }
-.btn.active:hover{ 
+.btn-reserve.active:hover{ 
   background-color:#C79752;
   color: black;
 }
