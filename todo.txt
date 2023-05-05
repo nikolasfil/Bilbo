@@ -6,7 +6,6 @@
 
 9: handle close enough matches ? different hbs handlebar 
 10: cookies and security (more along the lessons tho ) 
-11: change the way the books appear 
 
 12: setup docker image 
 
@@ -14,10 +13,14 @@
 
 14: Set up requests for data and rendering them to show information 
 
-15: fix the sign in sign up requests 
-
 16: fix margings to be dynamic based on vw | especially in library_info
 17: fix size of cards 
 
 
 καπου τρωει σκαλωμα και πηγαινει για αρχικη σελιδα στην about !!!
+
+18: ο χρηστης να μπορει να αλλαζει τα δεδομενα του !!! 
+turn the display into text fields, and then redirect the page, have the whole thing into forms so that you can use POST and not get 
+
+19: fix the map coordinates !!! 
+

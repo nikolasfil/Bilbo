@@ -1,3 +1,19 @@
+.library-reserve-url {
+  text-decoration: none;
+  color: black;
+}
+
+.library-reserve-url:hover {
+  color: #ac8fbf ;
+  /* text-decoration: underline; */
+}
+
+*::selection {
+  color: #ffffff;
+  background-color: #ac8fbf;
+}
+
+
 .margin-padding {
   margin: 20px;
   padding: 20px;
@@ -13,26 +29,26 @@
   margin: 46px 160px;
 }
 
-.pageborder{
+.pageborder {
   padding: 1% 8% 1.5% 8%;
 }
 
-.background{
+.background {
   background-image: url("img/logo_bg.svg");
   background-color: #ffffff;
   background-repeat: no-repeat;
   background-position: right 10%;
-  background-size: 80vh
+  background-size: 80vh;
 }
 
 .profile_picture {
   cursor: pointer;
 }
 
-h3{
+h3 {
   font-weight: bold;
 }
 
-.rounded-corners{
+.rounded-corners {
   border-radius: 10px 10px 0px 0px;
 }
