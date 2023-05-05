@@ -4,7 +4,7 @@
 
 <script type="text/javascript">window.onload = function () {
 
-        createPages(2); pageSelector(); addingFilters();
+        createPages(2); pageSelector(); addFilterListeners();
     };</script>
 
 {{>header}}
@@ -14,9 +14,9 @@
 
         <div class="d-flex flex-column justify-content-start" id="filters">
 
-            {{>filter_categories category='Genre' categoryFilter='genre' list=genre}}
+            {{>filterCategories category='Genre' categoryFilter='genre' list=genre}}
 
-            {{>filter_categories category='Availability' list=availability}}
+            {{>filterCategories category='Availability' list=availability}}
 
  
 
@@ -34,13 +34,13 @@
 
             </div>
 
-            {{>filter_categories category='Edition' categoryFilter='edition' list=edition}}
+            {{>filterCategories category='Edition' categoryFilter='edition' list=edition}}
 
-            {{>filter_categories category='Publisher' categoryFilter='publisher' list=publisher}}
+            {{>filterCategories category='Publisher' categoryFilter='publisher' list=publisher}}
 
-            {{!-- {{> filter_categories category="Language" categoryFilter="language" list=language}} --}}
+            {{!-- {{> filterCategories category="Language" categoryFilter="language" list=language}} --}}
 
-            {{>filter_categories category='Library' categoryFilter='library' list=library}}
+            {{>filterCategories category='Library' categoryFilter='library' list=library}}
 
 
             

@@ -56,61 +56,33 @@ function addFilter(categoryId, filterCategory, filterList, extra = null) {
     }
 }
 
+function addFilterListeners() {
 
+    let input = document.getElementsByClassName('form-check-input')
 
-function addFilterListeners(categoryId, filterCategory, filterList, extra = null) {
-
-    // fix THIS 
-    // to only assign listners 
-    
-    let container = document.getElementById(categoryId);
-    let header = document.createElement('h3');
-    header.textContent = filterCategory;
-    container.appendChild(header);
-    // header.innerHTML=filterCategory;
-
-    if (extra != null) {
-        container.appendChild(extra);
-    }
-
-    for (let i = 0; i < filterList.length; i++) {
-
-        let div = document.createElement('div');
-        div.classList.add('form-check');
-        container.appendChild(div);
-
-        let input = document.createElement('input');
-        input.classList.add('form-check-input');
-        input.classList.add('filter-checkbox');
-
-        input.setAttribute('type', 'checkbox');
-        input.setAttribute('value', '');
-        input.setAttribute('id', filterList[i]);
-        input.addEventListener('change', function () {
+    for (let i = 0; i < input.length; i++) {
+        input[i].addEventListener('change', function () {
             if (this.checked) {
-                addedFilter(filterList[i])
+                addedFilter(this.id);
             }
 
             else {
                 let container = document.getElementById('filter-selection');
                 let divs = container.getElementsByClassName('selected-filters');
                 for (let j = 0; j < divs.length; j++) {
-                    if (divs[j].textContent == filterList[i]) {
+                    if (divs[j].textContent == this.id) {
                         container.removeChild(divs[j]);
                     }
                 }
 
             }
         });
-
-        div.appendChild(input);
-        let label = document.createElement('label');
-        label.classList.add('form-check-label');
-        label.setAttribute('for', filterList[i]);
-        label.textContent = filterList[i];
-        div.appendChild(label);
     }
+
+
 }
+
+
 
 
 function addedFilter(filterName) {
@@ -127,7 +99,7 @@ function addedFilter(filterName) {
     button.classList.add('btn-close');
     div.appendChild(button);
     // link bootstrap icons CDN in the html file
-    
+
 
     div.addEventListener('click', function () {
         container.removeChild(div);

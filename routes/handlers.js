@@ -153,6 +153,9 @@ router.get('/search', (req, res) => {
     command = `Select id,name from LIBRARY  limit 6`;
     let libraryList = helpers.databaseAllCommand(command);
 
+    command = `Select publisher as name from BOOK where name IS not NUll  limit 6`;
+    publisherList = helpers.databaseAllCommand(command);
+
 
     res.render('search', {
         title: 'Search',
