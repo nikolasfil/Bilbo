@@ -22,3 +22,5 @@
 18: ο χρηστης να μπορει να αλλαζει τα δεδομενα του !!! 
 turn the display into text fields, and then redirect the page, have the whole thing into forms so that you can use POST and not get 
 
+19: fix the map coordinates !!! 
+

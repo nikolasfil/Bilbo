@@ -14,14 +14,11 @@
 
         <div class="d-flex flex-column justify-content-start" id="filters">
 
+            {{>filter_categories category='Genre' categoryFilter='genre' list=genre}}
 
-            <div class="filters d-flex flex-column justify-content-start " id="genre-filter">
-            </div>
+            {{>filter_categories category='Availability' list=availability}}
 
-
-            <div class="filters d-flex flex-column justify-content-start " id="availability-filter">
-            </div>
-
+ 
 
             <div class="filters d-flex flex-column justify-content-start " id="release-filter">
 
@@ -37,24 +34,26 @@
 
             </div>
 
+            {{>filter_categories category='Edition' categoryFilter='edition' list=edition}}
 
-            <div class="filters d-flex flex-column justify-content-start " id="edition-filter">
-            </div>
+            {{>filter_categories category='Publisher' categoryFilter='publisher' list=publisher}}
+
+            {{!-- {{> filter_categories category="Language" categoryFilter="language" list=language}} --}}
+
+            {{>filter_categories category='Library' categoryFilter='library' list=library}}
 
 
-            <div class="filters d-flex flex-column justify-content-start " id="publisher-filter">
-            </div>
+            
 
-
-            <div class="filters d-flex flex-column justify-content-start " id="library-filter">
+            {{!-- <div class="filters d-flex flex-column justify-content-start " id="library-filter">
                 <input type="text" name="" id="library-filter-input" placeholder="Region or Library"
                     style="width: 70%;">
-            </div>
+            </div> --}}
 
         </div>
 
 
-        <div class="d-flex flex-column justify-content-between" id="search-content">
+        <div class="d-flex flex-column justify-content-start" id="search-content">
 
             <div class="selected-filter-list d-flex flex-row justify-content-start " id="filter-selection">
             </div>
@@ -63,8 +62,8 @@
 
             <div class="result-pages d-flex flex-row justify-content-start flex-wrap" id="results">
                 {{#each book}}
-                {{> card photo=photo title=title description=description copies=copies location=( encode (concat
-                'book_info/' title ))}}
+                {{> card photo=photo title=title description='description' copies='2' location=( encode (concat
+                'book_info/' isbn ))}}
 
                 {{/each}}
             </div>
