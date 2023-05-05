@@ -1,9 +1,5 @@
 // ------------------  Filters ------------------
-
-
-
-
-// addFilter('genre-filter','Test','test')
+let variable;
 
 function addFilterListeners() {
 
@@ -55,23 +51,6 @@ function addedFilter(filterName) {
         let checkbox = document.getElementById(filterName);
         checkbox.checked = false;
     });
-}
-
-function addingFilters() {
-    // alert('test');
-    // addFilter('author-filter', 'Author', ['J.K. Rowling', 'Stephen King', 'J.R.R. Tolkien', 'George R.R. Martin', 'J.R.R. Tolkien']);
-    // addFilter('availability-filter', 'Availability', ['Available', 'Available in more than a week', 'Available this week', 'All']);
-    // addFilter('edition-filter', 'Edition', ['1st Edition', '2nd Edition', '3rd Edition', 'Greater than 3rd Edition']);
-    // addFilter('language-filter', 'Language', ['English', 'German', 'French', 'Spanish', 'Italian']);
-    // addFilter('publisher-filter', 'Publisher', ['Tziola', 'Gotsis', 'Hachette Livre', 'Random House', 'Simon & Schuster']);
-    // addFilter('library-filter', 'Library', ['Library 1', 'Library 2', 'Library 3', 'Library 4', 'Library 5'], function () {
-    //     let input = document.createElement('input');
-    //     input.setAttribute('type', 'text');
-    //     input.setAttribute('id', 'library-filter-input');
-    //     input.setAttribute('placeholder', 'Search library or Region');
-    //     return input;
-    // });
-    // addFilter('library-filter', 'Library', ['Library 1', 'Library 2', 'Library 3', 'Library 4', 'Library 5']);
 }
 
 
