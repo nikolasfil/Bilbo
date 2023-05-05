@@ -4,7 +4,7 @@ let variable;
 function addFilterListeners() {
 
     let input = document.getElementsByClassName('form-check-input')
-
+    // input.getElementByTagName('input')
     for (let i = 0; i < input.length; i++) {
         input[i].addEventListener('change', function () {
             if (this.checked) {

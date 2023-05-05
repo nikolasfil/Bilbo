@@ -118,10 +118,11 @@ router.get('/book_info',
 router.get('/search',
     (req, res, next) => {
         // res.redirect('/search?search=' + req.params.search);
+        res.locals.search = req.query['search'];
         next();
     },
     (req, res, next) => {
-        res.locals.genreList = [
+        res.locals.genre = [
             { name: 'Fantasy' },
             { name: 'Science' },
             { name: 'Horror' },
@@ -129,14 +130,14 @@ router.get('/search',
             { name: 'Sci-fi' }
         ]
 
-        res.locals.availabilityList = [
+        res.locals.availability = [
             { name: 'Available' },
             { name: 'Available in more than a week' },
             { name: 'Available this week' },
             { name: 'All' }
         ]
 
-        res.locals.editionList = [
+        res.locals.edition = [
             { name: '1st' },
             { name: '2nd' },
             { name: '3rd' },
@@ -150,22 +151,30 @@ router.get('/search',
         res.locals.libraryList = helpers.databaseAllCommand(command);
 
         command = `Select publisher as name from BOOK where name IS not NUll  limit 6`;
-        res.locals.publisherList = helpers.databaseAllCommand(command);
-
+        res.locals.publisher = helpers.databaseAllCommand(command)
         next();
     },
+    // (req, res, next) => {
+
+    // //   if (Object.values(res.locals.genre).includes(req.query['genre']) && Object.values(res.locals.genre).includes(req.query['genre']) ){
+        
+    // //   }
+
+    //     // if(Object.values(json).includes("bar")){};
+    // },
+    
     (req, res) => {
         // more to be added later
 
         
         res.render('search', {
             title: 'Search',
-            genre: res.locals.genreList,
-            availability: res.locals.availabilityList,
-            publisher: res.locals.publisherList,
-            library: res.locals.libraryList,
-            edition: res.locals.editionList,
-
+            genre: res.locals.genre,
+            availability: res.locals.availability,
+            publisher: res.locals.publisher,
+            library: res.locals.library,
+            edition: res.locals.edition,
+            searchValue: res.locals.search,
             signedIn: signedIn,
             book: res.locals.bookList
         });
