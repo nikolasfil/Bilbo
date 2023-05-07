@@ -71,37 +71,28 @@
 
 
     <h2><strong>Reservation points</strong></h2>
-    <div class="d-flex flex-row justify-content-start" id="book-location">
+    <div class="d-flex flex-row flex-wrap justify-content-start" id="book-location">
 
             {{>map lon=(longtitude library.location) lat=(latitude library.location) zoom=16}}
 
 
 
-        <div class="d-flex flex-row justify-content-between">
-            <!-- libraries and locations -->
-            <div class="d-flex flex-column justify-content-start mx-3">
-                <h4>Library</h4>
-                {{!-- get the list of libraries that the book exists and make it into a link rather than just a p --}}
-                <a href="/library_info/{{library.id}}" class="library-reserve-url">
+        <div class=" mx-3">
+
+            <div class="row">
+                <h4 class="col">Library</h4>
+                <h4 class="col">Address</h4>
+                <h4 class="col">Copies</h4>
+                <div class="col"></div>
+            </div>
+
+            <div class="row align-items-center">
+                <a href="/library_info/{{library.id}}" class="library-reserve-url col">
                 <p>{{library.name}}</p>
                 </a>
-            </div>
-
-            <div class="d-flex flex-column justify-content-start mx-3">
-                <h4>Address</h4>
-                {{!-- get the address from the libraries --}}
-                <p>{{library.address}}</p>
-            </div>
-
-            <div class="d-flex flex-column justify-content-start mx-3">
-                <h4>Copies</h4>
-                <p>{{library.copy_num}}</p>
-            </div>
-
-            <div class="d-flex flex-column justify-content-start mx-3">
-                <!-- reservation buttons -->
-                <h4><br></h4>
-                <button type="button" class="btn btn-reserve btn-primary rounded-pill" data-bs-toggle="button" autocomplete="off"
+                <p class="col">{{library.address}}</p>
+                <p class="col align-items-center">{{library.copy_num}}</p>
+                <button type="button" class="btn btn-reserve btn-primary rounded-pill col" data-bs-toggle="button" autocomplete="off"
                     aria-pressed="false">
                     <span>Reserve</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -114,10 +105,8 @@
                     </svg>
                     
                 </button>
-                
             </div>
-
-
+           
 
         </div>
 
