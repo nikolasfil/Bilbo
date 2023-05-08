@@ -7,6 +7,8 @@ let signedIn = module.exports.signedIn;
 
 
 router.get('/search', (req, res) => {
+
+    // https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_filter_list
     // more to be added later
     let command
 
@@ -39,7 +41,7 @@ router.get('/search', (req, res) => {
         { name: 'Simon & Schuster' }
     ]
 
-    command = "Select distinct publisher as name from BOOK where publisher IS not NUll"
+    command = "Select distinct publisher as name from BOOK where publisher IS not NUll order by name"
     let all_publisherList = helpers.databaseAllCommand(command);
 
     let editionList = [
@@ -48,7 +50,7 @@ router.get('/search', (req, res) => {
         { name: '3rd' },
         { name: '> 3rd' }]
 
-    command = "Select distinct edition as name from BOOK where edition IS not NUll"
+    command = "Select distinct edition as name from BOOK where edition IS not NUll order by name"
     let all_editionList = helpers.databaseAllCommand(command);
     
     // command = `Select isbn,title,cover_image as photo from BOOK limit 6`;

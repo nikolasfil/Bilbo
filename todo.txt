@@ -30,3 +30,5 @@ also place the search option of the title in an addedFilter() function so that h
 21: change the filters from show more to go up to the other div !!
 
 22: css of search 
+
+23: to make the filters work , fetch from site 
