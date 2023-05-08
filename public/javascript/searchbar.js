@@ -1,4 +1,7 @@
 // Search bar functions
+// add event listener to searchbarClick()
+
+// window.document.getElementById("search-button").addEventListener("click", function(){searchbarClick();});
 
 function searchbarClickPress(event) {
     if (event.key == "Enter") {
@@ -10,6 +13,13 @@ function searchbarClickPress(event) {
     }
 }
 
+function searchbarClick() {
+    let searchbar = window.document.getElementById("search-button");
+    if (searchbar.value != "") {
+        window.location = "/search?search=" + searchbar.value;
+        // searchbar.value = "";
+    }
+}
 
 // function searchbarAssignAttr() {
 

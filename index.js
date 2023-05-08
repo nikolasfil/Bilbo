@@ -17,6 +17,8 @@ module.exports = {signedIn };
 // handles the routes
 const routes = require('./routes/handlers');
 
+
+
 // using css,javascript, images and other public files 
 app.use(express.static(path.join(__dirname, 'public')));
 // app use node_module 
@@ -48,6 +50,7 @@ app.set('view engine', '.hbs');
 
 
 app.use('/', routes)    ;
+// app.use('./routes/')
 
 // final command to have the server running
 
