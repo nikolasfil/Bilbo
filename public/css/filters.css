@@ -1,5 +1,5 @@
 #filters {
-  width: 420px;
+  width: 40vmin;
   /* needs to be rearranged */
   margin: 44px 0 0px 40px;
   min-height: 44px;
@@ -8,6 +8,33 @@
 
 .filters {
   margin: 0;
-  width: 421px;
+  width: 40vmin;
 }
 
+
+.collapsed {
+  display: none;
+}
+
+.btn-show-more {
+  cursor: pointer;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+
+}
+
+.btn-show-more:hover {
+  color: #ac8fbf;
+}
+
+.scrollable-show-more {
+  /* margin: 10px; */
+  width: 40vmin;
+  overflow-y: auto;
+  height: 10vw;
+  /* outline: red solid 1px; */
+}
+/* 
+* {
+  outline: red solid 1px;
+} */

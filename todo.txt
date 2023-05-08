@@ -28,3 +28,5 @@ turn the display into text fields, and then redirect the page, have the whole th
 drop down for more filters , and just display the most important ones or sth (?) 
 like skroutz 
 also place the search option of the title in an addedFilter() function so that hte user can search for sth else 
+
+21: change the filters from show more to go up to the other div !!
