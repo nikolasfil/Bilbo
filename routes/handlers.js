@@ -157,16 +157,16 @@ router.get('/search',
     // (req, res, next) => {
 
     // //   if (Object.values(res.locals.genre).includes(req.query['genre']) && Object.values(res.locals.genre).includes(req.query['genre']) ){
-        
+
     // //   }
 
     //     // if(Object.values(json).includes("bar")){};
     // },
-    
+
     (req, res) => {
         // more to be added later
 
-        
+
         res.render('search', {
             title: 'Search',
             genre: res.locals.genre,

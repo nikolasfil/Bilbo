@@ -2,7 +2,6 @@
 // add event listener to searchbarClick()
 
 // window.document.getElementById("search-button").addEventListener("click", function(){searchbarClick();});
-console.log('wokrsk')
 
 function searchbarClickPress(event) {
     if (event.key == "Enter") {
