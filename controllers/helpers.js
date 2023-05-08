@@ -166,10 +166,10 @@ module.exports = {
         return row;
     },
 
-    databaseAllCommandList: function () {
+    databaseAllCommandBooks: async function () {
         // connects to the database, executed the given command (arguments[0]) and returns the row that holds the result
         let command = arguments[0];
-        let row = [];
+        let row = '[';
 
         // model is a public folder for node 
 
@@ -182,7 +182,7 @@ module.exports = {
 
 
 
-        db.all(command, (err, rows) => {
+        let rows =  await db.all(command, (err, rows) => {
             if (err) {
                 console.log("error")
                 console.error(err.message);
@@ -194,16 +194,25 @@ module.exports = {
                 // res.send('Not found');
             }
 
-            // assign the rows to the row variable so that we can return it 
-            for (let i in rows) {
-                // console.log(rows[i])
-                row.push(rows[i]);
-            }
+            // assign the rows to the row variable so that we can return it
+            // for (i in rows) {
+            //     row+='{'
+            //     for (j in rows[i]){
+            //         // if (j == 'cover_image'){
+            //         row+='\"'+j+'\":\"'+rows[i][j]+'\"'
+                    
 
+            //         // row+=`${j}:'${rows[i][j]}',`
+            //     }
+                
+            //     row+='},'
+            //     console.log(row)
+            // }
         });
 
-        console.log(row)
+        console.log(rows);
 
+        
         // close the database to avoid errors
         db.close((err) => {
             if (err) {
@@ -212,6 +221,8 @@ module.exports = {
             // console.log('Close the database connection.');
         });
 
+        row+=']';
+        // console.log(row)
         return row;
     },
 

@@ -2,6 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 const helpers = require('../controllers/helpers.js');
+const sqlite3 = require('sqlite3').verbose();
 
 let signedIn = module.exports.signedIn;
 
@@ -70,7 +71,7 @@ router.get('/search', (req, res) => {
     }
 
     let bookList = helpers.databaseAllCommand(command);
-    
+
     command = `Select id,name from LIBRARY  limit 6`;
     let libraryList = helpers.databaseAllCommand(command);
 
@@ -113,18 +114,21 @@ router.get('/all/search',
     // }else {
     //     res.redirect('/search');
     // }},
-    (req, res) => {
+    async (req, res) => {
 
         // let command = `Select isbn,title,author,edition,publisher,release,genre,language,cover_image as photo from BOOK where title Like %${req.params.search}%`;
-        let command = `Select * from BOOK `;
+        // let command = `Select title from BOOK `;
         // for (let key in req.query) {
         //     if (req.query[key] !== 'All') {
         //         command += `and ${key}='${req.query[key]}' `;
         //     }
         // }
 
-        let bookList = helpers.databaseAllCommandList(command)
-        res.send(bookList);
+        res.send(rows);
+
+
+        // let bookList = helpers.databaseAllCommandBooks(command)
+        // res.send(bookList);
         // res.send(JSON.stringify(bookList));
 
         // print(all the items in the bookList)
