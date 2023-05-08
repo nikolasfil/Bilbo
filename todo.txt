@@ -5,6 +5,7 @@
 6: make the filters working in the search 
 
 9: handle close enough matches ? different hbs handlebar 
+
 10: cookies and security (more along the lessons tho ) 
 
 12: setup docker image 
@@ -17,10 +18,7 @@
 17: fix size of cards 
 
 
-καπου τρωει σκαλωμα και πηγαινει για αρχικη σελιδα στην about !!!
-
-18: ο χρηστης να μπορει να αλλαζει τα δεδομενα του !!! 
-turn the display into text fields, and then redirect the page, have the whole thing into forms so that you can use POST and not get 
+UNRESOLVED: καπου τρωει σκαλωμα και πηγαινει για αρχικη σελιδα στην about !!!
 
 19: fix the map coordinates !!! 
 
@@ -30,3 +28,5 @@ like skroutz
 also place the search option of the title in an addedFilter() function so that hte user can search for sth else 
 
 21: change the filters from show more to go up to the other div !!
+
+22: css of search 
