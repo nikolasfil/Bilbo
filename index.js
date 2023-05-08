@@ -48,9 +48,13 @@ app.engine('.hbs', hbs.engine);
 app.set('view engine', '.hbs');
 
 
+app.use(require('./routes/about.js'));
+app.use(require('./routes/book_info.js'));
+app.use(require('./routes/library_info.js'));
+app.use(require('./routes/homepage.js'));
+app.use(require('./routes/search.js'));
+app.use(require('./routes/sign.js'));
 
-app.use('/', routes)    ;
-// app.use('./routes/')
 
 // final command to have the server running
 
