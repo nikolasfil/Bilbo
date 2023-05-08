@@ -5,25 +5,19 @@
 // window.addEventListener("load", function(){
 //     this.document.querySelector(".searchinput")[0].addEventListener("keydown", function(event){searchbarClickPress(event);});
 // }
-    
+
 // );
 
 function searchbarClickPress(event) {
     if (event.key == "Enter") {
-        
-        // if (event.target.value != "") {
-            window.location = "/search?search=" + event.target.value;
-            // event.target.value = "";
-        // }
+        window.location = "/search?search=" + event.target.value;
     }
 }
 
 function searchbarClick() {
     let searchbar = window.document.getElementById("search-button");
-    if (searchbar.value != "") {
-        window.location = "/search?search=" + searchbar.value;
-        // searchbar.value = "";
-    }
+    window.location = "/search?search=" + searchbar.value;
+
 }
 
 // function searchbarAssignAttr() {

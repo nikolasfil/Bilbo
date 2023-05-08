@@ -1,5 +1,3 @@
-
-
 <header class="d-flex flex-column justify-content-center cover-page-img cover-page">
 
     <div class="d-flex flex-row justify-content-end sign-space" id="sign-space">
@@ -18,9 +16,9 @@
         <img src="img/logo_vertical.svg" alt="Logo" class="logo-vertical">
 
     </div>
-    
+
     <div class="d-flex flex-row justify-content-center">
-    {{>searchbar}}
+        {{>searchbar}}
     </div>
 
 
@@ -35,7 +33,8 @@
 
             {{#each booklist }}
 
-            {{> card photo=photo title=title description="This is a description" copies=5 location=( encode (concat 'book_info/' isbn ))}}
+            {{> card photo=photo title=title description="This is a description" copies=5 location=( encode (concat
+            'book_info/' isbn ))}}
 
             {{/each}}
 

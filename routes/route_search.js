@@ -56,7 +56,15 @@ router.get('/search', (req, res) => {
     // command = `Select isbn,title,cover_image as photo from BOOK limit 6`;
     // let bookList = helpers.databaseAllCommand(command);
 
-    command = `Select isbn,title,author,edition,publisher,release,genre,language,cover_image as photo from BOOK`;
+    if (req.query.search) {
+        command = `Select isbn,title,author,edition,publisher,release,genre,language,cover_image as photo from BOOK where title=${req.query.search}`;
+        // command = `Select isbn,title,author,edition,publisher,release,genre,language,cover_image as photo from BOOK where title Like *${req.query.search}*`;
+    }
+    else {
+        command = `Select isbn,title,author,edition,publisher,release,genre,language,cover_image as photo from BOOK`;
+
+    }
+
     let bookList = helpers.databaseAllCommand(command);
 
 
@@ -68,6 +76,8 @@ router.get('/search', (req, res) => {
 
     command = "Select distinct language as name from BOOK where language IS not NUll limit 6";
     let languageList = helpers.databaseAllCommand(command);
+
+
 
     res.render('search', {
         title: 'Search',
