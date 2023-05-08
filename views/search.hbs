@@ -22,25 +22,25 @@
 
 
 
-            <div class="filters d-flex flex-column justify-content-start " id="release-filter">
+            {{!-- <div class="filters d-flex flex-column justify-content-start " id="release-filter">
 
                 <h3>Release Date</h3>
                 <label for="customRange3" class="form-label">Example range</label>
                 <!-- <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3" style="width: 420px;"> -->
                 <!-- <input type="text" id="amount" class="filter-range"> -->
                 <!-- <div id="slider-range"></div>
-          <div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 10%; width: 10%;"></div><span
-            tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 15%;"></span><span
-            tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 60%;"></span>
- -->
+                <div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 10%; width: 10%;"></div><span
+                tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 15%;"></span><span
+                tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 60%;"></span>
+                -->
 
-            </div>
+            </div> --}}
 
             {{>filterCategories category='Edition' categoryFilter='edition' list=edition}}
 
             {{>filterCategories category='Publisher' categoryFilter='publisher' list=publisher}}
 
-            {{!-- {{> filterCategories category="Language" categoryFilter="language" list=language}} --}}
+            {{>filterCategories category="Language" categoryFilter="language" list=language}}
 
             {{>filterCategories category='Library' categoryFilter='library' list=library}}
 
@@ -64,8 +64,13 @@
 
             <div class="result-pages d-flex flex-row justify-content-start flex-wrap" id="results">
                 {{#each book}}
+                {{log publisher}}
+
+                {{!-- {{#if ( equals publisher 'Apress' )}} --}}
                 {{> card photo=photo title=title description='description' copies='2' location=( encode (concat
                 'book_info/' isbn ))}}
+                
+                {{!-- {{/if}} --}}
 
                 {{/each}}
             </div>
