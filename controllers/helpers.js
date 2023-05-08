@@ -128,9 +128,6 @@ module.exports = {
             if (err) {
                 console.error(err.message);
             }
-            // this is for debugging reasons, can be removed
-            // see if we can change it with status
-            // console.log(`Connected to the database. ${command}`);
         });
 
 
@@ -166,10 +163,10 @@ module.exports = {
         return row;
     },
 
-    databaseAllCommandBooks: async function () {
+
+    databaseAllCommandList: async function () {
         // connects to the database, executed the given command (arguments[0]) and returns the row that holds the result
         let command = arguments[0];
-        let row = '[';
 
         // model is a public folder for node 
 
@@ -177,42 +174,44 @@ module.exports = {
             if (err) {
                 console.error(err.message);
             }
-
         });
 
+        let getRows = ()=>  {
+            return new Promise((resolve, reject) => {
+                db.all(command, (err, rows) => {
+                    if (err) {
+                        console.log("error")
+                        console.error(err.message);
+                    }
+                    resolve (rows);
+                });
+            });
+        }
 
-
-        let rows =  await db.all(command, (err, rows) => {
-            if (err) {
-                console.log("error")
-                console.error(err.message);
-            }
-
-            // console.log(rows);
-            if (rows == undefined) {
-                console.log("rows undefined")
-                // res.send('Not found');
-            }
-
-            // assign the rows to the row variable so that we can return it
-            // for (i in rows) {
-            //     row+='{'
-            //     for (j in rows[i]){
-            //         // if (j == 'cover_image'){
-            //         row+='\"'+j+'\":\"'+rows[i][j]+'\"'
-                    
-
-            //         // row+=`${j}:'${rows[i][j]}',`
-            //     }
-                
-            //     row+='},'
-            //     console.log(row)
-            // }
-        });
+        let rows = await getRows();
 
         console.log(rows);
 
+        // let rows = await db.all(command, (err, rows) => {
+        //     if (err) {
+        //         console.log("error")
+        //         console.error(err.message);
+        //     }
+
+        //     // console.log(rows);
+        //     if (rows == undefined) {
+        //         console.log("rows undefined")
+        //         // res.send('Not found');
+        //     }
+
+        //     // assign the rows to the row variable so that we can return it 
+        //     for (i in rows) {                    
+        //         row[i] = rows[i];
+        //     }
+            
+        // });
         
+
         // close the database to avoid errors
         db.close((err) => {
             if (err) {
@@ -221,10 +220,11 @@ module.exports = {
             // console.log('Close the database connection.');
         });
 
-        row+=']';
-        // console.log(row)
-        return row;
+        console.log(rows)
+        return rows;
     },
+
+    // get the book info from the database
 
     longtitude: function () {
         // "lon"= 23.7275390625, "lat"= 37.9838096

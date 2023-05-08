@@ -106,43 +106,12 @@ router.get('/search', (req, res) => {
 });
 
 
-router.get('/all/search',
-    //  (req, res, next) => {
-    // console.log(req.get('referer'));
-    // if (req.get('referer') === "/search") {
-    //     next();
-    // }else {
-    //     res.redirect('/search');
-    // }},
-    async (req, res) => {
 
-        // let command = `Select isbn,title,author,edition,publisher,release,genre,language,cover_image as photo from BOOK where title Like %${req.params.search}%`;
-        // let command = `Select title from BOOK `;
-        // for (let key in req.query) {
-        //     if (req.query[key] !== 'All') {
-        //         command += `and ${key}='${req.query[key]}' `;
-        //     }
-        // }
+router.get('/all/search', (req, res) => {
+    let bookilist = helpers.databaseAllCommandList("Select isbn,title,author,edition,publisher,release,genre,language,cover_image as photo from BOOK");
 
-        res.send(rows);
-
-
-        // let bookList = helpers.databaseAllCommandBooks(command)
-        // res.send(bookList);
-        // res.send(JSON.stringify(bookList));
-
-        // print(all the items in the bookList)
-        // res.send(list);
-        // let list = 
-
-        // for (let key in bookList)   {
-        //     console.log(key)
-        //     list.push(bookList[key].isbn);
-        // }
-
-
-        // res.send(bookList);
-    });
+    res.send(bookilist)
+});
 
 
 module.exports = router;
