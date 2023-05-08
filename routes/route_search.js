@@ -9,6 +9,7 @@ let signedIn = module.exports.signedIn;
 router.get('/search', (req, res) => {
 
     // https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_filter_list
+
     // more to be added later
     let command
 
@@ -48,17 +49,20 @@ router.get('/search', (req, res) => {
         { name: '1st' },
         { name: '2nd' },
         { name: '3rd' },
-        { name: '> 3rd' }]
+        { name: '> 3rd' }
+    ]
+
+
 
     command = "Select distinct edition as name from BOOK where edition IS not NUll order by name"
     let all_editionList = helpers.databaseAllCommand(command);
-    
+
     // command = `Select isbn,title,cover_image as photo from BOOK limit 6`;
     // let bookList = helpers.databaseAllCommand(command);
 
     if (req.query.search) {
-        command = `Select isbn,title,author,edition,publisher,release,genre,language,cover_image as photo from BOOK where title=${req.query.search}`;
-        // command = `Select isbn,title,author,edition,publisher,release,genre,language,cover_image as photo from BOOK where title Like *${req.query.search}*`;
+        // command = `Select isbn,title,author,edition,publisher,release,genre,language,cover_image as photo from BOOK where title='${req.query.search}'`;
+        command = `Select isbn,title,author,edition,publisher,release,genre,language,cover_image as photo from BOOK where title Like '%${req.query.search}%'`;
     }
     else {
         command = `Select isbn,title,author,edition,publisher,release,genre,language,cover_image as photo from BOOK`;
@@ -66,8 +70,7 @@ router.get('/search', (req, res) => {
     }
 
     let bookList = helpers.databaseAllCommand(command);
-
-
+    
     command = `Select id,name from LIBRARY  limit 6`;
     let libraryList = helpers.databaseAllCommand(command);
 
@@ -84,7 +87,7 @@ router.get('/search', (req, res) => {
         style: 'search.css',
         genre: genreList,
         all_genre: all_genreList,
-        
+
         availability: availabilityList,
         publisher: publisherList,
         all_publisher: all_publisherList,
@@ -101,6 +104,41 @@ router.get('/search', (req, res) => {
     });
 });
 
+
+router.get('/all/search',
+    //  (req, res, next) => {
+    // console.log(req.get('referer'));
+    // if (req.get('referer') === "/search") {
+    //     next();
+    // }else {
+    //     res.redirect('/search');
+    // }},
+    (req, res) => {
+
+        // let command = `Select isbn,title,author,edition,publisher,release,genre,language,cover_image as photo from BOOK where title Like %${req.params.search}%`;
+        let command = `Select * from BOOK `;
+        // for (let key in req.query) {
+        //     if (req.query[key] !== 'All') {
+        //         command += `and ${key}='${req.query[key]}' `;
+        //     }
+        // }
+
+        let bookList = helpers.databaseAllCommandList(command)
+        res.send(bookList);
+        // res.send(JSON.stringify(bookList));
+
+        // print(all the items in the bookList)
+        // res.send(list);
+        // let list = 
+
+        // for (let key in bookList)   {
+        //     console.log(key)
+        //     list.push(bookList[key].isbn);
+        // }
+
+
+        // res.send(bookList);
+    });
 
 
 module.exports = router;

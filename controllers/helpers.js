@@ -2,7 +2,7 @@ const sqlite3 = require('sqlite3').verbose();
 
 module.exports = {
     // use them as {{calculation value}}
-    
+
     // concat function that takes arguments and concats them
     concat: function () {
         let outStr = '';
@@ -29,7 +29,7 @@ module.exports = {
             if (err) {
                 console.error(err.message);
             }
-            console.log('Connected to the database.');
+            // console.log('Connected to the database.');
         });
 
         let row = {};
@@ -59,7 +59,7 @@ module.exports = {
     booksing: function () {
         // parse the list of isbn given by the user and return the list of books with attributes from bookinfo 
         let book_list = [];
-        for (let i=0; i<arguments[0].length; i++) {
+        for (let i = 0; i < arguments[0].length; i++) {
             // let this be only the isbn
             // book_list.push(this.bookinfo(arguments[0][i]));
             book_list.push(arguments[0][i]);
@@ -68,7 +68,7 @@ module.exports = {
         return book_list;
     },
 
-    databaseCommand : function () {
+    databaseCommand: function () {
         // connects to the database, executed the given command (arguments[0]) and returns the row that holds the result
         let command = arguments[0];
         let row = {};
@@ -81,10 +81,10 @@ module.exports = {
             }
             // this is for debugging reasons, can be removed
             // see if we can change it with status
-            console.log(`Connected to the database. ${command}`);
+            // console.log(`Connected to the database. ${command}`);
         });
 
-        
+
 
         db.each(command, (err, rows) => {
             if (err) {
@@ -102,7 +102,7 @@ module.exports = {
             for (i in rows) {
                 row[i] = rows[i];
             }
-            
+
         });
 
         // close the database to avoid errors
@@ -110,14 +110,14 @@ module.exports = {
             if (err) {
                 console.error(err.message);
             }
-            console.log('Close the database connection.');
+            // console.log('Close the database connection.');
         });
 
         return row;
     },
 
 
-    databaseAllCommand : function () {
+    databaseAllCommand: function () {
         // connects to the database, executed the given command (arguments[0]) and returns the row that holds the result
         let command = arguments[0];
         let row = {};
@@ -130,12 +130,12 @@ module.exports = {
             }
             // this is for debugging reasons, can be removed
             // see if we can change it with status
-            console.log(`Connected to the database. ${command}`);
+            // console.log(`Connected to the database. ${command}`);
         });
 
-        
 
-            db.all(command, (err, rows) => {
+
+        db.all(command, (err, rows) => {
             if (err) {
                 console.log("error")
                 console.error(err.message);
@@ -149,9 +149,10 @@ module.exports = {
 
             // assign the rows to the row variable so that we can return it 
             for (i in rows) {
+                
                 row[i] = rows[i];
             }
-            
+
         });
 
         // close the database to avoid errors
@@ -159,7 +160,56 @@ module.exports = {
             if (err) {
                 console.error(err.message);
             }
-            console.log('Close the database connection.');
+            // console.log('Close the database connection.');
+        });
+
+        return row;
+    },
+
+    databaseAllCommandList: function () {
+        // connects to the database, executed the given command (arguments[0]) and returns the row that holds the result
+        let command = arguments[0];
+        let row = [];
+
+        // model is a public folder for node 
+
+        let db = new sqlite3.Database('model/data.db', (err) => {
+            if (err) {
+                console.error(err.message);
+            }
+
+        });
+
+
+
+        db.all(command, (err, rows) => {
+            if (err) {
+                console.log("error")
+                console.error(err.message);
+            }
+
+            // console.log(rows);
+            if (rows == undefined) {
+                console.log("rows undefined")
+                // res.send('Not found');
+            }
+
+            // assign the rows to the row variable so that we can return it 
+            for (let i in rows) {
+                // console.log(rows[i])
+                row.push(rows[i]);
+            }
+
+        });
+
+        console.log(row)
+
+        // close the database to avoid errors
+        db.close((err) => {
+            if (err) {
+                console.error(err.message);
+            }
+            // console.log('Close the database connection.');
         });
 
         return row;
@@ -183,15 +233,15 @@ module.exports = {
 
     workingHours: function () {
         // split arguments[0] by comma and return a list of lists split by space 
-        let schedule = {"Monday": "Closed", "Tuesday": "Closed", "Wednesday": "Closed", "Thursday": "Closed", "Friday": "Closed", "Saturday": "Closed", "Sunday": "Closed"}
+        let schedule = { "Monday": "Closed", "Tuesday": "Closed", "Wednesday": "Closed", "Thursday": "Closed", "Friday": "Closed", "Saturday": "Closed", "Sunday": "Closed" }
         let hours = arguments[0].split(",");
-        let i=0;
-        
-        for ( key in schedule) {
+        let i = 0;
+
+        for (key in schedule) {
             schedule[key] = hours[i]
             i++;
         }
-               
+
         return schedule;
     }
 

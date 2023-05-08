@@ -10,7 +10,7 @@ function addFilterListeners() {
     for (let i = 0; i < input.length; i++) {
         input[i].addEventListener('change', function () {
             if (this.checked) {
-                addedFilter(this.id);
+                addedFilter(this.id,this.classList[2]);
                 
             }
 
@@ -31,14 +31,14 @@ function addFilterListeners() {
 
 
 
-function addedFilter(filterName) {
+function addedFilter(filterName,filterType) {
     let container = document.getElementById('filter-selection')
     let div = document.createElement('div');
     div.classList.add('selected-filters');
     container.appendChild(div);
     let span = document.createElement('span');
 
-    span.textContent = filterName;
+    span.textContent = `${filterType}:${filterName}`;
     div.appendChild(span);
     // <button type="button" class="btn-close" aria-label="Close"></button>
     let button = document.createElement('button');

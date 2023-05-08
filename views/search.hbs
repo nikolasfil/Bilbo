@@ -1,10 +1,12 @@
 <script src="javascript/filters.js"></script>
 <script src="javascript/show_pages.js"></script>
+<script src="javascript/search.js"></script>
 
 
 <script type="text/javascript">window.onload = function () {
 
         createPages(2); pageSelector(); addFilterListeners(); addShowMore();
+
     };</script>
 
 
@@ -12,13 +14,14 @@
 {{>header}}
 
 <main>
+
     <div class="d-flex flex-row justify-content-start">
 
         <div class="d-flex flex-column justify-content-start" id="filters">
 
             {{>filterCategories category='Genre' categoryFilter='genre' list=genre list_all=all_genre}}
 
-            {{>filterCategories category='Availability' list=availability}}
+            {{>filterCategories category='Availability' categoryFilter='availability' list=availability}}
 
 
 
@@ -65,7 +68,6 @@
 
             <div class="result-pages d-flex flex-row justify-content-start flex-wrap" id="results">
                 {{#each book}}
-                {{log publisher}}
 
                 {{!-- {{#if ( equals publisher 'Apress' )}} --}}
                 {{> card photo=photo title=title description='description' copies='2' location=( encode (concat
