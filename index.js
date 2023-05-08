@@ -48,12 +48,14 @@ app.engine('.hbs', hbs.engine);
 app.set('view engine', '.hbs');
 
 
-app.use(require('./routes/about.js'));
-app.use(require('./routes/book_info.js'));
-app.use(require('./routes/library_info.js'));
-app.use(require('./routes/homepage.js'));
-app.use(require('./routes/search.js'));
-app.use(require('./routes/sign.js'));
+app.use(require('./routes/route_about.js'));
+app.use(require('./routes/route_book_info.js'));
+app.use(require('./routes/route_library_info.js'));
+app.use(require('./routes/route_homepage.js'));
+app.use(require('./routes/route_search.js'));
+app.use(require('./routes/route_sign.js'));
+app.use(require('./routes/route_status.js'));
+
 
 
 // final command to have the server running
