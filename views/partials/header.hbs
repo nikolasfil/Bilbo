@@ -5,7 +5,7 @@
 
         <a href="/"><img src="./img/logo-horizontal.svg" alt="" width="175" height="34"></a>
 
-        <div class="searchboxbox ">
+        {{!-- <div class="searchboxbox ">
             <input class="searchinput" type="text" placeholder="Search.." size=""
                 onkeydown="searchbarClickPress(event)">
             <button class="searchbutton" id="search-function"> <i class="bi bi-search">
@@ -17,7 +17,10 @@
                     </svg>
                 </i> </button>
 
-        </div>
+        </div> --}}
+
+        {{>searchbar}}
+
         <div class="d-flex flex-row justify-content-end align-items-center" id="sign-space">
             {{#unless signedIn}}
             <button class="button-light sign-in" id="sign-in-btn">Sign In</button>

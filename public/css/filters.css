@@ -32,9 +32,15 @@
   width: 40vmin;
   overflow-y: auto;
   height: 10vw;
+  text-overflow: ellipsis;
   /* outline: red solid 1px; */
 }
 /* 
 * {
   outline: red solid 1px;
 } */
+
+.form-check-input, .form-check-label { 
+  cursor: pointer;
+}
+

@@ -1,6 +1,8 @@
 // ------------------  Filters ------------------
 let variable;
 
+let filters = {};
+
 function addFilterListeners() {
 
     let input = document.getElementsByClassName('form-check-input')
@@ -9,6 +11,7 @@ function addFilterListeners() {
         input[i].addEventListener('change', function () {
             if (this.checked) {
                 addedFilter(this.id);
+                
             }
 
             else {

@@ -25,7 +25,7 @@
   flex-wrap: wrap;
 }
 
-.results .card-img-top {
+.results, .card-img-top {
   margin: 10px;
 }
 

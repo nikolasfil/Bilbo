@@ -86,6 +86,7 @@ router.get('/search', (req, res) => {
         language: languageList,
 
         signedIn: signedIn,
+        searchBarValue: req.query.search,
         book: bookList
     });
 });

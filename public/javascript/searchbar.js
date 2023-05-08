@@ -2,14 +2,19 @@
 // add event listener to searchbarClick()
 
 // window.document.getElementById("search-button").addEventListener("click", function(){searchbarClick();});
+// window.addEventListener("load", function(){
+//     this.document.querySelector(".searchinput")[0].addEventListener("keydown", function(event){searchbarClickPress(event);});
+// }
+    
+// );
 
 function searchbarClickPress(event) {
     if (event.key == "Enter") {
-
-        if (event.target.value != "") {
+        
+        // if (event.target.value != "") {
             window.location = "/search?search=" + event.target.value;
             // event.target.value = "";
-        }
+        // }
     }
 }
 

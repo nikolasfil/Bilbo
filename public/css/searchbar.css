@@ -1,28 +1,28 @@
 .searchboxbox {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+
     align-items: center;
-    /* padding: 20px 22px 20px 36px; */
-    /* gap: 645px; */
     padding-left: 2rem;
     padding-right: 0.9rem;
-    /* position: absolute; */
     width: 50%;
     height: 55px;
   
     background-color: #ECE5F1;
     border-radius: 34.5px;
   }
+
+  * {
+    outline: red solid 1px;
+  }
   
   .searchinput {
     /* height: 40px; */
     height: 80%;
-    width: 100%;
+    width: 100vw;
     border: transparent;
     outline: none;
     background-color: #ECE5F1;
     /* border-radius: 34.5px; */
+    
     
   }
   
