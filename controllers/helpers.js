@@ -128,6 +128,7 @@ module.exports = {
             if (err) {
                 console.error(err.message);
             }
+
         });
 
 
@@ -144,6 +145,9 @@ module.exports = {
                 // res.send('Not found');
             }
 
+            rows.forEach((row) => {
+                console.log(row);
+            });
             // assign the rows to the row variable so that we can return it 
             for (i in rows) {
                 
@@ -190,7 +194,7 @@ module.exports = {
 
         let rows = await getRows();
 
-        console.log(rows);
+        // console.log(rows);
 
         // let rows = await db.all(command, (err, rows) => {
         //     if (err) {

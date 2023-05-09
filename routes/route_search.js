@@ -108,8 +108,7 @@ router.get('/search', (req, res) => {
 
 
 router.get('/all/search', (req, res) => {
-    let bookilist = helpers.databaseAllCommandList("Select isbn,title,author,edition,publisher,release,genre,language,cover_image as photo from BOOK");
-
+    let bookilist = helpers.databaseAllCommand("Select isbn,title,author,edition,publisher,release,genre,language,cover_image as photo from BOOK");
     res.send(bookilist)
 });
 
