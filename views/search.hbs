@@ -4,9 +4,9 @@
 
 
 <script type="text/javascript">window.onload = function () {
-
-        createPages(2); pageSelector(); addFilterListeners(); addShowMore();
-
+        let filters = {};
+        createPages(2); pageSelector(); addFilterListeners(filters); addShowMore();
+        
     };</script>
 
 
@@ -22,7 +22,6 @@
             {{>filterCategories category='Genre' categoryFilter='genre' list=genre list_all=all_genre}}
 
             {{>filterCategories category='Availability' categoryFilter='availability' list=availability}}
-
 
 
             {{!-- <div class="filters d-flex flex-column justify-content-start " id="release-filter">

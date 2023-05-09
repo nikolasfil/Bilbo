@@ -5,7 +5,7 @@
     {{!-- <form action="/search" method="GET" class="searchboxbox " id="search"> --}}
         <!-- make the button viable for the box -->
         <input class="searchinput" type="text" placeholder="Search.." size="" {{#if searchBarValue}}
-            value="{{searchBarValue}}" {{/if}} onkeydown="searchbarClickPress(event)">
+            value="{{searchBarValue}}" {{/if}} onkeydown="searchbarClickPress(event)" id="searchBarInput">
 
         <button class="searchbutton" id="search-button" type="submit">
             <i class="bi bi-search">

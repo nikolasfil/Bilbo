@@ -9,8 +9,8 @@ let signedIn = module.exports.signedIn;
 
 router.get('/all', (req, res) => {
     console.log("all search")
-    let bookilist = helpers.databaseAllCommand("Select isbn,title,author,edition,publisher,release,genre,language,cover_image as photo from BOOK");
-    // res.send("bookilist")
+    let booklist = helpers.databaseAllCommand("Select isbn,title,author,edition,publisher,release,genre,language,cover_image as photo from BOOK");
+    // res.send(booklist)
     res.render('print_list',{'layout':false,list:bookilist})
 });
 
