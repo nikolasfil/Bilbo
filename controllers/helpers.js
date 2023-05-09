@@ -23,55 +23,10 @@ module.exports = {
         return arg1 == arg2;
     },
 
-
-    bookinfo: function () {
-        let db = new sqlite3.Database('model/data.db', sqlite3.OPEN_READONLY, (err) => {
-            if (err) {
-                console.error(err.message);
-            }
-            // console.log('Connected to the database.');
-        });
-
-        let row = {};
-        db.each(`Select * from BOOK where title = '${arguments[0]}'`, (err, rows) => {
-            if (err) {
-                console.log("error")
-                console.error(err.message);
-            }
-
-            for (i in rows) {
-                row[i] = rows[i];
-            }
-
-        });
-
-        db.close((err) => {
-            if (err) {
-                console.error(err.message);
-            }
-            console.log('Close the database connection.');
-        });
-
-
-        return row;
-    },
-
-    booksing: function () {
-        // parse the list of isbn given by the user and return the list of books with attributes from bookinfo 
-        let book_list = [];
-        for (let i = 0; i < arguments[0].length; i++) {
-            // let this be only the isbn
-            // book_list.push(this.bookinfo(arguments[0][i]));
-            book_list.push(arguments[0][i]);
-
-        }
-        return book_list;
-    },
-
     databaseCommand: function () {
         // connects to the database, executed the given command (arguments[0]) and returns the row that holds the result
         let command = arguments[0];
-        let row = {};
+        let rowDict = {};
 
         // model is a public folder for node 
 
@@ -100,7 +55,7 @@ module.exports = {
 
             // assign the rows to the row variable so that we can return it 
             for (i in rows) {
-                row[i] = rows[i];
+                rowDict[i] = rows[i];
             }
 
         });
@@ -112,15 +67,17 @@ module.exports = {
             }
             // console.log('Close the database connection.');
         });
-
-        return row;
+        // console.log(rowDict);
+        return rowDict;
     },
 
 
     databaseAllCommand: function () {
+
         // connects to the database, executed the given command (arguments[0]) and returns the row that holds the result
         let command = arguments[0];
-        let row = {};
+        // console.log(command);
+        let rowList = [];
 
         // model is a public folder for node 
 
@@ -146,13 +103,10 @@ module.exports = {
             }
 
             rows.forEach((row) => {
-                console.log(row);
+                // console.log(row);
+                rowList.push(row);
+                // console.log(rowList);   
             });
-            // assign the rows to the row variable so that we can return it 
-            for (i in rows) {
-                
-                row[i] = rows[i];
-            }
 
         });
 
@@ -161,72 +115,12 @@ module.exports = {
             if (err) {
                 console.error(err.message);
             }
-            // console.log('Close the database connection.');
         });
 
-        return row;
+        // console.log(rowList);
+        return rowList;
     },
 
-
-    databaseAllCommandList: async function () {
-        // connects to the database, executed the given command (arguments[0]) and returns the row that holds the result
-        let command = arguments[0];
-
-        // model is a public folder for node 
-
-        let db = new sqlite3.Database('model/data.db', (err) => {
-            if (err) {
-                console.error(err.message);
-            }
-        });
-
-        let getRows = ()=>  {
-            return new Promise((resolve, reject) => {
-                db.all(command, (err, rows) => {
-                    if (err) {
-                        console.log("error")
-                        console.error(err.message);
-                    }
-                    resolve (rows);
-                });
-            });
-        }
-
-        let rows = await getRows();
-
-        // console.log(rows);
-
-        // let rows = await db.all(command, (err, rows) => {
-        //     if (err) {
-        //         console.log("error")
-        //         console.error(err.message);
-        //     }
-
-        //     // console.log(rows);
-        //     if (rows == undefined) {
-        //         console.log("rows undefined")
-        //         // res.send('Not found');
-        //     }
-
-        //     // assign the rows to the row variable so that we can return it 
-        //     for (i in rows) {                    
-        //         row[i] = rows[i];
-        //     }
-            
-        // });
-        
-
-        // close the database to avoid errors
-        db.close((err) => {
-            if (err) {
-                console.error(err.message);
-            }
-            // console.log('Close the database connection.');
-        });
-
-        console.log(rows)
-        return rows;
-    },
 
     // get the book info from the database
 

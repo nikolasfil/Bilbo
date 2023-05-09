@@ -54,7 +54,7 @@ app.use(require('./routes/route_library_info.js'));
 app.use(require('./routes/route_homepage.js'));
 app.use(require('./routes/route_search.js'));
 app.use(require('./routes/route_sign.js'));
-app.use(require('./routes/route_status.js'));
+// app.use(require('./routes/route_status.js'));
 
 
 

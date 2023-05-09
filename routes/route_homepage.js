@@ -23,6 +23,10 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/homepage', (req, res) => {
+    res.redirect('/');
+});
+
 
 module.exports = router;
 
