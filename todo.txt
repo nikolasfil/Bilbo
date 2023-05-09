@@ -4,15 +4,15 @@
 
 6: make the filters working in the search 
 
-9: handle close enough matches ? different hbs handlebar 
+9: handle close enough matches, there is a dynamic search or sth in the docs input_autocomplete
 
 10: cookies and security (more along the lessons tho ) 
 
 12: setup docker image 
 
-13: Map pins hover pop-up name of library and click to go that profile 
-
-14: Set up requests for data and rendering them to show information 
+13: Map pins hover pop-up name of library and click to go that profile . 
+This is after I can send backend data to client js 
+19: fix the map coordinates to be more accurate!!! 
 
 16: fix margings to be dynamic based on vw | especially in library_info
 17: fix size of cards 
@@ -20,15 +20,7 @@
 
 UNRESOLVED: καπου τρωει σκαλωμα και πηγαινει για αρχικη σελιδα στην about !!!
 
-19: fix the map coordinates !!! 
-
-20: filters in place not redirecting 
-drop down for more filters , and just display the most important ones or sth (?) 
-like skroutz 
-also place the search option of the title in an addedFilter() function so that hte user can search for sth else 
-
-21: change the filters from show more to go up to the other div !!
-
 22: css of search 
 
 23: to make the filters work , fetch from site 
+
