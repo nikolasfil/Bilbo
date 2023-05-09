@@ -31,7 +31,9 @@
   /* margin: 10px; */
   width: 40vmin;
   overflow-y: auto;
-  height: 10vw;
+  /* height: 10vw; */
+  max-height: 10vw;
+  height: auto;
   text-overflow: ellipsis;
   /* outline: red solid 1px; */
 }

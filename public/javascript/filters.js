@@ -2,7 +2,7 @@
 let variable;
 
 
-function addFilterListeners(filters) {
+function addFilterListeners2(filters) {
 
     let input = document.getElementsByClassName('form-check-input')
     // input.getElementByTagName('input')
@@ -10,21 +10,99 @@ function addFilterListeners(filters) {
         input[i].addEventListener('change', function () {
             if (this.checked) {
                 addedFilter(filters, this.id, this.classList[2]);
-            }
 
-            else {
-                filters[this.classList[2]].splice(filters[this.classList[2]].indexOf(this.id), 1);
+                let container = document.getElementById(`${this.classList[2]}-filter-more`);
+                let mainfilters = document.getElementById(`${this.classList[2]}-filter`)
 
-                let container = document.getElementById('filter-selection');
-                let divs = container.getElementsByClassName('selected-filters');
-                for (let j = 0; j < divs.length; j++) {
-                    if (divs[j].textContent == this.id) {
-                        container.removeChild(divs[j]);
-
-                    }
+                if (this.parentElement == container) {
+                    container.removeChild(this);
+                    mainfilters.appendChild(this);
                 }
 
             }
+
+            else {
+                // remove the filter from the filters object
+                filters[this.classList[2]].splice(filters[this.classList[2]].indexOf(this.id), 1);
+
+                // remove the filter from the selected filters div
+                let container = document.getElementById('filter-selection');
+                let divs = container.getElementsByClassName('selected-filters');
+
+                for (let j = 0; j < divs.length; j++) {
+                    if (divs[j].textContent == this.classList[2] + ':' + this.id) {
+                        container.removeChild(divs[j]);
+                    }
+                }
+
+
+
+            }
+        });
+    }
+}
+
+function addFilterListeners(filters) {
+
+    let checker = document.getElementsByClassName('form-check');
+    // let input = document.getElementsByClassName('form-check-input')
+    // input.getElementByTagName('input')
+
+    for (let i = 0; i < checker.length; i++) {
+        // get the input element of checker 
+
+
+
+        let input = checker[i].getElementsByClassName('form-check-input')[0];
+        input.addEventListener('change', function () {
+            if (this.checked) {
+                addedFilter(filters, this.id, this.classList[2]);
+
+                // This was an attempt to have the filters dissapear fromt the show more and into the main one 
+                // it worked but it didn't iterate through the list correctly
+                // 
+                // let container = document.getElementById(`${this.classList[2]}-filter-more`);
+                // let mainfilters = document.getElementById(`${this.classList[2]}-filter`)
+
+                // let container_form_check = container.getElementsByClassName('form-check')
+
+
+
+                // for (let i =0 ; i< container_form_check.length ; i++) {
+                //     let input = container_form_check[i].getElementsByClassName('form-check-input')[0];
+                //     if (input.id == this.id) {
+                //         mainfilters.appendChild(container_form_check[i]);
+                //         container.removeChild(container_form_check[i]); 
+                //         break;
+                //     }
+                // }
+
+                // if (container.length == 0) {
+                //     let button = document.getElementById(`btn-${this.classList[2]}-show-more`);
+                //     button.style.display = 'none';
+                // }
+
+
+
+            }
+            else {
+                // remove the filter from the filters object
+                filters[this.classList[2]].splice(filters[this.classList[2]].indexOf(this.id), 1);
+
+                // remove the filter from the selected filters checker
+                let container = document.getElementById('filter-selection');
+                let divs = container.getElementsByClassName('selected-filters');
+
+                for (let j = 0; j < divs.length; j++) {
+                    if (divs[j].textContent == this.classList[2] + ':' + this.id) {
+                        container.removeChild(divs[j]);
+                    }
+                }
+
+
+
+            }
+
         });
     }
 }
@@ -85,8 +163,4 @@ function addShowMore() {
         }
         )
     }
-}
-
-function showMore() {
-
 }
