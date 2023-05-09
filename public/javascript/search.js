@@ -67,7 +67,7 @@ function placeBooks(data) {
 
 function fetchAllBooks(filters) {
 
-    return fetch("/all")
+    fetch("/all")
         .then((res) => {
             return res.json();
         })
@@ -75,6 +75,8 @@ function fetchAllBooks(filters) {
             // console.log(data);
             // let result = display(data, filters);
             // return result
+            // console.log(display(data, filters));
+
             return data;
         }).then((data) => {
             placeBooks(data);
@@ -82,6 +84,15 @@ function fetchAllBooks(filters) {
 
 }
 
+function fetchBookByTitle(filters) {
+    // to be implemented for the search bar !!
+    fetch("/title").then((res) => {
+        return res.json();
+    }).then((data) => {
+        console.log(data);
+    }); 
+}
+    
 
 
 function display(data,filters){
