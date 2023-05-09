@@ -121,6 +121,91 @@ module.exports = {
         return rowList;
     },
 
+    databasePrepare: function () {
+
+        // connects to the database, executed the given command (arguments[0]) and returns the row that holds the result
+        let command = arguments[0];
+        if (arguments.length > 1) {
+            // args is the rest of arguments from 1 to the end
+            let args = arguments[1];
+        }
+        // console.log(command);
+        let rowList = [];
+
+        // model is a public folder for node 
+
+        let db = new sqlite3.Database('model/data.db', (err) => {
+            if (err) {
+                console.error(err.message);
+            }
+
+        });
+
+
+        let smtp = db.prepare(command);
+
+        let data = smtp.all()
+
+        db.all(command, (err, rows) => {
+            if (err) {
+                console.log("error")
+                console.error(err.message);
+            }
+
+            // console.log(rows);
+            if (rows == undefined) {
+                console.log("rows undefined")
+                // res.send('Not found');
+            }
+
+            rows.forEach((row) => {
+                // console.log(row);
+                rowList.push(row);
+                // console.log(rowList);   
+            });
+
+        });
+
+        // close the database to avoid errors
+        db.close((err) => {
+            if (err) {
+                console.error(err.message);
+            }
+        });
+
+        // console.log(rowList);
+        return rowList;
+    },
+
+    databaseGetBooks: function (callback) {
+        // connects to the database, executed the given command (arguments[0]) and returns the row that holds the result
+        
+        let db = new sqlite3.Database('model/data.db', (err) => {
+            if (err) {
+                console.error(err.message);
+            }
+
+        });
+
+
+        let dbBooks= db.prepare("SELECT * FROM BOOK")
+        try {
+            let data = dbBooks.all()
+            callback(data);
+        }
+        catch (err) {
+            console.log(err);
+        }
+        // close the database to avoid errors
+            // db.close((err) => {
+            //     if (err) {
+            //         console.error(err.message);
+            //     }
+            // });
+
+        // console.log(rowList);
+    },
+
 
     // get the book info from the database
 
