@@ -1,7 +1,6 @@
 const express = require('express');
 
 const router = express.Router();
-const helpers = require('../controllers/helpers.js');
 const database = require('../controllers/database.js');
 
 let signedIn = module.exports.signedIn;
@@ -16,30 +15,54 @@ router.get('/book_info/:isbn',
 
 
 router.get('/book_info',
+    // (req, res, next) => {
+    //     if (req.session.user) {
+    //         signedIn = true;
+    //     }
+    //     else {
+    //         signedIn = false;
+    //     }
+    //     next();
+    // },
+    (req, res, next) => {
+        if (req.query['isbn']) {
+            next();
+        }
+        else {
+            res.redirect('/');
+        }
+    },
+    (req, res, next) => {
+        database.getBookCopiesByIsbn(req.query['isbn'], (err, book) => {
+            if (err) {
+                next(err);
+            }
+            else {
+                res.locals.book = book[0];
+            }
+        });
+        next();
+    },
+    (req, res, next) => {
+        database.getLibraryIdOfBookByIsbn(req.query['isbn'], (err, libraryId) => {
+            if (err) {
+                next(err);
+            }
+            else {
+                res.locals.libraries = libraryId[0];
+            }
+        });
+        next();
+    },
+
 
     (req, res) => {
-
-        // let command = `Select * from BOOK where isbn = '${req.query['isbn']}'`;
-        let command = `Select * from BOOK join COPIES on book_isbn=isbn where isbn='${req.query['isbn']}'`;
-
-        // Select isbn,title,author,edition,publisher,release,language,summary,cover_image, copy_num, library_id from BOOK join COPIES on book_isbn = isbn 
-        // Select * from BOOK join COPIES on book_isbn = isbn where isbn=9781118166321
-
-        // this returns one book 
-        let books = database.databaseCommand(command);
-        command = `Select id,copy_num,name,location,address,phone,email,profile_picture,l.summary,working_hours from BOOK join COPIES on book_isbn=isbn  join LIBRARY as l on library_id=id  where isbn = '${req.query['isbn']}'`;
-        // Select copy_num,name,location,address,phone,email,profile_picture,summary,working_hours from BOOK join COPIES on book_isbn=isbn  join LIBRARY on library_id=id  where isbn = '9781118166321'
-        let lib = database.databaseCommand(command);
-        let libraries = database.databaseCommand(command);
-
-
-
+        console.log(res.locals.book)
         res.render('book_info', {
             title: 'Book Info',
-            book: books,
+            book: res.locals.book,
             style: 'book_info.css',
-            library: lib,
-            libs: libraries,
+            library: res.locals.libraries,
             signedIn: signedIn
         });
 

@@ -1,15 +1,14 @@
 const express = require('express');
 
 const router = express.Router();
-const helpers = require('../controllers/helpers.js');
+
 const database = require('../controllers/database.js');
-const sqlite3 = require('sqlite3').verbose();
 
 let signedIn = module.exports.signedIn;
 
 
 router.get('/all', (req, res) => {
-    database.betterDatabase(function (err, books) {
+    database.getAllBooks(function (err, books) {
         if (err) {
             console.log(err)
             res.status(500).send('Internal Server Error')
@@ -54,7 +53,7 @@ router.get('/search',
                 res.status(500).send('Internal Server Error')
             }
             else {
-                res.locals.all_genre = genreList;
+                res.locals.all_genreList = genreList;
             }
         });
         next();

@@ -1,28 +1,50 @@
 const express = require('express');
 
 const router = express.Router();
-const helpers = require('../controllers/helpers.js');
 const database = require('../controllers/database.js');
 
 let signedIn = module.exports.signedIn;
 
-router.get('/', (req, res) => {
 
-    let command = `Select isbn,title,cover_image as photo from BOOK limit 6`;
-    let books = database.databaseAllCommand(command);
+router.get('/',
+    (req, res, next) => {
+        database.getAllBooksLimit(6, function (err, books) {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Internal Server Error')
+            }
+            else {
+                res.locals.books = books;
+            }
+        })
 
-    command = `Select id,name as title,address,profile_picture as photo from LIBRARY  limit 6`;
-    let libraries = database.databaseAllCommand(command);
+        next();
+    },
+    (req, res, next) => {
+        database.getAllLibrariesLimit(6, function (err, libraries) {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Internal Server Error')
+            }
+            else {
+                res.locals.libraries = libraries;
+            }
+        })
+        next();
+    },
+    (req, res) => {
 
-    res.render('homepage', {
-        style: 'index.css',
-        title: 'Home',
-        signedIn: signedIn,
-        booklist: books,
-        library: libraries
+        res.render('homepage', {
+            style: 'index.css',
+            title: 'Home',
+            signedIn: signedIn,
+            booklist: res.locals.books,
+            library: res.locals.libraries
 
+        });
     });
-});
+
+
 
 router.get('/homepage', (req, res) => {
     res.redirect('/');

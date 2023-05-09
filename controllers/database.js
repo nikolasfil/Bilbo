@@ -6,318 +6,181 @@ module.exports = {
 
     connect: (callback) => {
         // connects to the database
-        callback(null,true)
+        callback(null, true)
     },
 
-    betterDatabase: function (callback) {
-        // WHERE isbn = ?
-        const stmt = betterDb.prepare('SELECT * FROM BOOK ')
+    
+    getAllBooksLimit: function (limit, callback) {
+
+        const stmt = betterDb.prepare('SELECT isbn,title,author,edition,publisher,release,language,cover_image as photo FROM BOOK Limit ' + limit)
         let books;
-        try { 
+        try {
             books = stmt.all()
         }
         catch (err) {
-            callback(err,null)
+            callback(err, null)
         }
-        callback(null,books)
+        callback(null, books)
+    },
 
+    getAllLibraries: function (callback) {
+
+        const stmt = betterDb.prepare('SELECT id,name as title,address,profile_picture as photo FROM LIBRARY ')
+        let libraries;
+        try {
+            libraries = stmt.all()
+        }
+        catch (err) {
+            callback(err, null)
+        }
+        callback(null, libraries)
+    },
+
+    getAllLibrariesLimit: function (limit, callback) {
+
+        const stmt = betterDb.prepare('SELECT id,name as title,address,profile_picture as photo FROM LIBRARY Limit ?')
+        let libraries;
+        try {
+            libraries = stmt.all(limit)
+        }
+        catch (err) {
+            callback(err, null)
+        }
+        callback(null, libraries)
     },
 
     getAllBooks: function (callback) {
+
         const stmt = betterDb.prepare('SELECT isbn,title,author,edition,publisher,release,language,cover_image as photo FROM BOOK ')
         let books;
-        try { 
+        try {
             books = stmt.all()
         }
         catch (err) {
-            callback(err,null)
+            callback(err, null)
         }
-        callback(null,books)
+        callback(null, books)
     },
 
     getAllGenre: function (callback) {
         const stmt = betterDb.prepare('SELECT distinct genre as name FROM BOOK where genre IS not NUll order by name')
         let genreList;
-        try { 
+        try {
             genreList = stmt.all()
         }
         catch (err) {
-            callback(err,null)
+            callback(err, null)
         }
-        callback(null,genreList)
+        callback(null, genreList)
     },
 
     getAllPublisher: function (callback) {
         const stmt = betterDb.prepare('SELECT distinct publisher as name FROM BOOK where publisher IS not NUll order by name')
         let publisherList;
-        try { 
+        try {
             publisherList = stmt.all()
         }
         catch (err) {
-            callback(err,null)
+            callback(err, null)
         }
-        callback(null,publisherList)
+        callback(null, publisherList)
     },
 
     getAllAuthor: function (callback) {
         const stmt = betterDb.prepare('SELECT distinct author as name FROM BOOK where author IS not NUll order by name')
         let authorList;
-        try { 
+        try {
             authorList = stmt.all()
         }
         catch (err) {
-            callback(err,null)
+            callback(err, null)
         }
-        callback(null,authorList)
+        callback(null, authorList)
     },
 
     getAllEdition: function (callback) {
         const stmt = betterDb.prepare('SELECT distinct edition as name FROM BOOK where edition IS not NUll order by name')
         let editionList;
-        try { 
+        try {
             editionList = stmt.all()
         }
         catch (err) {
-            callback(err,null)
+            callback(err, null)
         }
-        callback(null,editionList)
+        callback(null, editionList)
     },
 
     getAllLanguage: function (callback) {
         const stmt = betterDb.prepare('SELECT distinct language as name FROM BOOK where language IS not NUll order by name')
         let languageList;
-        try { 
+        try {
             languageList = stmt.all()
         }
         catch (err) {
-            callback(err,null)
+            callback(err, null)
         }
-        callback(null,languageList)
+        callback(null, languageList)
     },
 
     getAllLibrary: function (callback) {
         const stmt = betterDb.prepare('SELECT distinct id,name FROM LIBRARY')
         let libraryList;
-        try { 
+        try {
             libraryList = stmt.all()
         }
         catch (err) {
-            callback(err,null)
+            callback(err, null)
         }
-        callback(null,libraryList)
+        callback(null, libraryList)
     },
 
-
-
-    getBookByIsbn: function (isbn,callback) {
-        const stmt = betterDb.prepare('SELECT * FROM BOOK where isbn = ?')
+    getBookByIsbn: function (isbn, callback) {
+        const stmt = betterDb.prepare('SELECT isbn,title,author,edition,publisher,release,language,cover_image as photo FROM BOOK where isbn = ?')
         let books;
-        try { 
-            books = stmt.all()
+        try {
+            books = stmt.all(isbn)
         }
         catch (err) {
-            callback(err,null)
+            callback(err, null)
         }
-        callback(null,books)
+        callback(null, books)
     },
 
-    getBookByTitleLike: function (title,callback) {
+    getBookByTitleLike: function (title, callback) {
         const stmt = betterDb.prepare('SELECT isbn,title,author,edition,publisher,release,language,cover_image as photo FROM BOOK where title like ?')
         let books;
-        try { 
+        try {
             books = stmt.all(title)
         }
         catch (err) {
-            callback(err,null)
+            callback(err, null)
         }
-        callback(null,books)
+        callback(null, books)
     },
 
-    
-
-    
-
-    databaseCommand: function () {
-        // connects to the database, executed the given command (arguments[0]) and returns the row that holds the result
-        let command = arguments[0];
-        let rowDict = {};
-
-        // model is a public folder for node 
-
-        let db = new sqlite3.Database('model/data.db', (err) => {
-            if (err) {
-                console.error(err.message);
-            }
-            // this is for debugging reasons, can be removed
-            // see if we can change it with status
-            // console.log(`Connected to the database. ${command}`);
-        });
-
-
-
-        db.each(command, (err, rows) => {
-            if (err) {
-                console.log("error")
-                console.error(err.message);
-            }
-
-            // console.log(rows);
-            if (rows == undefined) {
-                console.log("rows undefined")
-                // res.send('Not found');
-            }
-
-            // assign the rows to the row variable so that we can return it 
-            for (i in rows) {
-                rowDict[i] = rows[i];
-            }
-
-        });
-
-        // close the database to avoid errors
-        db.close((err) => {
-            if (err) {
-                console.error(err.message);
-            }
-            // console.log('Close the database connection.');
-        });
-        // console.log(rowDict);
-        return rowDict;
-    },
-
-
-    databaseAllCommand: function () {
-
-        // connects to the database, executed the given command (arguments[0]) and returns the row that holds the result
-        let command = arguments[0];
-        // console.log(command);
-        let rowList = [];
-
-        // model is a public folder for node 
-
-        let db = new sqlite3.Database('model/data.db', (err) => {
-            if (err) {
-                console.error(err.message);
-            }
-
-        });
-
-
-
-        db.all(command, (err, rows) => {
-            if (err) {
-                console.log("error")
-                console.error(err.message);
-            }
-
-            // console.log(rows);
-            if (rows == undefined) {
-                console.log("rows undefined")
-                // res.send('Not found');
-            }
-
-            rows.forEach((row) => {
-                // console.log(row);
-                rowList.push(row);
-                // console.log(rowList);   
-            });
-
-        });
-
-        // close the database to avoid errors
-        db.close((err) => {
-            if (err) {
-                console.error(err.message);
-            }
-        });
-
-        // console.log(rowList);
-        return rowList;
-    },
-
-    databasePrepare: function () {
-
-        // connects to the database, executed the given command (arguments[0]) and returns the row that holds the result
-        let command = arguments[0];
-        if (arguments.length > 1) {
-            // args is the rest of arguments from 1 to the end
-            let args = arguments[1];
-        }
-        // console.log(command);
-        let rowList = [];
-
-        // model is a public folder for node 
-
-        let db = new sqlite3.Database('model/data.db', (err) => {
-            if (err) {
-                console.error(err.message);
-            }
-
-        });
-
-
-        let smtp = db.prepare(command);
-
-        let data = smtp.all()
-
-        db.all(command, (err, rows) => {
-            if (err) {
-                console.log("error")
-                console.error(err.message);
-            }
-
-            // console.log(rows);
-            if (rows == undefined) {
-                console.log("rows undefined")
-                // res.send('Not found');
-            }
-
-            rows.forEach((row) => {
-                // console.log(row);
-                rowList.push(row);
-                // console.log(rowList);   
-            });
-
-        });
-
-        // close the database to avoid errors
-        db.close((err) => {
-            if (err) {
-                console.error(err.message);
-            }
-        });
-
-        // console.log(rowList);
-        return rowList;
-    },
-
-    databaseGetBooks: function (callback) {
-        // connects to the database, executed the given command (arguments[0]) and returns the row that holds the result
-
-        let db = new sqlite3.Database('model/data.db', (err) => {
-            if (err) {
-                console.error(err.message);
-            }
-
-        });
-
-
-        let dbBooks = db.prepare("SELECT * FROM BOOK")
+    getBookCopiesByIsbn: function (isbn, callback) {
+        const stmt = betterDb.prepare('Select * from BOOK join COPIES on book_isbn=isbn where isbn=?')
+        let books;
         try {
-            let data = dbBooks.all()
-            callback(data);
+            books = stmt.all(isbn)
         }
         catch (err) {
-            console.log(err);
+            callback(err, null)
         }
-        // close the database to avoid errors
-        // db.close((err) => {
-        //     if (err) {
-        //         console.error(err.message);
-        //     }
-        // });
+        callback(null, books)
+    },
 
-        // console.log(rowList);
+
+    getLibraryIdOfBookByIsbn: function (isbn, callback) {
+        const stmt = betterDb.prepare('Select id,copy_num,name,location,address,phone,email,profile_picture,l.summary,working_hours from BOOK join COPIES on book_isbn=isbn  join LIBRARY as l on library_id=id  where isbn = ?')
+        let books;
+        try {
+            books = stmt.all(isbn)
+        }
+        catch (err) {
+            callback(err, null)
+        }
+        callback(null, books)
     },
 
     // databaseBetterSql: 
