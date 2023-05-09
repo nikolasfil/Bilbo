@@ -125,7 +125,7 @@ module.exports = {
         const stmt = betterDb.prepare('SELECT isbn,title,author,edition,publisher,release,language,cover_image as photo FROM BOOK where title like ?')
         let books;
         try { 
-            books = stmt.all()
+            books = stmt.all(title)
         }
         catch (err) {
             callback(err,null)
