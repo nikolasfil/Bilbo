@@ -7,7 +7,8 @@
         let filters = {};
         {{!-- how to get the data 1 --}}
         createPages(2); pageSelector(); addFilterListeners(filters); addShowMore();
-        fetchAllBooks();
+        fetchAllBooks(filters);
+        {{!-- console.log(fetchAllBooks(null)); --}}
         
     };</script>
 
@@ -68,15 +69,12 @@
 
 
             <div class="result-pages d-flex flex-row justify-content-start flex-wrap" id="results">
-                {{#each book}}
+                {{!-- {{#each book}}
 
-                {{!-- {{#if ( equals publisher 'Apress' )}} --}}
                 {{> card photo=photo title=title description='description' copies='2' location=( encode (concat
                 'book_info/' isbn ))}}
-                
-                {{!-- {{/if}} --}}
 
-                {{/each}}
+                {{/each}} --}}
             </div>
 
 

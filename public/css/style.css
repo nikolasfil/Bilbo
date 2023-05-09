@@ -52,3 +52,13 @@ h3 {
 .rounded-corners {
   border-radius: 10px 10px 0px 0px;
 }
+
+.card-img-top a {
+  text-decoration: none;
+  color: black;
+}
+
+.card-img-top a:hover {
+  text-decoration: none;
+  color: black;
+}

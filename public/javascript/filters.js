@@ -57,6 +57,7 @@ function addFilterListeners(filters) {
         input.addEventListener('change', function () {
             if (this.checked) {
                 addedFilter(filters, this.id, this.classList[2]);
+                
 
                 // This was an attempt to have the filters dissapear fromt the show more and into the main one 
                 // it worked but it didn't iterate through the list correctly
