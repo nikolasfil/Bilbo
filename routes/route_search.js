@@ -21,6 +21,7 @@ router.get('/all', (req, res) => {
 });
 
 router.get('/searchall', (req, res, next) => {
+
     database.getAllBooks(function (err, books) {
         if (err) {
             console.log(err)
@@ -29,9 +30,36 @@ router.get('/searchall', (req, res, next) => {
         else {
             res.locals.books = books;
         }
-    }),
+    });
+    next();
+},
+    (req, res, next) => {
 
-
+        if (req.query.search) {
+            database.getBookByTitleLike(`%${req.query.search}%`, function (err, books) {
+                if (err) {
+                    console.log(err)
+                    res.status(500).send('Internal Server Error')
+                }
+                else {
+                    res.locals.books = books;
+                }
+            })
+        }
+        else {
+            database.getAllBooks(function (err, books) {
+                if (err) {
+                    console.log(err)
+                    res.status(500).send('Internal Server Error')
+                }
+                else {
+                    res.locals.books = books;
+                }
+            })
+        }
+        next();
+    },
+    (req, res, next) => {
         database.getAllGenre(function (err, genreList) {
             if (err) {
                 console.log(err)
@@ -40,7 +68,10 @@ router.get('/searchall', (req, res, next) => {
             else {
                 res.locals.all_genre = genreList;
             }
-        }),
+        });
+        next();
+    },
+    (req, res, next) => {
         database.getAllPublisher(function (err, publisherList) {
             if (err) {
                 console.log(err)
@@ -49,7 +80,11 @@ router.get('/searchall', (req, res, next) => {
             else {
                 res.locals.all_publisher = publisherList;
             }
-        }),
+        });
+        next();
+    },
+    (req, res, next) => {
+
         database.getAllEdition(function (err, editionList) {
             if (err) {
                 console.log(err)
@@ -58,7 +93,10 @@ router.get('/searchall', (req, res, next) => {
             else {
                 res.locals.all_editionList = editionList;
             }
-        }),
+        });
+        next();
+    },
+    (req, res, next) => {
         database.getAllLanguage(function (err, languageList) {
             if (err) {
                 console.log(err)
@@ -67,69 +105,69 @@ router.get('/searchall', (req, res, next) => {
             else {
                 res.locals.languageList = languageList;
             }
-        }),
-        (req, res, next) => {
-            res.locals.availabilityList = [
-                { name: 'Available' },
-                { name: 'Available in more than a week' },
-                { name: 'Available this week' },
-                { name: 'All' }
-            ]
+        });
+        next();
+    },
+    (req, res, next) => {
+        res.locals.availabilityList = [
+            { name: 'Available' },
+            { name: 'Available in more than a week' },
+            { name: 'Available this week' },
+            { name: 'All' }
+        ]
 
-            res.locals.genreList = [
-                { name: 'Fantasy' },
-                { name: 'Science' },
-                { name: 'Horror' },
-                { name: 'Comedy' },
-                { name: 'Sci-fi' },
-                { name: 'Fiction' }
-            ]
+        res.locals.genreList = [
+            { name: 'Fantasy' },
+            { name: 'Science' },
+            { name: 'Horror' },
+            { name: 'Comedy' },
+            { name: 'Sci-fi' },
+            { name: 'Fiction' }
+        ]
 
-            res.locals.publisherList = [
-                { name: 'Tziola' },
-                { name: 'Penguin' },
-                { name: 'Harper Collins' },
-                { name: 'Random House' },
-                { name: 'Simon & Schuster' },
-            ]
+        res.locals.publisherList = [
+            { name: 'Tziola' },
+            { name: 'Penguin' },
+            { name: 'Harper Collins' },
+            { name: 'Random House' },
+            { name: 'Simon & Schuster' },
+        ]
 
-            res.locals.editionList = [
-                { name: '1st' },
-                { name: '2nd' },
-                { name: '3rd' },
-                { name: '>3rd' }
-            ]
+        res.locals.editionList = [
+            { name: '1st' },
+            { name: '2nd' },
+            { name: '3rd' },
+            { name: '>3rd' }
+        ]
 
+        next();
+    },
 
+    (req, res) => {
+        res.render('search', {
+            title: 'Search',
+            genre: res.locals.genreList,
+            all_genre: res.locals.all_genreList,
 
+            availability: res.locals.availabilityList,
 
-            next();
-        },
+            publisher: res.locals.publisherList,
+            all_publisherList: res.locals.all_publisherList,
 
-        (req, res) => {
-            res.render('search', {
-                title: 'Search',
-                genre: res.locals.genreList,
-                all_genre: res.locals.all_genreList,
+            library: res.locals.libraryList,
 
-                availability: res.locals.availabilityList,
+            edition: res.locals.editionList,
+            all_edition: res.locals.all_editionList,
 
-                publisher: res.locals.publisherList,
-                all_publisherList: res.locals.all_publisherList,
+            language: res.locals.languageList,
 
-                library: libraryList,
-                edition: res.locals.editionList,
-                all_edition: res.locals.all_editionList,
+            signedIn: signedIn,
+            searchBarValue: req.query.search,
+            book: res.locals.books,
 
-                language: res.locals.languageList,
-
-                signedIn: signedIn,
-                searchBarValue: req.query.search,
-                book: res.locals.books,
-
-            });
-        }
-});
+        });
+    }
+);
 
 
 
