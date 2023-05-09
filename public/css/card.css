@@ -1,7 +1,5 @@
 .card-img-top {
-  
-  width: 364px;
-  margin: 10px;
+  width: 200px;
   /* padding: 10px; */
   /* Default/White */
 
@@ -10,6 +8,11 @@
 
   border: 1px solid #dee2e6;
   border-radius: 12px;
+  align-items: stretch;
+}
+
+.card-div{
+  width: 200px;
 }
 
 .card-img-class {
@@ -23,8 +26,8 @@
   flex-wrap: wrap;
 }
 
-.results, .card-img-top {
-  margin: 10px;
+.results, .card-space {
+  margin: 5px;
 }
 
 .card-img-top:hover {
@@ -34,4 +37,10 @@
 .book-img {
   width: 417px;
   height: 417px;
+}
+
+.overflow-ellipsis{
+  width:200px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
