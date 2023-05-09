@@ -2,6 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 const helpers = require('../controllers/helpers.js');
+const database = require('../controllers/database.js');
 
 let signedIn = module.exports.signedIn;
 
@@ -25,11 +26,11 @@ router.get('/book_info',
         // Select * from BOOK join COPIES on book_isbn = isbn where isbn=9781118166321
 
         // this returns one book 
-        let books = helpers.databaseCommand(command);
+        let books = database.databaseCommand(command);
         command = `Select id,copy_num,name,location,address,phone,email,profile_picture,l.summary,working_hours from BOOK join COPIES on book_isbn=isbn  join LIBRARY as l on library_id=id  where isbn = '${req.query['isbn']}'`;
         // Select copy_num,name,location,address,phone,email,profile_picture,summary,working_hours from BOOK join COPIES on book_isbn=isbn  join LIBRARY on library_id=id  where isbn = '9781118166321'
-        let lib = helpers.databaseCommand(command);
-        let libraries = helpers.databaseCommand(command);
+        let lib = database.databaseCommand(command);
+        let libraries = database.databaseCommand(command);
 
 
 

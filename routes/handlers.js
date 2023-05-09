@@ -13,10 +13,10 @@ let signedIn = module.exports.signedIn;
 router.get('/', (req, res) => {
 
     let command = `Select isbn,title,cover_image as photo from BOOK limit 6`;
-    let books = helpers.databaseAllCommand(command);
+    let books = database.databaseAllCommand(command);
 
     command = `Select id,name as title,address,profile_picture as photo from LIBRARY  limit 6`;
-    let libraries = helpers.databaseAllCommand(command);
+    let libraries = database.databaseAllCommand(command);
 
     res.render('homepage', {
         style: 'index.css',
@@ -58,10 +58,10 @@ router.get('/library_info', (req, res) => {
 
     let command = `Select * from LIBRARY where id=${req.query['id']}`;
 
-    let libraries = helpers.databaseCommand(command);
+    let libraries = database.databaseCommand(command);
 
     command = `Select b.isbn as isbn,b.title as title,b.cover_image as photo from BOOK as b join COPIES as c on c.book_isbn = b.isbn where c.library_id=${req.query['id']} limit 6`;
-    let books = helpers.databaseAllCommand(command);
+    let books = database.databaseAllCommand(command);
 
     res.render('library_info', {
         title: 'Library Info',
@@ -94,11 +94,11 @@ router.get('/book_info',
         // Select * from BOOK join COPIES on book_isbn = isbn where isbn=9781118166321
 
         // this returns one book 
-        let books = helpers.databaseCommand(command);
+        let books = database.databaseCommand(command);
         command = `Select id,copy_num,name,location,address,phone,email,profile_picture,l.summary,working_hours from BOOK join COPIES on book_isbn=isbn  join LIBRARY as l on library_id=id  where isbn = '${req.query['isbn']}'`;
         // Select copy_num,name,location,address,phone,email,profile_picture,summary,working_hours from BOOK join COPIES on book_isbn=isbn  join LIBRARY on library_id=id  where isbn = '9781118166321'
-        let lib = helpers.databaseCommand(command);
-        let libraries = helpers.databaseCommand(command);
+        let lib = database.databaseCommand(command);
+        let libraries = database.databaseCommand(command);
 
 
 
@@ -148,13 +148,13 @@ router.get('/search', (req, res) => {
 
 
     let command = `Select isbn,title,cover_image as photo from BOOK limit 6`;
-    let bookList = helpers.databaseAllCommand(command);
+    let bookList = database.databaseAllCommand(command);
 
     command = `Select id,name from LIBRARY  limit 6`;
-    let libraryList = helpers.databaseAllCommand(command);
+    let libraryList = database.databaseAllCommand(command);
 
     command = `Select publisher as name from BOOK where name IS not NUll  limit 6`;
-    publisherList = helpers.databaseAllCommand(command);
+    publisherList = database.databaseAllCommand(command);
 
 
     res.render('search', {

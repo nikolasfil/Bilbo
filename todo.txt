@@ -24,3 +24,4 @@ UNRESOLVED: καπου τρωει σκαλωμα και πηγαινει για 
 
 23: to make the filters work , fetch from site 
 
+24: hamburger view for mobile view for filters
