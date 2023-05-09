@@ -12,17 +12,35 @@
 .searchinput {
   /* height: 40px; */
   height: 80%;
-  width: 100vw;
+  width: 100%;
   border: transparent;
   outline: none;
   background-color: #ece5f1;
   /* border-radius: 34.5px; */
 }
 
-.shadow-box {
-  width: 80%;
-  height: 100%;
-  /* align-self: center; */
-  background: rgb(187, 187, 187);
-  border-radius: 34.5px;
+@media (max-width: 700px) and (orientation: portrait) {
+  .searchboxbox{
+      width: 90%;
+      height: 45px;
+  }
+  .searchbutton{
+    height: 80%;
+  }
+  .bi .bi-search{
+    height: 80%;
+  }
+}
+
+@media (max-width: 700px) and (orientation: landscape) {
+  .searchboxbox{
+      width: 80%;
+      height: 55px;
+  }
+  .searchbutton{
+    height: 80%;
+  }
+  .bi .bi-search{
+    height: 80%;
+  }
 }
