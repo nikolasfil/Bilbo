@@ -208,9 +208,13 @@
     height: 50px;
   }
 
+  .sign-space {
+    margin-bottom: 20px;
+  }
+
 }
 
-@media (max-width: 700px) and (orientation: landscape) {
+@media (max-width: 1000px) and (orientation: landscape) {
   .modal {
     padding: 1%;
   }
@@ -238,4 +242,8 @@
     width: 100%;
     height: 50px;
   }
+  .sign-space {
+    margin-bottom: 20px;
+  }
 }
+
