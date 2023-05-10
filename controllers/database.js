@@ -42,7 +42,7 @@ module.exports = {
         let stmt;
         let libraries;
 
-        if (limit ) {
+        if (limit) {
             stmt = betterDb.prepare('SELECT id,name as title,address,profile_picture as photo FROM LIBRARY Limit ?')
             try {
                 libraries = stmt.all(limit)
@@ -66,10 +66,10 @@ module.exports = {
     },
 
 
-    getAllAttribute: function(attribute,callback){
+    getAllAttribute: function (attribute, callback) {
         let stmt;
-        
-        switch(attribute){
+
+        switch (attribute) {
             case 'genre':
                 stmt = betterDb.prepare('SELECT distinct genre as name FROM BOOK where genre IS not NUll order by name');
                 break;
@@ -89,7 +89,7 @@ module.exports = {
                 stmt = betterDb.prepare('SELECT distinct name FROM LIBRARY order by name');
                 break;
             default:
-                callback('Invalid Attribute',null);
+                callback('Invalid Attribute', null);
                 break;
         }
 
@@ -100,22 +100,9 @@ module.exports = {
         catch (err) {
             callback(err, null)
         }
-        callback(null, attributeList);    
+        callback(null, attributeList);
     },
 
-
-
-    getAllLibrary: function (callback) {
-        const stmt = betterDb.prepare('SELECT distinct id,name FROM LIBRARY')
-        let libraryList;
-        try {
-            libraryList = stmt.all()
-        }
-        catch (err) {
-            callback(err, null)
-        }
-        callback(null, libraryList)
-    },
 
     getBookByIsbn: function (isbn, callback) {
         const stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,cover_image as photo FROM BOOK where isbn = ?')
@@ -141,15 +128,48 @@ module.exports = {
         callback(null, books)
     },
 
-    getBookCopiesByIsbn: function (isbn, callback) {
-        const stmt = betterDb.prepare('Select * from BOOK join COPIES on book_isbn=isbn where isbn=?')
+    getBookCopies: function (isbn, limit, callback) {
+        let stmt;
         let books;
-        try {
-            books = stmt.all(isbn)
+
+        if (limit & isbn) {
+
+            stmt = betterDb.prepare('Select isbn,title,cover_image as photo,copy_num from BOOK join COPIES on book_isbn=isbn where isbn=? Limit ?')
+            try {
+                books = stmt.all(isbn, limit)
+            }
+            catch (err) {
+                callback(err, null)
+            }
         }
-        catch (err) {
-            callback(err, null)
+        else if (limit) {
+            stmt = betterDb.prepare('Select isbn,title,cover_image as photo,copy_num from BOOK join COPIES on book_isbn=isbn Limit ?')
+            try {
+                books = stmt.all(limit)
+            }
+            catch (err) {
+                callback(err, null)
+            }
         }
+        else if (isbn) {
+            stmt = betterDb.prepare('Select isbn,title,cover_image as photo,copy_num from BOOK join COPIES on book_isbn=isbn where isbn=? ')
+            try {
+                books = stmt.all(isbn)
+            }
+            catch (err) {
+                callback(err, null)
+            }
+        }
+        else {
+            stmt = betterDb.prepare('Select * from BOOK join COPIES on book_isbn=isbn where isbn=? ')
+            try {
+                books = stmt.all(isbn)
+            }
+            catch (err) {
+                callback(err, null)
+            }
+        }
+
         callback(null, books)
     },
 
@@ -166,18 +186,5 @@ module.exports = {
         callback(null, books)
     },
 
-    getCopyOfBookByIsbn: function (isbn, callback) {
-        const stmt = betterDb.prepare('Select isbn,title,copy_num from BOOK join COPIES on book_isbn=isbn where isbn=?')
-        let books;
-        try {
-            books = stmt.all(isbn)
-        }
-        catch (err) {
-            callback(err, null)
-        }
-        callback(null, books)
-    },
-    // databaseBetterSql: 
 
-    // getBooks(title,author,edition,publisher,language, callback) {
 }

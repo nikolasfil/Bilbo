@@ -8,7 +8,7 @@ let signedIn = module.exports.signedIn;
 
 router.get('/',
     (req, res, next) => {
-        database.getAllBooks(6, function (err, books) {
+        database.getBookCopies(null,6, function (err, books) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
