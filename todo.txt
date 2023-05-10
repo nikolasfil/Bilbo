@@ -29,3 +29,13 @@ UNRESOLVED: καπου τρωει σκαλωμα και πηγαινει για 
 25: border radius library photo profike 
 
 26: handle similar searches, send filters back and forth from backend to client js and divide the books to be in the correct pages 
+
+
+27: How to handle search 
+First fetch all the titles and isbn (maybe summary too ) 
+Then search within those titles to find the best match with similarity string (?) 
+Then fetch all the information regarding those books that hit close to home 
+
+sarch bar , we have a parameter 
+κανω αναζητηση στο σερβερ για τους τιτλους και τα isbn των βιβλιων που ειναι πολυ κοντα στην αναζητηση 
+και εβαζα καπως στον σεβρερ εφτιαχνα καινουργια δρομολογηση ωστε να επιστρεφει με reneder μια λεηγ την οποια να κανει fetch πισω 

@@ -1,7 +1,6 @@
 // const stringSimilarity = require('string-similarity');
 
 
-
 function placeBooks(data) {
     let container = document.getElementById("results");
     container.innerHTML = "";
@@ -80,82 +79,33 @@ function placeBooks(data) {
     }
 }
 
-async function fetchAllBooks(filters) {
-    return await fetch("/all")
-        .then((res) => {
-            return res.json();
-        })
-        .then((data) => {
-            return data;
-        }).catch(error => {
-            console.log(error);
-        });
-}
-
 async function fetchAllBooksByTitle(title, filters) {
-
+    let link ;
     if (title) {
-
-        return await fetch("/book/" + title).then((res) => {
-            return res.json();
-        }).then((data) => {
-            console.log(data);
-            return data;
-        }).catch(error => {
-            console.log(error);
-        });
-    }
-    return fetchAllBooks(filters);
-}
-
-
-
-function placeAllBooksByTitle(title, filters) {
-
-    if (title) {
-
-        fetch("/book/" + title).then((res) => {
-            return res.json();
-        }).then((data) => {
-            console.log(data);
-            return data;
-        }).then((data) => {
-            placeBooks(data);
-        });
+        link = "/book/" + title;
     }
     else {
-        placeAllBooks(filters);
+        link = '/all'
     }
-
-}
-
-function placeAllBooks(filters) {
-    fetch("/all")
-        .then((res) => {
-            return res.json();
-        })
-        .then((data) => {
-            return data;
-        }).then((data) => {
-            placeBooks(data);
-        });
+    return await fetch(link).then((res) => {
+        return res.json();
+    }).then((data) => {
+        // console.log(data);
+        return data;
+    }).catch(error => {
+        console.log(error);
+    });
 
 }
 
 
 
+async function placeAllBooksByTitle(title, filters) {
+    let data = await fetchAllBooksByTitle(title, filters);
+    placeBooks(data);
 
-
-function display(data, filters) {
-    let result = [];
-    for (let i = 0; i < data.length; i++) {
-        console.log(data[i].genre);
-        if (data[i].genre == 'Adventure Stories') {
-            result.push(data[i]);
-        }
-    }
-    return result;
 }
+
 
 
 function json2string(filters) {
