@@ -51,10 +51,14 @@ function placeBooks(data) {
         h4.innerHTML = `<strong>${data[i].title}</strong>`;
 
         let p = document.createElement("p");
-        p.innerHTML = data[i].description;
+
+        // p.textContent = data[i].description;
+        p.textContent = "Description";
 
         let p2 = document.createElement("p");
-        p2.innerHTML = `Available Copies: ${data[i].copies}`;
+        // p2.textContent = `Available Copies: ${data[i].copies}`;
+        // get the number of available copies 
+        p2.textContent = `Available Copies: 2`;
 
         div2.appendChild(h4);
         div2.appendChild(p);
@@ -98,7 +102,6 @@ async function fetchAllBooksByTitle(title, filters) {
     }).catch(error => {
         console.log(error);
     });
-
 }
 
 

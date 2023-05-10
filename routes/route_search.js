@@ -8,7 +8,7 @@ let signedIn = module.exports.signedIn;
 
 
 router.get('/fetch_books_all', (req, res) => {
-    database.getAllBooks(function (err, books) {
+    database.getAllBooks(null,function (err, books) {
         if (err) {
             console.log(err)
             res.status(500).send('Internal Server Error')
@@ -31,6 +31,22 @@ router.get('/fetch_books/:title', (req, res) => {
     })
 });
 
+router.get('/fetch_books/:title/:author/:edition/:publisher/:language/'
+, (req, res) => {
+    database.getBookByTitleLike(req.params.title, function (err, book) {
+        if (err) {
+            console.log(err)
+            res.status(500).send('Internal Server Error')
+        }
+        else {
+            res.send(book);
+        }
+    })
+});
+
+
+
+
 router.get('/search',
     (req, res, next) => {
 
@@ -46,7 +62,7 @@ router.get('/search',
             })
         }
         else {
-            database.getAllBooks(function (err, books) {
+            database.getAllBooks(null,function (err, books) {
                 if (err) {
                     console.log(err)
                     res.status(500).send('Internal Server Error All books')
@@ -59,19 +75,19 @@ router.get('/search',
         next();
     },
     (req, res, next) => {
-        database.getAllGenre(function (err, genreList) {
+        database.getAllAttribute('genre',function (err, attributeList) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
             }
             else {
-                res.locals.all_genreList = genreList;
+                res.locals.all_genreList = attributeList;
             }
         });
         next();
     },
     (req, res, next) => {
-        database.getAllPublisher(function (err, publisherList) {
+        database.getAllAttribute('publisher',function (err, publisherList) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -84,7 +100,7 @@ router.get('/search',
     },
     (req, res, next) => {
 
-        database.getAllEdition(function (err, editionList) {
+        database.getAllAttribute('edition',function (err, editionList) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -96,7 +112,7 @@ router.get('/search',
         next();
     },
     (req, res, next) => {
-        database.getAllLanguage(function (err, languageList) {
+        database.getAllAttribute('language',function (err, languageList) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -107,6 +123,19 @@ router.get('/search',
         });
         next();
     },
+    (req, res, next) => {
+        database.getAllAttribute('library',function (err, libraryList) {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Internal Server Error')
+            }
+            else {
+                res.locals.libraryList = libraryList;
+            }
+        });
+        next();
+    },
+
     (req, res, next) => {
         res.locals.availabilityList = [
             { name: 'Available' },

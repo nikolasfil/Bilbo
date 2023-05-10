@@ -8,7 +8,7 @@ let signedIn = module.exports.signedIn;
 
 router.get('/',
     (req, res, next) => {
-        database.getAllBooksLimit(6, function (err, books) {
+        database.getAllBooks(6, function (err, books) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -21,7 +21,7 @@ router.get('/',
         next();
     },
     (req, res, next) => {
-        database.getAllLibrariesLimit(6, function (err, libraries) {
+        database.getAllLibraries(6, function (err, libraries) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')

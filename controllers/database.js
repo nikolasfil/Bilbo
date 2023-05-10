@@ -8,118 +8,102 @@ module.exports = {
         callback(null, true)
     },
 
-    
-    getAllBooksLimit: function (limit, callback) {
 
-        const stmt = betterDb.prepare('SELECT isbn,title,author,edition,publisher,release,language,cover_image as photo FROM BOOK Limit ' + limit)
+    getAllBooks: function (limit, callback) {
+        let stmt;
         let books;
-        try {
-            books = stmt.all()
+        if (limit) {
+            stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,cover_image as photo FROM BOOK Limit ?')
+            try {
+                books = stmt.all(limit)
+            }
+            catch (err) {
+                callback(err, null)
+            }
         }
-        catch (err) {
-            callback(err, null)
+        else {
+            console.log(limit);
+
+            stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,cover_image as photo FROM BOOK ')
+            try {
+                books = stmt.all()
+            }
+            catch (err) {
+                callback(err, null)
+            }
         }
+
+
         callback(null, books)
     },
 
-    getAllLibraries: function (callback) {
 
-        const stmt = betterDb.prepare('SELECT id,name as title,address,profile_picture as photo FROM LIBRARY ')
+    getAllLibraries: function (limit, callback) {
+        let stmt;
         let libraries;
-        try {
-            libraries = stmt.all()
+
+        if (limit ) {
+            stmt = betterDb.prepare('SELECT id,name as title,address,profile_picture as photo FROM LIBRARY Limit ?')
+            try {
+                libraries = stmt.all(limit)
+            }
+            catch (err) {
+                callback(err, null)
+            }
         }
-        catch (err) {
-            callback(err, null)
+        else {
+
+            stmt = betterDb.prepare('SELECT id,name as title,address,profile_picture as photo FROM LIBRARY ')
+            try {
+                libraries = stmt.all()
+            }
+            catch (err) {
+                callback(err, null)
+            }
         }
+
         callback(null, libraries)
     },
 
-    getAllLibrariesLimit: function (limit, callback) {
 
-        const stmt = betterDb.prepare('SELECT id,name as title,address,profile_picture as photo FROM LIBRARY Limit ?')
-        let libraries;
+    getAllAttribute: function(attribute,callback){
+        let stmt;
+        
+        switch(attribute){
+            case 'genre':
+                stmt = betterDb.prepare('SELECT distinct genre as name FROM BOOK where genre IS not NUll order by name');
+                break;
+            case 'publisher':
+                stmt = betterDb.prepare('SELECT distinct publisher as name FROM BOOK where publisher IS not NUll order by name');
+                break;
+            case 'author':
+                stmt = betterDb.prepare('SELECT distinct author as name FROM BOOK where author IS not NUll order by name');
+                break;
+            case 'edition':
+                stmt = betterDb.prepare('SELECT distinct edition as name FROM BOOK where edition IS not NUll order by name');
+                break;
+            case 'language':
+                stmt = betterDb.prepare('SELECT distinct language as name FROM BOOK where language IS not NUll order by name');
+                break;
+            case 'library':
+                stmt = betterDb.prepare('SELECT distinct name FROM LIBRARY order by name');
+                break;
+            default:
+                callback('Invalid Attribute',null);
+                break;
+        }
+
+        let attributeList;
         try {
-            libraries = stmt.all(limit)
+            attributeList = stmt.all()
         }
         catch (err) {
             callback(err, null)
         }
-        callback(null, libraries)
+        callback(null, attributeList);    
     },
 
-    getAllBooks: function (callback) {
 
-        const stmt = betterDb.prepare('SELECT isbn,title,author,edition,publisher,release,language,cover_image as photo FROM BOOK ')
-        let books;
-        try {
-            books = stmt.all()
-        }
-        catch (err) {
-            callback(err, null)
-        }
-        callback(null, books)
-    },
-
-    getAllGenre: function (callback) {
-        const stmt = betterDb.prepare('SELECT distinct genre as name FROM BOOK where genre IS not NUll order by name')
-        let genreList;
-        try {
-            genreList = stmt.all()
-        }
-        catch (err) {
-            callback(err, null)
-        }
-        callback(null, genreList)
-    },
-
-    getAllPublisher: function (callback) {
-        const stmt = betterDb.prepare('SELECT distinct publisher as name FROM BOOK where publisher IS not NUll order by name')
-        let publisherList;
-        try {
-            publisherList = stmt.all()
-        }
-        catch (err) {
-            callback(err, null)
-        }
-        callback(null, publisherList)
-    },
-
-    getAllAuthor: function (callback) {
-        const stmt = betterDb.prepare('SELECT distinct author as name FROM BOOK where author IS not NUll order by name')
-        let authorList;
-        try {
-            authorList = stmt.all()
-        }
-        catch (err) {
-            callback(err, null)
-        }
-        callback(null, authorList)
-    },
-
-    getAllEdition: function (callback) {
-        const stmt = betterDb.prepare('SELECT distinct edition as name FROM BOOK where edition IS not NUll order by name')
-        let editionList;
-        try {
-            editionList = stmt.all()
-        }
-        catch (err) {
-            callback(err, null)
-        }
-        callback(null, editionList)
-    },
-
-    getAllLanguage: function (callback) {
-        const stmt = betterDb.prepare('SELECT distinct language as name FROM BOOK where language IS not NUll order by name')
-        let languageList;
-        try {
-            languageList = stmt.all()
-        }
-        catch (err) {
-            callback(err, null)
-        }
-        callback(null, languageList)
-    },
 
     getAllLibrary: function (callback) {
         const stmt = betterDb.prepare('SELECT distinct id,name FROM LIBRARY')
@@ -134,7 +118,7 @@ module.exports = {
     },
 
     getBookByIsbn: function (isbn, callback) {
-        const stmt = betterDb.prepare('SELECT isbn,title,author,edition,publisher,release,language,cover_image as photo FROM BOOK where isbn = ?')
+        const stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,cover_image as photo FROM BOOK where isbn = ?')
         let books;
         try {
             books = stmt.all(isbn)
@@ -146,7 +130,7 @@ module.exports = {
     },
 
     getBookByTitleLike: function (title, callback) {
-        const stmt = betterDb.prepare('SELECT isbn,title,author,edition,publisher,release,language,cover_image as photo FROM BOOK where title like ? ')
+        const stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,cover_image as photo FROM BOOK where title like ? ')
         let books;
         try {
             books = stmt.all(`%${title}%`)
@@ -182,6 +166,18 @@ module.exports = {
         callback(null, books)
     },
 
+    getCopyOfBookByIsbn: function (isbn, callback) {
+        const stmt = betterDb.prepare('Select isbn,title,copy_num from BOOK join COPIES on book_isbn=isbn where isbn=?')
+        let books;
+        try {
+            books = stmt.all(isbn)
+        }
+        catch (err) {
+            callback(err, null)
+        }
+        callback(null, books)
+    },
     // databaseBetterSql: 
 
+    // getBooks(title,author,edition,publisher,language, callback) {
 }
