@@ -1,16 +1,32 @@
+// const stringSimilarity = require('string-similarity');
+
 
 
 function placeBooks(data) {
     let container = document.getElementById("results");
     container.innerHTML = "";
+    let show = [];
+
+    let data2 = (data) => {
+        for (let i = 0; data.length; i++) {
+            if (filters.length == 0) {
+                break;
+            }
+            for (let f in filters) {
+                console.log('f', f)
+                // for (filter in f) {
+                //     if (filter == data[i].f) {
+                //         show.push(data[i]);
+                //     }
+                // }
+            }
+        }
+        return data;
+    }
+
+    // console.log(data)
 
     for (let i = 0; i < data.length; i++) {
-
-        // if (filters != null) {
-        //     if (filters.includes(data[i].genre)) {
-        //         continue;
-        //     }
-        // }
 
         let div = document.createElement("div");
         div.className = "card-img-top";
@@ -64,8 +80,56 @@ function placeBooks(data) {
     }
 }
 
-function fetchAllBooks(filters) {
+async function fetchAllBooks(filters) {
+    return await fetch("/all")
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            return data;
+        }).catch(error => {
+            console.log(error);
+        });
+}
 
+async function fetchAllBooksByTitle(title, filters) {
+
+    if (title) {
+
+        return await fetch("/book/" + title).then((res) => {
+            return res.json();
+        }).then((data) => {
+            console.log(data);
+            return data;
+        }).catch(error => {
+            console.log(error);
+        });
+    }
+    return fetchAllBooks(filters);
+}
+
+
+
+function placeAllBooksByTitle(title, filters) {
+
+    if (title) {
+
+        fetch("/book/" + title).then((res) => {
+            return res.json();
+        }).then((data) => {
+            console.log(data);
+            return data;
+        }).then((data) => {
+            placeBooks(data);
+        });
+    }
+    else {
+        placeAllBooks(filters);
+    }
+
+}
+
+function placeAllBooks(filters) {
     fetch("/all")
         .then((res) => {
             return res.json();
@@ -78,24 +142,7 @@ function fetchAllBooks(filters) {
 
 }
 
-function fetchAllBooksByTitle(title, filters) {
-    // to be implemented for the search bar !!
-    if (title) {
 
-        fetch("/book/" + title).then((res) => {
-            return res.json();
-        }).then((data) => {
-            console.log(data);
-            return data;
-        }).then((data) => {
-            placeBooks(data);
-        });
-    }
-    else{
-        fetchAllBooks(filters);
-    }
-
-}
 
 
 
@@ -114,3 +161,54 @@ function display(data, filters) {
 function json2string(filters) {
     return JSON.stringify(filters);
 }
+
+
+
+
+function checkSimilarities() {
+    const objValues = Object.values(obj).map(value => value.toString());
+
+    // Calculate string similarity scores
+    const scores = stringSimilarity.findBestMatch(phrase, objValues);
+
+    // Threshold for considering a match
+    const threshold = 0.5;
+
+    // Check if any score exceeds the threshold
+    const hasMatch = scores.ratings.some(score => score.rating > threshold);
+
+    if (hasMatch) {
+        matches.push({
+            file,
+            object: obj,
+            score: scores.bestMatch.rating
+        });
+    }
+}
+
+
+async function asyncFetchAllBooks(){
+    let data = await fetch("/all")
+        .then((res) => {
+            return res.json();
+        })
+        .then((data) => {
+            return data;
+        }).catch(error => {
+            console.log(error);
+        });
+    return data[0];
+}
+
+// !async function () {
+//     let data = await fetch("https://raw.githubusercontent.com/IbrahimTanyalcin/LEXICON/master/lexiconLogo.png")
+//         .then((response) => response.blob())
+//         .then(data => {
+//             return data;
+//         })
+//         .catch(error => {
+//             console.error(error);
+//         });
+
+//         console.log(data);
+// }();

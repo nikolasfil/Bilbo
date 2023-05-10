@@ -5,12 +5,13 @@
 
 <script type="text/javascript">window.onload = function () {
         let filters = {}; let filterString="{{jsonFilter}}";
-        {{!-- how to get the data 1 --}}
+
         createPages(2); pageSelector(); addFilterListeners(filters); addShowMore();
-        {{!-- fetchAllBooks(filters); --}}
-        fetchAllBooksByTitle('{{searchBarValue}}',filters);
-        {{!-- console.log(fetchAllBooks(null)); --}}
-        
+        placeAllBooksByTitle('{{searchBarValue}}',filters);
+        {{!-- let data = fetchAllBooksByTitle('{{searchBarValue}}',filters); --}}
+        console.log(fetchAllBooks(filters))
+
+
     };</script>
 
 

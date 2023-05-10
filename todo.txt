@@ -27,3 +27,5 @@ UNRESOLVED: καπου τρωει σκαλωμα και πηγαινει για 
 24: hamburger view for mobile view for filters
 
 25: border radius library photo profike 
+
+26: handle similar searches, send filters back and forth from backend to client js and divide the books to be in the correct pages 
