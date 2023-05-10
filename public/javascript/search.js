@@ -64,7 +64,6 @@ function placeBooks(data) {
     }
 }
 
-
 function fetchAllBooks(filters) {
 
     fetch("/all")
@@ -72,11 +71,6 @@ function fetchAllBooks(filters) {
             return res.json();
         })
         .then((data) => {
-            // console.log(data);
-            // let result = display(data, filters);
-            // return result
-            // console.log(display(data, filters));
-
             return data;
         }).then((data) => {
             placeBooks(data);
@@ -84,24 +78,39 @@ function fetchAllBooks(filters) {
 
 }
 
-function fetchBookByTitle(filters) {
+function fetchAllBooksByTitle(title, filters) {
     // to be implemented for the search bar !!
-    fetch("/title").then((res) => {
-        return res.json();
-    }).then((data) => {
-        console.log(data);
-    }); 
+    if (title) {
+
+        fetch("/book/" + title).then((res) => {
+            return res.json();
+        }).then((data) => {
+            console.log(data);
+            return data;
+        }).then((data) => {
+            placeBooks(data);
+        });
+    }
+    else{
+        fetchAllBooks(filters);
+    }
+
 }
-    
 
 
-function display(data,filters){
+
+function display(data, filters) {
     let result = [];
-    for(let i = 0; i < data.length; i++){
+    for (let i = 0; i < data.length; i++) {
         console.log(data[i].genre);
-        if(data[i].genre == 'Adventure Stories'){
+        if (data[i].genre == 'Adventure Stories') {
             result.push(data[i]);
         }
     }
     return result;
+}
+
+
+function json2string(filters) {
+    return JSON.stringify(filters);
 }

@@ -1,4 +1,3 @@
-const sqlite3 = require('sqlite3').verbose();
 const sql = require('better-sqlite3')
 const betterDb = new sql('model/data.db')
 
@@ -147,10 +146,10 @@ module.exports = {
     },
 
     getBookByTitleLike: function (title, callback) {
-        const stmt = betterDb.prepare('SELECT isbn,title,author,edition,publisher,release,language,cover_image as photo FROM BOOK where title like ?')
+        const stmt = betterDb.prepare('SELECT isbn,title,author,edition,publisher,release,language,cover_image as photo FROM BOOK where title like ? ')
         let books;
         try {
-            books = stmt.all(title)
+            books = stmt.all(`%${title}%`)
         }
         catch (err) {
             callback(err, null)

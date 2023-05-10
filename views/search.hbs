@@ -4,10 +4,11 @@
 
 
 <script type="text/javascript">window.onload = function () {
-        let filters = {};
+        let filters = {}; let filterString="{{jsonFilter}}";
         {{!-- how to get the data 1 --}}
         createPages(2); pageSelector(); addFilterListeners(filters); addShowMore();
-        fetchAllBooks(filters);
+        {{!-- fetchAllBooks(filters); --}}
+        fetchAllBooksByTitle('{{searchBarValue}}',filters);
         {{!-- console.log(fetchAllBooks(null)); --}}
         
     };</script>

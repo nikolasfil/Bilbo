@@ -19,6 +19,18 @@ router.get('/all', (req, res) => {
     })
 });
 
+router.get('/book/:title', (req, res) => {
+    database.getBookByTitleLike(req.params.title, function (err, book) {
+        if (err) {
+            console.log(err)
+            res.status(500).send('Internal Server Error')
+        }
+        else {
+            res.send(book);
+        }
+    })
+});
+
 router.get('/search',
     (req, res, next) => {
 
@@ -151,6 +163,8 @@ router.get('/search',
             signedIn: signedIn,
             searchBarValue: req.query.search,
             book: res.locals.books,
+            stringBook: JSON.stringify(res.locals.books),
+            // stringFilter: JSON.stringify(req.query.filters),
 
         });
     }
