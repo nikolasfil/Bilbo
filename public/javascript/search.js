@@ -87,6 +87,8 @@ function placeBooks(data) {
 }
 
 async function fetchAllBooksByTitle(title, filters) {
+    // I should add a middle layer getting first the title and isbn and then getting the rest of the data
+    // include copies number ? 
     let link;
     if (title) {
         link = "/fetch_books/" + title;
