@@ -7,7 +7,7 @@ const database = require('../controllers/database.js');
 let signedIn = module.exports.signedIn;
 
 
-router.get('/all', (req, res) => {
+router.get('/fetch_books_all', (req, res) => {
     database.getAllBooks(function (err, books) {
         if (err) {
             console.log(err)
@@ -19,7 +19,7 @@ router.get('/all', (req, res) => {
     })
 });
 
-router.get('/book/:title', (req, res) => {
+router.get('/fetch_books/:title', (req, res) => {
     database.getBookByTitleLike(req.params.title, function (err, book) {
         if (err) {
             console.log(err)

@@ -37,6 +37,9 @@ function placeBooks(data) {
 
         let img = document.createElement("img");
         img.className = "rounded-corners card-img-class";
+        if (data[i].photo == null) {
+            data[i].photo = "/img/card_book_default.jpg";
+        }
         img.src = data[i].photo;
         img.alt = "photo";
         img.draggable = "false";
@@ -80,12 +83,12 @@ function placeBooks(data) {
 }
 
 async function fetchAllBooksByTitle(title, filters) {
-    let link ;
+    let link;
     if (title) {
-        link = "/book/" + title;
+        link = "/fetch_books/" + title;
     }
     else {
-        link = '/all'
+        link = '/fetch_books_all'
     }
     return await fetch(link).then((res) => {
         return res.json();
@@ -113,8 +116,6 @@ function json2string(filters) {
 }
 
 
-
-
 function checkSimilarities() {
     const objValues = Object.values(obj).map(value => value.toString());
 
@@ -136,29 +137,3 @@ function checkSimilarities() {
     }
 }
 
-
-async function asyncFetchAllBooks(){
-    let data = await fetch("/all")
-        .then((res) => {
-            return res.json();
-        })
-        .then((data) => {
-            return data;
-        }).catch(error => {
-            console.log(error);
-        });
-    return data[0];
-}
-
-// !async function () {
-//     let data = await fetch("https://raw.githubusercontent.com/IbrahimTanyalcin/LEXICON/master/lexiconLogo.png")
-//         .then((response) => response.blob())
-//         .then(data => {
-//             return data;
-//         })
-//         .catch(error => {
-//             console.error(error);
-//         });
-
-//         console.log(data);
-// }();
