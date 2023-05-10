@@ -19,6 +19,12 @@ module.exports = {
         return encodeURI(url);
     },
 
+    // decode url
+    decode: function (url) {
+        return decodeURI(url);
+    },
+    
+
     equals: function (arg1, arg2) {
         return arg1 == arg2;
     },

@@ -3,17 +3,36 @@
 <script src="javascript/search.js"></script>
 
 
-<script type="text/javascript">window.onload = function () {
-        let filters = {}; let filterString="{{jsonFilter}}";
+<script>
 
-        createPages(2); pageSelector(); addFilterListeners(filters); addShowMore();
-        placeAllBooksByTitle('{{searchBarValue}}',filters);
-        {{!-- let data = fetchAllBooksByTitle('{{searchBarValue}}',filters); --}}
-        {{!-- console.log(fetchAllBooks(filters)) --}}
+    window.onload = () => {
+        let filters ={} ;
+        {{!-- console.log("{{stringFilters}}") --}}
+        {{!-- for some reason I can't seem to be able to decode the stringFilters  --}}
+        {{!-- console.log(decodeURIComponent("{{stringFilters}}")) --}}
+
+        {{!-- if ("{{stringFilters}}"){
+            filters = JSON.parse("{{ decode ( stringFilters ) }}");
+        }
+        else {
+            filters = {};
+        } --}}
+
+        let searchBarValue = '{{searchBarValue}}'
 
 
-    };</script>
 
+        // let filters =  JSON.parse(filterString);
+        {{!-- createPages(2); pageSelector();  --}}
+        
+        addShowMore();
+        addFilterListeners(filters); 
+        let data;
+        !async ()=>{ data= await fetchAllBooksByTitle(searchBarValue, filters)};
+        placeBooks(data);
+        reconfigureSearchBar(filters);
+    }
+</script>
 
 
 {{>header}}

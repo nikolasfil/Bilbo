@@ -31,21 +31,6 @@ router.get('/fetch_books/:title', (req, res) => {
     })
 });
 
-router.get('/fetch_books/:title/:author/:edition/:publisher/:language/'
-, (req, res) => {
-    database.getBookByTitleLike(req.params.title, function (err, book) {
-        if (err) {
-            console.log(err)
-            res.status(500).send('Internal Server Error')
-        }
-        else {
-            res.send(book);
-        }
-    })
-});
-
-
-
 
 router.get('/search',
     (req, res, next) => {
@@ -74,6 +59,20 @@ router.get('/search',
         }
         next();
     },
+
+    (req, res, next) => {
+        // console.log(req.query.filters)
+        if (req.query.filters) {
+            res.locals.filters = JSON.stringify(JSON.parse(req.query.filters));
+            // console.log(res.locals.filters)
+        }
+        else {
+            res.locals.filters = '';
+        }
+        console.log(res.locals.filters)
+        next();
+    }, 
+
     (req, res, next) => {
         database.getAllAttribute('genre',function (err, attributeList) {
             if (err) {
@@ -192,7 +191,7 @@ router.get('/search',
             signedIn: signedIn,
             searchBarValue: req.query.search,
             book: res.locals.books,
-            stringBook: JSON.stringify(res.locals.books),
+            stringFilters: res.locals.filters,
             // stringFilter: JSON.stringify(req.query.filters),
 
         });

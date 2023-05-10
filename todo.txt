@@ -39,3 +39,6 @@ Then fetch all the information regarding those books that hit close to home
 sarch bar , we have a parameter 
 κανω αναζητηση στο σερβερ για τους τιτλους και τα isbn των βιβλιων που ειναι πολυ κοντα στην αναζητηση 
 και εβαζα καπως στον σεβρερ εφτιαχνα καινουργια δρομολογηση ωστε να επιστρεφει με reneder μια λεηγ την οποια να κανει fetch πισω 
+
+
+28: if We really want to improve the search, make a search divided by commas and each attribute genre: ? 

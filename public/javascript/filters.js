@@ -2,62 +2,17 @@
 let variable;
 
 
-function addFilterListeners2(filters) {
-
-    let input = document.getElementsByClassName('form-check-input')
-    // input.getElementByTagName('input')
-    for (let i = 0; i < input.length; i++) {
-        input[i].addEventListener('change', function () {
-            if (this.checked) {
-                addedFilter(filters, this.id, this.classList[2]);
-
-                let container = document.getElementById(`${this.classList[2]}-filter-more`);
-                let mainfilters = document.getElementById(`${this.classList[2]}-filter`)
-
-                if (this.parentElement == container) {
-                    container.removeChild(this);
-                    mainfilters.appendChild(this);
-                }
-
-            }
-
-            else {
-                // remove the filter from the filters object
-                filters[this.classList[2]].splice(filters[this.classList[2]].indexOf(this.id), 1);
-
-                // remove the filter from the selected filters div
-                let container = document.getElementById('filter-selection');
-                let divs = container.getElementsByClassName('selected-filters');
-
-                for (let j = 0; j < divs.length; j++) {
-                    if (divs[j].textContent == this.classList[2] + ':' + this.id) {
-                        container.removeChild(divs[j]);
-                    }
-                }
-
-
-
-            }
-        });
-    }
-}
-
 function addFilterListeners(filters) {
 
     let checker = document.getElementsByClassName('form-check');
-    // let input = document.getElementsByClassName('form-check-input')
-    // input.getElementByTagName('input')
 
     for (let i = 0; i < checker.length; i++) {
         // get the input element of checker 
-
-
-
         let input = checker[i].getElementsByClassName('form-check-input')[0];
+        
         input.addEventListener('change', function () {
             if (this.checked) {
                 addedFilter(filters, this.id, this.classList[2]);
-                
 
                 // This was an attempt to have the filters dissapear fromt the show more and into the main one 
                 // it worked but it didn't iterate through the list correctly
@@ -83,8 +38,6 @@ function addFilterListeners(filters) {
                 //     button.style.display = 'none';
                 // }
 
-
-
             }
             else {
                 // remove the filter from the filters object
@@ -99,15 +52,15 @@ function addFilterListeners(filters) {
                         container.removeChild(divs[j]);
                     }
                 }
-
-
-
             }
-
         });
+
+        for (let j = 0; j < filters.length; j++) {
+            console.log(filters[j]);        
+        }
+// 
     }
 }
-
 
 
 
@@ -132,14 +85,15 @@ function addedFilter(filters, filterName, filterType) {
     // link bootstrap icons CDN in the html file
 
 
+
     div.addEventListener('click', function () {
         container.removeChild(div);
         let checkbox = document.getElementById(filterName);
         checkbox.checked = false;
         filters[filterType].splice(filters[filterType].indexOf(filterName), 1);
+
     });
 }
-
 
 // LIKE *TiTle* in books for database 
 

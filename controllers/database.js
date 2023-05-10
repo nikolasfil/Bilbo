@@ -22,7 +22,7 @@ module.exports = {
             }
         }
         else {
-            console.log(limit);
+
 
             stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,cover_image as photo FROM BOOK ')
             try {
@@ -103,15 +103,39 @@ module.exports = {
         callback(null, attributeList);
     },
 
-
-    getBookByIsbn: function (isbn, callback) {
-        const stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,cover_image as photo FROM BOOK where isbn = ?')
+    getBookByIsbnOrTitleLike: function (isbn,title, callback) {
+        let stmt ;
         let books;
-        try {
-            books = stmt.all(isbn)
+
+        if(isbn && title){
+            stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,cover_image as photo FROM BOOK where isbn = ? or title like ?')
+            try {
+                books = stmt.all(isbn,`%${title}%`)
+            }
+            catch (err) {
+                callback(err, null)
+            }
         }
-        catch (err) {
-            callback(err, null)
+        else if(isbn){
+
+        
+            stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,cover_image as photo FROM BOOK where isbn = ?')
+            try {
+                books = stmt.all(isbn)
+            }
+            catch (err) {
+                callback(err, null)
+            }
+            
+        }
+        else if(title){
+            stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,cover_image as photo FROM BOOK where title like ?')
+            try {
+                books = stmt.all(`%${title}%`)
+            }
+            catch (err) {
+                callback(err, null)
+            }
         }
         callback(null, books)
     },
@@ -127,6 +151,7 @@ module.exports = {
         }
         callback(null, books)
     },
+
 
     getBookCopies: function (isbn, limit, callback) {
         let stmt;
