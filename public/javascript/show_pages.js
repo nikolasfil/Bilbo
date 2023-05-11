@@ -17,6 +17,13 @@ function createPages(number) {
 }
 
 
+function assignBooksToPages(books,booksPerPage) {
+    if (!booksPerPage){
+        booksPerPage = 12;
+    }
+    
+}
+
 
 
 function nextPage() {

@@ -6,7 +6,7 @@
 <script>
 
     window.onload = () => {
-        let filters ={} ;
+        window.gFilters ={} ;
 
         {{!-- console.log("{{stringFilters}}") --}}
         {{!-- for some reason I can't seem to be able to decode the stringFilters  --}}
@@ -29,9 +29,9 @@
         createPages(2); pageSelector(); 
         
         addShowMore();
-        addFilterListeners(filters); 
+        addFilterListeners(window.gFilters); 
 
-        placeAllBooksByTitle(searchBarValue,filters);
+        window.gData = placeAllBooksByTitle(searchBarValue,window.gFilters);
         
         {{!-- reconfigureSearchBar(filters); --}}
     }

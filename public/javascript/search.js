@@ -9,28 +9,24 @@
 //     reconfigureSearchBar(filters);
 // }
 
+function updateBooks(data,fil){
+    show = [];
+    for(let i = 0; i < data.length; i++){
+        for (let j in fil){
+            console.log(fil[j]);
+        }
+        break;
+    }
+    return show;
+}
 
 function placeBooks(data) {
     let container = document.getElementById("results");
     container.innerHTML = "";
-    let show = [];
 
-    let data2 = (data) => {
-        for (let i = 0; data.length; i++) {
-            if (filters.length == 0) {
-                break;
-            }
-            for (let f in filters) {
-                console.log('f', f)
-                // for (filter in f) {
-                //     if (filter == data[i].f) {
-                //         show.push(data[i]);
-                //     }
-                // }
-            }
-        }
-        return data;
-    }
+
+    let data2 = updateBooks(data,filters);
+    console.log(data2);
 
     // console.log(data)
 
@@ -129,6 +125,7 @@ async function placeAllBooksByTitle(title, filters) {
     placeBooks(data);
     return data;
 }
+
 
 function checkSimilarities() {
     // check if the search bar value is similar to any of the titles

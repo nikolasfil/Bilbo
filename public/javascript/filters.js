@@ -92,6 +92,8 @@ function addedFilter(filters, filterName, filterType) {
         checkbox.checked = false;
         filters[filterType].splice(filters[filterType].indexOf(filterName), 1);
 
+        updateBooks(window.gData,window.gFilters);
+        
     });
 }
 
