@@ -2,9 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 const database = require('../controllers/database.js');
-
-let signedIn = module.exports.signedIn;
-
+const session = require('express-session');
 
 router.get('/',
     (req, res, next) => {
@@ -33,11 +31,12 @@ router.get('/',
         next();
     },
     (req, res) => {
+        
 
         res.render('homepage', {
             style: 'index.css',
             title: 'Home',
-            signedIn: signedIn,
+            signedIn: req.session.signedIn,
             booklist: res.locals.books,
             library: res.locals.libraries
 

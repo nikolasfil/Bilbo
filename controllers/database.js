@@ -1,6 +1,8 @@
 const sql = require('better-sqlite3')
 const betterDb = new sql('model/data.db')
 
+const bcrypt = require('bcrypt');
+
 module.exports = {
 
     connect: (callback) => {
@@ -249,5 +251,52 @@ module.exports = {
 
         callback(null, books)
     },
+
+    getUserById: function (id, callback) {
+        const stmt = betterDb.prepare('Select * from USER where id=?')
+        let user;
+        try {
+            user = stmt.get(id)
+        }
+        catch (err) {
+            callback(err, null)
+        }
+        callback(null, user)
+    },
+
+    checkIfUserExists: function(email,callback){
+        const stmt = betterDb.prepare('Select * from USER where email = ? ')
+        let user;
+        try {
+            user = stmt.get(email)
+        }
+        catch (err) {
+            callback(err, null)
+        }
+        callback(null, user)
+    },
+
+    checkUser: function(email, password, callback) {
+        const stmt = betterDb.prepare('Select * from USER where email = ?')
+        
+        let user;
+
+        try {
+            
+            user = stmt.get(email)
+            if(bcrypt.hashSync(user.password,user.salt)==bcrypt.hashSync(password,user.salt)){
+                callback(null, user)
+            }
+            else {
+                callback('Wrong Password',null)
+            }
+        }
+        catch (err) {
+            callback(err, null)
+        }
+
+
+    }
+
 
 }

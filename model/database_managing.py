@@ -130,10 +130,10 @@ class Creation:
                 list(map(int, [i[0] for i in libraries])))
             self.insert_data('COPIES', (book['isbn'], copy_num, library_id))
 
-        self.insert_data('USER', ('1', 'Nick', 'Fil', '01/01/2001', self.hashing_password(
+        self.insert_data('USER', ('1', 'Nick', 'Fil','test@test.gr' ,'01/01/2001', self.hashing_password(
             'password'), self.binary_to_string(self.salt), 'img/nikolas_profile.png'))
 
-        self.insert_data('USER', ('2', 'Konstantinos', 'Kotorenis', '30/2/1960', self.hashing_password(
+        self.insert_data('USER', ('2', 'Konstantinos', 'Kotorenis','kostas@test.gr', '30/2/1960', self.hashing_password(
             'password'), self.binary_to_string(self.salt), 'img/kotorenis_profile.png'))
 
         self.insert_data('Borrowing', ('book_isbn', 'copy_num',

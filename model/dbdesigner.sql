@@ -55,6 +55,7 @@ CREATE TABLE IF NOT EXISTS USER (
 	id binary NOT NULL  ,
 	fname varchar(255) NOT NULL,
 	lname varchar(255) NOT NULL,
+	email varchar(255) NOT NULL,
 	birthdate datetime NOT NULL,
 	password varchar(255) NOT NULL,
 	salt varchar(255) NOT NULL,
