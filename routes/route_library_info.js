@@ -38,6 +38,7 @@ router.get('/library_info',
         database.getBooksFromLibrary(req.query['id'],6, function (err, books) {
             if (err) {
                 console.log(err)
+                console.log('error')
                 res.status(500).send('Internal Server Error')
             }
             else {
@@ -46,8 +47,6 @@ router.get('/library_info',
         })
         next();
     },
-        
-
     (req, res) => {
 
     res.render('library_info', {

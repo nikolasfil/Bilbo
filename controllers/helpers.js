@@ -43,7 +43,6 @@ module.exports = {
     latitude: function () {
         // let lat = arguments[0].split(",")[1].split(":")[1];
         let lat = arguments[0].split(",")[1];
-
         return lat;
     },
 

@@ -66,7 +66,7 @@ module.exports = {
     },
 
     getLibraryById: function (id, callback) {
-        const stmt = betterDb.prepare('SELECT id,name as title,address,profile_picture as photo FROM LIBRARY where id = ?')
+        const stmt = betterDb.prepare('SELECT id,name,location,address,profile_picture as profile_picture,summary,working_hours,phone,email FROM LIBRARY where id = ?')
         let library;
         try {
             library = stmt.get(id)
@@ -235,6 +235,7 @@ module.exports = {
             catch (err) {
                 callback(err, null)
             }
+            // console.log(books)
         }
         else {
             stmt = betterDb.prepare('Select isbn,title,cover_image as photo,copy_num from BOOK join COPIES on book_isbn=isbn where library_id=? ')
