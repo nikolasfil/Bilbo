@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 
-let signedIn = module.exports.signedIn;
+// let signedIn = module.exports.signedIn;
 
 router.get('/sign_in', (req, res) => {
     console.log(req.query)
@@ -15,7 +15,7 @@ router.get('/sign_in', (req, res) => {
 
 router.post('/sign_in', (req, res) => {
     console.log(req.body.email, req.body.psw);
-    signedIn = true;
+    module.exports.signedIn = true;
 
     // stays in the same page
     res.redirect(req.get('referer'));
@@ -25,7 +25,7 @@ router.post('/sign_in', (req, res) => {
 
 router.get('/sign_out', (req, res) => {
     // console.log(req.body);
-    signedIn = false;
+    module.exports.signedIn = false;
 
     // stays in the same page
     res.redirect('/');

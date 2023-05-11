@@ -57,7 +57,6 @@ router.get('/book_info',
 
 
     (req, res) => {
-        console.log(res.locals.book)
         res.render('book_info', {
             title: 'Book Info',
             book: res.locals.book,
