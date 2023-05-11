@@ -2,8 +2,6 @@
 
 
 // window.onload = () => {
-
-
 //     // let filters =  JSON.parse(filterString);
 //     let filters = {};
 //     createPages(2); pageSelector(); addFilterListeners(filters); addShowMore();
@@ -98,20 +96,25 @@ function placeBooks(data) {
 }
 
 async function fetchAllBooksByTitle(title, filters) {
+
+    // Fetch al books by title and filters (filters is not yet implemented)
     // I should add a middle layer getting first the title and isbn and then getting the rest of the data
     // include copies number ? 
     let link;
-    if (title & title != "") {
+    if (title) {
+        // if a title is given fetch books by close enough title 
         link = "/fetch_books/" + title;
     }
     else {
+        // else fetch all books 
         link = '/fetch_books_all'
     }
     // console.log(link);
+    // make a request to the server , get the data and return it
+
     return await fetch(link).then((res) => {
         return res.json();
     }).then((data) => {
-        // console.log(data);
         return data;
     }).catch(error => {
         console.log(error);
@@ -121,20 +124,15 @@ async function fetchAllBooksByTitle(title, filters) {
 
 
 async function placeAllBooksByTitle(title, filters) {
-
+    // place all the books by title and filters (filters is not yet implemented)
     let data = await fetchAllBooksByTitle(title, filters);
     placeBooks(data);
     return data;
 }
 
-
-
-function json2string(filters) {
-    return JSON.stringify(filters);
-}
-
-
 function checkSimilarities() {
+    // check if the search bar value is similar to any of the titles
+    // not implemented yet, got it off an internet 
     const objValues = Object.values(obj).map(value => value.toString());
 
     // Calculate string similarity scores
@@ -159,10 +157,12 @@ function checkSimilarities() {
 
 function reconfigureSearchBar(filters){
     // remove listeners from searchbar 
+    // and add the listener to get filters as well 
+    // Implemented , but doesn't work yet 
     let searchbar = document.getElementById('searchBarInput').addEventListener('keydown',(event)=>{
         if (event.key == "Enter") {
-            // console.log(event.target.value+json2string(filters))
-            window.location = `/search?search=${event.target.value}&filters=${json2string(filters)}`;
+            // console.log(event.target.value+JSON.stringify(filters))
+            window.location = `/search?search=${event.target.value}&filters=${JSON.stringify(filters)}`;
         }
     });
 

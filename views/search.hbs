@@ -7,6 +7,7 @@
 
     window.onload = () => {
         let filters ={} ;
+
         {{!-- console.log("{{stringFilters}}") --}}
         {{!-- for some reason I can't seem to be able to decode the stringFilters  --}}
         {{!-- console.log(decodeURIComponent("{{stringFilters}}")) --}}
@@ -18,21 +19,21 @@
             filters = {};
         } --}}
 
+        {{!-- get the value from the search bar rendered by the server --}}
         let searchBarValue = '{{searchBarValue}}'
 
 
 
         // let filters =  JSON.parse(filterString);
-        {{!-- createPages(2); pageSelector();  --}}
+        {{!-- Havent implemented the pages yet  --}}
+        createPages(2); pageSelector(); 
         
         addShowMore();
         addFilterListeners(filters); 
 
         placeAllBooksByTitle(searchBarValue,filters);
         
-
-        
-        reconfigureSearchBar(filters);
+        {{!-- reconfigureSearchBar(filters); --}}
     }
 </script>
 
