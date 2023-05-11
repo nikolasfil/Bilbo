@@ -12,6 +12,8 @@ let signedIn = module.exports.signedIn;
 
 router.get('/', (req, res) => {
 
+    
+
     let command = `Select isbn,title,cover_image as photo from BOOK limit 6`;
     let books = database.databaseAllCommand(command);
 

@@ -121,9 +121,10 @@ async function fetchAllBooksByTitle(title, filters) {
 
 
 async function placeAllBooksByTitle(title, filters) {
+
     let data = await fetchAllBooksByTitle(title, filters);
     placeBooks(data);
-
+    return data;
 }
 
 

@@ -12,21 +12,50 @@ router.get('/library_info/:id',
     }
 );
 
-router.get('/library_info', (req, res) => {
+router.get('/library_info', 
+    (req, res, next) => { 
+        if( req.query['id'] ) { 
+            next();
+        }
+        else {
+            res.redirect('/');
+        }
+    },
+    (req, res, next) => {
+        database.getLibraryById(req.query['id'], function (err, libraries) {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Internal Server Error')
+            }
+            else {
+                res.locals.libraries = libraries;
+            }
+        })
+        next();
+    },
 
-    let command = `Select * from LIBRARY where id=${req.query['id']}`;
+    (req, res, next) => {
+        database.getBooksFromLibrary(req.query['id'],6, function (err, books) {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Internal Server Error')
+            }
+            else {
+                res.locals.books = books;
+            }
+        })
+        next();
+    },
+        
 
-    let libraries = database.databaseCommand(command);
-
-    command = `Select b.isbn as isbn,b.title as title,b.cover_image as photo from BOOK as b join COPIES as c on c.book_isbn = b.isbn where c.library_id=${req.query['id']} limit 6`;
-    let books = database.databaseAllCommand(command);
+    (req, res) => {
 
     res.render('library_info', {
         title: 'Library Info',
         style: 'library_info.css',
         signedIn: signedIn,
-        library: libraries,
-        book: books,
+        library: res.locals.libraries,
+        book: res.locals.books,
     });
 });
 

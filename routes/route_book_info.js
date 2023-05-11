@@ -33,7 +33,7 @@ router.get('/book_info',
         }
     },
     (req, res, next) => {
-        database.getBookCopiesByIsbn(req.query['isbn'], (err, book) => {
+        database.getBookCopies(req.query['isbn'], null,(err, book) => {
             if (err) {
                 next(err);
             }

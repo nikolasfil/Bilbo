@@ -65,6 +65,18 @@ module.exports = {
         callback(null, libraries)
     },
 
+    getLibraryById: function (id, callback) {
+        const stmt = betterDb.prepare('SELECT id,name as title,address,profile_picture as photo FROM LIBRARY where id = ?')
+        let library;
+        try {
+            library = stmt.get(id)
+        }
+        catch (err) {
+            callback(err, null)
+        }
+        callback(null, library)
+    },
+
 
     getAllAttribute: function (attribute, callback) {
         let stmt;
@@ -211,5 +223,30 @@ module.exports = {
         callback(null, books)
     },
 
+    getBooksFromLibrary: function (libraryId, limit, callback) {
+        let stmt;
+        let books;
+
+        if (limit) {
+            stmt = betterDb.prepare('Select isbn,title,cover_image as photo,copy_num from BOOK join COPIES on book_isbn=isbn where library_id=? Limit ?')
+            try {
+                books = stmt.all(libraryId, limit)
+            }
+            catch (err) {
+                callback(err, null)
+            }
+        }
+        else {
+            stmt = betterDb.prepare('Select isbn,title,cover_image as photo,copy_num from BOOK join COPIES on book_isbn=isbn where library_id=? ')
+            try {
+                books = stmt.all(libraryId)
+            }
+            catch (err) {
+                callback(err, null)
+            }
+        }
+
+        callback(null, books)
+    },
 
 }

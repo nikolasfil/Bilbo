@@ -27,9 +27,11 @@
         
         addShowMore();
         addFilterListeners(filters); 
-        let data;
-        !async ()=>{ data= await fetchAllBooksByTitle(searchBarValue, filters)};
-        placeBooks(data);
+
+        placeAllBooksByTitle(searchBarValue,filters);
+        
+
+        
         reconfigureSearchBar(filters);
     }
 </script>
