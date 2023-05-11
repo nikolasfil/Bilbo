@@ -1,13 +1,14 @@
 const express = require('express');
 
 const router = express.Router();
-const helpers = require('../controllers/helpers.js');
 
 let signedIn = module.exports.signedIn;
 
 
 router.get('/user_profile', (req, res) => {
-    if (!signedIn) {
+    // if (!signedIn) {
+
+    if (req.session.mySessionName ==undefined){
         res.redirect('/');
     }
 

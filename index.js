@@ -1,18 +1,26 @@
 const express = require('express');
 const app = express();
-const port = 8080;
+const session = require('express-session');
+
 const expbs = require('express-handlebars');
 const path = require('path');
 const sqlite3 = require('sqlite3').verbose();
 // import * as model from './model/index.mjs'
 // const model = require('./model/index.js');
 
+const port = process.env.port || 8080;
+
+
+
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 
+
+
 let signedIn = false;
-module.exports = {signedIn };   
+module.exports = { signedIn };
 
 // handles the routes
 const routes = require('./routes/handlers');
@@ -28,6 +36,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/model', express.static(`${__dirname}/model/`));
 app.use('/controllers', express.static(`${__dirname}/controllers/`));
 
+
+app.use(session({
+    secret: process.env.secret || "secret",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        httpOnly: true,
+        sameSite: true,
+        maxAge: 60000
+    },
+}))
+
 // helpers
 const hbs = expbs.create({
     defaultLayout: 'main',
@@ -39,7 +59,7 @@ const hbs = expbs.create({
     helpers: require('./controllers/helpers.js'),
 
 
-    
+
 });
 
 
@@ -48,12 +68,14 @@ app.engine('.hbs', hbs.engine);
 app.set('view engine', '.hbs');
 
 
+
 app.use(require('./routes/route_about.js'));
 app.use(require('./routes/route_book_info.js'));
 app.use(require('./routes/route_library_info.js'));
 app.use(require('./routes/route_homepage.js'));
 app.use(require('./routes/route_search.js'));
 app.use(require('./routes/route_sign.js'));
+app.use(require('./routes/route_user_profile'))
 // app.use(require('./routes/route_status.js'));
 
 
