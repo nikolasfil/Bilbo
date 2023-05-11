@@ -1,8 +1,3 @@
-.about-us-general{
-  display: flex;
-  flex-direction: row;
-}
-
 .who-we-are-css {
   margin-left: 6.625vw;
   margin-right: 8.375vw;
@@ -34,8 +29,7 @@
 }
 
 .about-background {
-  width: 38.84vw;
-  height: 39.2vw;
+  width: 12vw;
   align-self: center;
   /* overflow: hidden; */
 /* background: linear-gradient(180.08deg, #E08AB1 -102.48%, #6A1B4A 95.37%); */
