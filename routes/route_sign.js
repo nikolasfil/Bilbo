@@ -34,13 +34,15 @@ router.post('/sign_in',
         database.checkUser(req.body.email, req.body.psw, (err, result) => {
             if (err) {
                 console.log(err);
-                req.flash('error Internal Server Error');
+                // req.flash('error Internal Server Error');
                 res.status(500).send('Internal Server Error');
 
             }
             else {
                 if (result) {
                     req.session.signedIn = true;
+                    // res. get to req referer
+                    res.redirect(req.get('referer'));
                 }
                 else {
                     console.log(err);
