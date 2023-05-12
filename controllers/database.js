@@ -117,6 +117,43 @@ module.exports = {
         callback(null, attributeList);
     },
 
+    getAllAttribute: function (attribute, callback) {
+        let stmt;
+
+        switch (attribute) {
+            case 'genre':
+                stmt = betterDb.prepare('SELECT distinct genre as name FROM BOOK where genre IS not NUll order by name');
+                break;
+            case 'publisher':
+                stmt = betterDb.prepare('SELECT distinct publisher as name FROM BOOK where publisher IS not NUll order by name');
+                break;
+            case 'author':
+                stmt = betterDb.prepare('SELECT distinct author as name FROM BOOK where author IS not NUll order by name');
+                break;
+            case 'edition':
+                stmt = betterDb.prepare('SELECT distinct edition as name FROM BOOK where edition IS not NUll order by name');
+                break;
+            case 'language':
+                stmt = betterDb.prepare('SELECT distinct language as name FROM BOOK where language IS not NUll order by name');
+                break;
+            case 'library':
+                stmt = betterDb.prepare('SELECT distinct name FROM LIBRARY order by name');
+                break;
+            default:
+                callback('Invalid Attribute', null);
+                break;
+        }
+
+        let attributeList;
+        try {
+            attributeList = stmt.all()
+        }
+        catch (err) {
+            callback(err, null)
+        }
+        callback(null, attributeList);
+    },
+
     getBookByIsbnOrTitleLike: function (isbn, title, callback) {
         let stmt;
         let books;

@@ -6,17 +6,11 @@
 
 9: handle close enough matches, there is a dynamic search or sth in the docs input_autocomplete
 
-10: cookies and security (more along the lessons tho ) 
-
 12: setup docker image 
 
 13: Map pins hover pop-up name of library and click to go that profile . 
 This is after I can send backend data to client js 
 19: fix the map coordinates to be more accurate!!! 
-
-16: fix margings to be dynamic based on vw | especially in library_info
-17: fix size of cards 
-
 
 UNRESOLVED: καπου τρωει σκαλωμα και πηγαινει για αρχικη σελιδα στην about !!!
 
@@ -29,7 +23,6 @@ UNRESOLVED: καπου τρωει σκαλωμα και πηγαινει για 
 25: border radius library photo profike 
 
 26: handle similar searches, send filters back and forth from backend to client js and divide the books to be in the correct pages 
-
 
 27: How to handle search 
 First fetch all the titles and isbn (maybe summary too ) 
