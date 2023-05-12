@@ -42,6 +42,18 @@ spanSignUp.onclick = function () {
   modalSignUp.style.display = "none";
 }
 
+// assign pressing the key esc to close the modalSignIn
+document.onkeydown = function (evt) {
+  evt = evt || window.event;
+  if (evt.key == "Escape") {
+      modalSignIn.style.display = "none";
+  
+    modalSignUp.style.display = "none";
+  }
+};
+
+
+
 forgot.onclick = function () {
   alert('Not implemented yet');
 }
