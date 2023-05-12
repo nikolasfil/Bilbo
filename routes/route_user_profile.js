@@ -17,7 +17,7 @@ router.get('/user_profile', (req, res) => {
             // to be changed later ? 
             title: 'User Profile',
             style: 'user_profile.css',
-            signedIn: signedIn
+            signedIn: req.session.signedIn
         });
     }
 });

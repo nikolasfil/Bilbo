@@ -62,7 +62,7 @@ router.get('/book_info',
             book: res.locals.book,
             style: 'book_info.css',
             library: res.locals.libraries,
-            signedIn: signedIn
+            signedIn: req.session.signedIn
         });
 
     });

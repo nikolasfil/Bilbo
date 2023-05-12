@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
     res.render('homepage', {
         style: 'index.css',
         title: 'Home',
-        signedIn: signedIn,
+        signedIn: req.session.signedIn,
         booklist: books,
         library: libraries
 
@@ -44,7 +44,7 @@ router.get('/user_profile', (req, res) => {
         // to be changed later ? 
         title: 'User Profile',
         style: 'user_profile.css',
-        signedIn: signedIn
+        signedIn: req.session.signedIn
     });
 });
 
@@ -68,7 +68,7 @@ router.get('/library_info', (req, res) => {
     res.render('library_info', {
         title: 'Library Info',
         style: 'library_info.css',
-        signedIn: signedIn,
+        signedIn: req.session.signedIn,
         library: libraries,
         book: books,
     });
@@ -110,7 +110,7 @@ router.get('/book_info',
             style: 'book_info.css',
             library: lib,
             libs: libraries,
-            signedIn: signedIn
+            signedIn: req.session.signedIn
         });
 
 
@@ -168,7 +168,7 @@ router.get('/search', (req, res) => {
         library: libraryList,
         edition: editionList,
 
-        signedIn: signedIn,
+        signedIn: req.session.signedIn,
         book: bookList
     });
 });
@@ -178,7 +178,7 @@ router.get('/about', (req, res) => {
     res.render('about', {
         title: 'About us',
         style: 'about.css',
-        signedIn: signedIn
+        signedIn: req.session.signedIn
     });
 });
 

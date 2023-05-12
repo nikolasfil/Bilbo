@@ -8,7 +8,7 @@ router.get('/about', (req, res) => {
     res.render('about', {
         title: 'About us',
         style: 'about.css',
-        signedIn: signedIn
+        signedIn: req.session.signedIn
     });
 });
 

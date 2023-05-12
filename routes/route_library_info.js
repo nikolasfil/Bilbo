@@ -52,7 +52,7 @@ router.get('/library_info',
     res.render('library_info', {
         title: 'Library Info',
         style: 'library_info.css',
-        signedIn: signedIn,
+        signedIn: req.session.signedIn,
         library: res.locals.libraries,
         book: res.locals.books,
     });

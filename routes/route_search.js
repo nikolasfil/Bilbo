@@ -4,7 +4,6 @@ const router = express.Router();
 
 const database = require('../controllers/database.js');
 
-let signedIn = module.exports.signedIn;
 
 
 router.get('/fetch_books_all', (req, res) => {
@@ -188,7 +187,7 @@ router.get('/search',
 
             language: res.locals.languageList,
 
-            signedIn: signedIn,
+            signedIn: req.session.signedIn,
             searchBarValue: req.query.search,
             book: res.locals.books,
             stringFilters: res.locals.filters,
