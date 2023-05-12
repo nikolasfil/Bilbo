@@ -39,15 +39,9 @@ router.post('/sign_in',
 
             }
             else {
-                if (result) {
-                    req.session.signedIn = true;
-                    // res. get to req referer
-                    res.redirect(req.get('referer'));
-                }
-                else {
-                    console.log(err);
-                    res.redirect('/')
-                }
+                req.session.signedIn = true;
+                // res. get to req referer
+                res.redirect(req.get('referer'));
             }
         });
     }
@@ -65,7 +59,6 @@ router.get('/sign_out', (req, res) => {
             console.log("session destroyed")
         })
     }
-    module.exports.signedIn = false;
     // make a pop up that displayes the text logedout
     // stays in the same page
     res.redirect('/');
