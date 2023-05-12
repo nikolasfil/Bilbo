@@ -4,6 +4,8 @@
     align-items: center;
     grid-auto-rows: 60px;
     justify-content: space-between;
+    justify-items: stretch;
+    border-collapse: collapse;
 }
 
 .headerLogo{
@@ -14,7 +16,8 @@
 .headerSearch{
     grid-area: center;
     width: fit-content;
-    justify-self: center;
+    justify-self: strech;
+    place-self: center stretch;
 }
 
 .headerSignIn{
