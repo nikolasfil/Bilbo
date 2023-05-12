@@ -2,9 +2,6 @@ const express = require('express');
 
 const router = express.Router();
 
-let signedIn = module.exports.signedIn;
-
-
 router.get('/user_profile', (req, res) => {
     // if (!signedIn) {
 

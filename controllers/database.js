@@ -1,5 +1,5 @@
 const sql = require('better-sqlite3')
-const betterDb = new sql('model/data.db')
+const betterDb = new sql('model/bilboData.sqlite')
 
 const bcrypt = require('bcrypt');
 
@@ -324,7 +324,7 @@ module.exports = {
             if (user) {
                 const match = bcrypt.compareSync(password, user.password);
                 if (match) {
-                    
+
                     // console.log(bcrypt.compare(user.password,password))
                     callback(null, user)
                 }
@@ -338,7 +338,22 @@ module.exports = {
         }
 
 
-    }
+    },
+
+    addUser: function (user, callback) {
+        const stmt = betterDb.prepare('Insert into USER (name,email,password,phone,profile_picture) values (?,?,?,?,?)')
+        
+        try {
+            stmtId.get()
+            stmt.run(user.name, user.email, user.password, user.phone)
+        }
+        catch (err) {
+            callback(err, null)
+        }
+        callback(null, 'User Added')
+    },
+
+
 
 
 }

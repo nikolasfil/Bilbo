@@ -33,5 +33,5 @@ cd to the model folder and run the following command to create the database
 python database_managment.py
 ```
 
-It will look for two things, if a data.db exists , it will create it if it doesnt, and a bookdata folder, which if it does not exist it will automatically create it and download the books from the internet.
+It will look for two things, if a bilboData.sqlite exists , it will create it if it doesnt, and a bookdata folder, which if it does not exist it will automatically create it and download the books from the internet.
 

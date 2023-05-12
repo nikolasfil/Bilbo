@@ -37,7 +37,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app use model 
 app.use('/model', express.static(`${__dirname}/model/`));
 app.use('/controllers', express.static(`${__dirname}/controllers/`));
-app.use(flash());
 
 app.use(session({
     secret: process.env.secret || "secret",
@@ -49,6 +48,9 @@ app.use(session({
         maxAge: 60000
     },
 }))
+
+app.use(flash());
+
 
 // helpers
 const hbs = expbs.create({

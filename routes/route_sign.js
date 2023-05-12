@@ -13,7 +13,6 @@ const flash = require('connect-flash');
 
 router.get('/sign_in', (req, res) => {
     console.log(req.query)
-
     // stays in the same page 
     res.redirect(req.get('referer'));
 });
@@ -34,13 +33,49 @@ router.post('/sign_in',
         database.checkUser(req.body.email, req.body.psw, (err, result) => {
             if (err) {
                 console.log(err);
-                res.flash('error Internal Server Error');
-                res.status(500).send('Internal Server Error');
-
+                // res.status(500).send('Internal Server Error');
+                res.redirect(req.get('referer'));
             }
             else {
                 req.session.signedIn = true;
                 // res. get to req referer
+                res.redirect(req.get('referer'));
+            }
+        });
+    }
+);
+
+router.post('/sign_up',
+
+    (req, res, next) => {
+        if (req.session.mySessionName == undefined) {
+            req.session.mySessionName = 'sess';
+            console.log("session created");
+        }
+        next();
+
+    }, (req, res,next) => {
+        database.checkIfUserExists(req.body.email, (err, result) => {
+            if (err) {
+                console.log(err);
+                // email already exists
+                res.redirect(req.get('referer'));
+            }
+            else {
+                next();
+            }
+        
+        });
+
+    }, (req, res) => {
+        database.addUser(req.body.email, req.body.psw, (err, result) => {
+            if (err) {
+                console.log(err);
+                // res.status(500).send('Internal Server Error');
+                res.redirect(req.get('referer'));
+            }
+            else {
+                req.session.signedIn = true;
                 res.redirect(req.get('referer'));
             }
         });
