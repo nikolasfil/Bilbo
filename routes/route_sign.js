@@ -6,6 +6,9 @@ const database = require('../controllers/database.js');
 
 const bcrypt = require('bcrypt');
 
+const flash = require('connect-flash');
+
+
 // let signedIn = module.exports.signedIn;
 
 router.get('/sign_in', (req, res) => {
@@ -19,24 +22,25 @@ router.get('/sign_in', (req, res) => {
 router.post('/sign_in',
     (req, res, next) => {
         if (req.session.mySessionName == undefined) {
-            req.session.mySessionName = req.body.email;
+            req.session.mySessionName = 'sess';
             console.log("session created");
         }
-        else {
-            console.log("session already exists");
-        }
+        // else {
+        //     console.log("session already exists");
+        // }
         // res.redirect('/user_profile');
         next();
     }, (req, res) => {
         database.checkUser(req.body.email, req.body.psw, (err, result) => {
             if (err) {
                 console.log(err);
+                req.flash('error Internal Server Error');
                 res.status(500).send('Internal Server Error');
+
             }
             else {
                 if (result) {
                     req.session.signedIn = true;
-                    res.redirect('/user_profile');
                 }
                 else {
                     console.log(err);

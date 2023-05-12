@@ -117,22 +117,22 @@ module.exports = {
         callback(null, attributeList);
     },
 
-    getBookByIsbnOrTitleLike: function (isbn,title, callback) {
-        let stmt ;
+    getBookByIsbnOrTitleLike: function (isbn, title, callback) {
+        let stmt;
         let books;
 
-        if(isbn && title){
+        if (isbn && title) {
             stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,cover_image as photo FROM BOOK where isbn = ? or title like ?')
             try {
-                books = stmt.all(isbn,`%${title}%`)
+                books = stmt.all(isbn, `%${title}%`)
             }
             catch (err) {
                 callback(err, null)
             }
         }
-        else if(isbn){
+        else if (isbn) {
 
-        
+
             stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,cover_image as photo FROM BOOK where isbn = ?')
             try {
                 books = stmt.all(isbn)
@@ -140,9 +140,9 @@ module.exports = {
             catch (err) {
                 callback(err, null)
             }
-            
+
         }
-        else if(title){
+        else if (title) {
             stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,cover_image as photo FROM BOOK where title like ?')
             try {
                 books = stmt.all(`%${title}%`)
@@ -264,7 +264,7 @@ module.exports = {
         callback(null, user)
     },
 
-    checkIfUserExists: function(email,callback){
+    checkIfUserExists: function (email, callback) {
         const stmt = betterDb.prepare('Select * from USER where email = ? ')
         let user;
         try {
@@ -276,19 +276,21 @@ module.exports = {
         callback(null, user)
     },
 
-    checkUser: function(email, password, callback) {
+    checkUser: function (email, password, callback) {
         const stmt = betterDb.prepare('Select * from USER where email = ?')
-        
+
         let user;
 
         try {
-            
+
             user = stmt.get(email)
-            if(bcrypt.hashSync(user.password,user.salt)==bcrypt.hashSync(password,user.salt)){
-                callback(null, user)
-            }
-            else {
-                callback('Wrong Password',null)
+            if (user) {
+                if (bcrypt.compare(user.password,password)) {
+                    callback(null, user)
+                }
+                else {
+                    callback('Wrong Password', null)
+                }
             }
         }
         catch (err) {

@@ -5,6 +5,8 @@ const session = require('express-session');
 const expbs = require('express-handlebars');
 const path = require('path');
 const sqlite3 = require('sqlite3').verbose();
+const flash = require('connect-flash');
+
 // import * as model from './model/index.mjs'
 // const model = require('./model/index.js');
 
@@ -35,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app use model 
 app.use('/model', express.static(`${__dirname}/model/`));
 app.use('/controllers', express.static(`${__dirname}/controllers/`));
-
+app.use(flash());
 
 app.use(session({
     secret: process.env.secret || "secret",
