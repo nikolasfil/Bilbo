@@ -11,11 +11,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 
-let signedIn = false;
+let signedIn = true;
 module.exports = {signedIn };   
 
 // handles the routes
-const routes = require('./routes/handlers');
+// const routes = require('./routes/handlers');
 
 
 
@@ -54,6 +54,7 @@ app.use(require('./routes/route_library_info.js'));
 app.use(require('./routes/route_homepage.js'));
 app.use(require('./routes/route_search.js'));
 app.use(require('./routes/route_sign.js'));
+app.use(require('./routes/route_user_profile.js'));
 // app.use(require('./routes/route_status.js'));
 
 
