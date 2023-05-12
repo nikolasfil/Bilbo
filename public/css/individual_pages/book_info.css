@@ -7,6 +7,14 @@
     margin: 5%; 
 }
 
+#book-title-summary{
+    min-width:250px;
+}
+
+.resLibraries{
+    min-width: 300px;
+}
+
 
 @media (max-width: 500px) and (orientation: portrait) {
     .book-img {
