@@ -2,7 +2,7 @@
   /* height: 336px; */
   height: 440px;
   width: 828px;
-  margin: 30px 206px 50px 82px;
+  margin: 2%;
 }
 
 #basicMap:hover {
@@ -11,9 +11,9 @@
   /* position: absolute; */
 }
 
-.map-div {
+/* .map-div {
   margin: 50px;
-}
+} */
 
 .map-hours {
   margin-left: 206px;
@@ -22,5 +22,6 @@
 
 .map {
   height: 400px;
-  width: 40vw;
+  width: 100%;
+  min-width: 200px;
 }
