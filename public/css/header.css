@@ -1,8 +1,15 @@
 .header{
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: space-between;
 }
+
+
+.headerSearch{
+    display: flex;
+    justify-self: center;
+}
+
 
 @media (max-width: 700px) and (orientation: portrait) {
     .header{
@@ -10,8 +17,8 @@
         grid-template-areas: "left" "center" "right";
         align-items: center;
         grid-auto-rows: 60px;
-        justify-content: space-around;
-        justify-items: stretch;
+        justify-content: space-between;
+        justify-items: center;
         border-collapse: collapse;
     }
     .headerLogo{
@@ -21,13 +28,36 @@
     
     .headerSearch{
         grid-area: right;
-        width: fit-content;
-        justify-self: strech;
-        place-self: center stretch;
+        justify-self: center;
     }
     
     .headerSignIn{
         grid-area: center;
+        justify-self: center;
+    }
+}
+
+@media (max-width: 1000px) and (orientation: landscape) {
+    .header{
+        display: grid;
+        grid-template-areas: "left right" "center center";
+        align-items: center;
+        grid-auto-rows: 60px;
+        justify-content: space-around;
+    }
+    .headerLogo{
+        grid-area: left;
+        justify-self: center;
+    }
+    
+    .headerSearch{
+        grid-area: center;
+        justify-self: center;
+        width: 100%;
+    }
+    
+    .headerSignIn{
+        grid-area: right;
         justify-self: center;
     }
 }
