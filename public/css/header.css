@@ -1,43 +1,33 @@
 .header{
-    display: grid;
-    grid-template-areas: "left center right";
+    display: flex;
     align-items: center;
-    grid-auto-rows: 60px;
-    justify-content: space-between;
-    justify-items: stretch;
-    border-collapse: collapse;
-}
-
-.headerLogo{
-    grid-area: left;
-    justify-self: center;
-}
-
-.headerSearch{
-    grid-area: center;
-    width: fit-content;
-    justify-self: strech;
-    place-self: center stretch;
-}
-
-.headerSignIn{
-    grid-area: right;
-    justify-self: center;
+    justify-content: start;
 }
 
 @media (max-width: 700px) and (orientation: portrait) {
     .header{
+        display: grid;
         grid-template-areas: "left" "center" "right";
+        align-items: center;
+        grid-auto-rows: 60px;
+        justify-content: space-around;
+        justify-items: stretch;
+        border-collapse: collapse;
     }
     .headerLogo{
         grid-area: left;
+        justify-self: center;
     }
     
     .headerSearch{
         grid-area: right;
+        width: fit-content;
+        justify-self: strech;
+        place-self: center stretch;
     }
     
     .headerSignIn{
         grid-area: center;
+        justify-self: center;
     }
 }
