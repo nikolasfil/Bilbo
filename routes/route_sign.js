@@ -34,7 +34,7 @@ router.post('/sign_in',
         database.checkUser(req.body.email, req.body.psw, (err, result) => {
             if (err) {
                 console.log(err);
-                // req.flash('error Internal Server Error');
+                res.flash('error Internal Server Error');
                 res.status(500).send('Internal Server Error');
 
             }
@@ -51,10 +51,8 @@ router.post('/sign_in',
 
 router.get('/sign_out', (req, res) => {
     // console.log(req.body);
-    if (req.session.mySessionName == undefined) {
-        res.redirect('/')
-    }
-    else {
+    if (req.session.mySessionName != undefined) {
+
         req.session.destroy((err) => {
             console.log("session destroyed")
         })

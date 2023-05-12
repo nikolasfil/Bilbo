@@ -35,3 +35,6 @@ sarch bar , we have a parameter
 
 
 28: if We really want to improve the search, make a search divided by commas and each attribute genre: ? 
+
+
+29: controllers in different routes ! 
