@@ -42,12 +42,6 @@ router.post('/sign_in',
 router.post('/sign_up',
 
     (req, res, next) => {
-        if (req.session.mySessionName == undefined) {
-            console.log("Session is undefined");
-        }
-        next();
-
-    }, (req, res,next) => {
         database.checkIfUserExists(req.body.email, (err, result) => {
             if (err) {
                 console.log(err);
@@ -57,7 +51,7 @@ router.post('/sign_up',
             else {
                 next();
             }
-        
+
         });
 
     }, (req, res) => {
@@ -85,6 +79,7 @@ router.get('/sign_out', (req, res) => {
     })
     // make a pop up that displayes the text logedout
     // stays in the same page
+    
     res.redirect('/');
 });
 
@@ -92,9 +87,9 @@ router.get('/sign_out', (req, res) => {
 router.get("/session", (req, res) => {
     const name = req.session.mySessionName;
     console.log(req.sessionID);
-    if (name == undefined) {
-        res.redirect('/');
-    }
+    // if (name == undefined) {
+    //     res.redirect('/');
+    // }
     res.send(`${name}:${req.sessionID}`)
 })
 

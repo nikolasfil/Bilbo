@@ -1,15 +1,10 @@
 const express = require('express');
+const login = require('../controllers/login.js')
 
 const router = express.Router();
 
-router.get('/user_profile', (req, res) => {
-    // if (!signedIn) {
+router.get('/user_profile',login.checkAuthentication, (req, res) => {
 
-    // if (req.session.mySessionName ==undefined){
-    //     res.redirect('/');
-    // }
-
-    if (req.session.signedIn){
         res.render('user_profile', {
             // to be changed later ? 
             title: 'User Profile',
@@ -17,10 +12,7 @@ router.get('/user_profile', (req, res) => {
             signedIn: req.session.signedIn
         });
     }
-    else {
-        res.redirect('/')
-    }
-});
+);
 
 
 module.exports = router;
