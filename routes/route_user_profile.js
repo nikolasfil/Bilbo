@@ -17,6 +17,9 @@ router.get('/user_profile', (req, res) => {
             signedIn: req.session.signedIn
         });
     }
+    else {
+        res.redirect('/')
+    }
 });
 
 

@@ -79,12 +79,10 @@ router.post('/sign_up',
 
 router.get('/sign_out', (req, res) => {
     // console.log(req.body);
-    if (req.session.mySessionName != undefined) {
 
-        req.session.destroy((err) => {
-            console.log("session destroyed")
-        })
-    }
+    req.session.destroy((err) => {
+        console.log("session destroyed")
+    })
     // make a pop up that displayes the text logedout
     // stays in the same page
     res.redirect('/');
