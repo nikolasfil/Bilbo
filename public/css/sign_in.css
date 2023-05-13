@@ -97,9 +97,9 @@
 
 /* Full-width input fields */
 .form-container input[type="email"],
-.form-container input[type="password"] ,
+.form-container input[type="password"],
 .form-container input[type="date"],
-.form-container input[type="text"]  {
+.form-container input[type="text"] {
   width: 100%;
   height: 69px;
 
@@ -107,7 +107,7 @@
   border-radius: 12px;
   border: none;
   padding: 4%;
-  margin: 1% 0% 2% 0% ;
+  margin: 1% 0% 2% 0%;
 }
 
 /* When the inputs get focus, do something */

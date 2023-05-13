@@ -46,23 +46,25 @@ router.post('/sign_up',
             if (err) {
                 console.log(err);
                 // email already exists
+
                 res.redirect(req.get('referer'));
             }
             else {
+                req.body.salt = result.salt;
                 next();
             }
 
         });
 
     }, (req, res) => {
-        database.addUser(req.body.email, req.body.psw, (err, result) => {
+        database.addUser(req.body, (err, result) => {
             if (err) {
                 console.log(err);
                 // res.status(500).send('Internal Server Error');
                 res.redirect(req.get('referer'));
             }
             else {
-                req.session.signedIn = true;
+                res.session.signedIn = true;
                 res.redirect(req.get('referer'));
             }
         });

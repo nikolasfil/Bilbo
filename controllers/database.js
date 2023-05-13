@@ -341,10 +341,14 @@ module.exports = {
     },
 
     addUser: function (user, callback) {
-        const stmt = betterDb.prepare('Insert into USER (name,email,password,phone,profile_picture) values (?,?,?,?,?)')
+        // .email, req.body.fname,req.body.lname,req.body.birthdate ,req.body.psw
+        const stmt = betterDb.prepare('Insert into USER (fname,lname,email,birthdate,password) values (?,?,?,?,?)')
+        // const stmt = betterDb.prepare('Insert into USER (fname,lname,email,birthdate,salt,password) values (?,?,?,?,?,?)')
         
         try {
-            stmt.run(user.name, user.email, user.password, user.phone)
+            stmt.run(user.fname,user.lname,user.email,user.birthdate ,user.salt,user.psw)
+            
+            // stmt.run(user.fname,user.lname,user.email,user.birthdate ,user.salt,user.psw)
         }
         catch (err) {
             callback(err, null)
