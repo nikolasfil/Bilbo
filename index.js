@@ -5,10 +5,13 @@ const session = require('express-session');
 const expbs = require('express-handlebars');
 const path = require('path');
 const sqlite3 = require('sqlite3').verbose();
-const flash = require('connect-flash');
+const cookieParser = require('cookie-parser');
+const sqliteStore = require('connect-sqlite3')(session) //store for session
+
 
 // import * as model from './model/index.mjs'
 // const model = require('./model/index.js');
+
 
 const port = process.env.port || 8080;
 
@@ -17,12 +20,8 @@ const port = process.env.port || 8080;
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cookieParser());
 
-
-
-
-let signedIn = false;
-module.exports = { signedIn };
 
 // handles the routes
 const routes = require('./routes/handlers');
@@ -47,9 +46,8 @@ app.use(session({
         sameSite: true,
         maxAge: 60000
     },
+    store: new sqliteStore({db: 'session.sqlite',dir: './model/sessions'})
 }))
-
-app.use(flash());
 
 
 // helpers

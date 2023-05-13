@@ -6,8 +6,6 @@ const database = require('../controllers/database.js');
 
 const bcrypt = require('bcrypt');
 
-const flash = require('connect-flash');
-
 
 // let signedIn = module.exports.signedIn;
 
@@ -20,10 +18,6 @@ router.get('/sign_in', (req, res) => {
 
 router.post('/sign_in',
     (req, res, next) => {
-        if (req.session.mySessionName == undefined) {
-            req.session.mySessionName = 'sess';
-            console.log("session created");
-        }
         // else {
         //     console.log("session already exists");
         // }
@@ -49,8 +43,7 @@ router.post('/sign_up',
 
     (req, res, next) => {
         if (req.session.mySessionName == undefined) {
-            req.session.mySessionName = 'sess';
-            console.log("session created");
+            console.log("Session is undefined");
         }
         next();
 

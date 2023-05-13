@@ -5,9 +5,9 @@ const router = express.Router();
 router.get('/user_profile', (req, res) => {
     // if (!signedIn) {
 
-    if (req.session.mySessionName ==undefined){
-        res.redirect('/');
-    }
+    // if (req.session.mySessionName ==undefined){
+    //     res.redirect('/');
+    // }
 
     if (req.session.signedIn){
         res.render('user_profile', {
