@@ -7,12 +7,13 @@
 
     window.onload = () => {
 
-        {{!-- window.gFilters = {}; --}}
+        window.gFilters = {};
 
-        module.exports.filters = {}
+        {{!-- module.exports.filters = {} --}}
 
         let searchBarValue = '{{searchBarValue}}'
-        
+
+        {{!-- module.exports.searchBarValue = searchBarValue; --}}
 
 
         // let filters =  JSON.parse(filterString);
@@ -20,9 +21,11 @@
 
         addShowMore();
         addFilterListeners(window.gFilters);
+        {{!-- addFilterListeners(module.exports.filters); --}}
 
-        module.exports.data = placeAllBooksByTitle(searchBarValue, window.gFilters);
 
+        data = placeAllBooksByTitle(searchBarValue, window.gFilters);
+        
     }
 </script>
 
