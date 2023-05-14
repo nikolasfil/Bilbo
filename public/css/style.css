@@ -30,7 +30,7 @@
 }
 
 .pageborder {
-  padding: 1% 8% 1.5% 8%;
+  padding: 1% 5% 1.5% 5%;
 }
 
 .background {
@@ -51,4 +51,16 @@ h3 {
 
 .rounded-corners {
   border-radius: 10px 10px 0px 0px;
+}
+
+@media (min-width: 400px) and (max-width: 550px) and (orientation: portrait) {
+  .scale{
+      transform: scale(0.8);
+  }
+}
+
+@media (max-width: 400px) and (orientation: portrait) {
+  .scale{
+      transform: scale(0.7);
+  }
 }

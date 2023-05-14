@@ -197,15 +197,3 @@ flex-wrap: wrap;
     border: none;
 }
 
-
-@media (min-width: 400px) and (max-width: 550px) and (orientation: portrait) {
-    .scale{
-        transform: scale(0.8);
-    }
-}
-
-@media (max-width: 400px) and (orientation: portrait) {
-    .scale{
-        transform: scale(0.7);
-    }
-}

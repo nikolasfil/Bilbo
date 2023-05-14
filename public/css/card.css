@@ -53,3 +53,31 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+@media (max-width: 510px) {
+  .card-img-top{
+    width: 150px;
+  }
+  .card-div{
+    width: 150px;
+  }
+  
+  .card-img-class {
+    height: 150px;
+    width:100%;
+  }
+}
+
+@media (max-width: 1000px) and (orientation: landscape){
+  .card-img-top{
+    width: 180px;
+  }
+  .card-div{
+    width: 180px;
+  }
+  
+  .card-img-class {
+    height: 180px;
+    width:100%;
+  }
+}
