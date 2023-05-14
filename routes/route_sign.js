@@ -7,7 +7,7 @@ const database = require('../controllers/database.js');
 const bcrypt = require('bcrypt');
 
 
-// let signedIn = module.exports.signedIn;
+// 
 
 router.get('/sign_in', (req, res) => {
     console.log(req.query)
@@ -50,7 +50,7 @@ router.post('/sign_up',
                 res.redirect(req.get('referer'));
             }
             else {
-                req.body.salt = result.salt;
+                // req.body.salt = result.salt;
                 next();
             }
 

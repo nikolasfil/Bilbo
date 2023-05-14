@@ -346,7 +346,7 @@ module.exports = {
         // const stmt = betterDb.prepare('Insert into USER (fname,lname,email,birthdate,salt,password) values (?,?,?,?,?,?)')
         
         try {
-            stmt.run(user.fname,user.lname,user.email,user.birthdate ,user.salt,user.psw)
+            stmt.run(user.fname,user.lname,user.email,user.birthdate ,user.psw)
             
             // stmt.run(user.fname,user.lname,user.email,user.birthdate ,user.salt,user.psw)
         }

@@ -6,7 +6,7 @@ const router = express.Router();
 // use controllers/helpers.js
 const helpers = require('../controllers/helpers.js');
 
-let signedIn = module.exports.signedIn;
+
 
 
 

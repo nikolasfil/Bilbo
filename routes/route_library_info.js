@@ -4,7 +4,7 @@ const router = express.Router();
 const helpers = require('../controllers/helpers.js');
 const database = require('../controllers/database.js');
 
-let signedIn = module.exports.signedIn;
+
 
 router.get('/library_info/:id',
     (req, res) => {

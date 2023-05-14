@@ -2,7 +2,6 @@ const express = require('express');
 
 const router = express.Router();
 
-let signedIn = module.exports.signedIn;
 
 router.get('/about', (req, res) => {
     res.render('about', {

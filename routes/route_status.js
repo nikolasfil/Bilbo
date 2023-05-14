@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-let signedIn = module.exports.signedIn;
+
 
 // it was causing problems so I disabled it from index.js 
 

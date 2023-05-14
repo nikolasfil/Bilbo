@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const database = require('../controllers/database.js');
 
-let signedIn = module.exports.signedIn;
+
 
 router.get('/book_info/:isbn',
     (req, res, next) => {

@@ -41,3 +41,9 @@ sarch bar , we have a parameter
 
 30: autoincrement id 
 
+
+Notes: 
+
+make a fetch request to the server to update the session filters 
+So that it can bring them up everytime you go to the seach page ?
+Maybe nullify it when you from any search bar to the search page, but show them everytime you refresh by using a fetch 

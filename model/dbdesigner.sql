@@ -52,14 +52,13 @@ CREATE TABLE IF NOT EXISTS COPIES (
 );
 
 CREATE TABLE IF NOT EXISTS USER (
-	id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ,
+	id INTEGER PRIMARY KEY AUTOINCREMENT ,
 	fname varchar(255) NOT NULL,
 	lname varchar(255) NOT NULL,
 	email varchar(255) NOT NULL,
 	birthdate datetime NOT NULL,
 	password varchar(255) NOT NULL,
-	salt varchar(255) NOT NULL,
-	profile_picture binary NOT NULL
+	salt varchar(255) 
 );
 
 CREATE TABLE IF NOT EXISTS Borrowing (

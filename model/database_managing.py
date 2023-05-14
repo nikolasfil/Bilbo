@@ -131,10 +131,10 @@ class Creation:
             self.insert_data('COPIES', (book['isbn'], copy_num, library_id))
 
         self.insert_data('USER', ('1', 'Nick', 'Fil','test@test.gr' ,'01/01/2001', self.hashing_password(
-            'password'), self.binary_to_string(self.salt), 'img/nikolas_profile.png'))
+            'password'), self.binary_to_string(self.salt)))
 
         self.insert_data('USER', ('2', 'Konstantinos', 'Kotorenis','kostas@test.gr', '30/2/1960', self.hashing_password(
-            'password'), self.binary_to_string(self.salt), 'img/kotorenis_profile.png'))
+            'password'), self.binary_to_string(self.salt)))
 
         self.insert_data('Borrowing', ('book_isbn', 'copy_num',
                          'library_id', 'user_id', 'date_borrowing', 'date_return'))
