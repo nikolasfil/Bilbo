@@ -44,3 +44,21 @@
   cursor: pointer;
 }
 
+.navbar-collapse {
+  display: none;
+  width: 100%;
+    justify-content: center;
+}
+.navbar-toggler {
+  visibility: hidden;
+}
+
+@media (max-width: 1000px) {
+  .navbar-collapse {
+    display: block;
+    
+  }
+  .navbar-toggler {
+    visibility: visible;
+  }
+}

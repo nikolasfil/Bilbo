@@ -1,7 +1,6 @@
 // ------------------  Filters ------------------
 let variable;
 
-
 function addFilterListeners(filters) {
 
     let input = document.getElementsByClassName('form-check-input')
@@ -90,3 +89,4 @@ function addShowMore() {
 function showMore() {
 
 }
+

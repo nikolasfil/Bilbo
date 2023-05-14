@@ -4,11 +4,11 @@
         {{#unless signedIn}}
         <button class="button-light sign-in" id="sign-in-btn">Sign In</button>
         <button class="button-white sign-up" id="sign-up-btn">Sign Up</button>
-
+        
         {{>sign_in_up}}
         {{else}}
 
-        {{>profile_picture}}
+        {{>profile_picture color="white"}}
         {{/unless}}
     </div>
 

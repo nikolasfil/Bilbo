@@ -11,18 +11,22 @@
             {{>searchbar}}
         </div> --}}
         
-
+        {{#unless signedIn}}
         <div class="headerSignIn d-flex flex-row justify-content-center align-items-center" id="sign-space">
-            {{#unless signedIn}}
+            
             <button class="button-light sign-in" id="sign-in-btn">Sign In</button>
             <button class="button-purple sign-up" id="sign-up-btn">Sign Up</button>
 
             {{>sign_in_up}}
-            {{else}}
-
-            {{>profile_picture}}
-            {{/unless}}
+           
         </div>
+        {{else}}
+        <div class="headerProfile d-flex flex-row justify-content-center align-items-center" id="sign-space">
+            
+           {{>profile_picture color="#453159"}}
+           
+        </div>
+        {{/unless}}
 
 
     </div>

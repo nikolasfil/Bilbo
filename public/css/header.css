@@ -4,25 +4,35 @@
     justify-content: space-between;
 }
 
+.headerLogo{
+    margin: 1%;
+}
 
 .headerSearch{
     display: flex;
     justify-self: center;
+    margin: 1%;
+}
+
+.headerSignIn{
+    margin: 1%;
+}
+.headerProfile{
+    margin: 1%;
 }
 
 
 @media (max-width: 440px) and (orientation: portrait) {
     .header{
         display: grid;
-        grid-template-areas: "left" "center" "right";
+        grid-template-areas: "left profile" "center center" "right right";
         align-items: center;
-        grid-auto-rows: 60px;
         justify-content: space-between;
         justify-items: center;
         border-collapse: collapse;
     }
     .headerLogo{
-        grid-area: left;
+        grid-area: left profile;
         justify-self: center;
     }
     
@@ -33,6 +43,10 @@
     
     .headerSignIn{
         grid-area: center;
+        justify-self: center;
+    }
+    .headerProfile{
+        grid-area: profile;
         justify-self: center;
     }
 }
@@ -60,6 +74,10 @@
         grid-area: right;
         justify-self: center;
     }
+    .headerProfile{
+        grid-area: right;
+        justify-self: center;
+    }
 }
 
 @media (max-width: 1000px) and (orientation: landscape) {
@@ -82,6 +100,10 @@
     }
     
     .headerSignIn{
+        grid-area: right;
+        justify-self: center;
+    }
+    .headerProfile{
         grid-area: right;
         justify-self: center;
     }
