@@ -1,20 +1,32 @@
 // const stringSimilarity = require('string-similarity');
 
+function includes(value,list){
+    if (list == null){
+        return true;
+    }
+    for(let i = 0; i < list.length; i++){
+        if(value == list[i]){
+            return true;
+        }
+    }
+    return false;
+}
 
 function updateBooks(data,fil){
+
     show = [];
-    for(let i = 0; i < data.length; i++){
-        for (let j in fil){
-            console.log(fil[j]);
+
+    for (let book in data){
+        if (includes(data[book].genre,fil.genre) && includes(data[book].author,fil.author) && includes(data[book].publisher,fil.publisher)){
+            show.push(data[book]);
         }
-        break;
     }
     return show;
 }
 
 
 
-async function fetchAllBooksByTitle(title, filters) {
+async function fetchAllBooksByTitle(title) {
 
     // Fetch al books by title and filters (filters is not yet implemented)
     // I should add a middle layer getting first the title and isbn and then getting the rest of the data
@@ -45,18 +57,18 @@ async function fetchAllBooksByTitle(title, filters) {
 async function placeAllBooksByTitle(title, filters) {
     // place all the books by title and filters (filters is not yet implemented)
     let data = await fetchAllBooksByTitle(title, filters);
-    placeBooks(data);
+    placeBooks(data,filters);
     return data;
 }
 
 
-function placeBooks(data) {
+function placeBooks(data,filters) {
     let container = document.getElementById("results");
     container.innerHTML = "";
 
 
-    let data2 = updateBooks(data,filters);
-    console.log(data2);
+    data = updateBooks(data,filters);
+
 
     for (let i = 0; i < data.length; i++) {
 
@@ -156,5 +168,144 @@ function reconfigureSearchBar(filters){
         }
     });
 
+}
+
+// ------------------  Filters ------------------
+let variable;
+
+
+function addFilterListeners(filters) {
+
+    let checker = document.getElementsByClassName('form-check');
+
+    for (let i = 0; i < checker.length; i++) {
+        // get the input element of checker 
+        let input = checker[i].getElementsByClassName('form-check-input')[0];
+        
+        input.addEventListener('change',function() {
+            filterOnChange(input,filters);
+            updateBooks(window.gData,window.gFilters);
+        });
+ 
+    }
+}
+
+
+function addedFilter(filters, filterName, filterType) {
+    let container = document.getElementById('filter-selection')
+    let div = document.createElement('div');
+    div.classList.add('selected-filters');
+    container.appendChild(div);
+    let span = document.createElement('span');
+
+    span.textContent = `${filterType}:${filterName}`;
+    if (filters[filterType] === undefined) {
+        filters[filterType] = [];
+    }
+    filters[filterType].push(filterName);
+
+    div.appendChild(span);
+    // <button type="button" class="btn-close" aria-label="Close"></button>
+    let button = document.createElement('button');
+    button.classList.add('btn-close');
+    div.appendChild(button);
+    // link bootstrap icons CDN in the html file
+
+
+
+    div.addEventListener('click', function () {
+        container.removeChild(div);
+        let checkbox = document.getElementById(filterName);
+        checkbox.checked = false;
+        filters[filterType].splice(filters[filterType].indexOf(filterName), 1);
+
+        updateBooks(window.gData,window.gFilters);
+        
+    });
+}
+
+// LIKE *TiTle* in books for database 
+
+function addShowMore() {
+
+    // get all the buttons that show more, and add listeners to their div , to show it or to hide it
+    // and change the button to show 
+    let divs = document.getElementsByClassName('div-show-more');
+    for (let i = 0; i < divs.length; i++) {
+        let button = divs[i].getElementsByClassName('btn-show-more')[0];
+        let list = divs[i].getElementsByClassName('scrollable-show-more')[0];
+        button.addEventListener('click', function () {
+            if (this.textContent == 'Show More') {
+
+                this.textContent = 'Show Less';
+                list.classList = 'd-flex flex-column justify-content-start scrollable-show-more'
+            }
+            else {
+                this.textContent = 'Show More';
+                list.classList = 'scrollable-show-more collapsed'
+            }
+        }
+        )
+    }
+}
+
+
+function filterOnChange(inputElement, filters) {
+    if (inputElement.checked) {
+        addedFilter(filters, inputElement.id, inputElement.classList[2]);
+
+        // change it to make the display none for these filters rather than removing them
+
+
+        let moreFilters = document.getElementById(`${inputElement.classList[2]}-filter-more`);
+        let mainfilters = document.getElementById(`${inputElement.classList[2]}-filter`)
+
+        let moreFilters_form_check = moreFilters.getElementsByClassName('form-check')
+
+        let toRemove = [];
+
+        for (let i =0 ; i< moreFilters_form_check.length ; i++) {
+            let input = moreFilters_form_check[i].getElementsByClassName('form-check-input')[0];
+            if (input.id == inputElement.id) {
+                moreFilters_form_check[i].classList.add('from-more');
+                mainfilters.appendChild(moreFilters_form_check[i]);
+                toRemove.push(moreFilters_form_check[i]); 
+                break;
+            }
+        }
+
+        for (let i = 0; i < toRemove.length; i++) {
+            toRemove[i].style.display = 'none';
+        }
+
+        // end of adding filters from show more 
+
+
+
+        if (moreFilters.length == 0) {
+            let button = document.getElementById(`btn-${inputElement.classList[2]}-show-more`);
+            button.style.display = 'none';
+        }
+
+
+    }
+    else {
+        // remove the filter from the filters object
+        filters[inputElement.classList[2]].splice(filters[inputElement.classList[2]].indexOf(inputElement.id), 1);
+
+        // remove the filter from the selected filters checker
+        let container = document.getElementById('filter-selection');
+        let divs = container.getElementsByClassName('selected-filters');
+        
+        // check if the filter is in the selected filters and remove it
+
+        
+
+        for (let j = 0; j < divs.length; j++) {
+            if (divs[j].textContent == inputElement.classList[2] + ':' + inputElement.id) {
+                container.removeChild(divs[j]);
+            }
+        }
+    }
 }
 

@@ -4,7 +4,6 @@ const session = require('express-session');
 
 const expbs = require('express-handlebars');
 const path = require('path');
-const sqlite3 = require('sqlite3').verbose();
 const cookieParser = require('cookie-parser');
 const sqliteStore = require('connect-sqlite3')(session) //store for session
 

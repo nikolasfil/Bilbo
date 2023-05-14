@@ -6,8 +6,15 @@ const database = require('../controllers/database.js');
 
 
 
+router.get('/send_filters/:string', (req, res) => {
+    res.session.filters = req.params.string;
+});
+
+
+// router.get('/fetch_filters')
+
 router.get('/fetch_books_all', (req, res) => {
-    database.getAllBooks(null,function (err, books) {
+    database.getAllBooks(null, function (err, books) {
         if (err) {
             console.log(err)
             res.status(500).send('Internal Server Error')
@@ -17,6 +24,8 @@ router.get('/fetch_books_all', (req, res) => {
         }
     })
 });
+
+
 
 router.get('/fetch_books/:title', (req, res) => {
     database.getBookByTitleLike(req.params.title, function (err, book) {
@@ -37,7 +46,7 @@ router.get('/search',
         if (req.query.search) {
             database.getBookByTitleLike(`%${req.query.search}%`, function (err, books) {
                 if (err) {
-                    console.log(err,`%${req.query.search}%`)
+                    console.log(err, `%${req.query.search}%`)
                     res.status(500).send('Internal Server Title Error ')
                 }
                 else {
@@ -46,7 +55,7 @@ router.get('/search',
             })
         }
         else {
-            database.getAllBooks(null,function (err, books) {
+            database.getAllBooks(null, function (err, books) {
                 if (err) {
                     console.log(err)
                     res.status(500).send('Internal Server Error All books')
@@ -70,10 +79,10 @@ router.get('/search',
         }
         console.log(res.locals.filters)
         next();
-    }, 
+    },
 
     (req, res, next) => {
-        database.getAllAttribute('genre',function (err, attributeList) {
+        database.getAllAttribute('genre', function (err, attributeList) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -85,7 +94,7 @@ router.get('/search',
         next();
     },
     (req, res, next) => {
-        database.getAllAttribute('publisher',function (err, publisherList) {
+        database.getAllAttribute('publisher', function (err, publisherList) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -98,7 +107,7 @@ router.get('/search',
     },
     (req, res, next) => {
 
-        database.getAllAttribute('edition',function (err, editionList) {
+        database.getAllAttribute('edition', function (err, editionList) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -110,7 +119,7 @@ router.get('/search',
         next();
     },
     (req, res, next) => {
-        database.getAllAttribute('language',function (err, languageList) {
+        database.getAllAttribute('language', function (err, languageList) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -122,7 +131,7 @@ router.get('/search',
         next();
     },
     (req, res, next) => {
-        database.getAllAttribute('library',function (err, libraryList) {
+        database.getAllAttribute('library', function (err, libraryList) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')

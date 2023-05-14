@@ -344,10 +344,10 @@ module.exports = {
         // .email, req.body.fname,req.body.lname,req.body.birthdate ,req.body.psw
         const stmt = betterDb.prepare('Insert into USER (fname,lname,email,birthdate,password) values (?,?,?,?,?)')
         // const stmt = betterDb.prepare('Insert into USER (fname,lname,email,birthdate,salt,password) values (?,?,?,?,?,?)')
-        
+
         try {
-            stmt.run(user.fname,user.lname,user.email,user.birthdate ,user.psw)
-            
+            stmt.run(user.fname, user.lname, user.email, user.birthdate, user.psw)
+
             // stmt.run(user.fname,user.lname,user.email,user.birthdate ,user.salt,user.psw)
         }
         catch (err) {
