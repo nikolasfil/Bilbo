@@ -23,7 +23,7 @@ app.use(cookieParser());
 
 
 // handles the routes
-const routes = require('./routes/handlers');
+// const routes = require('./routes/handlers');
 
 
 
