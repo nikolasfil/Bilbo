@@ -1,7 +1,7 @@
 .card-info{
 display: flex;
 justify-content: space-evenly;
-margin-bottom: 50px;
+margin-bottom: 5%;
 flex: 1 1 auto;
 flex-wrap: wrap;
 
@@ -17,7 +17,9 @@ flex-wrap: wrap;
 }
 
 .profile_info{
-    min-width: 38%;
+    min-width: 200px;
+    margin-bottom: 5%;
+
 }
 
 .borrowingCard{
@@ -61,7 +63,7 @@ flex-wrap: wrap;
 }
 .borrowedBookimg{
     height: 60px;
-    margin-right: 20px;
+    margin:2%;
 }
 
 /* borrowing timeline */
@@ -70,7 +72,7 @@ flex-wrap: wrap;
     list-style-type: none;
     display: flex;
     align-items: center;
-    justify-content: right;
+    justify-content: center;
     margin-top: 20px;
 }
   
@@ -87,6 +89,7 @@ flex-wrap: wrap;
     border-top: 2px solid #D6DCE0;
     position: relative;
     text-align: left;
+    min-width: 140px;
 }
 .status1::before{
     content: '';
@@ -107,6 +110,7 @@ flex-wrap: wrap;
     position: relative;
     text-align: center;
     color: rgba(0, 0, 0, 0);
+    min-width: 140px;
 }
 .status2::before{
     content: '';
@@ -128,6 +132,7 @@ flex-wrap: wrap;
     position: relative;
     text-align: right;
     color: rgba(0, 0, 0, 0);
+    min-width: 140px;
 }
 .status3::before{
     content: '';
@@ -185,8 +190,22 @@ flex-wrap: wrap;
 
 .li.overdue .status3{
     border-top: 2px solid #EC7777;
-    color: rgb(0, 0, 0);}
+    color: rgb(0, 0, 0);
+}
 .li.overdue .status3::before{
     background-color: #EC7777;
     border: none;
+}
+
+
+@media (min-width: 400px) and (max-width: 550px) and (orientation: portrait) {
+    .scale{
+        transform: scale(0.8);
+    }
+}
+
+@media (max-width: 400px) and (orientation: portrait) {
+    .scale{
+        transform: scale(0.7);
+    }
 }
