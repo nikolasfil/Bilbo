@@ -6,26 +6,34 @@
 <script>
 
     window.onload = () => {
+        window.gFilters ={} ;
 
-        window.gFilters = {};
+        {{!-- console.log("{{stringFilters}}") --}}
+        {{!-- for some reason I can't seem to be able to decode the stringFilters  --}}
+        {{!-- console.log(decodeURIComponent("{{stringFilters}}")) --}}
 
-        {{!-- module.exports.filters = {} --}}
+        {{!-- if ("{{stringFilters}}"){
+            filters = JSON.parse("{{ decode ( stringFilters ) }}");
+        }
+        else {
+            filters = {};
+        } --}}
 
+        {{!-- get the value from the search bar rendered by the server --}}
         let searchBarValue = '{{searchBarValue}}'
 
-        {{!-- module.exports.searchBarValue = searchBarValue; --}}
 
 
         // let filters =  JSON.parse(filterString);
-        createPages(2); pageSelector();
-
-        addShowMore();
-        addFilterListeners(window.gFilters);
-        {{!-- addFilterListeners(module.exports.filters); --}}
-
-
-        data = placeAllBooksByTitle(searchBarValue, window.gFilters);
+        {{!-- Havent implemented the pages yet  --}}
+        createPages(2); pageSelector(); 
         
+        addShowMore();
+        addFilterListeners(window.gFilters); 
+
+        window.gData = placeAllBooksByTitle(searchBarValue,window.gFilters);
+        
+        {{!-- reconfigureSearchBar(filters); --}}
     }
 </script>
 

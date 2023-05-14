@@ -308,4 +308,3 @@ function filterOnChange(inputElement, filters) {
         }
     }
 }
-
