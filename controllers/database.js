@@ -26,7 +26,8 @@ module.exports = {
         else {
 
 
-            stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,cover_image as photo FROM BOOK ')
+            stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,cover_image as photo,copy_num FROM BOOK join COPIES on book_isbn=isbn')
+
             try {
                 books = stmt.all()
             }
@@ -192,7 +193,9 @@ module.exports = {
     },
 
     getBookByTitleLike: function (title, callback) {
-        const stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,cover_image as photo FROM BOOK where title like ? ')
+        // const stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,cover_image as photo FROM BOOK where title like ? ')
+        const stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,cover_image as photo,copy_num FROM BOOK join COPIES on book_isbn=isbn where title like ? ')
+        
         let books;
         try {
             books = stmt.all(`%${title}%`)

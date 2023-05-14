@@ -103,7 +103,7 @@ function placeBooks(data,filters) {
         let p2 = document.createElement("p");
         // p2.textContent = `Available Copies: ${data[i].copies}`;
         // get the number of available copies 
-        p2.textContent = `Available Copies: 2`;
+        p2.textContent = `Available Copies: ${data[i].copy_num}`;
 
         div2.appendChild(h4);
         div2.appendChild(p);
@@ -260,23 +260,23 @@ function filterOnChange(inputElement, filters) {
         let moreFilters = document.getElementById(`${inputElement.classList[2]}-filter-more`);
         let mainfilters = document.getElementById(`${inputElement.classList[2]}-filter`)
 
-        let moreFilters_form_check = moreFilters.getElementsByClassName('form-check')
+        // let moreFilters_form_check = moreFilters.getElementsByClassName('form-check')
 
-        let toRemove = [];
+        // let toRemove = [];
 
-        for (let i =0 ; i< moreFilters_form_check.length ; i++) {
-            let input = moreFilters_form_check[i].getElementsByClassName('form-check-input')[0];
-            if (input.id == inputElement.id) {
-                moreFilters_form_check[i].classList.add('from-more');
-                mainfilters.appendChild(moreFilters_form_check[i]);
-                toRemove.push(moreFilters_form_check[i]); 
-                break;
-            }
-        }
+        // for (let i =0 ; i< moreFilters_form_check.length ; i++) {
+        //     let input = moreFilters_form_check[i].getElementsByClassName('form-check-input')[0];
+        //     if (input.id == inputElement.id) {
+        //         moreFilters_form_check[i].classList.add('from-more');
+        //         mainfilters.appendChild(moreFilters_form_check[i]);
+        //         toRemove.push(moreFilters_form_check[i]); 
+        //         break;
+        //     }
+        // }
 
-        for (let i = 0; i < toRemove.length; i++) {
-            toRemove[i].style.display = 'none';
-        }
+        // for (let i = 0; i < toRemove.length; i++) {
+        //     toRemove[i].style.display = 'none';
+        // }
 
         // end of adding filters from show more 
 

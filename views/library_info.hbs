@@ -88,7 +88,7 @@
             {{!-- encode : turns the stirng of location into a url appropriate string  --}}
             {{!-- book_info/title returns the page of the book with that titled --}}
             {{!-- should be replaced with isbn --}}
-            {{> card photo=photo title=title description=description copies=copies location=( encode (concat
+            {{> card photo=photo title=title description=description copies=copy_num location=( encode (concat
             'book_info/' isbn ))}}
             {{/each}}
 
