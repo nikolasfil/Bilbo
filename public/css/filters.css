@@ -1,14 +1,14 @@
 #filters {
-  width: 40vmin;
+  width: fit-content;
   /* needs to be rearranged */
-  margin: 44px 0 0px 40px;
+  
   min-height: 44px;
 }
 
 
 .filters {
   margin: 0;
-  width: 40vmin;
+  width: 200px;
 }
 
 
