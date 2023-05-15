@@ -182,3 +182,72 @@
   margin-bottom: 29px;
   margin-right: 5%;
 }
+
+@media (max-width: 700px) and (orientation: portrait) {
+  .modal {
+    padding: 1%;
+  }
+  
+  .modal-content {
+    width: 100%;
+    height: fit-content;
+    padding: 1%;
+  }
+  .form-container {
+    width: 100%;
+    height: fit-content;
+    padding-bottom: 5%;
+  }
+  .form-popup {
+    width: 100%;
+    height: fit-content;
+  }
+  .modal-content div {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .form-container input[type="email"],
+  .form-container input[type="password"] {
+    width: 100%;
+    height: 50px;
+  }
+
+  .sign-space {
+    margin-bottom: 20px;
+  }
+
+}
+
+@media (max-width: 1000px) and (orientation: landscape) {
+  .modal {
+    padding: 1%;
+  }
+  
+  .modal-content {
+    width: 80%;
+    height: fit-content;
+    padding: 1%;
+  }
+  .form-container {
+    width: 100%;
+    height: fit-content;
+    padding-bottom: 5%;
+  }
+  .form-popup {
+    width: 100%;
+    height: fit-content;
+  }
+  .modal-content div {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .form-container input[type="email"],
+  .form-container input[type="password"] {
+    width: 100%;
+    height: 50px;
+  }
+  .sign-space {
+    margin-bottom: 20px;
+  }
+}
+

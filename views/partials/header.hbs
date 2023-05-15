@@ -1,23 +1,32 @@
 <script src="./javascript/searchbar.js" defer></script>
 
 <header class="sticky-header">
-    <div class="d-flex flex-row justify-content-between align-items-center pageborder">
+    <div class="header pageborder">
 
-        <a href="/"><img src="./img/logo-horizontal.svg" alt="" width="175" height="34"></a>
-
+        <a href="/" class="headerLogo">
+            <img src="./img/logo-horizontal.svg" alt="" width="175" height="34">
+        </a>
         {{>searchbar}}
-
-        <div class="d-flex flex-row justify-content-end align-items-center" id="sign-space">
-            {{#unless signedIn}}
+        {{!-- <div class="headerSearch">
+            {{>searchbar}}
+        </div> --}}
+        
+        {{#unless signedIn}}
+        <div class="headerSignIn d-flex flex-row justify-content-center align-items-center" id="sign-space">
+            
             <button class="button-light sign-in" id="sign-in-btn">Sign In</button>
             <button class="button-purple sign-up" id="sign-up-btn">Sign Up</button>
 
             {{>sign_in_up}}
-            {{else}}
-
-            {{>profile_picture}}
-            {{/unless}}
+           
         </div>
+        {{else}}
+        <div class="headerProfile d-flex flex-row justify-content-center align-items-center" id="sign-space">
+            
+           {{>profile_picture color="#453159"}}
+           
+        </div>
+        {{/unless}}
 
 
     </div>

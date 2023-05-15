@@ -2,15 +2,17 @@
 
 <main>
 
-    <div id="library-info-main" class="d-flex flex-column justify-content-center ">
+    <div id="library-info-main" class="d-flex flex-column justify-content-center pageborder">
 
 
-        <div class="d-flex flex-row justify-content-start div-paragraph-margins-55-160" id="library-info-">
+        <div class="row" id="library-info-">
             {{!-- get the library json file, the rows from the database --}}
-            <img src="{{library.profile_picture}}" alt="library image" style="width:282px; height:282px;">
-            <div class="d-flex flex-column justify-content-start paragraph-margins-58-79">
+            <div class="col col-auto m-2">
+                <img src="{{library.profile_picture}}" class="rounded" alt="library image" style="width:282px; height:282px;">
+            </div>
+            <div class="col justify-content-start m-2">
                 <!-- the margins are not working -->
-                <div id="library-title ">
+                <div  id="library-title ">
                     <h1><strong>{{ library.name }}</strong></h1>
                     <h3>{{library.address}}</h3>
                 </div>
@@ -23,19 +25,21 @@
 
     </div>
 
-    <div class="d-flex flex-column justify-content-center div-paragraph-margins-55-160 flex-wrap"
+    <div class="d-flex flex-column justify-content-center flex-wrap pageborder"
         id="location-working-hours">
 
         <h2><strong>Location & Working Hours</strong></h2>
 
-        <div class="d-flex flex-row justify-content-start ">
+        <div class="row justify-content-start">
+            <div class="col m-2">
+                {{!-- longtitude helper get the format of the location and keeps the first part --}}
+                {{>map lon=(longtitude library.location) lat=(latitude library.location) zoom=16}}
 
-            {{!-- longtitude helper get the format of the location and keeps the first part --}}
-            {{>map lon=(longtitude library.location) lat=(latitude library.location) zoom=16}}
-
-            <div id="map" style="width: 100%, height: 400px"></div>
-
-            <div class="d-flex flex-column justify-content-start" id="library-info-a-c-w">
+                <div id="map" style="width: 100%, height: 100%"></div>
+                
+            </div>
+            
+            <div class="col justify-content-start m-2" id="library-info-a-c-w">
 
                 <div class="d-flex flex-column justify-content-start" id="libary-address">
                     <h3>Address</h3>

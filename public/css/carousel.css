@@ -1,23 +1,22 @@
 .recommend {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: left;
     /* padding: 10px; */
-    margin-left: 7%;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    height: 100%;
+    margin-left: 5%;
+    margin-top: 2%;
+    margin-bottom: 2%;
   }
 
 .scrolling {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: center;
+  align-items: stretch;
   overflow-y: hidden;
   overflow-x: auto;
-  height: 580px;
+  height: fit-content;
+
 }
 
 /* width */

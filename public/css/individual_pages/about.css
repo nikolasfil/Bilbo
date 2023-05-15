@@ -1,47 +1,26 @@
-.about-us-general{
-  display: flex;
-  flex-direction: row;
-}
-
-.who-we-are-css {
-  margin-left: 6.625vw;
-  margin-right: 8.375vw;
-  width: 50vw;
-}
 
 .who-we-are{
-  margin-top: 1rem;
-  margin: bottom 1rem;
+  margin: 1% 0% 5% 0%;
   height: fit-content;
 }
 
-.who-we-are-img {
-  width: 282vw;
-  height: 282vh;
-}
-
-.who-we-are-profiles {
-  margin-left: 1vw;
-}
-
 .who-we-are-profile-pics {
-  margin-right: 2vw;
-  margin-left: 6.625vw;
-
-  width: 12vw;
-  height: 12vw;
+  margin: 2%;
+  height: 150px;
+  width: 150px;
   border-radius: 8%;
 }
 
 .about-background {
-  width: 38.84vw;
-  height: 39.2vw;
-  align-self: center;
-  /* overflow: hidden; */
-/* background: linear-gradient(180.08deg, #E08AB1 -102.48%, #6A1B4A 95.37%); */
+  width: 290px;
+  margin: 5% 5% 5% 5%;
 }
 
 body {
   /* width: 100%; */
   overflow-x: hidden;
+}
+
+.info{
+  min-width: 200px;
 }

@@ -41,49 +41,34 @@
 {{>header}}
 
 <main>
+    <div class="justify-content-start pageborder">
+    
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"></a>
+                <button class="navbar-toggler border-0 d-flex flex-row justify-content-between align-items-stretch" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <h3 class="mx-2">Filters</h3>
+                    <span class="mx-2 navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse align-items-start" id="navbarNav">
+                        {{>filterCategories category='Genre' categoryFilter='genre' list=genre list_all=all_genre}}
 
-    <div class="d-flex flex-row justify-content-start">
+                        {{>filterCategories category='Availability' categoryFilter='availability' list=availability}}
+                        
+                        {{>filterCategories category='Edition' categoryFilter='edition' list=edition list_all=all_edition}}
 
-        <div class="d-flex flex-column justify-content-start" id="filters">
-
-            {{>filterCategories category='Genre' categoryFilter='genre' list=genre list_all=all_genre}}
-
-            {{>filterCategories category='Availability' categoryFilter='availability' list=availability}}
-
-
-            {{!-- <div class="filters d-flex flex-column justify-content-start " id="release-filter">
-
-                <h3>Release Date</h3>
-                <label for="customRange3" class="form-label">Example range</label>
-                <!-- <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3" style="width: 420px;"> -->
-                <!-- <input type="text" id="amount" class="filter-range"> -->
-                <!-- <div id="slider-range"></div>
-                <div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 10%; width: 10%;"></div><span
-                tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 15%;"></span><span
-                tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 60%;"></span>
-                -->
-
-            </div> --}}
-
-            {{>filterCategories category='Edition' categoryFilter='edition' list=edition list_all=all_edition}}
-
-            {{>filterCategories category='Publisher' categoryFilter='publisher' list=publisher list_all=all_publisher}}
+                        {{>filterCategories category='Publisher' categoryFilter='publisher' list=publisher list_all=all_publisher}}
 
 
-            {{>filterCategories category="Language" categoryFilter="language" list=language}}
+                        {{>filterCategories category="Language" categoryFilter="language" list=language}}
 
-            {{>filterCategories category='Library' categoryFilter='library' list=library}}
+                        {{>filterCategories category='Library' categoryFilter='library' list=library}}
+                    
 
-
-
-
-            {{!-- <div class="filters d-flex flex-column justify-content-start " id="library-filter">
-                <input type="text" name="" id="library-filter-input" placeholder="Region or Library"
-                    style="width: 70%;">
-            </div> --}}
-
-        </div>
-
+                </div>
+            </div>
+        </nav>
+               
 
         <div class="d-flex flex-column justify-content-start" id="search-content">
 

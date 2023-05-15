@@ -13,13 +13,13 @@
   background: #453159;
   border-radius: 17px;
 
-  font-family: "Roboto";
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
   text-align: center;
   color: #ffffff;
+  white-space: nowrap;
 }
 
 .button-light {
@@ -32,7 +32,6 @@
   padding-right: 2rem;
   margin: 0.5rem;
 
-  font-family: "Roboto";
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -44,6 +43,7 @@
   background: #ac8fbf;
   border-radius: 2rem;
   border: transparent;
+  white-space: nowrap;
 }
 
 .button-white {
@@ -56,7 +56,6 @@
   padding-right: 1.85rem;
   margin: 0.5rem;
   
-  font-family: "Roboto";
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -69,6 +68,7 @@
   border: 0.15rem solid white;
   background: transparent;
   
+  white-space: nowrap;
 }
 
 .button-purple {
@@ -81,7 +81,6 @@
   padding-right: 1.85rem;
   margin: 0.5rem;
   
-  font-family: "Roboto";
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -94,19 +93,20 @@
   border: 0.15rem solid #453159;
   background: transparent;
   
+  white-space: nowrap;
 }
 
 .button-light:hover {
   background: #453159;
   border-radius: 17px;
 
-  font-family: "Roboto";
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
   text-align: center;
   color: #ffffff;
+  white-space: nowrap;
 }
 
 
@@ -115,7 +115,6 @@
   background: #453159;
   border-radius: 17px;
 
-  font-family: "Roboto";
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -123,19 +122,20 @@
   text-align: center;
   color: #ffffff;
   border-color: #453159;
+  white-space: nowrap;
 }
 
 .button-purple:hover {
   background: #453159;
   border-radius: 17px;
 
-  font-family: "Roboto";
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
   text-align: center;
   color: #ffffff;
+  white-space: nowrap;
 }
 /* Search related buttons */
 
@@ -168,7 +168,6 @@
   height: fit-content;
   padding: 6px 18px 6px 18px;
 
-  font-family: "Roboto";
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -247,3 +246,4 @@
   background-color:#C79752;
   color: black;
 }
+
