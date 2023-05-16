@@ -5,27 +5,18 @@ const router = express.Router();
 const database = require('../controllers/database.js');
 
 
-
-router.get('/send_filters/:string', (req, res) => {
-    res.session.filters = req.params.string;
-});
-
-
 router.post('/fetch_filters', (req, res) => {
-    res.send(req.body);
+    database.getBookInfo(null, req.body.title, true, null, function (err, books) {
+        if (err) {
+            console.log(err)
+            res.status(500).send('Internal Server Error')
+        }
+        else {
+            console.log(JSON.stringify(req.body.filters))
+            res.send(books);
+        }
+    })
 })
-
-// router.get('/fetch_books_all/:isbn/:title/:copies/:limit', (req, res) => {
-//     database.getBookInfo(req.params.isbn,req.params.title,req.params.copies,req.params.limit, function (err, books) {
-//         if (err) {
-//             console.log(err)
-//             res.status(500).send('Internal Server Error')
-//         }
-//         else {
-//             res.send(books);
-//         }
-//     })
-// });
 
 
 router.get('/fetch_books_all', (req, res) => {
@@ -56,43 +47,16 @@ router.get('/fetch_books/:title', (req, res) => {
 
 
 router.get('/search',
-    // (req, res, next) => {
-
-    //     if (req.query.search) {
-    //         database.getBookInfo(null,`%${req.query.search}%`,null,null, function (err, books) {
-    //             if (err) {
-    //                 res.status(500).send('Internal Server Title Error ')
-    //             }
-    //             else {
-    //                 res.locals.books = books;
-    //             }
-    //         })
-    //     }
-    //     else {
-    //         database.getBookInfo(null,null,null,null, function (err, books) {
-    //             if (err) {
-    //                 console.log(err)
-    //                 res.status(500).send('Internal Server Error All books')
-    //             }
-    //             // else {
-    //             //     res.locals.books = books;
-
-    //             // }
-    //         })
-    //     }
-    //     next();
-    // },
-
     (req, res, next) => {
         // console.log(req.query.filters)
         if (req.query.filters) {
-            res.locals.filters = JSON.stringify(JSON.parse(req.query.filters));
-            // console.log(res.locals.filters)
+            res.locals.stringFilters = JSON.stringify(JSON.parse(req.query.filters));
+            // console.log(res.locals.stringFilters)
         }
         else {
-            res.locals.filters = '';
+            res.locals.stringFilters = '';
         }
-        console.log(res.locals.filters)
+        // console.log(res.locals.stringFilters)
         next();
     },
 
@@ -103,7 +67,7 @@ router.get('/search',
                 res.status(500).send('Internal Server Error')
             }
             else {
-                res.locals.all_genreList = attributeList;
+                res.locals.all_genre = attributeList;
             }
         });
         next();
@@ -128,7 +92,7 @@ router.get('/search',
                 res.status(500).send('Internal Server Error')
             }
             else {
-                res.locals.all_editionList = editionList;
+                res.locals.all_edition = editionList;
             }
         });
         next();
@@ -140,7 +104,7 @@ router.get('/search',
                 res.status(500).send('Internal Server Error')
             }
             else {
-                res.locals.languageList = languageList;
+                res.locals.language = languageList;
             }
         });
         next();
@@ -152,21 +116,21 @@ router.get('/search',
                 res.status(500).send('Internal Server Error')
             }
             else {
-                res.locals.libraryList = libraryList;
+                res.locals.library = libraryList;
             }
         });
         next();
     },
 
     (req, res, next) => {
-        res.locals.availabilityList = [
+        res.locals.availability = [
             { name: 'Available' },
             { name: 'Available in more than a week' },
             { name: 'Available this week' },
             { name: 'All' }
         ]
 
-        res.locals.genreList = [
+        res.locals.genre = [
             { name: 'Fantasy' },
             { name: 'Science' },
             { name: 'Horror' },
@@ -175,7 +139,7 @@ router.get('/search',
             { name: 'Fiction' }
         ]
 
-        res.locals.publisherList = [
+        res.locals.publisher = [
             { name: 'Tziola' },
             { name: 'Penguin' },
             { name: 'Harper Collins' },
@@ -183,7 +147,7 @@ router.get('/search',
             { name: 'Simon & Schuster' },
         ]
 
-        res.locals.editionList = [
+        res.locals.edition = [
             { name: '1st' },
             { name: '2nd' },
             { name: '3rd' },
@@ -196,27 +160,26 @@ router.get('/search',
     (req, res) => {
         res.render('search', {
             title: 'Search',
-            genre: res.locals.genreList,
-            all_genre: res.locals.all_genreList,
+            // genre: res.locals.genre,
+            // all_genre: res.locals.all_genre,
 
-            availability: res.locals.availabilityList,
+            // availability: res.locals.availability,
 
-            publisher: res.locals.publisherList,
-            all_publisherList: res.locals.all_publisherList,
+            // publisher: res.locals.publisher,
+            // all_publisherList: res.locals.all_publisher,
 
-            library: res.locals.libraryList,
+            // library: res.locals.library,
 
-            edition: res.locals.editionList,
-            all_edition: res.locals.all_editionList,
+            // edition: res.locals.edition,
+            // all_edition: res.locals.all_edition,
 
-            language: res.locals.languageList,
+            // language: res.locals.language,
 
             signedIn: req.session.signedIn,
             searchBarValue: req.query.search,
             // book: res.locals.books,
-            stringFilters: res.locals.filters,
-            // stringFilter: JSON.stringify(req.query.filters),
-
+            // stringFilters: res.locals.stringFilters,
+            
         });
     }
 );

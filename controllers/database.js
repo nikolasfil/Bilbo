@@ -23,9 +23,11 @@ function getRegex(title) {
 
     const commonWords = [
         'the', 'of', 'and', 'a', 'to', 'in', 'is', 'you', 'that', 'it', 'he', 'was', 'for', 'on', 'are', 'as', 'with', 'his', 'they', 'I']
-
+    
+    title = title.trim();
     const words = title.split(" ");
-    const escapedWords = words.map((word) => escapeRegExp(word));
+
+    // const escapedWords = words.map((word) => escapeRegExp(word));
 
     const partialWords = words.filter(word => !commonWords.includes(word));
 
@@ -55,10 +57,10 @@ function getRegex(title) {
 
 module.exports = {
 
-    connect: (callback) => {
-        // connects to the database
-        callback(null, true)
-    },
+    // connect: (callback) => {
+    //     // connects to the database
+    //     callback(null, true)
+    // },
 
 
     getLibraryInfo: function (id, limit, callback) {

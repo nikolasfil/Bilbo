@@ -1,32 +1,23 @@
 // const stringSimilarity = require('string-similarity');
 
-function includes(value, list) {
-    if (list == null) {
-        return true;
-    }
-    for (let i = 0; i < list.length; i++) {
-        if (value == list[i]) {
-            return true;
-        }
-    }
-    return false;
-}
+function mainLoad() {
 
-function updateBooks(data, fil) {
+    console.log(window.searchBarValue)
+    window.gFilters = {};
 
-    show = [];
+    createPages(2); pageSelector();
 
-    for (let book in data) {
-        if (includes(data[book].genre, fil.genre) && includes(data[book].author, fil.author) && includes(data[book].publisher, fil.publisher)) {
-            show.push(data[book]);
-        }
-    }
-    return show;
+    addShowMore();
+
+    addFilterListeners(window.gFilters);
+
+    window.gData = placeAllBooksByTitle(window.searchBarValue, window.gFilters);
+
+    // console.log(window.gData);
 }
 
 
-
-async function fetchAllBooksByTitle(title) {
+async function fetchAllBooksByTitle2(title) {
 
     // Fetch al books by title and filters (filters is not yet implemented)
     // I should add a middle layer getting first the title and isbn and then getting the rest of the data
@@ -53,6 +44,50 @@ async function fetchAllBooksByTitle(title) {
 }
 
 
+async function fetchAllBooksByTitle(title, filters) {
+
+    let link; 
+
+    link = '/fetch_filters'
+
+    console.log(JSON.stringify({ "filters": filters, "title": title }));
+    return await fetch(link, {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify({ "filters": filters, "title": title }),
+
+    }).then((res) => {
+        return res.json();
+    }).then((data) => {
+        return data;
+    }).catch(error => {
+        console.log(error);
+    });
+}
+
+async function postData(url = "", data = {}) {
+    // Default options are marked with *
+    const response = await fetch(url, {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "same-origin", // include, *same-origin, omit
+        headers: {
+            "Content-Type": "application/json",
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: "follow", // manual, *follow, error
+        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify(data), // body data type must match "Content-Type" header
+    });
+    return response.json(); // parses JSON response into native JavaScript objects
+}
+
 
 async function placeAllBooksByTitle(title, filters) {
     // place all the books by title and filters (filters is not yet implemented)
@@ -65,9 +100,6 @@ async function placeAllBooksByTitle(title, filters) {
 function placeBooks(data, filters) {
     let container = document.getElementById("results");
     container.innerHTML = "";
-
-
-    data = updateBooks(data, filters);
 
 
     for (let i = 0; i < data.length; i++) {
@@ -98,8 +130,8 @@ function placeBooks(data, filters) {
 
         let p = document.createElement("p");
         p.className = "text-truncate--3"
-        
-        
+
+
         div2.appendChild(h6);
 
 
@@ -127,44 +159,8 @@ function placeBooks(data, filters) {
         container.appendChild(div);
 
 
-
-        // container.innerHTML += `<div class="card-img-top" draggable="false">
-        // <a href="/book_info/${data[i].isbn}" class="d-flex flex-column align-content-center">
-        //     <img class="rounded-corners card-img-class" src=${data[i].photo} alt="photo" draggable="false">
-        //     <div class = "p-3">
-        //         <h4><strong>${data[i].title}</strong></h4>
-        //         <p>${data[i].description}</p>
-        //         <p>Available Copies: ${data[i].copies}</p>
-        //     </div>
-        // </a>
-        // </div>`
     }
 }
-
-
-function checkSimilarities() {
-    // check if the search bar value is similar to any of the titles
-    // not implemented yet, got it off an internet 
-    const objValues = Object.values(obj).map(value => value.toString());
-
-    // Calculate string similarity scores
-    const scores = stringSimilarity.findBestMatch(phrase, objValues);
-
-    // Threshold for considering a match
-    const threshold = 0.5;
-
-    // Check if any score exceeds the threshold
-    const hasMatch = scores.ratings.some(score => score.rating > threshold);
-
-    if (hasMatch) {
-        matches.push({
-            file,
-            object: obj,
-            score: scores.bestMatch.rating
-        });
-    }
-}
-
 
 
 function reconfigureSearchBar(filters) {
@@ -194,7 +190,7 @@ function addFilterListeners(filters) {
 
         input.addEventListener('change', function () {
             filterOnChange(input, filters);
-            updateBooks(window.gData, window.gFilters);
+            // updateBooks(window.gData, window.gFilters);
         });
 
     }
@@ -229,12 +225,11 @@ function addedFilter(filters, filterName, filterType) {
         checkbox.checked = false;
         filters[filterType].splice(filters[filterType].indexOf(filterName), 1);
 
-        updateBooks(window.gData, window.gFilters);
+        // updateBooks(window.gData, window.gFilters);
 
     });
 }
 
-// LIKE *TiTle* in books for database 
 
 function addShowMore() {
 
@@ -272,21 +267,22 @@ function filterOnChange(inputElement, filters) {
 
         let moreFilters_form_check = moreFilters.getElementsByClassName('form-check')
 
-        let toRemove = [];
+        // let toRemove = [];
 
-        for (let i = 0; i < moreFilters_form_check.length; i++) {
-            let input = moreFilters_form_check[i].getElementsByClassName('form-check-input')[0];
-            if (input.id == inputElement.id) {
-                moreFilters_form_check[i].classList.add('from-more');
-                mainfilters.appendChild(moreFilters_form_check[i]);
-                toRemove.push(moreFilters_form_check[i]);
-                break;
-            }
-        }
+        // for (let i = 0; i < moreFilters_form_check.length; i++) {
+        //     let input = moreFilters_form_check[i].getElementsByClassName('form-check-input')[0];
+        //     if (input.id == inputElement.id) {
+        //         moreFilters_form_check[i].classList.add('from-more');
+        //         mainfilters.appendChild(moreFilters_form_check[i]);
+        //         // toRemove.push(moreFilters_form_check[i]);
+        //         moreFilters_form_check[i].style.display = 'none';
+        //         break;
+        //     }
+        // }
 
-        for (let i = 0; i < toRemove.length; i++) {
-            toRemove[i].style.display = 'none';
-        }
+        // for (let i = 0; i < toRemove.length; i++) {
+        //     toRemove[i].style.display = 'none';
+        // }
 
         // end of adding filters from show more 
 
