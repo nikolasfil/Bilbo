@@ -1,23 +1,23 @@
 // const stringSimilarity = require('string-similarity');
 
-function includes(value,list){
-    if (list == null){
+function includes(value, list) {
+    if (list == null) {
         return true;
     }
-    for(let i = 0; i < list.length; i++){
-        if(value == list[i]){
+    for (let i = 0; i < list.length; i++) {
+        if (value == list[i]) {
             return true;
         }
     }
     return false;
 }
 
-function updateBooks(data,fil){
+function updateBooks(data, fil) {
 
     show = [];
 
-    for (let book in data){
-        if (includes(data[book].genre,fil.genre) && includes(data[book].author,fil.author) && includes(data[book].publisher,fil.publisher)){
+    for (let book in data) {
+        if (includes(data[book].genre, fil.genre) && includes(data[book].author, fil.author) && includes(data[book].publisher, fil.publisher)) {
             show.push(data[book]);
         }
     }
@@ -57,23 +57,23 @@ async function fetchAllBooksByTitle(title) {
 async function placeAllBooksByTitle(title, filters) {
     // place all the books by title and filters (filters is not yet implemented)
     let data = await fetchAllBooksByTitle(title, filters);
-    placeBooks(data,filters);
+    placeBooks(data, filters);
     return data;
 }
 
 
-function placeBooks(data,filters) {
+function placeBooks(data, filters) {
     let container = document.getElementById("results");
     container.innerHTML = "";
 
 
-    data = updateBooks(data,filters);
+    data = updateBooks(data, filters);
 
 
     for (let i = 0; i < data.length; i++) {
 
         let div = document.createElement("div");
-        div.className = "card-img-top";
+        div.className = "card-img-top card-space";
         div.draggable = "false";
 
         let a = document.createElement("a");
@@ -90,24 +90,34 @@ function placeBooks(data,filters) {
         img.draggable = "false";
 
         let div2 = document.createElement("div");
-        div2.className = "p-3";
+        div2.className = "p-2";
 
-        let h4 = document.createElement("h4");
-        h4.innerHTML = `<strong>${data[i].title}</strong>`;
+        let h6 = document.createElement("h6");
+        h6.className = "text-truncate--2"
+        h6.innerHTML = `<strong>${data[i].title}</strong>`;
 
         let p = document.createElement("p");
+        p.className = "text-truncate--3"
+        
+        
+        div2.appendChild(h6);
 
-        // p.textContent = data[i].description;
-        p.textContent = "Description";
 
-        let p2 = document.createElement("p");
-        // p2.textContent = `Available Copies: ${data[i].copies}`;
-        // get the number of available copies 
-        p2.textContent = `Available Copies: 2`;
+        if (data[i].summary) {
+            p.innerHTML = `<small>${data[i].summary}</small>`;
+            div2.appendChild(p);
+        }
 
-        div2.appendChild(h4);
-        div2.appendChild(p);
-        div2.appendChild(p2);
+
+        if (data[i].copy_num) {
+
+            let p2 = document.createElement("p");
+            // p2.textContent = `Available Copies: ${data[i].copies}`;
+            // get the number of available copies 
+            p2.innerHTML = `<small>Available Copies: ${data[i].copy_num}</small>`;
+            div2.appendChild(p2);
+        }
+
 
         a.appendChild(img);
         a.appendChild(div2);
@@ -157,11 +167,11 @@ function checkSimilarities() {
 
 
 
-function reconfigureSearchBar(filters){
+function reconfigureSearchBar(filters) {
     // remove listeners from searchbar 
     // and add the listener to get filters as well 
     // Implemented , but doesn't work yet 
-    let searchbar = document.getElementById('searchBarInput').addEventListener('keydown',(event)=>{
+    let searchbar = document.getElementById('searchBarInput').addEventListener('keydown', (event) => {
         if (event.key == "Enter") {
             // console.log(event.target.value+JSON.stringify(filters))
             window.location = `/search?search=${event.target.value}&filters=${JSON.stringify(filters)}`;
@@ -181,12 +191,12 @@ function addFilterListeners(filters) {
     for (let i = 0; i < checker.length; i++) {
         // get the input element of checker 
         let input = checker[i].getElementsByClassName('form-check-input')[0];
-        
-        input.addEventListener('change',function() {
-            filterOnChange(input,filters);
-            updateBooks(window.gData,window.gFilters);
+
+        input.addEventListener('change', function () {
+            filterOnChange(input, filters);
+            updateBooks(window.gData, window.gFilters);
         });
- 
+
     }
 }
 
@@ -219,8 +229,8 @@ function addedFilter(filters, filterName, filterType) {
         checkbox.checked = false;
         filters[filterType].splice(filters[filterType].indexOf(filterName), 1);
 
-        updateBooks(window.gData,window.gFilters);
-        
+        updateBooks(window.gData, window.gFilters);
+
     });
 }
 
@@ -264,12 +274,12 @@ function filterOnChange(inputElement, filters) {
 
         let toRemove = [];
 
-        for (let i =0 ; i< moreFilters_form_check.length ; i++) {
+        for (let i = 0; i < moreFilters_form_check.length; i++) {
             let input = moreFilters_form_check[i].getElementsByClassName('form-check-input')[0];
             if (input.id == inputElement.id) {
                 moreFilters_form_check[i].classList.add('from-more');
                 mainfilters.appendChild(moreFilters_form_check[i]);
-                toRemove.push(moreFilters_form_check[i]); 
+                toRemove.push(moreFilters_form_check[i]);
                 break;
             }
         }
@@ -296,10 +306,10 @@ function filterOnChange(inputElement, filters) {
         // remove the filter from the selected filters checker
         let container = document.getElementById('filter-selection');
         let divs = container.getElementsByClassName('selected-filters');
-        
+
         // check if the filter is in the selected filters and remove it
 
-        
+
 
         for (let j = 0; j < divs.length; j++) {
             if (divs[j].textContent == inputElement.classList[2] + ':' + inputElement.id) {

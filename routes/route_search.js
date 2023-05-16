@@ -29,7 +29,7 @@ router.post('/fetch_filters', (req, res) => {
 
 
 router.get('/fetch_books_all', (req, res) => {
-    database.getBookInfo(null, null, null, null, function (err, books) {
+    database.getBookInfo(null, null, true, null, function (err, books) {
         if (err) {
             console.log(err)
             res.status(500).send('Internal Server Error')
@@ -43,7 +43,7 @@ router.get('/fetch_books_all', (req, res) => {
 
 
 router.get('/fetch_books/:title', (req, res) => {
-    database.getBookInfo(null, req.params.title, null, null, function (err, book) {
+    database.getBookInfo(null, req.params.title, true, null, function (err, book) {
         if (err) {
             console.log(err)
             res.status(500).send('Internal Server Error')
