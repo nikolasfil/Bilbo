@@ -11,10 +11,25 @@ router.get('/send_filters/:string', (req, res) => {
 });
 
 
-// router.get('/fetch_filters')
+router.post('/fetch_filters', (req, res) => {
+    res.send(req.body);
+})
+
+// router.get('/fetch_books_all/:isbn/:title/:copies/:limit', (req, res) => {
+//     database.getBookInfo(req.params.isbn,req.params.title,req.params.copies,req.params.limit, function (err, books) {
+//         if (err) {
+//             console.log(err)
+//             res.status(500).send('Internal Server Error')
+//         }
+//         else {
+//             res.send(books);
+//         }
+//     })
+// });
+
 
 router.get('/fetch_books_all', (req, res) => {
-    database.getBookInfo(null,null,null,null, function (err, books) {
+    database.getBookInfo(null, null, null, null, function (err, books) {
         if (err) {
             console.log(err)
             res.status(500).send('Internal Server Error')
@@ -28,8 +43,7 @@ router.get('/fetch_books_all', (req, res) => {
 
 
 router.get('/fetch_books/:title', (req, res) => {
-    database.getBookInfo(null,req.params.title,null,null, function (err, book) {
-
+    database.getBookInfo(null, req.params.title, null, null, function (err, book) {
         if (err) {
             console.log(err)
             res.status(500).send('Internal Server Error')
@@ -42,32 +56,32 @@ router.get('/fetch_books/:title', (req, res) => {
 
 
 router.get('/search',
-    (req, res, next) => {
+    // (req, res, next) => {
 
-        if (req.query.search) {
-            database.getBookInfo(null,`%${req.query.search}%`,null,null, function (err, books) {
-                if (err) {
-                    console.log(err, `%${req.query.search}%`)
-                    res.status(500).send('Internal Server Title Error ')
-                }
-                else {
-                    res.locals.books = books;
-                }
-            })
-        }
-        else {
-            database.getBookInfo(null,null,null,null, function (err, books) {
-                if (err) {
-                    console.log(err)
-                    res.status(500).send('Internal Server Error All books')
-                }
-                else {
-                    res.locals.books = books;
-                }
-            })
-        }
-        next();
-    },
+    //     if (req.query.search) {
+    //         database.getBookInfo(null,`%${req.query.search}%`,null,null, function (err, books) {
+    //             if (err) {
+    //                 res.status(500).send('Internal Server Title Error ')
+    //             }
+    //             else {
+    //                 res.locals.books = books;
+    //             }
+    //         })
+    //     }
+    //     else {
+    //         database.getBookInfo(null,null,null,null, function (err, books) {
+    //             if (err) {
+    //                 console.log(err)
+    //                 res.status(500).send('Internal Server Error All books')
+    //             }
+    //             // else {
+    //             //     res.locals.books = books;
+
+    //             // }
+    //         })
+    //     }
+    //     next();
+    // },
 
     (req, res, next) => {
         // console.log(req.query.filters)
@@ -199,7 +213,7 @@ router.get('/search',
 
             signedIn: req.session.signedIn,
             searchBarValue: req.query.search,
-            book: res.locals.books,
+            // book: res.locals.books,
             stringFilters: res.locals.filters,
             // stringFilter: JSON.stringify(req.query.filters),
 

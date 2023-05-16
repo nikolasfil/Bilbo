@@ -1,7 +1,14 @@
 const sql = require('better-sqlite3')
 const betterDb = new sql('model/bilboData.sqlite')
 
+const sqlite3 = require('sqlite3').verbose();
+const sqliteDb = new sqlite3.Database('model/bilboData.sqlite')
+
 const bcrypt = require('bcrypt');
+
+function escapeRegExp(string) {
+    return string.replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&");
+}
 
 module.exports = {
 
@@ -134,8 +141,31 @@ module.exports = {
                 books = stmt.get(isbn);
 
             } else if (title) {
-                stmt = betterDb.prepare('SELECT * FROM BOOK WHERE title like ?');
-                books = stmt.all(`%${title}%`);
+                // stmt = betterDb.prepare('SELECT * FROM BOOK WHERE title like ?');
+                // books = stmt.all(`%${title}%`);
+                const words = title.split(" ");
+                const escapedWords = words.map((word) => escapeRegExp(word));
+
+                const pattern = "\\b" + "\\b.*\\b" + escapedWords.join("\\b.*\\b") + "\\b";
+
+                // console.log(title);
+                
+                // stmt = betterDb.prepare(query);
+                // books = stmt.all(pattern);
+
+                // -----------------
+
+                const rows = betterDb.prepare('Select title from BOOK').all()
+                const matchingPhrases = rows.filter(row => new RegExp(title, 'i').test(row.title)).map(row => row.title);
+
+                // const query = db.prepare(`SELECT attribute1, attribute2, attribute3 FROM your_table WHERE title IN (${titleList.map(() => '?').join(', ')})`);
+
+                stmt = betterDb.prepare('SELECT * FROM BOOK WHERE title in (' + matchingPhrases.map(() => '?').join(', ') + ')');
+                books = stmt.all(matchingPhrases);
+                // console.log(matchingPhrases);
+
+
+                // ----------
 
             } else if (copies) {
                 stmt = betterDb.prepare('SELECT * FROM BOOK join COPIES on isbn=book_isbn');
