@@ -19,6 +19,7 @@
   line-height: 16px;
   text-align: center;
   color: #ffffff;
+  white-space: nowrap;
 }
 
 .button-light {
@@ -42,6 +43,7 @@
   background: #ac8fbf;
   border-radius: 2rem;
   border: transparent;
+  white-space: nowrap;
 }
 
 .button-white {
@@ -66,6 +68,7 @@
   border: 0.15rem solid white;
   background: transparent;
   
+  white-space: nowrap;
 }
 
 .button-purple {
@@ -90,6 +93,7 @@
   border: 0.15rem solid #453159;
   background: transparent;
   
+  white-space: nowrap;
 }
 
 .button-light:hover {
@@ -102,6 +106,7 @@
   line-height: 16px;
   text-align: center;
   color: #ffffff;
+  white-space: nowrap;
 }
 
 
@@ -117,6 +122,7 @@
   text-align: center;
   color: #ffffff;
   border-color: #453159;
+  white-space: nowrap;
 }
 
 .button-purple:hover {
@@ -129,6 +135,7 @@
   line-height: 16px;
   text-align: center;
   color: #ffffff;
+  white-space: nowrap;
 }
 /* Search related buttons */
 

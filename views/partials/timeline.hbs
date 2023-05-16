@@ -1,17 +1,17 @@
-<timeline class="borrowingInfo">
-    <div class="borrowedBookDetails">
+<timeline class="row align-items-center justify-content-center">
+    <div class="col borrowedBookDetails">
         <img class="borrowedBookimg" src={{img}}>
         <div>
         <h7>
-            Name: {{title}} <br>
-            ISBN: {{ISBN}} <br>
-            Edition: {{edition}} <br>
+            <strong>Name: </strong>{{title}} <br>
+            <strong>ISBN: </strong>{{ISBN}} <br>
+            <strong>Edition: </strong>{{edition}} <br>
         </h7>
         </div>
     </div>
 
     {{#if overdue}}
-    <ul class="timeline">
+    <ul class="col timeline scale">
         <li class="li overdue">
         <div class="timestamp">
             <span class="status1">Reserved<br>{{resDate}}</span>
@@ -29,7 +29,7 @@
         </li>
     </ul>
     {{else}}
-    <ul class="timeline">
+    <ul class="col timeline scale">
         <li class="li complete">
         <div class="timestamp">
             <span class="status1">Reserved<br>{{resDate}}</span>

@@ -10,8 +10,7 @@
             <img src="{{book.photo}}" alt="book cover" class="book-img m-3">
         </div>
         
-        <div class="col justify-content-start mx-3" id="book-title-summary">
-           
+        <div class="col col-md-6 justify-content-start" id="book-title-summary">
             <h1 id="title"><strong>{{ book.title }}</strong></h1>
             {{!-- if there is no book.summary print no summary --}}
 
@@ -24,37 +23,34 @@
         </div>
 
 
-        <div class="col justify-content-start " id="book-info">
+        <div class="col justify-content-end " id="book-info">
 
-            <div class="d-flex flex-column mx-3">
-                <div id="author">
+            <div class="row">
+                <div class="col" id="author">
                     <h5 class="p-title" id="author-h"><strong>Author</strong></h5>
                     <p class="p-info" id="author-p">{{ book.author }}</p>
                 </div>
-                <div id="publisher">
+                <div class="col" id="publisher">
                     <h5 class="p-title" id="publisher-h"><strong>Publisher</strong></h5>
                     <p class="p-info" id="publisher-p">{{ book.publisher }}</p>
                 </div>
-                <div id="edition">
+                <div class="col" id="edition">
                     <h5 class="p-title" id="edition-h"><strong>Edition</strong></h5>
                     <p class="p-info" id="edition-p">{{ book.edition }}</p>
                 </div>
-                <div id="genre">
+                <div class="col" id="genre">
                     <h5 class="p-title" id="genre-h"><strong>Genre</strong></h5>
                     <p class="p-info" id="genre-p">{{ book.genre }}</p>
                 </div>
-            </div>
-
-            <div class="d-flex flex-column mx-3">
-                <div id="release">
+                <div class="col" id="release">
                     <h5 class="p-title" id="release-h"><strong>Release</strong></h5>
                     <p class="p-info" id="release-p">{{ book.release }}</p>
                 </div>
-                <div id="language">
+                <div class="col" id="language">
                     <h5 class="p-title" id="language-h"><strong>Language</strong></h5>
                     <p class="p-info" id="language-p">{{ book.language }}</p>
                 </div>
-                <div id="isbn">
+                <div class="col" id="isbn">
                     <h5 class="p-title" id="isbn-h"><strong>ISBN</strong></h5>
                     <p class="p-info" id="isbn-p">{{ book.isbn }}</p>
                 </div>
@@ -74,12 +70,12 @@
     <h2><strong>Reservation points</strong></h2>
     <div class="row justify-content-start" id="book-location">
 
-        <div class="col">
+        <div class="col m-1">
             {{>map lon=(longtitude library.location) lat=(latitude library.location) zoom=16}}
         </div>
 
 
-        <div class="col mx-3">
+        <div class="col resLibraries">
 
             <div class="row">
                 <h4 class="col">Library</h4>

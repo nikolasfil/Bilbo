@@ -20,3 +20,7 @@ body {
   /* width: 100%; */
   overflow-x: hidden;
 }
+
+.info{
+  min-width: 200px;
+}

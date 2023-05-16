@@ -10,6 +10,7 @@
 
   background-color: #ece5f1;
   border-radius: 34.5px;
+  justify-self: stretch;
 }
 
 .searchinput {

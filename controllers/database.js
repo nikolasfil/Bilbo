@@ -15,7 +15,7 @@ module.exports = {
         let stmt;
         let books;
         if (limit) {
-            stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,cover_image as photo FROM BOOK Limit ?')
+            stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,photo FROM BOOK Limit ?')
             try {
                 books = stmt.all(limit)
             }
@@ -26,8 +26,7 @@ module.exports = {
         else {
 
 
-            stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,cover_image as photo,copy_num FROM BOOK join COPIES on book_isbn=isbn')
-
+            stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,photo FROM BOOK ')
             try {
                 books = stmt.all()
             }
@@ -40,36 +39,8 @@ module.exports = {
         callback(null, books)
     },
 
-
-    getAllLibraries: function (limit, callback) {
-        let stmt;
-        let libraries;
-
-        if (limit) {
-            stmt = betterDb.prepare('SELECT id,name as title,address,profile_picture as photo FROM LIBRARY Limit ?')
-            try {
-                libraries = stmt.all(limit)
-            }
-            catch (err) {
-                callback(err, null)
-            }
-        }
-        else {
-
-            stmt = betterDb.prepare('SELECT id,name as title,address,profile_picture as photo FROM LIBRARY ')
-            try {
-                libraries = stmt.all()
-            }
-            catch (err) {
-                callback(err, null)
-            }
-        }
-
-        callback(null, libraries)
-    },
-
     getLibraryById: function (id, callback) {
-        const stmt = betterDb.prepare('SELECT id,name,location,address,profile_picture as profile_picture,summary,working_hours,phone,email FROM LIBRARY where id = ?')
+        const stmt = betterDb.prepare('SELECT id,name,location,address,photo ,summary,working_hours,phone,email FROM LIBRARY where id = ?')
         let library;
         try {
             library = stmt.get(id)
@@ -78,6 +49,36 @@ module.exports = {
             callback(err, null)
         }
         callback(null, library)
+    },
+
+    getLibraryInfo: function (id, limit, callback) {
+        let stmt;
+        let libraries;
+
+        try {
+            if (id && limit) {
+                stmt = betterDb.prepare('Select * FROM LIBRARY where id = ?');
+                libraries = stmt.get(id);
+            }
+            else if (id) {
+                stmt = betterDb.prepare('Select * FROM LIBRARY where id = ?');
+                libraries = stmt.get(id);
+            }
+            else if (limit) {
+                stmt = betterDb.prepare('Select * FROM LIBRARY LIMIT ?');
+                libraries = stmt.all(limit);
+            }
+            else {
+                stmt = betterDb.prepare('Select * FROM LIBRARY ');
+                libraries = stmt.all();
+            }
+
+        } catch (err) {
+            callback(err, null)
+        }
+
+        callback(null,libraries);
+
     },
 
 
@@ -160,7 +161,7 @@ module.exports = {
         let books;
 
         if (isbn && title) {
-            stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,cover_image as photo FROM BOOK where isbn = ? or title like ?')
+            stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,photo FROM BOOK where isbn = ? or title like ?')
             try {
                 books = stmt.all(isbn, `%${title}%`)
             }
@@ -171,7 +172,7 @@ module.exports = {
         else if (isbn) {
 
 
-            stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,cover_image as photo FROM BOOK where isbn = ?')
+            stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,photo FROM BOOK where isbn = ?')
             try {
                 books = stmt.all(isbn)
             }
@@ -181,7 +182,7 @@ module.exports = {
 
         }
         else if (title) {
-            stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,cover_image as photo FROM BOOK where title like ?')
+            stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,photo FROM BOOK where title like ?')
             try {
                 books = stmt.all(`%${title}%`)
             }
@@ -193,9 +194,7 @@ module.exports = {
     },
 
     getBookByTitleLike: function (title, callback) {
-        // const stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,cover_image as photo FROM BOOK where title like ? ')
-        const stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,cover_image as photo,copy_num FROM BOOK join COPIES on book_isbn=isbn where title like ? ')
-        
+        const stmt = betterDb.prepare('SELECT isbn,title,author,genre,edition,publisher,release,language,photo FROM BOOK where title like ? ')
         let books;
         try {
             books = stmt.all(`%${title}%`)
@@ -213,7 +212,7 @@ module.exports = {
 
         if (limit & isbn) {
 
-            stmt = betterDb.prepare('Select isbn,title,cover_image as photo,copy_num from BOOK join COPIES on book_isbn=isbn where isbn=? Limit ?')
+            stmt = betterDb.prepare('Select isbn,title,photo,copy_num from BOOK join COPIES on book_isbn=isbn where isbn=? Limit ?')
             try {
                 books = stmt.all(isbn, limit)
             }
@@ -222,7 +221,7 @@ module.exports = {
             }
         }
         else if (limit) {
-            stmt = betterDb.prepare('Select isbn,title,cover_image as photo,copy_num from BOOK join COPIES on book_isbn=isbn Limit ?')
+            stmt = betterDb.prepare('Select isbn,title,photo,copy_num from BOOK join COPIES on book_isbn=isbn Limit ?')
             try {
                 books = stmt.all(limit)
             }
@@ -231,7 +230,7 @@ module.exports = {
             }
         }
         else if (isbn) {
-            stmt = betterDb.prepare('Select isbn,title,cover_image as photo,copy_num from BOOK join COPIES on book_isbn=isbn where isbn=? ')
+            stmt = betterDb.prepare('Select isbn,title,photo,copy_num from BOOK join COPIES on book_isbn=isbn where isbn=? ')
             try {
                 books = stmt.all(isbn)
             }
@@ -254,7 +253,7 @@ module.exports = {
 
 
     getLibraryIdOfBookByIsbn: function (isbn, callback) {
-        const stmt = betterDb.prepare('Select id,copy_num,name,location,address,phone,email,profile_picture,l.summary,working_hours from BOOK join COPIES on book_isbn=isbn  join LIBRARY as l on library_id=id  where isbn = ?')
+        const stmt = betterDb.prepare('Select id,copy_num,name,location,address,phone,email,l.photo as photo,l.summary,working_hours from BOOK join COPIES on book_isbn=isbn  join LIBRARY as l on library_id=id  where isbn = ?')
         let books;
         try {
             books = stmt.all(isbn)
@@ -270,7 +269,7 @@ module.exports = {
         let books;
 
         if (limit) {
-            stmt = betterDb.prepare('Select isbn,title,cover_image as photo,copy_num from BOOK join COPIES on book_isbn=isbn where library_id=? Limit ?')
+            stmt = betterDb.prepare('Select isbn,title,photo,copy_num from BOOK join COPIES on book_isbn=isbn where library_id=? Limit ?')
             try {
                 books = stmt.all(libraryId, limit)
             }
@@ -280,7 +279,7 @@ module.exports = {
             // console.log(books)
         }
         else {
-            stmt = betterDb.prepare('Select isbn,title,cover_image as photo,copy_num from BOOK join COPIES on book_isbn=isbn where library_id=? ')
+            stmt = betterDb.prepare('Select isbn,title,photo,copy_num from BOOK join COPIES on book_isbn=isbn where library_id=? ')
             try {
                 books = stmt.all(libraryId)
             }

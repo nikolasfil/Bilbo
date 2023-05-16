@@ -1,3 +1,5 @@
 backup*
 **/.vscode/*
 **/node_modules/*
+
+model/sessions/session.sqlite
