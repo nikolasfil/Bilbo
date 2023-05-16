@@ -1,8 +1,7 @@
-// const stringSimilarity = require('string-similarity');
+
 
 function mainLoad() {
 
-    console.log(window.searchBarValue)
     window.gFilters = {};
 
     createPages(2); pageSelector();
@@ -11,29 +10,21 @@ function mainLoad() {
 
     addFilterListeners(window.gFilters);
 
-    window.gData = placeAllBooksByTitle(window.searchBarValue, window.gFilters);
+    placeAllBooksByTitle(window.searchBarValue, window.gFilters);
 
-    // console.log(window.gData);
 }
 
 
 async function fetchAllBooksByTitle2(title) {
 
-    // Fetch al books by title and filters (filters is not yet implemented)
-    // I should add a middle layer getting first the title and isbn and then getting the rest of the data
-    // include copies number ? 
     let link;
     if (title) {
-        // if a title is given fetch books by close enough title 
         link = "/fetch_books/" + title;
     }
     else {
-        // else fetch all books 
         link = '/fetch_books_all'
     }
-    // console.log(link);
-    // make a request to the server , get the data and return it
-
+   
     return await fetch(link).then((res) => {
         return res.json();
     }).then((data) => {
@@ -46,11 +37,9 @@ async function fetchAllBooksByTitle2(title) {
 
 async function fetchAllBooksByTitle(title, filters) {
 
-    let link; 
+    let link;
 
     link = '/fetch_filters'
-
-    console.log(JSON.stringify({ "filters": filters, "title": title }));
     return await fetch(link, {
         method: "POST",
         credentials: "same-origin",
@@ -59,7 +48,7 @@ async function fetchAllBooksByTitle(title, filters) {
         },
         redirect: "follow",
         referrerPolicy: "no-referrer",
-        body: JSON.stringify({ "filters": filters, "title": title }),
+        body: JSON.stringify({ "filters": window.gFilters, "title": title }),
 
     }).then((res) => {
         return res.json();
@@ -70,34 +59,16 @@ async function fetchAllBooksByTitle(title, filters) {
     });
 }
 
-async function postData(url = "", data = {}) {
-    // Default options are marked with *
-    const response = await fetch(url, {
-        method: "POST", // *GET, POST, PUT, DELETE, etc.
-        mode: "cors", // no-cors, *cors, same-origin
-        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: "same-origin", // include, *same-origin, omit
-        headers: {
-            "Content-Type": "application/json",
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        redirect: "follow", // manual, *follow, error
-        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        body: JSON.stringify(data), // body data type must match "Content-Type" header
-    });
-    return response.json(); // parses JSON response into native JavaScript objects
-}
-
-
 async function placeAllBooksByTitle(title, filters) {
     // place all the books by title and filters (filters is not yet implemented)
     let data = await fetchAllBooksByTitle(title, filters);
-    placeBooks(data, filters);
-    return data;
+    placeBooks(data);
+    // console.log('done')
+
 }
 
 
-function placeBooks(data, filters) {
+function placeBooks(data) {
     let container = document.getElementById("results");
     container.innerHTML = "";
 
@@ -163,18 +134,18 @@ function placeBooks(data, filters) {
 }
 
 
-function reconfigureSearchBar(filters) {
-    // remove listeners from searchbar 
-    // and add the listener to get filters as well 
-    // Implemented , but doesn't work yet 
-    let searchbar = document.getElementById('searchBarInput').addEventListener('keydown', (event) => {
-        if (event.key == "Enter") {
-            // console.log(event.target.value+JSON.stringify(filters))
-            window.location = `/search?search=${event.target.value}&filters=${JSON.stringify(filters)}`;
-        }
-    });
+// function reconfigureSearchBar(filters) {
+//     // remove listeners from searchbar 
+//     // and add the listener to get filters as well 
+//     // Implemented , but doesn't work yet 
+//     let searchbar = document.getElementById('searchBarInput').addEventListener('keydown', (event) => {
+//         if (event.key == "Enter") {
+//             // console.log(event.target.value+JSON.stringify(filters))
+//             window.location = `/search?search=${event.target.value}&filters=${JSON.stringify(filters)}`;
+//         }
+//     });
 
-}
+// }
 
 // ------------------  Filters ------------------
 let variable;
@@ -185,12 +156,12 @@ function addFilterListeners(filters) {
     let checker = document.getElementsByClassName('form-check');
 
     for (let i = 0; i < checker.length; i++) {
-        // get the input element of checker 
         let input = checker[i].getElementsByClassName('form-check-input')[0];
 
         input.addEventListener('change', function () {
-            filterOnChange(input, filters);
-            // updateBooks(window.gData, window.gFilters);
+            filterOnChange(input, window.gFilters);
+            placeAllBooksByTitle(window.searchBarValue, window.gFilters);
+
         });
 
     }
@@ -224,7 +195,8 @@ function addedFilter(filters, filterName, filterType) {
         let checkbox = document.getElementById(filterName);
         checkbox.checked = false;
         filters[filterType].splice(filters[filterType].indexOf(filterName), 1);
-
+        // console.log(filters,window.searchBarValue);
+        placeAllBooksByTitle(window.searchBarValue, filters);
         // updateBooks(window.gData, window.gFilters);
 
     });
@@ -261,36 +233,37 @@ function filterOnChange(inputElement, filters) {
 
         // change it to make the display none for these filters rather than removing them
 
+        if (document.getElementById(`${inputElement.classList[2]}-filter-more`)){
+            let moreFilters = document.getElementById(`${inputElement.classList[2]}-filter-more`);
+            let mainfilters = document.getElementById(`${inputElement.classList[2]}-filter`)
 
-        let moreFilters = document.getElementById(`${inputElement.classList[2]}-filter-more`);
-        let mainfilters = document.getElementById(`${inputElement.classList[2]}-filter`)
+            // let moreFilters_form_check = moreFilters.getElementsByClassName('form-check')
 
-        let moreFilters_form_check = moreFilters.getElementsByClassName('form-check')
+            // let toRemove = [];
 
-        // let toRemove = [];
+            // for (let i = 0; i < moreFilters_form_check.length; i++) {
+            //     let input = moreFilters_form_check[i].getElementsByClassName('form-check-input')[0];
+            //     if (input.id == inputElement.id) {
+            //         moreFilters_form_check[i].classList.add('from-more');
+            //         mainfilters.appendChild(moreFilters_form_check[i]);
+            //         // toRemove.push(moreFilters_form_check[i]);
+            //         moreFilters_form_check[i].style.display = 'none';
+            //         break;
+            //     }
+            // }
 
-        // for (let i = 0; i < moreFilters_form_check.length; i++) {
-        //     let input = moreFilters_form_check[i].getElementsByClassName('form-check-input')[0];
-        //     if (input.id == inputElement.id) {
-        //         moreFilters_form_check[i].classList.add('from-more');
-        //         mainfilters.appendChild(moreFilters_form_check[i]);
-        //         // toRemove.push(moreFilters_form_check[i]);
-        //         moreFilters_form_check[i].style.display = 'none';
-        //         break;
-        //     }
-        // }
+            // for (let i = 0; i < toRemove.length; i++) {
+            //     toRemove[i].style.display = 'none';
+            // }
 
-        // for (let i = 0; i < toRemove.length; i++) {
-        //     toRemove[i].style.display = 'none';
-        // }
-
-        // end of adding filters from show more 
+            // end of adding filters from show more 
 
 
 
-        if (moreFilters.length == 0) {
-            let button = document.getElementById(`btn-${inputElement.classList[2]}-show-more`);
-            button.style.display = 'none';
+            if (moreFilters.length == 0) {
+                let button = document.getElementById(`btn-${inputElement.classList[2]}-show-more`);
+                button.style.display = 'none';
+            }
         }
 
 

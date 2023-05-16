@@ -57,12 +57,6 @@ function getRegex(title) {
 
 module.exports = {
 
-    // connect: (callback) => {
-    //     // connects to the database
-    //     callback(null, true)
-    // },
-
-
     getLibraryInfo: function (id, limit, callback) {
         let stmt;
         let libraries;
@@ -131,7 +125,100 @@ module.exports = {
         callback(null, attributeList);
     },
 
-    getBookInfo: function (isbn, title, copies, limit, callback) {
+    getBookInfo: function (isbn, title, copies, filters,limit, callback) {
+        let stmt, books, query;
+
+        query = `SELECT * FROM BOOK`
+
+        if (copies) {
+            query += ` join COPIES on isbn=book_isbn`
+        }
+        if (isbn || title) {
+            query += ` WHERE`
+        }
+
+        if (isbn) {
+            query += ` isbn=?`
+        }
+
+        if (isbn && title) {
+            query += ` or`
+
+        }
+        if (title) {
+            // query += ` title like ?`
+            // title = `%${title}%`
+            let matchingPhrases;
+            try {
+
+                matchingPhrases = getRegex(title);
+            } catch (err) {
+                callback(err, null);
+            }
+
+            query += ` title in (${matchingPhrases.map(() => '?').join(', ')})`
+            title = matchingPhrases;
+
+        }
+
+        if ((isbn && filters) || (title && filters)) {
+            query += ` or`
+        }
+
+
+        if (filters) {
+            filters = JSON.parse(filters);
+
+            for (let key in filters){
+                if (filters[key].length){
+                    query += ` or`
+                    query += ` ${key} in (${filters[key].map( word => )})`
+                }
+            }
+        }
+        console.log(query)
+
+        if (limit) {
+            query += ` LIMIT ?`
+        }
+
+        // this is where the shit hits the fan
+        stmt = betterDb.prepare(query);
+
+        try {
+            if (isbn && title && limit) {
+                books = stmt.all(isbn, title, limit)
+
+            } else if (isbn && title) {
+                books = stmt.all(isbn, title)
+
+            } else if (isbn && limit) {
+                books = stmt.all(isbn, limit)
+
+            } else if (title && limit) {
+                books = stmt.all(title, limit)
+
+            } else if (title) {
+                books = stmt.all(title)
+
+            } else if (limit) {
+                books = stmt.all(limit)
+
+            } else if (isbn) {
+                books = stmt.all(isbn)
+            } else {
+                books = stmt.all();
+            }
+        } catch (err) {
+            callback(err, null);
+        }
+
+        callback(null, books);
+
+    },
+
+
+    getBookInfoFilters: function (isbn, title, copies, limit, callback) {
         let stmt, books, query;
 
         query = `SELECT * FROM BOOK`
