@@ -53,7 +53,6 @@ function getRegex(title) {
 }
 
 
-// https://stackoverflow.com/questions/14117010/is-there-a-way-to-specify-a-start-point-for-a-select-database-query
 
 module.exports = {
 

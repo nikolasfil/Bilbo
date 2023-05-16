@@ -2,10 +2,6 @@
 
 5: insert more data in the database | Fix the libraries 
 
-6: make the filters working in the search 
-
-9: handle close enough matches, there is a dynamic search or sth in the docs input_autocomplete
-
 12: setup docker image 
 
 13: Map pins hover pop-up name of library and click to go that profile . 
@@ -14,28 +10,8 @@ This is after I can send backend data to client js
 
 UNRESOLVED: καπου τρωει σκαλωμα και πηγαινει για αρχικη σελιδα στην about !!!
 
-22: css of search 
-
-23: to make the filters work , fetch from site 
 
 24: hamburger view for mobile view for filters
-
-25: border radius library photo profike 
-
-26: handle similar searches, send filters back and forth from backend to client js and divide the books to be in the correct pages 
-
-27: How to handle search 
-First fetch all the titles and isbn (maybe summary too ) 
-Then search within those titles to find the best match with similarity string (?) 
-Then fetch all the information regarding those books that hit close to home 
-
-sarch bar , we have a parameter 
-κανω αναζητηση στο σερβερ για τους τιτλους και τα isbn των βιβλιων που ειναι πολυ κοντα στην αναζητηση 
-και εβαζα καπως στον σεβρερ εφτιαχνα καινουργια δρομολογηση ωστε να επιστρεφει με reneder μια λεηγ την οποια να κανει fetch πισω 
-
-
-28: if We really want to improve the search, make a search divided by commas and each attribute genre: ? 
-
 
 29: controllers in different routes ! 
 
@@ -47,3 +23,17 @@ Notes:
 make a fetch request to the server to update the session filters 
 So that it can bring them up everytime you go to the seach page ?
 Maybe nullify it when you from any search bar to the search page, but show them everytime you refresh by using a fetch 
+
+https://stackoverflow.com/questions/14117010/is-there-a-way-to-specify-a-start-point-for-a-select-database-query
+
+for limitations 
+
+31: fix the pagification of search 
+
+32: fix that searching in the search bar takes the filters inside as well . 
+
+33: fix that in general 
+
+34: fix the default columns displayed. Change them into the first 5 and the rest of them 
+
+35: fix availability query 
