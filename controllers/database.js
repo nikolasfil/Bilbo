@@ -21,29 +21,35 @@ function getRegex(title) {
         throw err;
     }
 
+    const commonWords = [
+        'the', 'of', 'and', 'a', 'to', 'in', 'is', 'you', 'that', 'it', 'he', 'was', 'for', 'on', 'are', 'as', 'with', 'his', 'they', 'I']
+
     const words = title.split(" ");
     const escapedWords = words.map((word) => escapeRegExp(word));
 
-    // const pattern = `\\b\\b.*\\b${escapedWords.join("\\b.*\\b")}\\b`;
+    const partialWords = words.filter(word => !commonWords.includes(word));
 
-    // const pattern = escapedWords.map(word => `\\b${word}\\w*\\b`).join('|');
+    const partialPattern = partialWords.map(word => `(?:\\b|\\B)${escapeRegExp(word)}\\w*(?:\\b|\\B)`).join('|');
 
-    // const pattern = escapedWords.map(word => `(?:\\b|\\B)${word}\\w*(?:\\b|\\B)`).join('|');
-    // const pattern = escapedWords.map(word => `(?:\\b|\\B)${escapeRegex(word)}\\w*(?:\\b|\\B)`).join('|');
+    const exactPattern = `\\b${escapeRegExp(title)}\\b`; 
 
-    const pattern = escapedWords.map(word => `(?:\\b|\\B)${word.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')}\\w*(?:\\b|\\B)`).join('|');
+    const pattern = `(?:${partialPattern}|${exactPattern})`;
 
     const matchingPhrases = rows.filter(row => new RegExp(pattern, 'i').test(row.title)).map(row => row.title);
 
-    // console.log(matchingPhrases,pattern)
+
+
+    // const pattern = escapedWords.map(word => `(?:\\b|\\B)${word.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')}\\w*(?:\\b|\\B)`).join('|');
+
+    // const matchingPhrases = rows.filter(row => new RegExp(pattern, 'i').test(row.title)).map(row => row.title);
+
+
     return matchingPhrases;
+
+
 
 }
 
-
-// function escapeRegex(string) {
-//     return string.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-//   }
 
 // https://stackoverflow.com/questions/14117010/is-there-a-way-to-specify-a-start-point-for-a-select-database-query
 
