@@ -10,6 +10,37 @@ function escapeRegExp(string) {
     return string.replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&");
 }
 
+
+function getRegex(title) {
+
+    let rows;
+    try {
+        rows = betterDb.prepare('Select title from BOOK').all()
+
+    } catch (err) {
+        throw err;
+    }
+
+    const words = title.split(" ");
+    const escapedWords = words.map((word) => escapeRegExp(word));
+
+    // const pattern = `\\b\\b.*\\b${escapedWords.join("\\b.*\\b")}\\b`;
+
+    // const pattern = escapedWords.map(word => `\\b${word}\\w*\\b`).join('|');
+
+    // const pattern = escapedWords.map(word => `(?:\\b|\\B)${word}\\w*(?:\\b|\\B)`).join('|');
+    // const pattern = escapedWords.map(word => `(?:\\b|\\B)${escapeRegex(word)}\\w*(?:\\b|\\B)`).join('|');
+
+    const pattern = escapedWords.map(word => `(?:\\b|\\B)${word.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')}\\w*(?:\\b|\\B)`).join('|');
+
+    const matchingPhrases = rows.filter(row => new RegExp(pattern, 'i').test(row.title)).map(row => row.title);
+
+    // console.log(matchingPhrases,pattern)
+    return matchingPhrases;
+
+}
+
+
 // function escapeRegex(string) {
 //     return string.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 //   }
@@ -115,30 +146,16 @@ module.exports = {
         if (title) {
             // query += ` title like ?`
             // title = `%${title}%`
-            let rows;
+            let matchingPhrases;
             try {
-                rows = betterDb.prepare('Select title from BOOK').all()
 
+                matchingPhrases = getRegex(title);
             } catch (err) {
-                callback(err, null)
+                callback(err, null);
             }
-            
-            const words = title.split(" ");
-            const escapedWords = words.map((word) => escapeRegExp(word));
-            // const pattern = `\\b\\b.*\\b${escapedWords.join("\\b.*\\b")}\\b`;
-            // const pattern = escapedWords.map(word => `\\b${word}\\w*\\b`).join('|');
-            
-            // const pattern = escapedWords.map(word => `(?:\\b|\\B)${word}\\w*(?:\\b|\\B)`).join('|');
-            // const pattern = escapedWords.map(word => `(?:\\b|\\B)${escapeRegex(word)}\\w*(?:\\b|\\B)`).join('|');
-            const pattern = escapedWords.map(word => `(?:\\b|\\B)${word.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')}\\w*(?:\\b|\\B)`).join('|');
 
-            const matchingPhrases = rows.filter(row => new RegExp(pattern, 'i').test(row.title)).map(row => row.title);
-            
-            // console.log(matchingPhrases,pattern)
-
+            query += ` title in (${matchingPhrases.map(() => '?').join(', ')})`
             title = matchingPhrases;
-
-            query += ` title in (${title.map(() => '?').join(', ')})`
 
         }
 
@@ -178,114 +195,6 @@ module.exports = {
         }
 
         callback(null, books);
-
-    },
-
-    getBook: function (isbn, title, copies, limit, callback) {
-        let stmt, books;
-
-        try {
-
-            if (isbn && title && copies && limit) {
-                stmt = betterDb.prepare('SELECT * FROM BOOK join COPIES on isbn=book_isbn WHERE isbn=? or title like ? LIMIT ?');
-                books = stmt.all(isbn, `%${title}%`, limit);
-            } else if (isbn && title) {
-
-            } else if (isbn && title && copies) {
-                stmt = betterDb.prepare('SELECT * FROM BOOK join COPIES on isbn=book_isbn WHERE isbn=? or title like ?');
-                books = stmt.all(isbn, `%${title}%`);
-
-            } else if (isbn && title && limit) {
-                stmt = betterDb.prepare('SELECT * FROM BOOK WHERE isbn=? or title like ? LIMIT ?');
-                books = stmt.all(isbn, `%${title}%`, limit);
-
-            } else if (isbn && copies && limit) {
-                stmt = betterDb.prepare('SELECT * FROM BOOK join COPIES on isbn=book_isbn WHERE isbn=? LIMIT ?');
-                books = stmt.all(isbn, limit);
-
-            } else if (title && copies && limit) {
-                stmt = betterDb.prepare('SELECT * FROM BOOK join COPIES on isbn=book_isbn WHERE title like ? LIMIT ?');
-                books = stmt.all(`%${title}%`, limit);
-
-            } else if (isbn && title) {
-                stmt = betterDb.prepare('SELECT * FROM BOOK WHERE isbn=? or title like ? ');
-                books = stmt.all(isbn, `%${title}%`);
-
-            } else if (isbn && copies) {
-                stmt = betterDb.prepare('SELECT * FROM BOOK join COPIES on isbn=book_isbn WHERE isbn=? ');
-                books = stmt.all(isbn);
-
-            } else if (isbn && limit) {
-                stmt = betterDb.prepare('SELECT * FROM BOOK WHERE isbn=? LIMIT ?');
-                books = stmt.all(isbn, limit);
-
-            } else if (title && copies) {
-                stmt = betterDb.prepare('SELECT * FROM BOOK join COPIES on isbn=book_isbn WHERE title like ? ');
-                books = stmt.all(`%${title}%`);
-
-            } else if (title && limit) {
-                stmt = betterDb.prepare('SELECT * FROM BOOK WHERE title like ? LIMIT ?');
-                books = stmt.all(`%${title}%`, limit);
-
-            } else if (copies && limit) {
-                stmt = betterDb.prepare('SELECT * FROM BOOK join COPIES on isbn=book_isbn LIMIT ?');
-                books = stmt.all(limit);
-
-            } else if (isbn) {
-                stmt = betterDb.prepare('SELECT * FROM BOOK WHERE isbn=?');
-                books = stmt.get(isbn);
-
-            } else if (title) {
-                // stmt = betterDb.prepare('SELECT * FROM BOOK WHERE title like ?');
-                // books = stmt.all(`%${title}%`);
-                const words = title.split(" ");
-                const escapedWords = words.map((word) => escapeRegExp(word));
-
-                const pattern = "\\b" + "\\b.*\\b" + escapedWords.join("\\b.*\\b") + "\\b";
-
-                // console.log(title);
-
-                // stmt = betterDb.prepare(query);
-                // books = stmt.all(pattern);
-
-                // -----------------
-
-                const rows = betterDb.prepare('Select title from BOOK').all()
-                const matchingPhrases = rows.filter(row => new RegExp(title, 'i').test(row.title)).map(row => row.title);
-                // const matchingPhrases = rows.filter(row => new RegExp(title, pattern).test(row.title)).map(row => row.title);
-
-                // const query = db.prepare(`SELECT attribute1, attribute2, attribute3 FROM your_table WHERE title IN (${titleList.map(() => '?').join(', ')})`);
-
-                stmt = betterDb.prepare('SELECT * FROM BOOK WHERE title in (' + matchingPhrases.map(() => '?').join(', ') + ')');
-                books = stmt.all(matchingPhrases);
-                // console.log(matchingPhrases);
-
-
-                // ----------
-
-            } else if (copies) {
-                stmt = betterDb.prepare('SELECT * FROM BOOK join COPIES on isbn=book_isbn');
-                books = stmt.all();
-
-            } else if (limit) {
-                stmt = betterDb.prepare('SELECT * FROM BOOK  LIMIT ?');
-                books = stmt.all(limit);
-            } else {
-                stmt = betterDb.prepare('SELECT * FROM BOOK join COPIES on isbn=book_isbn');
-                books = stmt.all();
-
-            }
-
-        } catch (err) {
-            callback(err, null);
-        }
-
-        callback(null, books);
-
-        // import itertools
-        // for i in range(1,len(lst)+1):
-        //     for j in itertools.combinations(lst,i):
-        //             print(' && '.join(list(j))
 
     },
 
