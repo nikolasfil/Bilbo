@@ -1,0 +1,72 @@
+<script src="javascript/sign_in.js" defer></script>
+
+<div id="sign-in-popup" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content align-items-center">
+        <form action="/sign_in" class="form-container" id="form_sign_in" method="POST">
+            <span class="close">&times;</span>
+
+            {{!-- add the coloring of the box for validation from front2 --}}
+            <div class="d-flex flex-column justify-content-center ">
+                <label for="email" style="margin-top:52px;">Username</label>
+                <input type="email" placeholder="Enter Email" name="email" required>
+            </div>
+
+            <div class="d-flex flex-column justify-content-center ">
+                <label for="psw">Password</label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+            </div>
+
+            <div class="d-flex flex-row justify-content-end ">
+                <button type="button" class="forgot" onclick="closeForm()"></button>
+                <button type="submit" class="btn" id="submit-sign-in">Sign In</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<div id="sign-up-popup" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content align-items-center">
+        <form action="/sign_up" class="form-container" id="form_sign_up" method="POST">
+            <span class="close">&times;</span>
+
+            <div class="d-flex flex-column justify-content-center ">
+                <label for="fname" style="margin-top:52px;">First Name</label>
+                <input type="text" placeholder="Enter First Name" name="fname" required>
+            </div>
+
+            <div class="d-flex flex-column justify-content-center ">
+                <label for="lname" style="margin-top:52px;">Last Name</label>
+                <input type="text" placeholder="Enter Last Name" name="lname" required>
+            </div>
+
+            <div class="d-flex flex-column justify-content-center ">
+                <label for="birthdate" style="margin-top:52px;">Username</label>
+                <input type="date" placeholder="Enter First Name" name="birthdate" required>
+            </div>
+
+            {{!-- add the coloring of the box for validation from front2 --}}
+            <div class="d-flex flex-column justify-content-center ">
+                <label for="email" style="margin-top:52px;">Username</label>
+                <input type="email" placeholder="Enter Email" name="email" required>
+            </div>
+
+            <div class="d-flex flex-column justify-content-center ">
+                <label for="psw">Password</label>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+            </div>
+
+            <div class="d-flex flex-row justify-content-end ">
+                <button type="button" class="forgot" onclick="closeForm()"></button>
+                <button type="submit" class="btn" id="submit-sign-up">Sign Up</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
