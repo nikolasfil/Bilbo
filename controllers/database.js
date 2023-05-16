@@ -157,6 +157,7 @@ module.exports = {
 
                 const rows = betterDb.prepare('Select title from BOOK').all()
                 const matchingPhrases = rows.filter(row => new RegExp(title, 'i').test(row.title)).map(row => row.title);
+                // const matchingPhrases = rows.filter(row => new RegExp(title, pattern).test(row.title)).map(row => row.title);
 
                 // const query = db.prepare(`SELECT attribute1, attribute2, attribute3 FROM your_table WHERE title IN (${titleList.map(() => '?').join(', ')})`);
 
