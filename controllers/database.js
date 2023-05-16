@@ -23,7 +23,7 @@ function getRegex(title) {
 
     const commonWords = [
         'the', 'of', 'and', 'a', 'to', 'in', 'is', 'you', 'that', 'it', 'he', 'was', 'for', 'on', 'are', 'as', 'with', 'his', 'they', 'I']
-    
+
     title = title.trim();
     const words = title.split(" ");
 
@@ -33,7 +33,7 @@ function getRegex(title) {
 
     const partialPattern = partialWords.map(word => `(?:\\b|\\B)${escapeRegExp(word)}\\w*(?:\\b|\\B)`).join('|');
 
-    const exactPattern = `\\b${escapeRegExp(title)}\\b`; 
+    const exactPattern = `\\b${escapeRegExp(title)}\\b`;
 
     const pattern = `(?:${partialPattern}|${exactPattern})`;
 
@@ -125,7 +125,7 @@ module.exports = {
         callback(null, attributeList);
     },
 
-    getBookInfo: function (isbn, title, copies, filters,limit, callback) {
+    getBookInfo: function (isbn, title, copies, filters, limit, callback) {
         let stmt, books, query;
 
         query = `SELECT * FROM BOOK`
@@ -161,21 +161,23 @@ module.exports = {
 
         }
 
-        if ((isbn && filters) || (title && filters)) {
-            query += ` or`
-        }
+        // if ((isbn && filters && Object.keys(filters)!==0) || (title && filters && Object.keys(filters)!==0)) {
+        //     query += ` or`
+        // }
 
 
-        if (filters) {
+        if (filters && Object.keys(filters)!==0) {
             filters = JSON.parse(filters);
 
-            for (let key in filters){
-                if (filters[key].length){
-                    query += ` or`
-                    query += ` ${key} in (${filters[key].map( word => )})`
+            for (let key in filters) {
+                if (filters[key].length) {
+                    query += ` and`
+                    let list = filters[key].map(word => `'${word}'`).join(',')
+                    query += ` ${key} in (${list})`
                 }
             }
         }
+
         console.log(query)
 
         if (limit) {
