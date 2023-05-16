@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS LIBRARY (
 	address 	varchar(100) 		NOT NULL,
 	phone 		varchar(100) 		NOT NULL,
 	email 		varchar(100) 		NOT NULL,
-	profile_picture		varchar(100) 		NOT NULL,
+	photo		varchar(100) 		NOT NULL,
 	summary	varchar(1000) 	NOT NULL,
 	working_hours 	varchar(1000) 	NOT NULL
 
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS BOOK (
 	genre varchar(100) ,
 	language varchar(100) ,
 	summary varchar(1000) ,
-	cover_image binary ,
+	photo binary ,
 	PRIMARY KEY (isbn)
 );
 

@@ -6,7 +6,7 @@ const session = require('express-session');
 
 router.get('/',
     (req, res, next) => {
-        database.getBookCopies(null,6, function (err, books) {
+        database.getBookCopies(null,12, function (err, books) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -19,7 +19,7 @@ router.get('/',
         next();
     },
     (req, res, next) => {
-        database.getAllLibraries(6, function (err, libraries) {
+        database.getLibraryInfo(null,6, function (err, libraries) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')

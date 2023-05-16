@@ -22,12 +22,13 @@ router.get('/library_info',
         }
     },
     (req, res, next) => {
-        database.getLibraryById(req.query['id'], function (err, libraries) {
+        database.getLibraryInfo(req.query['id'],null, function (err, libraries) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
             }
             else {
+                console.log(JSON.stringify(libraries))
                 res.locals.libraries = libraries;
             }
         })
