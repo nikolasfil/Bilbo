@@ -10,6 +10,10 @@ function escapeRegExp(string) {
     return string.replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&");
 }
 
+// function escapeRegex(string) {
+//     return string.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+//   }
+
 // https://stackoverflow.com/questions/14117010/is-there-a-way-to-specify-a-start-point-for-a-select-database-query
 
 module.exports = {
@@ -121,8 +125,13 @@ module.exports = {
             
             const words = title.split(" ");
             const escapedWords = words.map((word) => escapeRegExp(word));
-            const pattern = "\\b" + "\\b.*\\b" + escapedWords.join("\\b.*\\b") + "\\b";
+            // const pattern = `\\b\\b.*\\b${escapedWords.join("\\b.*\\b")}\\b`;
+            // const pattern = escapedWords.map(word => `\\b${word}\\w*\\b`).join('|');
             
+            // const pattern = escapedWords.map(word => `(?:\\b|\\B)${word}\\w*(?:\\b|\\B)`).join('|');
+            // const pattern = escapedWords.map(word => `(?:\\b|\\B)${escapeRegex(word)}\\w*(?:\\b|\\B)`).join('|');
+            const pattern = escapedWords.map(word => `(?:\\b|\\B)${word.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')}\\w*(?:\\b|\\B)`).join('|');
+
             const matchingPhrases = rows.filter(row => new RegExp(pattern, 'i').test(row.title)).map(row => row.title);
             
             // console.log(matchingPhrases,pattern)
