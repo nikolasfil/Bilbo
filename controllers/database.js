@@ -87,6 +87,69 @@ module.exports = {
     },
 
     getBookInfo: function (isbn, title, copies, limit, callback) {
+        let stmt, books, query;
+
+        query = `SELECT * FROM BOOK`
+
+        if (copies) {
+            query += ` join COPIES on isbn=book_isbn`
+        }
+        if (isbn || title) {
+            query += ` WHERE`
+        }
+
+        if (isbn) {
+            query += ` isbn=?`
+        }
+
+        if (isbn && title) {
+            query += ` or`
+
+        }
+        if (title) {
+            query += ` title like ?`
+            title = `%${title}%`
+        }
+
+        if (limit) {
+            query += ` LIMIT ?`
+        }
+
+        stmt = betterDb.prepare(query);
+
+        try {
+            if (isbn && title && limit) {
+                books = stmt.all(isbn, title, limit)
+
+            } else if (isbn && title) {
+                books = stmt.all(isbn, title)
+
+            } else if (isbn && limit) {
+                books = stmt.all(isbn, limit)
+
+            } else if (title && limit) {
+                books = stmt.all(title, limit)
+
+            } else if (title) {
+                books = stmt.all(title)
+
+            } else if (limit) {
+                books = stmt.all(limit)
+
+            } else if (isbn) {
+                books = stmt.all(isbn)
+            } else {
+                books = stmt.all();
+            }
+        } catch (err){
+            callback(err,null);
+        }
+
+        callback(null,books);
+
+    },
+
+    getBook: function (isbn, title, copies, limit, callback) {
         let stmt, books;
 
         try {
@@ -149,7 +212,7 @@ module.exports = {
                 const pattern = "\\b" + "\\b.*\\b" + escapedWords.join("\\b.*\\b") + "\\b";
 
                 // console.log(title);
-                
+
                 // stmt = betterDb.prepare(query);
                 // books = stmt.all(pattern);
 
@@ -188,13 +251,9 @@ module.exports = {
         callback(null, books);
 
         // import itertools
-        // >>> lst = ['isbn','title','copies','limit']
-        // >>> for i in range(1,len(lst)+1):
-        // ...     
-        // KeyboardInterrupt
-        // >>> for i in range(1,len(lst)+1):
-        // ...     for j in itertools.combinations(lst,i):
-        // ...             print(' && '.join(list(j))
+        // for i in range(1,len(lst)+1):
+        //     for j in itertools.combinations(lst,i):
+        //             print(' && '.join(list(j))
 
     },
 
