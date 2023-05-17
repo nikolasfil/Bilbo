@@ -46,7 +46,7 @@ router.post('/sign_up',
             if (err) {
                 console.log(err);
                 // email already exists
-
+                alert('email already exists')
                 res.redirect(req.get('referer'));
             }
             else {
@@ -64,7 +64,8 @@ router.post('/sign_up',
                 res.redirect(req.get('referer'));
             }
             else {
-                res.session.signedIn = true;
+                // console.log(signedIn);
+                req.session.signedIn = true;
                 res.redirect(req.get('referer'));
             }
         });

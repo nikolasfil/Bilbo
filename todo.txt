@@ -24,7 +24,7 @@ make a fetch request to the server to update the session filters
 So that it can bring them up everytime you go to the seach page ?
 Maybe nullify it when you from any search bar to the search page, but show them everytime you refresh by using a fetch 
 
-https://stackoverflow.com/questions/14117010/is-there-a-way-to-specify-a-start-point-for-a-select-database-query
+https://www.sqlitetutorial.net/sqlite-limit/
 
 for limitations 
 

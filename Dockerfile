@@ -1,7 +1,7 @@
 # docker file to run node package 
 
 # Base image
-FROM node:12.16.1-alpine
+FROM node:18.16-alpine
 
 # Create app directory
 WORKDIR /usr/src/app

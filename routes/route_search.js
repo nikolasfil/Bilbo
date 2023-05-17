@@ -10,7 +10,7 @@ router.post('/fetch_filters', (req, res) => {
     // database.getBookInfo(isbn=null, title=req.body.title, copies=true,filters=null, limit=null, function (err, books) {
     // console.log(req.body.filters)
     let filters = JSON.stringify(req.body.filters);
-    database.getBookInfo(isbn = null, title = req.body.title, copies = true, filters, limit = null, function (err, books) {
+    database.getBookInfo(isbn = null, title = req.body.title, copies = true, filters, limit = null,offset=null, function (err, books) {
 
         if (err) {
             console.log(err)
@@ -26,7 +26,7 @@ router.post('/fetch_filters', (req, res) => {
 
 
 router.get('/fetch_books_all', (req, res) => {
-    database.getBookInfo(ibsn = null, title = null, copies = true, filters = null, limit = null, function (err, books) {
+    database.getBookInfo(ibsn = null, title = null, copies = true, filters = null, limit = null,offset=null, function (err, books) {
         if (err) {
             console.log(err)
             res.status(500).send('Internal Server Error')
@@ -40,7 +40,7 @@ router.get('/fetch_books_all', (req, res) => {
 
 
 router.get('/fetch_books/:title', (req, res) => {
-    database.getBookInfo(isbn = null, title = req.params.title, copies = true, filters = null, limit = null, function (err, book) {
+    database.getBookInfo(isbn = null, title = req.params.title, copies = true, filters = null, limit = null,offset=null, function (err, book) {
         if (err) {
             console.log(err)
             res.status(500).send('Internal Server Error')
@@ -67,7 +67,20 @@ router.get('/search',
     },
 
     (req, res, next) => {
-        database.getAllAttribute('genre', function (err, attributeList) {
+        database.getAllAttribute('genre', limit=4,offset=null, function (err, attributeList) {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Internal Server Error')
+            }
+            else {
+                res.locals.genre = attributeList;
+            }
+        });
+        next();
+    },
+
+    (req, res, next) => {
+        database.getAllAttribute('genre', -1,4, function (err, attributeList) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -78,8 +91,9 @@ router.get('/search',
         });
         next();
     },
+    
     (req, res, next) => {
-        database.getAllAttribute('publisher', function (err, publisherList) {
+        database.getAllAttribute('publisher',-1,4, function (err, publisherList) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -90,9 +104,36 @@ router.get('/search',
         });
         next();
     },
+
+    (req, res, next) => {
+        database.getAllAttribute('publisher',4,null, function (err, publisherList) {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Internal Server Error')
+            }
+            else {
+                res.locals.publisher = publisherList;
+            }
+        });
+        next();
+    },
     (req, res, next) => {
 
-        database.getAllAttribute('edition', function (err, editionList) {
+        database.getAllAttribute('edition', 4,null,function (err, editionList) {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Internal Server Error')
+            }
+            else {
+                res.locals.edition = editionList;
+            }
+        });
+        next();
+    },
+
+    (req, res, next) => {
+
+        database.getAllAttribute('edition', -1,4 ,function (err, editionList) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -103,8 +144,9 @@ router.get('/search',
         });
         next();
     },
+
     (req, res, next) => {
-        database.getAllAttribute('language', function (err, languageList) {
+        database.getAllAttribute('language',null,null, function (err, languageList) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -115,8 +157,9 @@ router.get('/search',
         });
         next();
     },
+
     (req, res, next) => {
-        database.getAllAttribute('library', function (err, libraryList) {
+        database.getAllAttribute('library',null,null, function (err, libraryList) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -127,7 +170,9 @@ router.get('/search',
         });
         next();
     },
+    // (req, res, next) => {
 
+    // },
     (req, res, next) => {
         res.locals.availability = [
             { name: 'Available' },
@@ -136,29 +181,8 @@ router.get('/search',
             { name: 'All' }
         ]
 
-        res.locals.genre = [
-            { name: 'Fantasy' },
-            { name: 'Science' },
-            { name: 'Horror' },
-            { name: 'Comedy' },
-            { name: 'Sci-fi' },
-            { name: 'Fiction' }
-        ]
-
-        res.locals.publisher = [
-            { name: 'Tziola' },
-            { name: 'Penguin' },
-            { name: 'Harper Collins' },
-            { name: 'Random House' },
-            { name: 'Simon & Schuster' },
-        ]
-
-        res.locals.edition = [
-            { name: '1st' },
-            { name: '2nd' },
-            { name: '3rd' },
-            { name: '>3rd' }
-        ]
+        
+        
 
         next();
     },

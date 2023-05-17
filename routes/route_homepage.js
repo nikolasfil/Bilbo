@@ -6,7 +6,7 @@ const session = require('express-session');
 
 router.get('/',
     (req, res, next) => {
-        database.getBookInfo(null,null,true,filters=null,12, function (err, books) {
+        database.getBookInfo(null,null,true,filters=null,limit=12,offset=null, function (err, books) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
