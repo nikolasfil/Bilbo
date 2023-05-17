@@ -190,25 +190,9 @@ router.get('/search',
     (req, res) => {
         res.render('search', {
             title: 'Search',
-            // genre: res.locals.genre,
-            // all_genre: res.locals.all_genre,
-
-            // availability: res.locals.availability,
-
-            // publisher: res.locals.publisher,
-            // all_publisherList: res.locals.all_publisher,
-
-            // library: res.locals.library,
-
-            // edition: res.locals.edition,
-            // all_edition: res.locals.all_edition,
-
-            // language: res.locals.language,
-
+        
             signedIn: req.session.signedIn,
             searchBarValue: req.query.search,
-            // book: res.locals.books,
-            // stringFilters: res.locals.stringFilters,
 
         });
     }
