@@ -178,11 +178,7 @@ module.exports = {
 
         }
 
-        // if ((isbn && filters && Object.keys(filters)!==0) || (title && filters && Object.keys(filters)!==0)) {
-        //     query += ` or`
-        // }
-
-
+        
         if (filters && Object.keys(filters) !== 0) {
             filters = JSON.parse(filters);
 
