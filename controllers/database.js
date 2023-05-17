@@ -1,11 +1,7 @@
 const sql = require('better-sqlite3')
 const betterDb = new sql('model/bilboData.sqlite')
 
-const sqlite3 = require('sqlite3').verbose();
-const sqliteDb = new sqlite3.Database('model/bilboData.sqlite')
-
 const bcrypt = require('bcrypt');
-const { query } = require('express');
 
 function escapeRegExp(string) {
     return string.replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&");
@@ -134,7 +130,7 @@ module.exports = {
         query = `SELECT * FROM BOOK`
 
         if (copies) {
-            query += ` join COPIES on isbn=book_isbn`
+            query = `SELECT isbn,title,author,edition,publisher,release, genre , language, book.summary as summary, BOOK.photo as photo,copy_num, library.name as library FROM BOOK join COPIES on isbn=book_isbn join LIBRARY on library_id=LIBRARY.id`
         }
         if (isbn || title) {
             query += ` WHERE`

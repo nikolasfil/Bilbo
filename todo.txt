@@ -29,11 +29,11 @@ https://www.sqlitetutorial.net/sqlite-limit/
 for limitations 
 
 31: fix the pagification of search 
+Load the pagification first. And then each page fetches with limit and offset = (page per books * page)
+
 
 32: fix that searching in the search bar takes the filters inside as well . 
 
 33: fix that in general 
-
-34: fix the default columns displayed. Change them into the first 5 and the rest of them 
 
 35: fix availability query 

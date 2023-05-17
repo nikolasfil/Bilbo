@@ -64,7 +64,7 @@ function mapInit(lon, lat, zoom) {
     
 }
 
-function mapInit(lon, lat, zoom) {
+function mapMult(coordinates_list) {
     // console.log(lon,lat,zoom);
 
 
@@ -72,6 +72,16 @@ function mapInit(lon, lat, zoom) {
         geometry: new ol.geom.Point(ol.proj.fromLonLat([lon, lat])),
         name: 'Patras',
     });
+
+
+    const icons = [];
+
+    for (let i = 0; i < coordinates_list.length; i++) {
+        icons.push(new ol.Feature({
+            geometry: new ol.geom.Point(ol.proj.fromLonLat([coordinates_list[i].lon, coordinates_list[i].lan])),
+            name: coordinates_list[i].name,
+        }))
+    }
 
     // const iconFeature2 = new ol.Feature({
     //     geometry: new ol.geom.Point(ol.proj.fromLonLat([lon+0.01, lat+0.01])),
@@ -88,7 +98,7 @@ function mapInit(lon, lat, zoom) {
                 source: new ol.source.Vector({
                     // for adding more than one icon
                     // features: [iconFeature, iconFeature2]
-                    features: [iconFeature]
+                    features: icons
 
                 }),
                 style: new ol.style.Style({
@@ -112,9 +122,9 @@ function mapInit(lon, lat, zoom) {
 
     });
 
-    // map.layers = map.getLayers();
+    map.layers = map.getLayers();
 
-    // map.layers.getArray()[1].getSource().getFeatures()[0]
+    map.layers.getArray()[1].getSource().getFeatures()[0]
 
 }
 
