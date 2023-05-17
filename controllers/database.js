@@ -165,7 +165,7 @@ module.exports = {
         // }
 
 
-        if (filters && Object.keys(filters)!==0) {
+        if (filters && Object.keys(filters) !== 0) {
             filters = JSON.parse(filters);
 
             for (let key in filters) {
