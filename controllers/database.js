@@ -88,7 +88,7 @@ module.exports = {
 
 
     getAllAttribute: function (attribute,limit,offset, callback) {
-        let stmt, query;
+        let stmt, query,attributeList;
 
         if (attribute=='library'){
 
@@ -102,41 +102,15 @@ module.exports = {
             query = `SELECT distinct ${attribute} as name,COUNT(*) as count FROM BOOK where name IS not NUll GROUP BY genre ORDER BY count DESC, name ASC`
         }
 
-        // switch (attribute) {
-        //     case 'genre':
-        //         query = 'SELECT distinct genre as name,COUNT(*) as book_count FROM BOOK where genre IS not NUll GROUP BY genre ORDER BY book_count DESC, genre ASC'
-        //         break;
-        //     case 'publisher':
-        //         query = 'SELECT distinct publisher as name FROM BOOK where publisher IS not NUll order by name'
-        //         break;
-        //     case 'author':
-        //         query = 'SELECT distinct author as name FROM BOOK where author IS not NUll order by name'
-        //         break;
-        //     case 'edition':
-        //         query = 'SELECT distinct edition as name FROM BOOK where edition IS not NUll order by name'
-        //         break;
-        //     case 'language':
-        //         query = 'SELECT distinct language as name FROM BOOK where language IS not NUll order by name'
-        //         break;
-        //     case 'library':
-        //         query = 'SELECT distinct name FROM LIBRARY order by name'
-        //         break;
-        //     default:
-        //         callback('Invalid Attribute', null);
-        //         break;
-        // }
-
-
-
         if (limit && offset) {
             query += ` LIMIT ? OFFSET ?`
         } else if (limit) {
             query += ` LIMIT ?`
         }
 
-        let attributeList;
+        
         stmt = betterDb.prepare(query);
-        console.log(query)
+        
         try {
             if (limit && offset) {
                 attributeList = stmt.all(limit, offset)
