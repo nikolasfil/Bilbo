@@ -149,8 +149,6 @@
 
 .selected-filter-list{  
   flex-wrap: wrap;
-  max-width: 70vw;
-  min-height: 44px;
 }
 
 .selected-filters {
