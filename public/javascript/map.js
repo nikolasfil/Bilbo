@@ -61,25 +61,35 @@ function mapInit(lon, lat, zoom) {
     //     console.log('clicked');
     // }
     // );
-    
+
 }
 
-function mapMult(coordinates_list) {
+async function mapMult(isbn) {
     // console.log(lon,lat,zoom);
 
+    // console.log(decodeURI(coordinates_list))
 
-    const iconFeature = new ol.Feature({
-        geometry: new ol.geom.Point(ol.proj.fromLonLat([lon, lat])),
-        name: 'Patras',
+    let books = await fetch(`/map/${isbn}`).then((res) => {
+        return res.json();
+    }).then((data) => {
+        return data;
+    }).catch(error => {
+        console.log(error);
     });
 
+    console.log(books)
+
+    let zoom = 16;
 
     const icons = [];
 
-    for (let i = 0; i < coordinates_list.length; i++) {
+    for (let i = 0; i < books.length; i++) {
+        console.log(books[i].location.split(','))
         icons.push(new ol.Feature({
-            geometry: new ol.geom.Point(ol.proj.fromLonLat([coordinates_list[i].lon, coordinates_list[i].lan])),
-            name: coordinates_list[i].name,
+            geometry: new ol.geom.Point(ol.proj.fromLonLat(books[i].location.split(','))),
+
+            // geometry: new ol.geom.Point(ol.proj.fromLonLat([books[i].location.split(',')[0], books[i].location.split(',')[1]])),
+            name: books[i].name,
         }))
     }
 
@@ -116,7 +126,7 @@ function mapMult(coordinates_list) {
             })
         ],
         view: new ol.View({
-            center: ol.proj.fromLonLat([lon, lat]),
+            center: ol.proj.fromLonLat(books[0].location.split(',')),
             zoom: zoom
         }),
 

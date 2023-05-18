@@ -130,6 +130,7 @@ module.exports = {
         query = `SELECT * FROM BOOK`
 
         if (copies) {
+            // query += ` join COPIES on isbn=book_isbn`
             query = `SELECT isbn,title,author,edition,publisher,release, genre , language, book.summary as summary, BOOK.photo as photo,copy_num, library.name as library FROM BOOK join COPIES on isbn=book_isbn join LIBRARY on library_id=LIBRARY.id`
         }
         if (isbn || title) {
@@ -232,7 +233,12 @@ module.exports = {
     },
 
     getLibraryIdOfBookByIsbn: function (isbn, callback) {
+        // const stmt = betterDb.prepare('Select id,copy_num,name,location,address,phone,email,l.photo as photo,l.summary,working_hours from BOOK join COPIES on book_isbn=isbn  join LIBRARY as l on library_id=id  where isbn = ?')
+        
+        // this needs to be separate. Book info per library and a different one for location
+
         const stmt = betterDb.prepare('Select id,copy_num,name,location,address,phone,email,l.photo as photo,l.summary,working_hours from BOOK join COPIES on book_isbn=isbn  join LIBRARY as l on library_id=id  where isbn = ?')
+        
         let books;
         try {
             books = stmt.all(isbn)
@@ -241,6 +247,20 @@ module.exports = {
             callback(err, null)
         }
         callback(null, books)
+    },
+
+    getLibraryLocations: function (isbn,callback){
+
+        const stmt = betterDb.prepare('select name,location from BOOK join COPIES on isbn=book_isbn join LIBRARY on id=library_id where isbn = ?')
+
+        let books;
+
+        try{
+            books = stmt.all(isbn);
+        }catch (err) {
+            callback(err, null);
+        }
+        callback(null,books);
     },
 
     getBooksFromLibrary: function (libraryId, limit, callback) {

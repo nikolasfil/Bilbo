@@ -37,3 +37,10 @@ Load the pagification first. And then each page fetches with limit and offset = 
 33: fix that in general 
 
 35: fix availability query 
+
+
+36: add more copies , from different libraries 
+
+37: fix the issue that will arise from putting more copies in the libraries. Also the copies available should be coordinated by firstly a query search for availability and secondly a sum of all the copies that exist in different libraries . 
+
+
