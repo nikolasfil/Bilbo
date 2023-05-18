@@ -66,7 +66,7 @@ function mapInit(lon, lat, zoom) {
 
 async function mapMult(isbn) {
 
-    let zoom,books,locationList;
+    let zoom, books, center;
 
     books = await fetch(`/map/${isbn}`).then((res) => {
         return res.json();
@@ -79,7 +79,7 @@ async function mapMult(isbn) {
     const icons = [];
 
     for (let i = 0; i < books.length; i++) {
-        console.log(books[i].location.split(','))
+
         icons.push(new ol.Feature({
             geometry: new ol.geom.Point(ol.proj.fromLonLat(books[i].location.split(','))),
 
@@ -87,9 +87,11 @@ async function mapMult(isbn) {
         }))
     }
 
-    if (books.length ==1 ) {
+    if (books.length == 1) {
         zoom = 16;
-        locationList = books[0].location.split(',');
+        center = books[0].location.split(',');
+    } else {
+        center = centering(books)
     }
 
     const map = new ol.Map({
@@ -117,7 +119,7 @@ async function mapMult(isbn) {
             })
         ],
         view: new ol.View({
-            center: ol.proj.fromLonLat(locationList),
+            center: ol.proj.fromLonLat(center),
             zoom: zoom
         }),
 
@@ -127,6 +129,23 @@ async function mapMult(isbn) {
 
     map.layers.getArray()[1].getSource().getFeatures()[0]
 
+}
+
+
+function centering(books) {
+    let x = 0;
+    let y = 0;
+
+    // Iterate over each book
+    for (let i = 0; i < books.length; i++) {
+        const location = books[i].location.split(",");  
+        const fx = parseFloat(location[0].trim());
+        const fy= parseFloat(location[1].trim());
+        x+=fx;
+        y+=fy;
+    }
+
+    return [x / books.length,y / books.length]; // Return the sum divided by the length
 }
 
 // access the image of the second layer in mapInit.map
