@@ -94,29 +94,31 @@ async function mapMult(isbn) {
         center = centering(books)
     }
 
+    let vectorLayer = new ol.layer.Vector({
+
+        source: new ol.source.Vector({ features: icons }),
+
+        style: new ol.style.Style({
+            image: new ol.style.Icon({
+                anchor: [0.5, 0.5],
+                anchorXUnits: 'fraction',
+                anchorYUnits: 'pixels',
+                // src: 'https://openlayers.org/en/latest/examples/data/icon.png'
+                src: 'img/geo-alt-fill.svg',
+                scale: 2,
+                // add event lister tho
+            })
+        })
+    });
+
     const map = new ol.Map({
         target: 'map',
         layers: [
             new ol.layer.Tile({
                 source: new ol.source.OSM(),
             }),
-            new ol.layer.Vector({
-                source: new ol.source.Vector({
-                    features: icons
+            vectorLayer
 
-                }),
-                style: new ol.style.Style({
-                    image: new ol.style.Icon({
-                        anchor: [0.5, 0.5],
-                        anchorXUnits: 'fraction',
-                        anchorYUnits: 'pixels',
-                        // src: 'https://openlayers.org/en/latest/examples/data/icon.png'
-                        src: 'img/geo-alt-fill.svg',
-                        scale: 2,
-                        // add event lister tho
-                    })
-                })
-            })
         ],
         view: new ol.View({
             center: ol.proj.fromLonLat(center),
@@ -125,9 +127,32 @@ async function mapMult(isbn) {
 
     });
 
-    map.layers = map.getLayers();
+    let selectPointerMove = new ol.interaction.Select({
+        condition: ol.events.condition.pointerMove,
+        layers: [vectorLayer]
+    });
 
-    map.layers.getArray()[1].getSource().getFeatures()[0]
+    // Handle the hover event
+    map.addInteraction(selectPointerMove);
+
+    selectPointerMove.on('select',
+        function (e) {
+            let feature = e.selected[0];
+            if (feature) {
+                // returns some errors but works 
+                console.log('hovered')
+                // Change the style when hovering
+                // feature.setStyle(new ol.style.Style({
+                //     image: new ol.style.Icon({
+                //         src: 'path/to/icon-focused.png', // set the path to the focused icon image
+                //         scale: 0.7 // adjust the scale as per your needs
+                //     })
+                // } ));
+            }
+        });
+
+
+
 
 }
 
@@ -138,14 +163,14 @@ function centering(books) {
 
     // Iterate over each book
     for (let i = 0; i < books.length; i++) {
-        const location = books[i].location.split(",");  
+        const location = books[i].location.split(",");
         const fx = parseFloat(location[0].trim());
-        const fy= parseFloat(location[1].trim());
-        x+=fx;
-        y+=fy;
+        const fy = parseFloat(location[1].trim());
+        x += fx;
+        y += fy;
     }
 
-    return [x / books.length,y / books.length]; // Return the sum divided by the length
+    return [x / books.length, y / books.length]; // Return the sum divided by the length
 }
 
 // access the image of the second layer in mapInit.map
