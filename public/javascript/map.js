@@ -65,21 +65,16 @@ function mapInit(lon, lat, zoom) {
 }
 
 async function mapMult(isbn) {
-    // console.log(lon,lat,zoom);
 
-    // console.log(decodeURI(coordinates_list))
+    let zoom,books,locationList;
 
-    let books = await fetch(`/map/${isbn}`).then((res) => {
+    books = await fetch(`/map/${isbn}`).then((res) => {
         return res.json();
     }).then((data) => {
         return data;
     }).catch(error => {
         console.log(error);
     });
-
-    console.log(books)
-
-    let zoom = 16;
 
     const icons = [];
 
@@ -88,15 +83,14 @@ async function mapMult(isbn) {
         icons.push(new ol.Feature({
             geometry: new ol.geom.Point(ol.proj.fromLonLat(books[i].location.split(','))),
 
-            // geometry: new ol.geom.Point(ol.proj.fromLonLat([books[i].location.split(',')[0], books[i].location.split(',')[1]])),
             name: books[i].name,
         }))
     }
 
-    // const iconFeature2 = new ol.Feature({
-    //     geometry: new ol.geom.Point(ol.proj.fromLonLat([lon+0.01, lat+0.01])),
-    //     name: 'Patras',
-    // });
+    if (books.length ==1 ) {
+        zoom = 16;
+        locationList = books[0].location.split(',');
+    }
 
     const map = new ol.Map({
         target: 'map',
@@ -106,8 +100,6 @@ async function mapMult(isbn) {
             }),
             new ol.layer.Vector({
                 source: new ol.source.Vector({
-                    // for adding more than one icon
-                    // features: [iconFeature, iconFeature2]
                     features: icons
 
                 }),
@@ -120,13 +112,12 @@ async function mapMult(isbn) {
                         src: 'img/geo-alt-fill.svg',
                         scale: 2,
                         // add event lister tho
-
                     })
                 })
             })
         ],
         view: new ol.View({
-            center: ol.proj.fromLonLat(books[0].location.split(',')),
+            center: ol.proj.fromLonLat(locationList),
             zoom: zoom
         }),
 
