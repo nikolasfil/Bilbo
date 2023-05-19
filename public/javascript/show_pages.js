@@ -8,6 +8,7 @@ async function page_initilazation(){
     document.getElementById('page-selector').innerHTML=''
 
     results = await showResult();
+    console.log(results)
     booksPerPage = 18;
     numOfPages = Math.ceil(results/booksPerPage);
     

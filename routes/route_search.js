@@ -8,7 +8,8 @@ const { type } = require('os');
 router.post('/fetchNumOfResults', (req, res) => {
     
     let filters = JSON.stringify(req.body.filters);
-    database.getBookInfo(isbn = null, title = req.body.title, numOf=true,copies = null, filters, limit = null,offset=null, function (err, books) {
+    console.log(filters)
+    database.getBookInfo(isbn = null, title = req.body.title, numOf=true,copies = null, filters=filters, limit = null,offset=null, function (err, books) {
 
         if (err) {
             console.log(err)
@@ -20,6 +21,7 @@ router.post('/fetchNumOfResults', (req, res) => {
             res.send(books);
         }
     })
+    console.log('end of fetchnumof')
 })
 
 
