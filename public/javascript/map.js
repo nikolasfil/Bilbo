@@ -100,7 +100,7 @@ async function mapMult(isbn) {
 
         style: new ol.style.Style({
             image: new ol.style.Icon({
-                anchor: [0.5, 0.5],
+                anchor: [0.5, 1],
                 anchorXUnits: 'fraction',
                 anchorYUnits: 'pixels',
                 // src: 'https://openlayers.org/en/latest/examples/data/icon.png'
@@ -148,6 +148,9 @@ async function mapMult(isbn) {
                 //         scale: 0.7 // adjust the scale as per your needs
                 //     })
                 // } ));
+                document.getElementsByClassName('library-reserve-url')[0].style = 'color: #ac8fbf; cursor: pointer;';
+            }else {
+                document.getElementsByClassName('library-reserve-url')[0].style = 'color: black; cursor: pointer;';
             }
         });
 
