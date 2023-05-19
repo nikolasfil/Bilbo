@@ -76,6 +76,7 @@ async function mapMult(isbn) {
         console.log(error);
     });
 
+
     const icons = [];
 
     for (let i = 0; i < books.length; i++) {
@@ -91,6 +92,7 @@ async function mapMult(isbn) {
         zoom = 16;
         center = books[0].location.split(',');
     } else {
+        zoom = 16;
         center = centering(books)
     }
 
@@ -149,12 +151,22 @@ async function mapMult(isbn) {
                 //     })
                 // } ));
                 document.getElementsByClassName('library-reserve-url')[0].style = 'color: #ac8fbf; cursor: pointer;';
-            }else {
+            } else {
                 document.getElementsByClassName('library-reserve-url')[0].style = 'color: black; cursor: pointer;';
             }
         });
 
 
+    if (books.length != 1) {
+    // Get the extent of the vector layer
+    let extent = vectorLayer.getSource().getExtent();
+
+    // Fit the view to the extent of the vector layer
+    map.getView().fit(extent, { padding: [50, 50, 50, 50] }); // Adjust padding as needed
+    }
+    else {
+        zoom = 16;
+    }
 
 
 }
