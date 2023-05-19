@@ -9,36 +9,16 @@ async function page_initilazation(){
 
     results = await showResult();
     booksPerPage = 18;
-    numOfPages = Math.floor(results/booksPerPage);
-    console.log(numOfPages,results)
-
+    numOfPages = Math.ceil(results/booksPerPage);
+    
     if (numOfPages > 1){
         // createPages(numOfPages); 
         pageSelector(numOfPages);
-
     }
     showPage(1);
-    // showResult(window.searchBarValue,window.gFilters);
-
 
 }
 
-
-// function createPages(number) {
-//     let container = document.getElementById('results');
-
-//     for (let i = 0; i < number; i++) {
-//         let div = document.createElement('div');
-//         div.classList.add('results');
-//         div.setAttribute('id', 'page' + (i + 1));
-//         if (i != 0) {
-//             div.classList.add('hidden');
-//         }
-//         container.appendChild(div);
-//         // div.style.display = 'none';
-//     }
-
-// }
 
 
 function assignBooksToPages(books,booksPerPage) {
@@ -54,19 +34,7 @@ function nextPage() {
     let pages = document.getElementsByClassName('page-link');
     let selected = document.getElementsByClassName('selected');
 
-
-    // for (let i = 1; i < pages.length - 1; i++) {
-    //     if (selected[0].id == pages[i].id && i < pages.length - 2) {
-    //         selected[0].classList.remove('selected');
-    //         pages[i + 1].classList.add('selected');
-    //         let page = pages[i + 1].textContent;
-    //         showPage(page);
-    //     }
-    // }
-
-    console.log('Page length ' +pages.length)
     for (let i = 1; i < pages.length -2; i++) {
-        console.log(`selected id ${selected[0].id} page id ${pages[i].id}`)
         if (selected[0].id === pages[i].id && i < pages.length -1 ) {
             selected[0].classList.remove('selected');
             pages[i + 1].classList.add('selected');
@@ -89,6 +57,7 @@ function previousPage() {
             pages[i - 1].classList.add('selected');
             let page = pages[i - 1].textContent;
             showPage(page);
+            break;
         }
     }
 }
@@ -163,17 +132,9 @@ function pageSelector(number = 2) {
 
 }
 
-
 function showPage(number) {
-    console.log(number*18)
-    placeAllBooksByTitle(limit=18,offset=number*18);
-    // let pages = document.getElementsByClassName('results');
-    // for (let i = 0; i < pages.length; i++) {
-    //     pages[i].classList.add('hidden');
-    // }
-    // let page = document.getElementById('page' + number);
-    // page.classList.remove('hidden');
 
+    placeAllBooksByTitle(limit=18,offset=(number-1)*18);
 }
 
 

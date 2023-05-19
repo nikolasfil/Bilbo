@@ -8,8 +8,6 @@ function mainLoad() {
 
     addFilterListeners(window.gFilters);
 
-    // placeAllBooksByTitle(window.searchBarValue, window.gFilters);
-
     page_initilazation();
 
 }   
@@ -187,11 +185,9 @@ function addedFilter(filters, filterName, filterType) {
     filters[filterType].push(filterName);
 
     div.appendChild(span);
-    // <button type="button" class="btn-close" aria-label="Close"></button>
     let button = document.createElement('button');
     button.classList.add('btn-close');
     div.appendChild(button);
-    // link bootstrap icons CDN in the html file
 
 
 
@@ -200,9 +196,7 @@ function addedFilter(filters, filterName, filterType) {
         let checkbox = document.getElementById(filterName);
         checkbox.checked = false;
         filters[filterType].splice(filters[filterType].indexOf(filterName), 1);
-        // console.log(filters,window.searchBarValue);
-        // placeAllBooksByTitle(window.searchBarValue, window.gFilters);
-        // updateBooks(window.gData, window.gFilters);
+
         page_initilazation();
     });
 }
