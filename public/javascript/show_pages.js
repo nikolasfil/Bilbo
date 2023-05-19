@@ -1,42 +1,37 @@
 // Page selector 
 
-async function page_initilazation(){
+async function page_initilazation() {
 
     // console.log(window.gFilters,window.searchBarValue)
-    let results,booksPerPage,numOfPages;
+    let results, booksPerPage, numOfPages;
 
-    document.getElementById('page-selector').innerHTML=''
+    document.getElementById('page-selector').innerHTML = ''
 
     results = await showResult();
     console.log(results)
-    booksPerPage = 18;
-    numOfPages = Math.ceil(results/booksPerPage);
-    
-    if (numOfPages > 1){
+
+    if (window.innerWidth <= 600) {
+        window.booksPerPage = 4;
+    } else {
+        window.booksPerPage = 18;
+    }
+    numOfPages = Math.ceil(results / window.booksPerPage);
+
+    if (numOfPages > 1) {
         // createPages(numOfPages); 
-        pageSelector(numOfPages);
+        pageNavigationCreation(numOfPages);
     }
     showPage(1);
 
 }
 
 
-
-function assignBooksToPages(books,booksPerPage) {
-    if (!booksPerPage){
-        booksPerPage = 12;
-    }
-    
-}
-
-
-
 function nextPage() {
     let pages = document.getElementsByClassName('page-link');
     let selected = document.getElementsByClassName('selected');
 
-    for (let i = 1; i < pages.length -2; i++) {
-        if (selected[0].id === pages[i].id && i < pages.length -1 ) {
+    for (let i = 1; i < pages.length - 2; i++) {
+        if (selected[0].id === pages[i].id && i < pages.length - 1) {
             selected[0].classList.remove('selected');
             pages[i + 1].classList.add('selected');
             let page = pages[i + 1].textContent;
@@ -63,8 +58,8 @@ function previousPage() {
     }
 }
 
-function pageSelector(number = 2) {
-    
+function pageNavigationCreation(number = 2) {
+
     let container = document.getElementById('page-selector');
     container.classList.add('page-selector');
     let nav = document.createElement('nav');
@@ -135,7 +130,7 @@ function pageSelector(number = 2) {
 
 function showPage(number) {
 
-    placeAllBooksByTitle(limit=18,offset=(number-1)*18);
+    placeAllBooksByTitle(limit = window.booksPerPage, offset = (number - 1) * window.booksPerPage);
 }
 
 

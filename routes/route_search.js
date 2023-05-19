@@ -21,7 +21,7 @@ router.post('/fetchNumOfResults', (req, res) => {
             res.send(books);
         }
     })
-    console.log('end of fetchnumof')
+    // console.log(;)
 })
 
 

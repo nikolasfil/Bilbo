@@ -1,5 +1,5 @@
 document.getElementById('searchBarInput').addEventListener('keydown',searchbarClickPress)
-
+document.getElementById('search-button').addEventListener('click',searchbarClick)
 
 
 function searchbarClickPress(event) {
@@ -10,6 +10,8 @@ function searchbarClickPress(event) {
 
 function searchbarClick() {
     // fix the button next to the task bar 
-    let searchbar = window.document.getElementById("search-button");
+    
+    let searchbar = window.document.getElementById("searchBarInput");
+    
     window.location = "/search?search=" + searchbar.value;
 }
