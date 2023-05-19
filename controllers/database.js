@@ -137,7 +137,7 @@ module.exports = {
 
             // query = 'SELECT COUNT(isbn) as count_result from BOOK join COPIES on isbn=book_isbn'
 
-            query = 'SELECT COUNT(distinct isbn) as count_result,library.name,genre , language,book.summary as summary,publisher, edition, author as library from BOOK join COPIES on isbn=book_isbn join LIBRARY on library_id=LIBRARY.id'
+            query = 'SELECT COUNT(distinct isbn) as count_result,title,library.name as library,genre , language,book.summary as summary,publisher, edition, author  from BOOK join COPIES on isbn=book_isbn join LIBRARY on library_id=LIBRARY.id'
 
         }
 
