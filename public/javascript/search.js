@@ -16,7 +16,7 @@ function mainLoad() {
 
 
 
-async function fetchAllBooksByTitle(title, filters) {
+async function fetchAllBooksByTitle(limit=-1,offset=0) {
 
     let link;
 
@@ -29,7 +29,7 @@ async function fetchAllBooksByTitle(title, filters) {
         },
         redirect: "follow",
         referrerPolicy: "no-referrer",
-        body: JSON.stringify({ "filters": window.gFilters, "title": title }),
+        body: JSON.stringify({ "filters": window.gFilters, "title": window.searchBarValue , "offset": offset, "limit":limit}),
 
     }).then((res) => {
         return res.json();
@@ -64,9 +64,9 @@ async function fetchNumOfResults() {
     });
 }
 
-async function placeAllBooksByTitle(title, filters) {
+async function placeAllBooksByTitle(limit=-1,offset=0) {
     // place all the books by title and filters (filters is not yet implemented)
-    let data = await fetchAllBooksByTitle(title, filters);
+    let data = await fetchAllBooksByTitle(limit,offset);
     placeBooks(data);
     // console.log('done')
 
@@ -156,7 +156,7 @@ function placeBooks(data) {
 let variable;
 
 
-function addFilterListeners(filters) {
+function addFilterListeners() {
 
     let checker = document.getElementsByClassName('form-check');
 
@@ -201,7 +201,7 @@ function addedFilter(filters, filterName, filterType) {
         checkbox.checked = false;
         filters[filterType].splice(filters[filterType].indexOf(filterName), 1);
         // console.log(filters,window.searchBarValue);
-        placeAllBooksByTitle(window.searchBarValue, filters);
+        placeAllBooksByTitle(window.searchBarValue, window.gFilters);
         // updateBooks(window.gData, window.gFilters);
 
     });

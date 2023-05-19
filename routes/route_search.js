@@ -24,10 +24,9 @@ router.post('/fetchNumOfResults', (req, res) => {
 
 
 router.post('/fetch_filters', (req, res) => {
-    // database.getBookInfo(isbn=null, title=req.body.title, copies=true,filters=null, limit=null, function (err, books) {
-    // console.log(req.body.filters)
+    
     let filters = JSON.stringify(req.body.filters);
-    database.getBookInfo(isbn = null, title = req.body.title, numOf=false,copies = true, filters, limit = null,offset=null, function (err, books) {
+    database.getBookInfo(isbn = null, title = req.body.title, numOf=false,copies = true, filters=filters, limit = req.body.limit,offset=req.body.offset, function (err, books) {
 
         if (err) {
             console.log(err)

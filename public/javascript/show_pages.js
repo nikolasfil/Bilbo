@@ -13,7 +13,7 @@ async function page_initilazation(){
     console.log(numOfPages,results)
 
     if (numOfPages > 1){
-        createPages(numOfPages); 
+        // createPages(numOfPages); 
         pageSelector(numOfPages);
 
     }
@@ -24,21 +24,21 @@ async function page_initilazation(){
 }
 
 
-function createPages(number) {
-    let container = document.getElementById('results');
+// function createPages(number) {
+//     let container = document.getElementById('results');
 
-    for (let i = 0; i < number; i++) {
-        let div = document.createElement('div');
-        div.classList.add('results');
-        div.setAttribute('id', 'page' + (i + 1));
-        if (i != 0) {
-            div.classList.add('hidden');
-        }
-        container.appendChild(div);
-        // div.style.display = 'none';
-    }
+//     for (let i = 0; i < number; i++) {
+//         let div = document.createElement('div');
+//         div.classList.add('results');
+//         div.setAttribute('id', 'page' + (i + 1));
+//         if (i != 0) {
+//             div.classList.add('hidden');
+//         }
+//         container.appendChild(div);
+//         // div.style.display = 'none';
+//     }
 
-}
+// }
 
 
 function assignBooksToPages(books,booksPerPage) {
@@ -83,7 +83,6 @@ function previousPage() {
 
 function pageSelector(number = 2) {
     
-    
     let container = document.getElementById('page-selector');
     container.classList.add('page-selector');
     let nav = document.createElement('nav');
@@ -122,6 +121,7 @@ function pageSelector(number = 2) {
         a.textContent = i + 1;
         a.addEventListener('click', function () {
             showPage(i + 1);
+
             let selected = document.getElementsByClassName('selected');
             selected[0].classList.remove('selected');
             a.classList.add('selected');
@@ -153,12 +153,15 @@ function pageSelector(number = 2) {
 
 
 function showPage(number) {
-    let pages = document.getElementsByClassName('results');
-    for (let i = 0; i < pages.length; i++) {
-        pages[i].classList.add('hidden');
-    }
-    let page = document.getElementById('page' + number);
-    page.classList.remove('hidden');
+    console.log(number*18)
+    placeAllBooksByTitle(limit=18,offset=number*18);
+    // let pages = document.getElementsByClassName('results');
+    // for (let i = 0; i < pages.length; i++) {
+    //     pages[i].classList.add('hidden');
+    // }
+    // let page = document.getElementById('page' + number);
+    // page.classList.remove('hidden');
+
 }
 
 

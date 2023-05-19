@@ -196,10 +196,14 @@ module.exports = {
             query += ` LIMIT ?`
         }
 
+        if (offset) {
+            query += ` OFFSET ?`
+        }
+
         stmt = betterDb.prepare(query);
 
 
-            console.log(query)
+        console.log(query)
 
 
 
