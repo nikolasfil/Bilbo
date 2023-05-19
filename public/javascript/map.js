@@ -66,7 +66,7 @@ function mapInit(lon, lat, zoom) {
 
 async function mapMult(isbn) {
 
-    let zoom, books, center;
+    let books, center;
 
     books = await fetch(`/map/${isbn}`).then((res) => {
         return res.json();
@@ -89,10 +89,8 @@ async function mapMult(isbn) {
     }
 
     if (books.length == 1) {
-        zoom = 16;
         center = books[0].location.split(',');
     } else {
-        zoom = 16;
         center = centering(books)
     }
 
@@ -124,7 +122,7 @@ async function mapMult(isbn) {
         ],
         view: new ol.View({
             center: ol.proj.fromLonLat(center),
-            zoom: zoom
+            zoom: 16
         }),
 
     });
@@ -139,33 +137,37 @@ async function mapMult(isbn) {
 
     selectPointerMove.on('select',
         function (e) {
-            let feature = e.selected[0];
-            if (feature) {
-                // returns some errors but works 
-                console.log('hovered')
-                // Change the style when hovering
-                // feature.setStyle(new ol.style.Style({
-                //     image: new ol.style.Icon({
-                //         src: 'path/to/icon-focused.png', // set the path to the focused icon image
-                //         scale: 0.7 // adjust the scale as per your needs
-                //     })
-                // } ));
-                document.getElementsByClassName('library-reserve-url')[0].style = 'color: #ac8fbf; cursor: pointer;';
-            } else {
-                document.getElementsByClassName('library-reserve-url')[0].style = 'color: black; cursor: pointer;';
-            }
+            // for (let i = 0; i < e.selected.length; i++) {
+                let feature = e.selected[0];
+                // console.log(e.selected[0]['A']['name']);
+
+                if (feature) {
+                    // returns some errors but works 
+                    console.log('hovered')
+                    // Change the style when hovering
+                    // feature.setStyle(new ol.style.Style({
+                    //     image: new ol.style.Icon({
+                    //         src: 'path/to/icon-focused.png', // set the path to the focused icon image
+                    //         scale: 0.7 // adjust the scale as per your needs
+                    //     })
+                    // } ));
+                    document.getElementById(`library-reserve-url-${e.selected[0]['A']['name']}`).style = 'background-color: grey; cursor: pointer;';
+                    // document.getElementsByClassName('library-reserve-url')[0].style = 'color: #ac8fbf; cursor: pointer;';
+                } else {
+                    for( i = 0; i < books.length; i++){
+                        document.getElementsByClassName('library-reservations')[i].style = 'color: black; cursor: pointer; background-color:transparent;';
+                    }
+                }
+            // }
         });
 
 
     if (books.length != 1) {
-    // Get the extent of the vector layer
-    let extent = vectorLayer.getSource().getExtent();
+        // Get the extent of the vector layer
+        let extent = vectorLayer.getSource().getExtent();
 
-    // Fit the view to the extent of the vector layer
-    map.getView().fit(extent, { padding: [50, 50, 50, 50] }); // Adjust padding as needed
-    }
-    else {
-        zoom = 16;
+        // Fit the view to the extent of the vector layer
+        map.getView().fit(extent, { padding: [50, 50, 50, 50] }); // Adjust padding as needed
     }
 
 
