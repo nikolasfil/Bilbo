@@ -8,5 +8,9 @@
 <script src="javascript/map.js" defer></script>
 {{!-- change the window on load to a listener --}}
 <script type="text/javascript" defer>window.onload = function () {
+    {{#if library}}
         mapInit({{ lon }}, {{ lat }}, {{ zoom }});
+    {{else}}
+        mapMult('{{isbn}}');
+    {{/if}}
 } </script>

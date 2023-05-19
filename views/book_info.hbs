@@ -71,7 +71,11 @@
     <div class="row justify-content-start" id="book-location">
 
         <div class="col m-1">
-            {{>map lon=(longtitude library.location) lat=(latitude library.location) zoom=16}}
+            {{!-- {{>map lon=(longtitude library.location) lat=(latitude library.location) zoom=16}} --}}
+            {{!-- {{>map locations=libraryLocations }} --}}
+            {{>map isbn=book.isbn library=False}}
+
+
         </div>
 
 
@@ -84,7 +88,7 @@
                 <div class="col"></div>
             </div>
 
-
+            {{!-- this needs to be a for loop --}}
             {{>librariesReservation
             id=library.id
             name=library.name

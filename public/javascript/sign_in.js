@@ -46,8 +46,8 @@ spanSignUp.onclick = function () {
 document.onkeydown = function (evt) {
   evt = evt || window.event;
   if (evt.key == "Escape") {
-      modalSignIn.style.display = "none";
-  
+    modalSignIn.style.display = "none";
+
     modalSignUp.style.display = "none";
   }
 };

@@ -14,16 +14,23 @@ router.get('/book_info/:isbn',
 
 
 
+router.get('/map/:isbn',
+    (req, res, next) => {
+        database.getLibraryLocations(req.params.isbn, (err, books) => {
+            if (err) {
+                next(err);
+            }
+            else {
+                // res.locals.libraryLocations = books;
+                res.send(books);
+            }
+        })
+
+    },
+)
+
+
 router.get('/book_info',
-    // (req, res, next) => {
-    //     if (req.session.user) {
-    //         signedIn = true;
-    //     }
-    //     else {
-    //         signedIn = false;
-    //     }
-    //     next();
-    // },
     (req, res, next) => {
         if (req.query['isbn']) {
             next();
@@ -33,15 +40,15 @@ router.get('/book_info',
         }
     },
     (req, res, next) => {
-        database.getBookInfo(req.query['isbn'],title=null,copies=true,filters=null, limit=null,offset=null,(err, book) => {
+        database.getBookInfo(req.query['isbn'], title = null, copies = true, filters = null, limit = null, offset = null, (err, book) => {
             if (err) {
                 next(err);
             }
             else {
                 res.locals.book = book[0];
+                next();
             }
         });
-        next();
     },
     (req, res, next) => {
         database.getLibraryIdOfBookByIsbn(req.query['isbn'], (err, libraryId) => {
@@ -66,6 +73,7 @@ router.get('/book_info',
         });
 
     });
+
 
 module.exports = router;
 
