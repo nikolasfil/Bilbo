@@ -9,6 +9,7 @@ from os import listdir
 from os.path import isfile, join
 import requests
 import random
+import itertools
 
 
 # https://www.tutorialspoint.com/sqlite/sqlite_python.htm
@@ -92,7 +93,7 @@ class Creation:
 
         self.clear_all()
 
-        libraries = [
+        self.libraries = [
             ('0', 'University of Patra', '21.79127500966751,38.29039542648134',
              'Ypatias 4, Panepstimioupoli Patron, 265 04',
              '2610398949', 'bibliothiki@bilbo.gr',
@@ -113,7 +114,7 @@ class Creation:
 
         ]
 
-        for library in libraries:
+        for library in self.libraries:
             self.insert_data('LIBRARY', library)
 
         def string_to_byte(string):
@@ -122,19 +123,14 @@ class Creation:
         for book in self.data.books:
             titles = ['isbn', 'title', 'authors', 'edition', 'publisher',
                       'release_date', 'genre', 'language', 'summary', 'cover_image']
-
-            self.insert_book_data('BOOK', [book[key] if type(
+            
+            if book['isbn'] is not None:
+                self.insert_book_data('BOOK', [book[key] if type(
                 book[key]) is not list else ','.join(book[key]) for key in titles])
 
         # Users
 
-        for book in self.data.books:
-            # for i in range(1, 6):
-            # isbn , copy_num , library_id
-            copy_num = random.randint(1, 5)
-            library_id = random.choice(
-                list(map(int, [i[0] for i in libraries])))
-            self.insert_data('COPIES', (book['isbn'], copy_num, library_id))
+        self.fill_copies()
 
         self.insert_data('USER', ('1', 'Nick', 'Fil','test@test.gr' ,'01/01/2001', self.hashing_password(
             'password'), self.binary_to_string(self.salt)))
@@ -148,6 +144,38 @@ class Creation:
         self.insert_data('Return', ('book_isbn', 'copy_num', 'library_id',
                          'user_id', 'date_of_borrowing', 'date_of_return'))
 
+
+    def fill_copies(self):
+        for book in self.data.books:
+            # for i in range(1, 6):
+            # isbn , copy_num , library_id
+            
+            temp = list(map(int, [i[0] for i in self.libraries]))
+
+            library_combo = []
+
+            for i in range(1,len(self.libraries)+1):
+                library_combo.extend(list(itertools.combinations(temp,i)))
+                
+
+            # library_combo = [ list(itertools.combinations(temp,i)) for i in range(1,len(self.libraries)+1) ]
+    
+
+            random_library = random.choice(library_combo)
+
+            # print(library_combo)
+            # print(random_library)
+
+            
+            for library in random_library:
+                # print('-------------------\n',library[0][0])
+                copy_num = random.randint(1, 5)
+
+                # library_id = random.choice(
+                #     list(map(int, [i[0] for i in self.libraries])))
+                # self.insert_data('COPIES', (book['isbn'], copy_num, library_id))
+                
+                self.insert_data('COPIES', (book['isbn'], copy_num, library))
 
 class Data:
     def __init__(self):

@@ -88,15 +88,16 @@
                 <div class="col"></div>
             </div>
 
+            {{#each library }}
             {{!-- this needs to be a for loop --}}
             {{>librariesReservation
-            id=library.id
-            name=library.name
-            address=library.address
-            copies=library.copy_num
+            id=this.id
+            name=this.name
+            address=this.address
+            copies=this.copy_num
             }}
 
-
+            {{/each}}
 
         </div>
 
