@@ -56,7 +56,8 @@ router.get('/book_info',
                 next(err);
             }
             else {
-                res.locals.libraries = libraryId[0];
+                res.locals.libraries = libraryId;
+
             }
         });
         next();
@@ -69,6 +70,7 @@ router.get('/book_info',
             book: res.locals.book,
             style: 'book_info.css',
             library: res.locals.libraries,
+
             signedIn: req.session.signedIn
         });
 

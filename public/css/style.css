@@ -1,12 +1,16 @@
+
+.library-reservations:hover, .library-reservations a p :hover,.library-reservations a :hover{
+  color: #6F518C;
+  /* color: #453159; */
+  /* color: #ac8fbf ; */
+  /* text-decoration: underline; */
+}
+
 .library-reserve-url {
   text-decoration: none;
   color: black;
 }
 
-.library-reserve-url:hover {
-  color: #ac8fbf ;
-  /* text-decoration: underline; */
-}
 
 *::selection {
   color: #ffffff;

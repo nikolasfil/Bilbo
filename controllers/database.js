@@ -131,7 +131,9 @@ module.exports = {
 
         if (copies) {
             // query += ` join COPIES on isbn=book_isbn`
-            query = `SELECT isbn,title,author,edition,publisher,release, genre , language, book.summary as summary, BOOK.photo as photo,copy_num, library.name as library FROM BOOK join COPIES on isbn=book_isbn join LIBRARY on library_id=LIBRARY.id`
+            // query = `SELECT isbn,title,author,edition,publisher,release, genre , language, book.summary as summary, BOOK.photo as photo,copy_num, library.name as library FROM BOOK join COPIES on isbn=book_isbn join LIBRARY on library_id=LIBRARY.id `
+
+            query = `SELECT isbn,title,author,edition,publisher,release, genre , language, book.summary as summary, BOOK.photo as photo,SUM(copy_num) as copy_num, library.name as library FROM BOOK join COPIES on isbn=book_isbn join LIBRARY on library_id=LIBRARY.id`
         }
         if (isbn || title) {
             query += ` WHERE`
@@ -174,7 +176,11 @@ module.exports = {
             }
         }
 
-        console.log(query)
+        if (copies) {
+            query += ` GROUP BY isbn`
+        }
+
+        query += ` ORDER BY title ASC`
 
         if (limit) {
             query += ` LIMIT ?`

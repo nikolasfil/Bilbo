@@ -29,6 +29,7 @@ btnSignIn.onclick = function () {
 }
 
 btnSignUp.onclick = function () {
+  modalSignIn.style.display = "none";
   modalSignUp.style.display = "block";
 }
 
@@ -47,7 +48,6 @@ document.onkeydown = function (evt) {
   evt = evt || window.event;
   if (evt.key == "Escape") {
     modalSignIn.style.display = "none";
-
     modalSignUp.style.display = "none";
   }
 };

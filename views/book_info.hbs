@@ -73,9 +73,9 @@
         <div class="col m-1">
             {{!-- {{>map lon=(longtitude library.location) lat=(latitude library.location) zoom=16}} --}}
             {{!-- {{>map locations=libraryLocations }} --}}
-            {{>map isbn=book.isbn library=False}}
+            {{>map isbn=book.isbn library=false}}
 
-
+{{!--  --}}
         </div>
 
 
@@ -88,15 +88,16 @@
                 <div class="col"></div>
             </div>
 
+            {{#each library }}
             {{!-- this needs to be a for loop --}}
             {{>librariesReservation
-            id=library.id
-            name=library.name
-            address=library.address
-            copies=library.copy_num
+            id=this.id
+            name=this.name
+            address=this.address
+            copies=this.copy_num
             }}
 
-
+            {{/each}}
 
         </div>
 
