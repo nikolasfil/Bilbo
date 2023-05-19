@@ -12,6 +12,7 @@
 }
 
 
+
 *::selection {
   color: #ffffff;
   background-color: #ac8fbf;
@@ -45,8 +46,13 @@
   background-size: 80vh;
 }
 
-.profile_picture {
+.bi-person {
   cursor: pointer;
+}
+
+.bi-person:hover {
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 h3 {
