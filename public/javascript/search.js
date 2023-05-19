@@ -8,7 +8,7 @@ function mainLoad() {
 
     addFilterListeners(window.gFilters);
 
-    placeAllBooksByTitle(window.searchBarValue, window.gFilters);
+    // placeAllBooksByTitle(window.searchBarValue, window.gFilters);
 
     page_initilazation();
 
@@ -165,7 +165,7 @@ function addFilterListeners() {
 
         input.addEventListener('change', function () {
             filterOnChange(input, window.gFilters);
-            placeAllBooksByTitle(window.searchBarValue, window.gFilters);
+            // placeAllBooksByTitle(window.searchBarValue, window.gFilters);
             page_initilazation();
         });
 
@@ -201,9 +201,9 @@ function addedFilter(filters, filterName, filterType) {
         checkbox.checked = false;
         filters[filterType].splice(filters[filterType].indexOf(filterName), 1);
         // console.log(filters,window.searchBarValue);
-        placeAllBooksByTitle(window.searchBarValue, window.gFilters);
+        // placeAllBooksByTitle(window.searchBarValue, window.gFilters);
         // updateBooks(window.gData, window.gFilters);
-
+        page_initilazation();
     });
 }
 

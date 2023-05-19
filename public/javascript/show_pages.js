@@ -9,7 +9,7 @@ async function page_initilazation(){
 
     results = await showResult();
     booksPerPage = 18;
-    numOfPages = Math.ceil(results/booksPerPage);
+    numOfPages = Math.floor(results/booksPerPage);
     console.log(numOfPages,results)
 
     if (numOfPages > 1){
@@ -17,7 +17,7 @@ async function page_initilazation(){
         pageSelector(numOfPages);
 
     }
-
+    showPage(1);
     // showResult(window.searchBarValue,window.gFilters);
 
 
@@ -55,12 +55,24 @@ function nextPage() {
     let selected = document.getElementsByClassName('selected');
 
 
-    for (let i = 1; i < pages.length - 1; i++) {
-        if (selected[0].id == pages[i].id && i < pages.length - 2) {
+    // for (let i = 1; i < pages.length - 1; i++) {
+    //     if (selected[0].id == pages[i].id && i < pages.length - 2) {
+    //         selected[0].classList.remove('selected');
+    //         pages[i + 1].classList.add('selected');
+    //         let page = pages[i + 1].textContent;
+    //         showPage(page);
+    //     }
+    // }
+
+    console.log('Page length ' +pages.length)
+    for (let i = 1; i < pages.length -2; i++) {
+        console.log(`selected id ${selected[0].id} page id ${pages[i].id}`)
+        if (selected[0].id === pages[i].id && i < pages.length -1 ) {
             selected[0].classList.remove('selected');
             pages[i + 1].classList.add('selected');
             let page = pages[i + 1].textContent;
             showPage(page);
+            break;
         }
     }
 }
