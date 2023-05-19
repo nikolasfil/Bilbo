@@ -5,12 +5,29 @@ const router = express.Router();
 const database = require('../controllers/database.js');
 const { type } = require('os');
 
+router.post('/fetchNumOfResults', (req, res) => {
+    
+    let filters = JSON.stringify(req.body.filters);
+    database.getBookInfo(isbn = null, title = req.body.title, numOf=true,copies = null, filters, limit = null,offset=null, function (err, books) {
+
+        if (err) {
+            console.log(err)
+            res.status(500).send('Internal Server Error')
+        }
+        else {
+            // console.log(JSON.stringify(req.body.filters))
+
+            res.send(books);
+        }
+    })
+})
+
 
 router.post('/fetch_filters', (req, res) => {
     // database.getBookInfo(isbn=null, title=req.body.title, copies=true,filters=null, limit=null, function (err, books) {
     // console.log(req.body.filters)
     let filters = JSON.stringify(req.body.filters);
-    database.getBookInfo(isbn = null, title = req.body.title, copies = true, filters, limit = null,offset=null, function (err, books) {
+    database.getBookInfo(isbn = null, title = req.body.title, numOf=false,copies = true, filters, limit = null,offset=null, function (err, books) {
 
         if (err) {
             console.log(err)
@@ -26,7 +43,7 @@ router.post('/fetch_filters', (req, res) => {
 
 
 router.get('/fetch_books_all', (req, res) => {
-    database.getBookInfo(ibsn = null, title = null, copies = true, filters = null, limit = null,offset=null, function (err, books) {
+    database.getBookInfo(ibsn = null, title = null, numOf=false,copies = true, filters = null, limit = null,offset=null, function (err, books) {
         if (err) {
             console.log(err)
             res.status(500).send('Internal Server Error')
@@ -40,7 +57,7 @@ router.get('/fetch_books_all', (req, res) => {
 
 
 router.get('/fetch_books/:title', (req, res) => {
-    database.getBookInfo(isbn = null, title = req.params.title, copies = true, filters = null, limit = null,offset=null, function (err, book) {
+    database.getBookInfo(isbn = null, title = req.params.title, numOf=false,copies = true, filters = null, limit = null,offset=null, function (err, book) {
         if (err) {
             console.log(err)
             res.status(500).send('Internal Server Error')

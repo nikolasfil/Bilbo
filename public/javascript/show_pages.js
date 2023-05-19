@@ -1,5 +1,29 @@
 // Page selector 
 
+async function page_initilazation(){
+
+    // console.log(window.gFilters,window.searchBarValue)
+    let results,booksPerPage,numOfPages;
+
+    document.getElementById('page-selector').innerHTML=''
+
+    results = await showResult();
+    booksPerPage = 18;
+    numOfPages = Math.ceil(results/booksPerPage);
+    console.log(numOfPages,results)
+
+    if (numOfPages > 1){
+        createPages(numOfPages); 
+        pageSelector(numOfPages);
+
+    }
+
+    // showResult(window.searchBarValue,window.gFilters);
+
+
+}
+
+
 function createPages(number) {
     let container = document.getElementById('results');
 
@@ -58,6 +82,8 @@ function previousPage() {
 }
 
 function pageSelector(number = 2) {
+    
+    
     let container = document.getElementById('page-selector');
     container.classList.add('page-selector');
     let nav = document.createElement('nav');
@@ -135,3 +161,9 @@ function showPage(number) {
     page.classList.remove('hidden');
 }
 
+
+
+async function showResult() {
+    let number = await fetchNumOfResults()
+    return number
+}

@@ -4,35 +4,16 @@ function mainLoad() {
 
     window.gFilters = {};
 
-    createPages(2); pageSelector();
-
     addShowMore();
 
     addFilterListeners(window.gFilters);
 
     placeAllBooksByTitle(window.searchBarValue, window.gFilters);
 
-}
+    page_initilazation();
 
+}   
 
-async function fetchAllBooksByTitle2(title) {
-
-    let link;
-    if (title) {
-        link = "/fetch_books/" + title;
-    }
-    else {
-        link = '/fetch_books_all'
-    }
-   
-    return await fetch(link).then((res) => {
-        return res.json();
-    }).then((data) => {
-        return data;
-    }).catch(error => {
-        console.log(error);
-    });
-}
 
 
 async function fetchAllBooksByTitle(title, filters) {
@@ -54,6 +35,30 @@ async function fetchAllBooksByTitle(title, filters) {
         return res.json();
     }).then((data) => {
         return data;
+    }).catch(error => {
+        console.log(error);
+    });
+}
+
+async function fetchNumOfResults() {
+
+    let link;
+
+    link = '/fetchNumOfResults'
+    return await fetch(link, {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        redirect: "follow",
+        referrerPolicy: "no-referrer",
+        body: JSON.stringify({ "filters": window.gFilters, "title": window.searchBarValue }),
+
+    }).then((res) => {
+        return res.json();
+    }).then((data) => {
+        return data[0].count_result;
     }).catch(error => {
         console.log(error);
     });
@@ -161,7 +166,7 @@ function addFilterListeners(filters) {
         input.addEventListener('change', function () {
             filterOnChange(input, window.gFilters);
             placeAllBooksByTitle(window.searchBarValue, window.gFilters);
-
+            page_initilazation();
         });
 
     }

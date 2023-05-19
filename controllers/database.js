@@ -124,14 +124,19 @@ module.exports = {
         callback(null, attributeList);
     },
 
-    getBookInfo: function (isbn, title, copies, filters, limit, offset, callback) {
+
+
+    getBookInfo: function (isbn, title, numOf,copies, filters, limit, offset, callback) {
         let stmt, books, query;
 
         query = `SELECT * FROM BOOK`
+        // select count(isbn), sum(copy_num) as copy_num  from BOOK join COPIES on isbn=book_isbn where title LIKE '%python%' GROUP BY isbn 
 
-        if (copies) {
-            // query += ` join COPIES on isbn=book_isbn`
-            // query = `SELECT isbn,title,author,edition,publisher,release, genre , language, book.summary as summary, BOOK.photo as photo,copy_num, library.name as library FROM BOOK join COPIES on isbn=book_isbn join LIBRARY on library_id=LIBRARY.id `
+        if (numOf){
+            query = 'SELECT COUNT(isbn) as count_result from BOOK'
+        }
+
+        if (copies && !numOf) {
 
             query = `SELECT isbn,title,author,edition,publisher,release, genre , language, book.summary as summary, BOOK.photo as photo,SUM(copy_num) as copy_num, library.name as library FROM BOOK join COPIES on isbn=book_isbn join LIBRARY on library_id=LIBRARY.id`
         }
@@ -169,7 +174,12 @@ module.exports = {
 
             for (let key in filters) {
                 if (filters[key].length) {
-                    query += ` and`
+                    if (title || isbn) {
+                        query += ` and`
+                    }
+                    else {
+                        query+= ` WHERE `
+                    }
                     let list = filters[key].map(word => `'${word}'`).join(',')
                     query += ` ${key} in (${list})`
                 }
@@ -186,11 +196,14 @@ module.exports = {
             query += ` LIMIT ?`
         }
 
-        // this is where the shit hits the fan
         stmt = betterDb.prepare(query);
 
-        try {
 
+            console.log(query)
+
+
+
+        try {
 
             if (isbn && title && limit && offset) {
                 books = stmt.all(isbn, title, limit, offset)
@@ -237,7 +250,7 @@ module.exports = {
         callback(null, books);
 
     },
-
+    
     getLibraryIdOfBookByIsbn: function (isbn, callback) {
         // const stmt = betterDb.prepare('Select id,copy_num,name,location,address,phone,email,l.photo as photo,l.summary,working_hours from BOOK join COPIES on book_isbn=isbn  join LIBRARY as l on library_id=id  where isbn = ?')
         
