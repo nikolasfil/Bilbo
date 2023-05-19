@@ -69,9 +69,15 @@ class Creation:
 
     def insert_book_data(self, table_name, data):
         command = f"""INSERT INTO {table_name}({','.join(self.tables[table_name])}) VALUES ({','.join(['?' for i in range(len(data))])})"""
-        self.conn.execute(command, data)
+        try: 
+            self.conn.execute(command, data)
 
-        self.conn.commit()
+            self.conn.commit()
+        except Exception as e:
+            print(e)
+            print(command)
+            print(data)
+
 
     def hashing_password(self, password):
         return self.binary_to_string(bcrypt.hashpw(password.encode('utf-8'), self.salt))
@@ -133,7 +139,7 @@ class Creation:
         self.insert_data('USER', ('1', 'Nick', 'Fil','test@test.gr' ,'01/01/2001', self.hashing_password(
             'password'), self.binary_to_string(self.salt)))
 
-        self.insert_data('USER', ('2', 'Konstantinos', 'Kotorenis','kostas@test.gr', '30/2/1960', self.hashing_password(
+        self.insert_data('USER', ('2', 'Konstantinos', 'Kotorenis','konstantinos.kotorenis@gmail.com', '30/2/1960', self.hashing_password(
             'password'), self.binary_to_string(self.salt)))
 
         self.insert_data('Borrowing', ('book_isbn', 'copy_num',
@@ -165,7 +171,8 @@ class Data:
             file = eval(f.read())
 
         def books(num): return [self.bookformat(
-            file['items'][i]) for i in range(num)]
+            file['items'][i]) for i in range(num % len(file['items']))] 
+        
 
         return books(num)
 
@@ -208,7 +215,8 @@ class Data:
     def load_books(self):
         self.books = []
         for title in self.get_titles():
-            self.books += self.load_bookdata(title)
+            self.books += self.load_bookdata(title,num=2)
+            # print([[i['isbn'],i['title']] for i in self.books])
 
     def save_bookdata(self, title):
         def api_title(

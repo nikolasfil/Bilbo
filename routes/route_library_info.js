@@ -28,7 +28,6 @@ router.get('/library_info',
                 res.status(500).send('Internal Server Error')
             }
             else {
-                console.log(JSON.stringify(libraries))
                 res.locals.libraries = libraries;
             }
         })
