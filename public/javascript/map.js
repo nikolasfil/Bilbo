@@ -151,11 +151,13 @@ async function mapMult(isbn) {
                     //         scale: 0.7 // adjust the scale as per your needs
                     //     })
                     // } ));
-                    document.getElementById(`library-reserve-url-${e.selected[0]['A']['name']}`).style = 'background-color: grey; cursor: pointer;';
+                    document.getElementById(`library-reserve-url-${e.selected[0]['A']['name']}`).style = 'background-color: #ECE5F1; cursor: pointer;';
                     // document.getElementsByClassName('library-reserve-url')[0].style = 'color: #ac8fbf; cursor: pointer;';
                 } else {
                     for( i = 0; i < books.length; i++){
-                        document.getElementsByClassName('library-reservations')[i].style = 'color: black; cursor: pointer; background-color:transparent;';
+                        document.getElementsByClassName('library-reservations')[i].style.background = '';
+                        document.getElementsByClassName('library-reservations')[i].style.opacity= '1';
+                        
                     }
                 }
             // }
