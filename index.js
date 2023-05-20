@@ -12,7 +12,7 @@ const sqliteStore = require('connect-sqlite3')(session) //store for session
 // const model = require('./model/index.js');
 
 
-const port = process.env.port || 8080;
+const port = process.env.PORT || 8080;
 
 
 
@@ -83,7 +83,7 @@ app.use(require('./routes/route_user_profile.js'));
 
 // final command to have the server running
 
-app.listen(port, () => {
+app.listen(port,'0.0.0.0' ,() => {
     console.log('Server listening on port ' + port);
 });
 
