@@ -35,17 +35,17 @@ RUN apt-get update && \
 WORKDIR /app
 
 # Copy the 'Bilbo' folder from the local directory to the container
-COPY Bilbo /app/Bilbo
+COPY . /app/
 
 # Install project dependencies
-RUN cd /app/Bilbo && \
+RUN cd /app/ && \
     npm install
 
 # Expose port 8080
 EXPOSE 8080
 
 # Run the Node.js project
-CMD ["node", "/app/Bilbo/index.js"]
+CMD ["node", "/app/index.js"]
 
 # docker build -t my-node-project .
 
