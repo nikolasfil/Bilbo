@@ -35,7 +35,7 @@ router.get('/library_info',
     },
 
     (req, res, next) => {
-        database.getBooksFromLibrary(req.query['id'],6, function (err, books) {
+        database.getBooksFromLibrary(req.query['id'],12, function (err, books) {
             if (err) {
                 console.log(err)
                 console.log('error')

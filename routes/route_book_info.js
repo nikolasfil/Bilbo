@@ -40,7 +40,13 @@ router.get('/book_info',
         }
     },
     (req, res, next) => {
-        database.getBookInfo(isbn=req.query['isbn'], title = null, numOf=false,copies= true, filters = null, limit = null, offset = null, (err, book) => {
+        //     // let requestData = {"isbn": req.query['isbn'], "title": null, "numOf": false, "copies": true, "filters": null, "limit": null, "offset": null};
+        //     res.locals.requestData = {"isbn": req.query['isbn'], "copies": true};
+        // },
+        // (req, res, next) => {
+        // database.getBoo(res.locals.requestData, (err, book) => {
+
+        database.getBookInfo(isbn = req.query['isbn'], title = null, numOf = false, copies = true, filters = null, limit = null, offset = null, (err, book) => {
             if (err) {
                 next(err);
             }

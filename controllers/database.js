@@ -124,10 +124,158 @@ module.exports = {
         callback(null, attributeList);
     },
 
-
-
     getBookInfo: function (isbn, title, numOf, copies, filters, limit, offset, callback) {
         let stmt, books, query;
+
+        query = `SELECT * FROM BOOK`
+
+        if (numOf) {
+            // query = 'SELECT COUNT(isbn) as count_result from BOOK'
+
+            // query = 'SELECT COUNT(isbn) as count_result from BOOK join COPIES on isbn=book_isbn'
+
+            query = 'SELECT COUNT(distinct isbn) as count_result,title,library.name as library,genre , language,book.summary as summary,publisher, edition, author  from BOOK join COPIES on isbn=book_isbn join LIBRARY on library_id=LIBRARY.id'
+
+        }
+
+        if (copies && !numOf) {
+
+            query = `SELECT isbn,title,author,edition,publisher,release, genre , language, book.summary as summary, BOOK.photo as photo,SUM(copy_num) as copy_num, library.name as library FROM BOOK join COPIES on isbn=book_isbn join LIBRARY on library_id=LIBRARY.id`
+        }
+
+        if (isbn || title) {
+            query += ` WHERE`
+        }
+
+        if (isbn) {
+            query += ` isbn=?`
+        }
+
+        if (isbn && title) {
+            query += ` or`
+
+        }
+        if (title) {
+            // query += ` title like ?`
+            // title = `%${title}%`
+            let matchingPhrases;
+            try {
+
+                matchingPhrases = getRegex(title);
+            } catch (err) {
+                callback(err, null);
+            }
+
+            query += ` title in (${matchingPhrases.map(() => '?').join(', ')})`
+            title = matchingPhrases;
+
+        }
+
+
+
+        if (filters && Object.keys(filters) !== 0) {
+            filters = JSON.parse(filters);
+
+            
+            
+
+
+            for (let key in filters) {
+                if (filters[key].length) {
+                    if (!title && !isbn && key !== Object.keys(filters)[0]) {
+                        query += ` and`
+                    } else if (!title && !isbn && key === Object.keys(filters)[0]) {
+                        query += ` WHERE`
+                    }
+                    else if (title || isbn) {
+                        query += ` and`
+                    } 
+                    
+                    let list = filters[key].map(word => `'${word}'`).join(',')
+                    query += ` ${key} in (${list})`
+                }
+            }
+        }
+
+        if (copies) {
+            query += ` GROUP BY isbn`
+        }
+
+        query += ` ORDER BY title ASC`
+
+        if (limit) {
+            query += ` LIMIT ?`
+        }
+
+        if (offset) {
+            query += ` OFFSET ?`
+        }
+
+        console.log(`query: ${query}`)
+        stmt = betterDb.prepare(query);
+
+
+        try {
+
+            if (isbn && title && limit && offset) {
+                books = stmt.all(isbn, title, limit, offset)
+
+            } else if (isbn && title && limit) {
+                books = stmt.all(isbn, title, limit)
+
+            } else if (isbn && limit && offset) {
+                books = stmt.all(isbn, limit, offset)
+
+
+            } else if (title && limit && offset) {
+                books = stmt.all(title, limit, offset)
+
+
+            } else if (isbn && title) {
+                books = stmt.all(isbn, title)
+
+            } else if (isbn && limit) {
+                books = stmt.all(isbn, limit)
+
+            } else if (title && limit) {
+                books = stmt.all(title, limit)
+
+            } else if (limit && offset) {
+                books = stmt.all(limit, offset)
+
+
+            } else if (title) {
+                books = stmt.all(title)
+
+            } else if (limit) {
+                books = stmt.all(limit)
+
+            } else if (isbn) {
+                books = stmt.all(isbn)
+            } else {
+                books = stmt.all();
+            }
+        } catch (err) {
+            callback(err, null);
+        }
+
+        callback(null, books);
+
+    },
+
+    getBoo: function (requestData, callback) {
+        let stmt, books, query;
+
+
+        let isbn = requestData.isbn;
+        let title = requestData.title;
+        let numOf = requestData.numOf;
+        let copies = requestData.copies;
+        let filters = requestData.filters;
+        let limit = requestData.limit;
+        let offset = requestData.offset; 
+
+
 
         query = `SELECT * FROM BOOK`
 
@@ -390,8 +538,5 @@ module.exports = {
         }
         callback(null, true)
     },
-
-
-
 
 }

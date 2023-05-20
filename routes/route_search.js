@@ -10,21 +10,15 @@ router.post('/fetchNumOfResults', (req, res) => {
     let filters = JSON.stringify(req.body.filters);
     console.log(filters)
     database.getBookInfo(isbn = null, title = req.body.title, numOf=true,copies = null, filters=filters, limit = null,offset=null, function (err, books) {
-
         if (err) {
-            console.log(err)
-            console.log(filters,JSON.stringify(books))
-            
+            console.log(err)           
             res.status(500).send('Internal Server Error Couldnt fetch number of results')
 
         }
         else {
-            // console.log(JSON.stringify(req.body.filters))
-
             res.send(books);
         }
     })
-    // console.log(;)
 })
 
 
