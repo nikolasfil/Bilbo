@@ -32,83 +32,66 @@ router.post('/fetch_filters', (req, res) => {
     })
 })
 
-
-router.get('/fetch_books/:title', (req, res) => {
-    database.getBookInfo(isbn = null, title = req.params.title, numOf = false, copies = true, filters = null, limit = null, offset = null, function (err, book) {
-        if (err) {
-            console.log(err)
-            res.status(500).send('Internal Server Error')
-        } else {
-            res.send(book);
-        }
-    })
-});
-
-
 router.get('/search',
     (req, res, next) => {
-        // console.log(req.query.filters)
         if (req.query.filters) {
             res.locals.stringFilters = JSON.stringify(JSON.parse(req.query.filters));
-            // console.log(res.locals.stringFilters)
         }
         else {
             res.locals.stringFilters = '';
         }
-        // console.log(res.locals.stringFilters)
         next();
     },
 
     (req, res, next) => {
-        database.getAllAttribute('genre', limit = 4, offset = null, function (err, attributeList) {
+        database.getAllAttribute('genre', limit = 5, offset = null, function (err, attributeList) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
-            }
-            else {
+            } else {
                 res.locals.genre = attributeList;
+                next();
             }
         });
-        next();
     },
 
     (req, res, next) => {
-        database.getAllAttribute('genre', -1, 4, function (err, attributeList) {
+        database.getAllAttribute('genre', -1, 5, function (err, attributeList) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
             }
             else {
                 res.locals.all_genre = attributeList;
+                next();
             }
         });
-        next();
     },
 
     (req, res, next) => {
-        database.getAllAttribute('publisher', -1, 4, function (err, publisherList) {
+        database.getAllAttribute('publisher', -1, 5, function (err, publisherList) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
             }
             else {
                 res.locals.all_publisher = publisherList;
+                next();
             }
         });
-        next();
     },
 
     (req, res, next) => {
-        database.getAllAttribute('publisher', 4, null, function (err, publisherList) {
+        database.getAllAttribute('publisher', 5, null, function (err, publisherList) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
             }
             else {
                 res.locals.publisher = publisherList;
+                next();
             }
         });
-        next();
     },
     (req, res, next) => {
 
@@ -119,9 +102,9 @@ router.get('/search',
             }
             else {
                 res.locals.edition = editionList;
+                next();
             }
         });
-        next();
     },
 
     (req, res, next) => {
@@ -133,9 +116,9 @@ router.get('/search',
             }
             else {
                 res.locals.all_edition = editionList;
+                next();
             }
         });
-        next();
     },
 
     (req, res, next) => {
@@ -146,9 +129,9 @@ router.get('/search',
             }
             else {
                 res.locals.language = languageList;
+                next();
             }
         });
-        next();
     },
 
     (req, res, next) => {
@@ -159,13 +142,10 @@ router.get('/search',
             }
             else {
                 res.locals.library = libraryList;
+                next();
             }
         });
-        next();
     },
-    // (req, res, next) => {
-
-    // },
     (req, res, next) => {
         res.locals.availability = [
             { name: 'Available' },
@@ -174,19 +154,14 @@ router.get('/search',
             { name: 'All' }
         ]
 
-
-
-
         next();
     },
 
     (req, res) => {
         res.render('search', {
             title: 'Search',
-
             signedIn: req.session.signedIn,
             searchBarValue: req.query.search,
-
         });
     }
 );
