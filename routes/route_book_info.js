@@ -15,7 +15,9 @@ router.get('/book_info/:isbn',
 // returns a list of libraries that have the book with the given isbn
 router.get('/map/:isbn',
     (req, res, next) => {
-        database.getLibraryLocations(req.params.isbn, (err, books) => {
+        // database.getLibraryLocations(req.params.isbn, (err, books) => {
+
+        database.getLibraryIdOfBookByIsbn(req.params.isbn, (err, books) => {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
