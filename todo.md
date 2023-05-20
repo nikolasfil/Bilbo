@@ -9,4 +9,4 @@
 
 36: user profile 
 
-37: mobile view for search with pagification 
+38: fix the page navigation bar to ommit some numbers and load them up dynamically 
