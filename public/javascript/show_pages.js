@@ -148,47 +148,19 @@ function pageNavigationCreation(number = 2) {
     createPageNavigationIcon(ul,'page-previous','Previous',function(){ previousPage();})
 
 
-    // for (let i = 0 ; i<number;i++){
-    //     createPageNavigationIcon(ul,`page-${i+1}`,`${i+1}`,function(){
-    //         showPage(i+1)
-    //         let selected = document.getElementsByClassName('selected');
-    //         selected[0].classList.remove('selected');
-    //         classList.add('selected');
-
-    //     })
-
-    //     if (i==0){
-    //         classList.add('selected')
-    //     }
-        
-
-    // }
-
-
-    for (let i = 0; i < number; i++) {
-        let li = document.createElement('li');
-        li.classList.add('page-item');
-
-        ul.appendChild(li);
-
-        let a = document.createElement('a');
-        a.classList.add('page-link')
-        a.setAttribute('href', '#')
-        a.textContent = i + 1;
-        a.addEventListener('click', function () {
-            showPage(i + 1);
-
+    for (let i = 0 ; i<number;i++){
+        createPageNavigationIcon(ul,`page-${i+1}`,`${i+1}`,function(){
+            showPage(i+1)
             let selected = document.getElementsByClassName('selected');
-            selected[0].classList.remove('selected');
-            a.classList.add('selected');
-        });
 
-        if (i == 0) {
-            a.classList.add('selected')
-        }
-        a.setAttribute('id', 'page-' + (i + 1));
-        li.appendChild(a);
+            selected[0].classList.remove('selected');
+            // console.log(this.textContent)
+            this.classList.add('selected');
+        })
+
     }
+
+    document.getElementById('page-1').classList.add('selected')
 
     createPageNavigationIcon(ul,'page-next','Next',function(){ nextPage();})
 
