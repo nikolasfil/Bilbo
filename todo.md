@@ -1,6 +1,4 @@
 
-29: controllers in different routes ! 
-
 35: fix availability query 
 
 36: user profile 
@@ -14,4 +12,4 @@ search page, filters move when the show more option is initialized , css is not 
 BugReport 02 :
 smaller map box for mobile view 
 
-
+39: make the middle part go in the middle of the number of pages . 
