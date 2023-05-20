@@ -1,35 +1,33 @@
 const express = require('express');
 
 const router = express.Router();
-// const database = require('../controllers/database.js');
+const database = require('../controllers/database.js');
 
 
-
+// redirects to book_info page with isbn as query
 router.get('/book_info/:isbn',
     (req, res, next) => {
         res.redirect('/book_info?isbn=' + req.params.isbn);
     }
-
 );
 
 
-
+// returns a list of libraries that have the book with the given isbn
 router.get('/map/:isbn',
     (req, res, next) => {
         database.getLibraryLocations(req.params.isbn, (err, books) => {
             if (err) {
-                next(err);
-            }
-            else {
-                // res.locals.libraryLocations = books;
+                console.log(err)
+                res.status(500).send('Internal Server Error')
+            } else {
                 res.send(books);
             }
         })
-
     },
 )
 
 
+// returns a list of books that have the given title
 router.get('/book_info',
     (req, res, next) => {
         if (req.query['isbn']) {
@@ -40,46 +38,38 @@ router.get('/book_info',
         }
     },
     (req, res, next) => {
-        //     // let requestData = {"isbn": req.query['isbn'], "title": null, "numOf": false, "copies": true, "filters": null, "limit": null, "offset": null};
-        //     res.locals.requestData = {"isbn": req.query['isbn'], "copies": true};
-        // },
-        // (req, res, next) => {
-        // database.getBoo(res.locals.requestData, (err, book) => {
-
+        // get book info
         database.getBookInfo(isbn = req.query['isbn'], title = null, numOf = false, copies = true, filters = null, limit = null, offset = null, (err, book) => {
             if (err) {
-                next(err);
-            }
-            else {
+                console.log(err)
+                res.status(500).send('Internal Server Error')
+            } else {
+                // assign the res.locals.book the first book in the list
                 res.locals.book = book[0];
                 next();
             }
         });
     },
     (req, res, next) => {
-        database.getLibraryIdOfBookByIsbn(req.query['isbn'], (err, libraryId) => {
+        // get library info
+        database.getLibraryIdOfBookByIsbn(req.query['isbn'], (err, libraryInfo) => {
             if (err) {
-                next(err);
-            }
-            else {
-                res.locals.libraries = libraryId;
-
+                console.log(err)
+                res.status(500).send('Internal Server Error')
+            } else {
+                res.locals.library = libraryInfo;
+                next();
             }
         });
-        next();
     },
 
 
     (req, res) => {
         res.render('book_info', {
             title: 'Book Info',
-            book: res.locals.book,
             style: 'book_info.css',
-            library: res.locals.libraries,
-
             signedIn: req.session.signedIn
         });
-
     });
 
 

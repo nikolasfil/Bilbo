@@ -1,21 +1,16 @@
 const express = require('express');
-
 const router = express.Router();
-
 const database = require('../controllers/database.js');
-const { type } = require('os');
 
 router.post('/fetchNumOfResults', (req, res) => {
-    
-    let filters = JSON.stringify(req.body.filters);
-    console.log(filters)
-    database.getBookInfo(isbn = null, title = req.body.title, numOf=true,copies = null, filters=filters, limit = null,offset=null, function (err, books) {
-        if (err) {
-            console.log(err)           
-            res.status(500).send('Internal Server Error Couldnt fetch number of results')
 
-        }
-        else {
+    let filters = JSON.stringify(req.body.filters);
+
+    database.getBookInfo(isbn = null, title = req.body.title, numOf = true, copies = null, filters = filters, limit = null, offset = null, function (err, books) {
+        if (err) {
+            console.log(err)
+            res.status(500).send('Internal Server Error Couldnt fetch number of results')
+        } else {
             res.send(books);
         }
     })
@@ -23,42 +18,27 @@ router.post('/fetchNumOfResults', (req, res) => {
 
 
 router.post('/fetch_filters', (req, res) => {
-    
+
     let filters = JSON.stringify(req.body.filters);
-    database.getBookInfo(isbn = null, title = req.body.title, numOf=false,copies = true, filters=filters, limit = req.body.limit,offset=req.body.offset, function (err, books) {
+
+    database.getBookInfo(isbn = null, title = req.body.title, numOf = false, copies = true, filters = filters, limit = req.body.limit, offset = req.body.offset, function (err, books) {
 
         if (err) {
             console.log(err)
             res.status(500).send('Internal Server Error')
-        }
-        else {
+        } else {
             res.send(books);
         }
     })
 })
 
 
-router.get('/fetch_books_all', (req, res) => {
-    database.getBookInfo(ibsn = null, title = null, numOf=false,copies = true, filters = null, limit = null,offset=null, function (err, books) {
-        if (err) {
-            console.log(err)
-            res.status(500).send('Internal Server Error')
-        }
-        else {
-            res.send(books);
-        }
-    })
-});
-
-
-
 router.get('/fetch_books/:title', (req, res) => {
-    database.getBookInfo(isbn = null, title = req.params.title, numOf=false,copies = true, filters = null, limit = null,offset=null, function (err, book) {
+    database.getBookInfo(isbn = null, title = req.params.title, numOf = false, copies = true, filters = null, limit = null, offset = null, function (err, book) {
         if (err) {
             console.log(err)
             res.status(500).send('Internal Server Error')
-        }
-        else {
+        } else {
             res.send(book);
         }
     })
@@ -80,7 +60,7 @@ router.get('/search',
     },
 
     (req, res, next) => {
-        database.getAllAttribute('genre', limit=4,offset=null, function (err, attributeList) {
+        database.getAllAttribute('genre', limit = 4, offset = null, function (err, attributeList) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -93,7 +73,7 @@ router.get('/search',
     },
 
     (req, res, next) => {
-        database.getAllAttribute('genre', -1,4, function (err, attributeList) {
+        database.getAllAttribute('genre', -1, 4, function (err, attributeList) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -104,9 +84,9 @@ router.get('/search',
         });
         next();
     },
-    
+
     (req, res, next) => {
-        database.getAllAttribute('publisher',-1,4, function (err, publisherList) {
+        database.getAllAttribute('publisher', -1, 4, function (err, publisherList) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -119,7 +99,7 @@ router.get('/search',
     },
 
     (req, res, next) => {
-        database.getAllAttribute('publisher',4,null, function (err, publisherList) {
+        database.getAllAttribute('publisher', 4, null, function (err, publisherList) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -132,7 +112,7 @@ router.get('/search',
     },
     (req, res, next) => {
 
-        database.getAllAttribute('edition', 4,null,function (err, editionList) {
+        database.getAllAttribute('edition', 4, null, function (err, editionList) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -146,7 +126,7 @@ router.get('/search',
 
     (req, res, next) => {
 
-        database.getAllAttribute('edition', -1,4 ,function (err, editionList) {
+        database.getAllAttribute('edition', -1, 4, function (err, editionList) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -159,7 +139,7 @@ router.get('/search',
     },
 
     (req, res, next) => {
-        database.getAllAttribute('language',null,null, function (err, languageList) {
+        database.getAllAttribute('language', null, null, function (err, languageList) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -172,7 +152,7 @@ router.get('/search',
     },
 
     (req, res, next) => {
-        database.getAllAttribute('library',null,null, function (err, libraryList) {
+        database.getAllAttribute('library', null, null, function (err, libraryList) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -194,8 +174,8 @@ router.get('/search',
             { name: 'All' }
         ]
 
-        
-        
+
+
 
         next();
     },
@@ -203,7 +183,7 @@ router.get('/search',
     (req, res) => {
         res.render('search', {
             title: 'Search',
-        
+
             signedIn: req.session.signedIn,
             searchBarValue: req.query.search,
 

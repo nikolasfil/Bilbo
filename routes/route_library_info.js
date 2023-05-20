@@ -1,16 +1,16 @@
 const express = require('express');
 
 const router = express.Router();
-const helpers = require('../controllers/helpers.js');
 const database = require('../controllers/database.js');
 
 
-
+// redirect to library_info page
 router.get('/library_info/:id',
     (req, res) => {
         res.redirect('/library_info?id=' + req.params.id);
     }
 );
+
 
 router.get('/library_info', 
     (req, res, next) => { 
@@ -26,12 +26,11 @@ router.get('/library_info',
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
-            }
-            else {
-                res.locals.libraries = libraries;
+            } else {
+                res.locals.library = libraries;
+                next();
             }
         })
-        next();
     },
 
     (req, res, next) => {
@@ -42,10 +41,10 @@ router.get('/library_info',
                 res.status(500).send('Internal Server Error')
             }
             else {
-                res.locals.books = books;
+                res.locals.book = books;
+                next();
             }
         })
-        next();
     },
     (req, res) => {
 
@@ -53,8 +52,6 @@ router.get('/library_info',
         title: 'Library Info',
         style: 'library_info.css',
         signedIn: req.session.signedIn,
-        library: res.locals.libraries,
-        book: res.locals.books,
     });
 });
 

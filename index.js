@@ -61,8 +61,6 @@ app.use(require('./routes/route_homepage.js'));
 app.use(require('./routes/route_search.js'));
 app.use(require('./routes/route_sign.js'));
 app.use(require('./routes/route_user_profile.js'));
-// app.use(require('./routes/route_status.js'));
-
 
 
 // final command to have the server running
