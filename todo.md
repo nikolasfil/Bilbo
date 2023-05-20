@@ -10,3 +10,7 @@
 36: user profile 
 
 38: fix the page navigation bar to ommit some numbers and load them up dynamically 
+
+
+BugReport : 
+search page, filters move when the show more option is initialized , css is not affecting it 

@@ -1,7 +1,10 @@
 
-
+/** 
+ * This function runs everytime the page of search page is loaded 
+ */
 function mainLoad() {
 
+    // global variable for filters
     window.gFilters = {};
 
     addShowMore();
@@ -10,15 +13,21 @@ function mainLoad() {
 
     page_initilazation();
 
-}   
+}
 
 
-
-async function fetchAllBooksByTitle(limit=-1,offset=0) {
+/**
+ * Makes a post request to the server to return all the books that match with the title given by the global variable that takes the value from the searchbar input 
+ * @param {*} limit This limits the results we want back
+ * @param {*} offset Returns books after the number offset 
+ * @returns a list of json objects corresponding to book attributes 
+ */
+async function fetchAllBooksByTitle(limit = -1, offset = 0) {
 
     let link;
 
     link = '/fetch_filters'
+
     return await fetch(link, {
         method: "POST",
         credentials: "same-origin",
@@ -27,7 +36,7 @@ async function fetchAllBooksByTitle(limit=-1,offset=0) {
         },
         redirect: "follow",
         referrerPolicy: "no-referrer",
-        body: JSON.stringify({ "filters": window.gFilters, "title": window.searchBarValue , "offset": offset, "limit":limit}),
+        body: JSON.stringify({ "filters": window.gFilters, "title": window.searchBarValue, "offset": offset, "limit": limit }),
 
     }).then((res) => {
         return res.json();
@@ -38,6 +47,11 @@ async function fetchAllBooksByTitle(limit=-1,offset=0) {
     });
 }
 
+
+/**
+ * Returns the number of results we would get with the title and filters that the user searched 
+ * @returns 
+ */
 async function fetchNumOfResults() {
 
     let link;
@@ -62,15 +76,20 @@ async function fetchNumOfResults() {
     });
 }
 
-async function placeAllBooksByTitle(limit=-1,offset=0) {
-    // place all the books by title and filters (filters is not yet implemented)
-    let data = await fetchAllBooksByTitle(limit,offset);
+/**
+ * Middlware that fetches the books that resulted from the search and sends them to placeBooks function to be placed into pages  
+ * @param {*} limit 
+ * @param {*} offset 
+ */
+async function placeAllBooksByTitle(limit = -1, offset = 0) {
+    let data = await fetchAllBooksByTitle(limit, offset);
     placeBooks(data);
-    // console.log('done')
-
 }
 
-
+/**
+ * Takes the resulted books and places them on the page .
+ * @param {*} data list of json objects containing corresponding attributes of the book 
+ */
 function placeBooks(data) {
     let container = document.getElementById("results");
     container.innerHTML = "";
@@ -137,23 +156,11 @@ function placeBooks(data) {
 }
 
 
-// function reconfigureSearchBar(filters) {
-//     // remove listeners from searchbar 
-//     // and add the listener to get filters as well 
-//     // Implemented , but doesn't work yet 
-//     let searchbar = document.getElementById('searchBarInput').addEventListener('keydown', (event) => {
-//         if (event.key == "Enter") {
-//             // console.log(event.target.value+JSON.stringify(filters))
-//             window.location = `/search?search=${event.target.value}&filters=${JSON.stringify(filters)}`;
-//         }
-//     });
-
-// }
-
 // ------------------  Filters ------------------
-let variable;
 
-
+/**
+ * Adds the filter listeners to the checkboxes
+ */
 function addFilterListeners() {
 
     let checker = document.getElementsByClassName('form-check');
@@ -163,15 +170,20 @@ function addFilterListeners() {
 
         input.addEventListener('change', function () {
             filterOnChange(input, window.gFilters);
-            // placeAllBooksByTitle(window.searchBarValue, window.gFilters);
             page_initilazation();
         });
 
     }
 }
 
-
-function addedFilter(filters, filterName, filterType) {
+/**
+ * When a filter is toggled a bubble is added to the top of the resulting books 
+ * 
+ * @param {*} filters Json object contiaing list of filers for every filter the page is handling 
+ * @param {*} filterName Name of the filter
+ * @param {*} filterType Category (genre, library , availability etc)
+ */
+function addedBubbleFilters(filters, filterName, filterType) {
     let container = document.getElementById('filter-selection')
     let div = document.createElement('div');
     div.classList.add('selected-filters');
@@ -190,7 +202,6 @@ function addedFilter(filters, filterName, filterType) {
     div.appendChild(button);
 
 
-
     div.addEventListener('click', function () {
         container.removeChild(div);
         let checkbox = document.getElementById(filterName);
@@ -201,7 +212,9 @@ function addedFilter(filters, filterName, filterType) {
     });
 }
 
-
+/**
+ * Adds evenet listener to every show more in the filters 
+ */
 function addShowMore() {
 
     // get all the buttons that show more, and add listeners to their div , to show it or to hide it
@@ -226,39 +239,18 @@ function addShowMore() {
 }
 
 
+/**
+ * Handles the toggling of the filters 
+ * @param {*} inputElement Which filter is toggled
+ * @param {*} filters Updating the filter list
+ */
 function filterOnChange(inputElement, filters) {
     if (inputElement.checked) {
-        addedFilter(filters, inputElement.id, inputElement.classList[2]);
+        addedBubbleFilters(filters, inputElement.id, inputElement.classList[2]);
 
-        // change it to make the display none for these filters rather than removing them
-
-        if (document.getElementById(`${inputElement.classList[2]}-filter-more`)){
+        if (document.getElementById(`${inputElement.classList[2]}-filter-more`)) {
             let moreFilters = document.getElementById(`${inputElement.classList[2]}-filter-more`);
-            let mainfilters = document.getElementById(`${inputElement.classList[2]}-filter`)
-
-            // let moreFilters_form_check = moreFilters.getElementsByClassName('form-check')
-
-            // let toRemove = [];
-
-            // for (let i = 0; i < moreFilters_form_check.length; i++) {
-            //     let input = moreFilters_form_check[i].getElementsByClassName('form-check-input')[0];
-            //     if (input.id == inputElement.id) {
-            //         moreFilters_form_check[i].classList.add('from-more');
-            //         mainfilters.appendChild(moreFilters_form_check[i]);
-            //         // toRemove.push(moreFilters_form_check[i]);
-            //         moreFilters_form_check[i].style.display = 'none';
-            //         break;
-            //     }
-            // }
-
-            // for (let i = 0; i < toRemove.length; i++) {
-            //     toRemove[i].style.display = 'none';
-            // }
-
-            // end of adding filters from show more 
-
-
-
+            
             if (moreFilters.length == 0) {
                 let button = document.getElementById(`btn-${inputElement.classList[2]}-show-more`);
                 button.style.display = 'none';

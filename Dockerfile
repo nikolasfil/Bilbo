@@ -1,52 +1,35 @@
-# # docker file to run node package 
+# Base image
+FROM node:18.16-alpine
 
-# # Base image
-# FROM node:18.16-alpine
+# Create app directory
+WORKDIR /usr/src/app
 
-# # Create app directory
-# WORKDIR /usr/src/app
-
-# # Install app dependencies
-# COPY package*.json ./
+# Install app dependencies
+COPY package*.json ./
 
 
 
-# # Install dependencies
-# RUN npm install
-
-# # Bundle app source
-# COPY . .
-
-# # Expose port
-# EXPOSE 4547
-
-# # Run app
-# CMD ["npm", "start"]
+# Install dependencies
+RUN npm ci
 
 
-# Use the latest Ubuntu Server image as the base image
-FROM ubuntu:latest
+COPY controllers controllers  
+COPY model model         
+COPY public public     
+COPY routes routes   
+COPY views views
+COPY index.js .
 
-# Install Node.js and npm
-RUN apt-get update && \
-    apt-get install -y nodejs npm
 
-# Set the working directory inside the container
-WORKDIR /app
 
-# Copy the 'Bilbo' folder from the local directory to the container
-COPY . /app/
-
-# Install project dependencies
-RUN cd /app/ && \
-    npm install
-
-# Expose port 8080
+# Expose port
 EXPOSE 8080
 
-# Run the Node.js project
-CMD ["node", "/app/index.js"]
+# Run app
+CMD ["npm", "start"]
 
 # docker build -t my-node-project .
 
 # docker run -d -p 8080:8080 my-node-project
+
+# docker exec -it container_id /bin/sh

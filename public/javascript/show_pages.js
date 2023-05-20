@@ -1,31 +1,41 @@
-// Page selector 
 
+/** 
+ * Initializes the pages for the result 
+ * Fetches the number of results, creates the navigation if the number of pages exceeds 1 and calls forth the first page to be displayed 
+ */
 async function page_initilazation() {
 
-    // console.log(window.gFilters,window.searchBarValue)
-    let results, booksPerPage, numOfPages;
+    let numOfResults, numOfPages;
 
+    // removes the previous results  
     document.getElementById('page-selector').innerHTML = ''
 
-    results = await showResult();
-    console.log(results)
+    // for the number of page created 
+    numOfResults = await showResult();
 
+    // handle mobile view (currently deactivated)
     if (window.innerWidth <= 600) {
         window.booksPerPage = 18;
     } else {
         window.booksPerPage = 18;
     }
-    numOfPages = Math.ceil(results / window.booksPerPage);
+
+    numOfPages = Math.ceil(numOfResults / window.booksPerPage);
 
     if (numOfPages > 1) {
-        // createPages(numOfPages); 
         pageNavigationCreation(numOfPages);
     }
+
+    // shows first page of results  
     showPage(1);
 
 }
 
 
+
+/**
+ * Function for the listener of Next button link of navbar  
+ */
 function nextPage() {
     let pages = document.getElementsByClassName('page-link');
     let selected = document.getElementsByClassName('selected');
@@ -41,6 +51,10 @@ function nextPage() {
     }
 }
 
+/**
+ * Function for the listener of Previous button link of navbar 
+ * 
+ */
 
 function previousPage() {
     let pages = document.getElementsByClassName('page-link');
@@ -58,78 +72,10 @@ function previousPage() {
     }
 }
 
-function pageNavigationCreation1(number = 2) {
-
-    let container = document.getElementById('page-selector');
-    container.classList.add('page-selector');
-    let nav = document.createElement('nav');
-    nav.setAttribute('aria-label', "Page navigation");
-
-    container.appendChild(nav);
-
-    let ul = document.createElement('ul');
-    ul.classList.add('pagination');
-
-    nav.appendChild(ul)
-
-
-    let previousLi = document.createElement('li');
-    previousLi.classList.add('page-item');
-    ul.appendChild(previousLi);
-
-
-    let previousA = document.createElement('a');
-    previousA.classList.add('page-link')
-    previousA.setAttribute('href', '#')
-    previousA.setAttribute('id', 'page-previous')
-    previousA.textContent = 'Previous';
-    previousA.addEventListener('click', function () { previousPage(); });
-
-    previousLi.appendChild(previousA);
-
-
-
-    for (let i = 0; i < number; i++) {
-        let li = document.createElement('li');
-        li.classList.add('page-item');
-
-        ul.appendChild(li);
-
-        let a = document.createElement('a');
-        a.classList.add('page-link')
-        a.setAttribute('href', '#')
-        a.textContent = i + 1;
-        a.addEventListener('click', function () {
-            showPage(i + 1);
-
-            let selected = document.getElementsByClassName('selected');
-            selected[0].classList.remove('selected');
-            a.classList.add('selected');
-        });
-
-        if (i == 0) {
-            a.classList.add('selected')
-        }
-        a.setAttribute('id', 'page-' + (i + 1));
-        li.appendChild(a);
-    }
-
-    let nextLi = document.createElement('li');
-    nextLi.classList.add('page-item');
-
-    ul.appendChild(nextLi);
-
-    let nextA = document.createElement('a');
-    nextA.classList.add('page-link')
-    nextA.setAttribute('href', '#')
-    nextA.textContent = 'Next';
-    nextA.setAttribute('id', 'page-next')
-    nextA.addEventListener('click', function () { nextPage(); });
-
-    nextLi.appendChild(nextA);
-
-
-}
+/**
+ * Creates the page navigation at the bottom of the page 
+ * @param number Number of pages we want the navbar to handle 
+ */
 
 function pageNavigationCreation(number = 2) {
 
@@ -145,31 +91,42 @@ function pageNavigationCreation(number = 2) {
 
     nav.appendChild(ul)
 
-    createPageNavigationIcon(ul,'page-previous','Previous',function(){ previousPage();})
+    createPageNavigationIcon(ul, 'page-previous', 'Previous', function () { previousPage(); })
 
 
-    for (let i = 0 ; i<number;i++){
-        createPageNavigationIcon(ul,`page-${i+1}`,`${i+1}`,function(){
-            showPage(i+1)
+    for (let i = 0; i < number; i++) {
+        createPageNavigationIcon(ul, `page-${i + 1}`, `${i + 1}`, function () {
+
+            showPage(i + 1)
+            
+            // updating the coloring of the page chosen 
             let selected = document.getElementsByClassName('selected');
-
             selected[0].classList.remove('selected');
-            // console.log(this.textContent)
+            
+            // this = is the a element that is appended to the li item to ul (link for the page )
             this.classList.add('selected');
         })
 
     }
 
+    // initial choice for page 
     document.getElementById('page-1').classList.add('selected')
 
-    createPageNavigationIcon(ul,'page-next','Next',function(){ nextPage();})
+    createPageNavigationIcon(ul, 'page-next', 'Next', function () { nextPage(); })
 
 
 }
 
 
-
-function createPageNavigationIcon(container,id,content,command){
+/**
+* Creates the link buttons for page navigation 
+*
+*   @param container is the html item that the button is appended in 
+*  @param id The id for the button link
+*  @param content The textcontent displayed in the button link
+*  @param command What is executed when the listener click is activated
+*/
+function createPageNavigationIcon(container, id, content, command) {
 
     let li = document.createElement('li');
     li.classList.add('page-item');
@@ -184,19 +141,21 @@ function createPageNavigationIcon(container,id,content,command){
     itemA.addEventListener('click', command);
 
     li.appendChild(itemA);
-
-    return itemA;
-
 }
 
-
+/** 
+ * Displays the results of the search 
+ * @param number Is the page number called forth to be displayed
+ */
 function showPage(number) {
 
+    // placeAllBooksBytitle is in the file search.js 
     placeAllBooksByTitle(limit = window.booksPerPage, offset = (number - 1) * window.booksPerPage);
 }
 
-
-
+/** 
+ * @returns The number of results the search page has to handle 
+ */
 async function showResult() {
     let number = await fetchNumOfResults()
     return number

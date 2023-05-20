@@ -2,6 +2,7 @@ const sql = require('better-sqlite3')
 const betterDb = new sql('model/bilboData.sqlite')
 
 const bcrypt = require('bcrypt');
+const { query } = require('express');
 
 function escapeRegExp(string) {
     return string.replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&");
@@ -52,25 +53,37 @@ function getRegex(title) {
 
 module.exports = {
 
+    /**
+     * Returns Information about the library . without id or limit it returns info for every library 
+     * @param {*} id For a specific library (optional)
+     * @param {*} limit Limiting the number of results (optional)
+     * @param {*} callback function that handles the results
+     */
     getLibraryInfo: function (id, limit, callback) {
-        let stmt;
-        let libraries;
+        let stmt,libraries;
 
+        let query = `Select * FROM LIBRARY`
+
+        if (id) {
+            query+=' where id = ?'
+        }
+        
+        if (limit) {
+            query+=' LIMIT ?'
+        }
+        
         try {
+            stmt = betterDb.prepare(query)
             if (id && limit) {
-                stmt = betterDb.prepare('Select * FROM LIBRARY where id = ?');
-                libraries = stmt.get(id);
+                libraries = stmt.get(id,limit);
             }
             else if (id) {
-                stmt = betterDb.prepare('Select * FROM LIBRARY where id = ?');
                 libraries = stmt.get(id);
             }
             else if (limit) {
-                stmt = betterDb.prepare('Select * FROM LIBRARY LIMIT ?');
                 libraries = stmt.all(limit);
             }
             else {
-                stmt = betterDb.prepare('Select * FROM LIBRARY ');
                 libraries = stmt.all();
             }
 
@@ -82,7 +95,13 @@ module.exports = {
 
     },
 
-
+    /**
+     * Returns information for a specific category , used in filters
+     * @param {*} attribute [library,language , genre, edition, release date etc] 
+     * @param {*} limit (optional)
+     * @param {*} offset (optional)
+     * @param {*} callback 
+     */
     getAllAttribute: function (attribute, limit, offset, callback) {
         let stmt, query, attributeList;
 
@@ -98,12 +117,13 @@ module.exports = {
             query = `SELECT distinct ${attribute} as name,COUNT(*) as count FROM BOOK where name IS not NUll GROUP BY genre ORDER BY count DESC, name ASC`
         }
 
-        if (limit && offset) {
-            query += ` LIMIT ? OFFSET ?`
-        } else if (limit) {
+        if (limit) {
             query += ` LIMIT ?`
         }
-
+        if (offset) {
+            query += ` OFFSET ?`
+        }
+        
 
         stmt = betterDb.prepare(query);
 
@@ -124,6 +144,17 @@ module.exports = {
         callback(null, attributeList);
     },
 
+    /**
+     * Returns information about books . Every option other than callback is optional , if no option is given it will return all the books without copies 
+     * @param {*} isbn  specify the isbn (optional)
+     * @param {*} title specify the title (optional) 
+     * @param {*} numOf true or null, if we want to focus more on the number of results back 
+     * @param {*} copies true or null , if we want to also get the number of copies that exist 
+     * @param {*} filters searches with filters 
+     * @param {*} limit limits the results 
+     * @param {*} offset starts returning from a specific result 
+     * @param {*} callback 
+     */
     getBookInfo: function (isbn, title, numOf, copies, filters, limit, offset, callback) {
         let stmt, books, query;
 
