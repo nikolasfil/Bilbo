@@ -13,7 +13,10 @@ router.post('/fetchNumOfResults', (req, res) => {
 
         if (err) {
             console.log(err)
-            res.status(500).send('Internal Server Error')
+            console.log(filters,JSON.stringify(books))
+            
+            res.status(500).send('Internal Server Error Couldnt fetch number of results')
+
         }
         else {
             // console.log(JSON.stringify(req.body.filters))
@@ -35,8 +38,6 @@ router.post('/fetch_filters', (req, res) => {
             res.status(500).send('Internal Server Error')
         }
         else {
-            // console.log(JSON.stringify(req.body.filters))
-
             res.send(books);
         }
     })

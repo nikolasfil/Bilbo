@@ -130,7 +130,6 @@ module.exports = {
         let stmt, books, query;
 
         query = `SELECT * FROM BOOK`
-        // select count(isbn), sum(copy_num) as copy_num  from BOOK join COPIES on isbn=book_isbn where title LIKE '%python%' GROUP BY isbn 
 
         if (numOf) {
             // query = 'SELECT COUNT(isbn) as count_result from BOOK'
@@ -180,20 +179,20 @@ module.exports = {
             filters = JSON.parse(filters);
 
             
-
+            
 
 
             for (let key in filters) {
                 if (filters[key].length) {
-                    if (!title && !isbn && key === Object.keys(filters)[0]) {
-                        query += ` WHERE`
-                    }        
-                    else if (key !== Object.keys(filters)[0]){
+                    if (!title && !isbn && key !== Object.keys(filters)[0]) {
                         query += ` and`
-
+                    } else if (!title && !isbn && key === Object.keys(filters)[0]) {
+                        query += ` WHERE`
                     }
-                    // if ()
-
+                    else if (title || isbn) {
+                        query += ` and`
+                    } 
+                    
                     let list = filters[key].map(word => `'${word}'`).join(',')
                     query += ` ${key} in (${list})`
                 }
@@ -214,11 +213,8 @@ module.exports = {
             query += ` OFFSET ?`
         }
 
-        stmt = betterDb.prepare(query);
-
-
-        // console.log(`${req.}`)
         console.log(`query: ${query}`)
+        stmt = betterDb.prepare(query);
 
 
         try {
