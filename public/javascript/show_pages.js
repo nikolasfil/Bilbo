@@ -31,8 +31,6 @@ async function page_initilazation() {
 
 }
 
-
-
 /**
  * Function for the listener of Next button link of navbar  
  */

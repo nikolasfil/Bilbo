@@ -68,8 +68,3 @@ window.onclick = function (event) {
   }
 }
 
-// form_sign_in.setAttribute('action', '/sign_in+'+window.location.href);
-// form_sign_in.addEventListener('submit', (e) => {
-//   alert(window.location)
-//   window.location.href = '/sign_in/' + window.location;
-// })

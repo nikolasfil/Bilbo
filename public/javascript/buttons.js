@@ -2,7 +2,7 @@ var button = document.querySelector(".btn-reserve");
 var span = button.querySelector("span");
 
 
-button.onclick=  function() {
+button.onclick =  function() {
   // Check if the button is active or not
   var isActive = button.classList.contains("active");;
   

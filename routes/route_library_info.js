@@ -50,7 +50,6 @@ router.get('/library_info',
 
     res.render('library_info', {
         title: 'Library Info',
-        style: 'library_info.css',
         signedIn: req.session.signedIn,
     });
 });

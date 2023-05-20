@@ -9,9 +9,6 @@ function searchbarClickPress(event) {
 }
 
 function searchbarClick() {
-    // fix the button next to the task bar 
-    
-    let searchbar = window.document.getElementById("searchBarInput");
-    
+    let searchbar = window.document.getElementById("searchBarInput");    
     window.location = "/search?search=" + searchbar.value;
 }

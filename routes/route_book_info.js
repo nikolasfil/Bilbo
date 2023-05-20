@@ -6,7 +6,7 @@ const database = require('../controllers/database.js');
 
 // redirects to book_info page with isbn as query
 router.get('/book_info/:isbn',
-    (req, res, next) => {
+    (req, res) => {
         res.redirect('/book_info?isbn=' + req.params.isbn);
     }
 );
@@ -14,9 +14,7 @@ router.get('/book_info/:isbn',
 
 // returns a list of libraries that have the book with the given isbn
 router.get('/map/:isbn',
-    (req, res, next) => {
-        // database.getLibraryLocations(req.params.isbn, (err, books) => {
-
+    (req, res) => {
         database.getLibraryIdOfBookByIsbn(req.params.isbn, (err, books) => {
             if (err) {
                 console.log(err)
