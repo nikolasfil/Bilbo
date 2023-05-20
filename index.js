@@ -8,29 +8,16 @@ const cookieParser = require('cookie-parser');
 const sqliteStore = require('connect-sqlite3')(session) //store for session
 
 
-// import * as model from './model/index.mjs'
-// const model = require('./model/index.js');
-
-
+// Either use the port number from the environment or use 8080
 const port = process.env.PORT || 8080;
 
-
-
-
+// handle urls 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 
-
-// handles the routes
-// const routes = require('./routes/handlers');
-
-
-
 // using css,javascript, images and other public files 
 app.use(express.static(path.join(__dirname, 'public')));
-// app use node_module 
-// app.use('/scripts', express.static(`${__dirname}/node_modules/`));
 
 // app use model 
 app.use('/model', express.static(`${__dirname}/model/`));
@@ -56,20 +43,17 @@ const hbs = expbs.create({
     partialsDir: path.join(__dirname, 'views/partials'),
     extname: '.hbs',
 
-    // create custom helpers
-    helpers: require('./controllers/helpers.js'),
-
-
-
+    // create custom helpers to be used in the handlebars files
+    helpers: require('./controllers/helpers.js')
 });
 
 
-
+// using the engine of handlebars
 app.engine('.hbs', hbs.engine);
 app.set('view engine', '.hbs');
 
 
-
+// specifying the routes that the user can access
 app.use(require('./routes/route_about.js'));
 app.use(require('./routes/route_book_info.js'));
 app.use(require('./routes/route_library_info.js'));
@@ -82,7 +66,6 @@ app.use(require('./routes/route_user_profile.js'));
 
 
 // final command to have the server running
-
 app.listen(port,'0.0.0.0' ,() => {
     console.log('Server listening on port ' + port);
 });
