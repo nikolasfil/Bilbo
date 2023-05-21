@@ -14,11 +14,13 @@ async function page_initilazation() {
     numOfResults = await showResult();
 
     // handle mobile view (currently deactivated)
-    if (window.innerWidth <= 600) {
-        window.booksPerPage = 18;
-    } else {
-        window.booksPerPage = 18;
-    }
+    // if (window.innerWidth <= 600) {
+    //     window.booksPerPage = 18;
+    // } else {
+    //     window.booksPerPage = 18;
+    // }
+
+    window.booksPerPage = 24;
 
     numOfPages = Math.ceil(numOfResults / window.booksPerPage);
 
