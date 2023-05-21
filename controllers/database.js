@@ -397,7 +397,7 @@ module.exports = {
         callback(null, true)
     },
     getAllBorrowingState: function (userId, callback) {
-        const stmt = betterDb.prepare("Select B.*, R.date_returned, DATE(B.date_borrowed, '+15 days') AS date_return, ROUND(JULIANDAY(R.date_returned) - JULIANDAY(DATE(B.date_borrowed, '+15 days'))) AS difference from Borrowing AS B LEFT OUTER JOIN Return AS R ON B.user_id=R.user_id AND B.book_isbn=R.book_isbn AND B.library_id=R.library_id where B.user_id=? ORDER BY B.date_reserved DESC")
+        const stmt = betterDb.prepare("Select BOOK.title AS book_title, BOOK.photo, B.book_isbn, L.name AS library_name, B.library_id, B.user_id, DATE(B.date_reserved) AS date_reserved, DATE(B.date_borrowed) AS date_borrowed, DATE(R.date_returned) AS date_returned, DATE(B.date_borrowed, '+15 days') AS date_return, ROUND(JULIANDAY(R.date_returned) - JULIANDAY(DATE(B.date_borrowed, '+15 days'))) AS difference from LIBRARY AS L JOIN(BOOK JOIN(Borrowing AS B LEFT OUTER JOIN Return AS R ON B.user_id=R.user_id AND B.book_isbn=R.book_isbn AND B.library_id=R.library_id) ON BOOK.isbn=B.book_isbn) ON L.id=B.library_id where B.user_id=? ORDER BY B.date_reserved DESC")
         let borrowingStates;
         try {
             borrowingStates = stmt.all(userId)
@@ -405,7 +405,7 @@ module.exports = {
         catch (err) {
             callback(err, null)
         }
-        callback(null, borrowingState)
+        callback(null, borrowingStates)
     },
 
 

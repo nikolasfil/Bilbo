@@ -5,7 +5,7 @@
         <h7>
             <strong>Name: </strong>{{title}} <br>
             <strong>ISBN: </strong>{{ISBN}} <br>
-            <strong>Edition: </strong>{{edition}} <br>
+            <strong>Library: </strong>{{library}} <br>
         </h7>
         </div>
     </div>
@@ -24,7 +24,7 @@
         </li>
         <li class="li overdue">
         <div class="timestamp">
-            <span class="status3">{{retStatus}}<br>{{retDate}}</span>
+            <span class="status3">Overdue<br>{{retDate}}</span>
         </div>
         </li>
     </ul>
@@ -51,14 +51,14 @@
         {{#if returned}}
         <li class="li complete">
         <div class="timestamp">
-            <span class="status3 borrowed">{{retStatus}}<br>{{retDate}}</span>
+            <span class="status3 borrowed">Returned<br>{{returned}}</span>
         </div>
         </li>
         {{else}}
         {{#if retDate}}
         <li class="li">
         <div class="timestamp">
-            <span class="status3 borrowed">{{retStatus}}<br>{{retDate}}</span>
+            <span class="status3 borrowed">Return<br>{{retDate}}</span>
         </div>
         </li>
         {{else}}

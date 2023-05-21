@@ -31,7 +31,19 @@
     <!-- Borrowing State -->
     <div class="borrowing_state">
       <h2><strong>Borrowings</strong></h2>
-
+      {{#each borrowing}}
+        {{>timeline 
+          img=photo
+          title=book_title
+          ISBN=book_isbn
+          library=library_name
+          resDate=date_reserved
+          borDate=date_borrowed
+          retDate=date_return
+          returned=date_returned
+          overdue=0
+        }}
+      {{/each}}
       {{>timeline 
         img="img/card_book_1.png"
         title="The Polaroid Book"
