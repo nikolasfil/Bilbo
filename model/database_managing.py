@@ -300,7 +300,7 @@ class Data:
             if os.path.exists(f'{self.path}/{title}.json'):
                 continue
             self.save_bookdata(title.strip())
-
+ 
     def main(self):
         self.load_books()
 
