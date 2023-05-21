@@ -138,44 +138,50 @@ class Creation:
         self.insert_data('USER', ('2', 'Konstantinos', 'Kotorenis','konstantinos.kotorenis@gmail.com', '30/2/1960', self.hashing_password(
             'password'), self.binary_to_string(self.salt)))
 
-        self.insert_data('Borrowing', ('book_isbn', 'copy_num',
-                         'library_id', 'user_id', 'date_borrowing', 'date_return'))
+        borrowing_list = [ 
+        ('9781118166321', '2', '1', '2023-05-01 10:00:00 UTC', '2023-05-02 11:00:00 UTC'),
+        ('9781492094722', '2', '2', '2023-05-02 10:00:00 UTC', '2023-05-03 11:00:00 UTC'),
+        ('IOWA:31858029579285', '0', '1', '2023-05-09 10:00:00 UTC', '2023-05-10 11:00:00 UTC'),
+        ('9781449328566', '2', '1', '2023-05-09 10:00:00 UTC', '2023-05-10 11:00:00 UTC'),
+        ('80471595', '0', '2', '2023-04-02 10:00:00 UTC', '2023-04-03 11:00:00 UTC'),
+        ('321130073', '0', '2', '2023-05-15 10:00:00 UTC', '2023-05-16 11:00:00 UTC'),
+        ('9781886420502', '0', '2', '2023-05-01 10:00:00 UTC', '2023-05-02 11:00:00 UTC'),
+        ('9781638353713', '0', '2', '2023-05-11 10:00:00 UTC', '2023-05-12 11:00:00 UTC'),
+        ('9781484202326', '2', '1', '2023-05-03 10:00:00 UTC', '2023-05-04 11:00:00 UTC')]
 
-        self.insert_data('Return', ('book_isbn', 'copy_num', 'library_id',
-                         'user_id', 'date_of_borrowing', 'date_of_return'))
+        for borrowing in borrowing_list:
+            self.insert_data('Borrowing', borrowing )
+
+        return_list = [
+            ('9781118166321', '2', '1', '2023-05-10 10:00:00 UTC'),
+        ('9781492094722', '2', '2', '2023-05-21 10:00:00 UTC'),
+        ('9781449328566', '2', '1', '2023-05-21 10:00:00 UTC'),
+        ('80471595', '0', '2', '2023-04-23 11:00:00 UTC'),
+        ('321130073', '0', '2', '2023-05-20 10:00:00 UTC'),
+        ]
+
+        for return_ in return_list:
+            self.insert_data('Return', return_ )
 
 
     def fill_copies(self):
-        for book in self.data.books:
-            # for i in range(1, 6):
-            # isbn , copy_num , library_id
-            
-            temp = list(map(int, [i[0] for i in self.libraries]))
+        
+        # print('\n'.join([book['isbn'] for book in self.data.books]))
 
-            library_combo = []
-
-            for i in range(1,len(self.libraries)+1):
-                library_combo.extend(list(itertools.combinations(temp,i)))
-                
-
-            # library_combo = [ list(itertools.combinations(temp,i)) for i in range(1,len(self.libraries)+1) ]
-    
+        library_combo = []
+        temp = list(map(int, [i[0] for i in self.libraries]))
+        for i in range(1,len(self.libraries)+1):
+            library_combo.extend(list(itertools.combinations(temp,i)))
+        
+        for book in self.data.books:         
 
             random_library = random.choice(library_combo)
-
-            # print(library_combo)
-            # print(random_library)
-
             
             for library in random_library:
-                # print('-------------------\n',library[0][0])
                 copy_num = random.randint(1, 5)
 
-                # library_id = random.choice(
-                #     list(map(int, [i[0] for i in self.libraries])))
-                # self.insert_data('COPIES', (book['isbn'], copy_num, library_id))
-                
                 self.insert_data('COPIES', (book['isbn'], copy_num, library))
+
 
 class Data:
     def __init__(self):
@@ -198,16 +204,21 @@ class Data:
         with open(f'{self.path}/{title}', 'r') as f:
             file = eval(f.read())
 
-        def books(num): return [self.bookformat(
-            file['items'][i]) for i in range(num % len(file['items']))] 
-        
+        # def books(num): 
+        book_list = []
 
-        return books(num)
+        for i in range(num%len(file['items'])):
+            book = self.bookformat(file['items'][i])
+            if book:    
+                book_list.append(book)
+        return book_list    
+        
+            # return [self.bookformat(file['items'][i]) for i in range(num % len(file['items']))] 
+        # return books(num)
 
     def bookformat(self, file):
 
-        book = {i: None for i in ['title', 'publisher', 'authors', 'isbn',
-                                  'summary', 'cover_image', 'release_date', 'genre', 'language', 'edition']}
+        book = {i: None for i in ['title', 'publisher', 'authors', 'isbn','summary', 'cover_image', 'release_date', 'genre', 'language', 'edition']}
 
         if 'title' in file['volumeInfo']:
             book['title'] = file['volumeInfo']['title']
@@ -238,12 +249,18 @@ class Data:
 
         if 'contentVersion' in file['volumeInfo']:
             book['edition'] = file['volumeInfo']['contentVersion']
-        return book
 
+        if book['isbn']:
+            print(f'isbn: {book["isbn"]} title: {book["title"]}')
+            return book
+        
+        return None
+    
+    
     def load_books(self):
         self.books = []
         for title in self.get_titles():
-            self.books += self.load_bookdata(title,num=2)
+            self.books += self.load_bookdata(title,num=1)
             # print([[i['isbn'],i['title']] for i in self.books])
 
     def save_bookdata(self, title):
@@ -261,11 +278,10 @@ class Data:
         if titles is None:
             self.titles = ['python', 'java', 'javascript', 'html', 'css', 'php', 'sql', 'ruby', 'perl', 'r', 'go', 'swift', 'kotlin', 'rust', 'typescript', 'bash', 'powershell', 'matlab', 'assembly', 'vba', 'visual basic', 'dart', 'groovy', 'scala',
                            'history', 'calculus',
-                           'the lord of the rings', 'the hobbit', 'the silmarillion', 'the children of hurin', 'the fall of gondolin', 'the book of lost tales', 'the book of lost tales part 2', 'the lay of aotrou and itroun', 'the lay of leithian', 'the shaping of middle-earth', 'the lost road and other writings', 'the return of the shadow', 'the treason of isengard', 'the war of the ring', 'sauron defeated', 'morgoths ring', 'the war of the jewels', 'the peoples of middle-earth',
+                           'the lord of the rings', 'the hobbit', 'the silmarillion', 'the children of hurin', 'the fall of gondolin', 'the book of lost tales',  'the lay of aotrou and itroun', 'the lay of leithian', 'the shaping of middle-earth', 'the lost road and other writings', 'the return of the shadow', 'the treason of isengard', 'the war of the ring', 'sauron defeated', 'morgoths ring', 'the war of the jewels', 'the peoples of middle-earth',
                            ]
 
         for title in self.titles:
-            # print(title)
             self.save_bookdata(title)
 
     def main(self):
