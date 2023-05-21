@@ -20,6 +20,8 @@ router.post('/sign_in',
             }
             else {
                 req.session.signedIn = true;
+                req.session.email = result.email;
+                console.log(req.session.email);
                 // popup saying you are logged in
                 res.redirect(req.get('referer'));
             }
