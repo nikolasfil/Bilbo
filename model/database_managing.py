@@ -65,8 +65,13 @@ class Creation:
     def insert_data(self, table_name, data):
         command = f"""INSERT INTO {table_name}({','.join(self.tables[table_name])}) VALUES ({','.join(list(map(self.double_quoting,data)))})"""
         print(command)
-        self.conn.execute(command)
-        self.conn.commit()
+        try:
+            self.conn.execute(command)
+            self.conn.commit()
+        except Exception as e:
+            print(e)
+            print(command)
+            print(data)
 
     def insert_book_data(self, table_name, data):
         command = f"""INSERT INTO {table_name}({','.join(self.tables[table_name])}) VALUES ({','.join(['?' for i in range(len(data))])})"""
@@ -99,18 +104,30 @@ class Creation:
              '2610398949', 'bibliothiki@bilbo.gr',
              'img/card_library_1.png', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero possimus hic laboriosam perferendis, veritatis corrupti assumenda reprehenderit ducimus dignissimos quia, doloribus unde! Fugit quas minus est ex ratione dolor possimus!Lorem',
              '8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,closed,closed'),
-            # ('1', 'Not University of Patra', '21.79127500966751,38.29039542648134',
-            #  'Ypatias 4, Panepstimioupoli Patron, 265 04',
-            #  '2610398949', 'bibliothiki@bilbo.gr',
-            #  'img/card_library_2.png', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero possimus hic laboriosam perferendis, veritatis corrupti assumenda reprehenderit ducimus dignissimos quia, doloribus unde! Fugit quas minus est ex ratione dolor possimus!Lorem',
-            #  '8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,closed,closed'),
+            
+            
+            ('1','Municipal Library of Patra', '21.732813401979747,38.24507192398973',
+             'Maizonos 110, Patra 262 21',
+             '261 022 4813', 
+             'library@patrasculture.gr',
+             'img/card_library_3.png', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero possimus hic laboriosam perferendis, veritatis corrupti assumenda reprehenderit ducimus dignissimos quia, doloribus unde! Fugit quas minus est ex ratione dolor possimus!Lorem',"8 AM–2:45 PM,8 AM–7:45 PM,8 AM–2:45 PM,8 AM–2:45 PM,8 AM–2:45 PM,Closed,Closed"),
+           
+            ('2', 'Municipal Library of Nafpaktos', '21.82946039128951,38.40070556275019',
+             'Kozoni 12, Nafpaktos 303 00',
+             '2634 027388', 
+             'mail@vivl-nafpakt.ait.sch.gr',
+             'img/card_library_2.png', 
+             'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero possimus hic laboriosam perferendis, veritatis corrupti assumenda reprehenderit ducimus dignissimos quia, doloribus unde! Fugit quas minus est ex ratione dolor possimus!Lorem',
+             '08:00 AM–02:30 PM,07:00 AM–09:00 PM,07:00 AM–09:00 PM,07:00 AM–02:30 PM,07:00 AM–01:30 PM,closed,closed'),
 
-            ('2', 'Poliendro', '21.735480538324822,38.24616051679194',
-             ' Kanakari 147, Patra 262 21, 265 04',
-             '261 027 7342', 'poliendro@bilbo.gr',
-             'img/card_library_2.png', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero possimus hic laboriosam perferendis, veritatis corrupti assumenda reprehenderit ducimus dignissimos quia, doloribus unde! Fugit quas minus est ex ratione dolor possimus!Lorem',
-             '09:00 AM–09:00 PM,09:00 AM–09:00 PM,09:00 AM–09:00 PM,09:00 AM–09:00 PM,09:00 AM–09:00 PM,closed,closed')
-
+             ('4','National Library Of Greece', '23.733036542730538,37.98120383072839',
+              '32 Panepistimiou Street, Athens 106 79',
+              '2103 382 541', 
+              'nlg@nlg.gr',
+              'img/card_library_4.png',
+              'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero possimus hic laboriosam perferendis, veritatis corrupti assumenda reprehenderit ducimus dignissimos quia, doloribus unde! Fugit quas minus est ex ratione dolor possimus!Lorem',
+              '09:00 AM-08:00 PM,09:00 AM-08:00 PM,09:00 AM-08:00 PM,09:00 AM-08:00 PM,09:00 AM-08:00 PM,09:00 AM-08:00 PM,closed'
+              )
 
         ]
 
@@ -139,25 +156,25 @@ class Creation:
             'password'), self.binary_to_string(self.salt)))
 
         borrowing_list = [ 
-        ('9781118166321', '2', '1', '2023-05-01 10:00:00 UTC', '2023-05-02 11:00:00 UTC'),
-        ('9781492094722', '2', '2', '2023-05-02 10:00:00 UTC', '2023-05-03 11:00:00 UTC'),
-        ('IOWA:31858029579285', '0', '1', '2023-05-09 10:00:00 UTC', '2023-05-10 11:00:00 UTC'),
-        ('9781449328566', '2', '1', '2023-05-09 10:00:00 UTC', '2023-05-10 11:00:00 UTC'),
-        ('80471595', '0', '2', '2023-04-02 10:00:00 UTC', '2023-04-03 11:00:00 UTC'),
-        ('321130073', '0', '2', '2023-05-15 10:00:00 UTC', '2023-05-16 11:00:00 UTC'),
-        ('9781886420502', '0', '2', '2023-05-01 10:00:00 UTC', '2023-05-02 11:00:00 UTC'),
-        ('9781638353713', '0', '2', '2023-05-11 10:00:00 UTC', '2023-05-12 11:00:00 UTC'),
-        ('9781484202326', '2', '1', '2023-05-03 10:00:00 UTC', '2023-05-04 11:00:00 UTC')]
+        ('9781118166321', '2', '1', '2023-05-01 10:00:00', '2023-05-02 11:00:00'),
+        ('9781492094722', '2', '2', '2023-05-02 10:00:00', '2023-05-03 11:00:00'),
+        ('IOWA:31858029579285', '0', '1', '2023-05-09 10:00:00', '2023-05-10 11:00:00'),
+        ('9781449328566', '2', '1', '2023-05-09 10:00:00', '2023-05-10 11:00:00'),
+        ('80471595', '0', '2', '2023-04-02 10:00:00', '2023-04-03 11:00:00'),
+        ('321130073', '0', '2', '2023-05-15 10:00:00', '2023-05-16 11:00:00'),
+        ('9781886420502', '0', '2', '2023-05-01 10:00:00', '2023-05-02 11:00:00'),
+        ('9781638353713', '0', '2', '2023-05-11 10:00:00', '2023-05-12 11:00:00'),
+        ('9781484202326', '2', '1', '2023-05-03 10:00:00', '2023-05-04 11:00:00')]
 
         for borrowing in borrowing_list:
             self.insert_data('Borrowing', borrowing )
 
         return_list = [
-            ('9781118166321', '2', '1', '2023-05-10 10:00:00 UTC'),
-        ('9781492094722', '2', '2', '2023-05-21 10:00:00 UTC'),
-        ('9781449328566', '2', '1', '2023-05-21 10:00:00 UTC'),
-        ('80471595', '0', '2', '2023-04-23 11:00:00 UTC'),
-        ('321130073', '0', '2', '2023-05-20 10:00:00 UTC'),
+            ('9781118166321', '2', '1', '2023-05-10 10:00:00'),
+        ('9781492094722', '2', '2', '2023-05-21 10:00:00'),
+        ('9781449328566', '2', '1', '2023-05-21 10:00:00'),
+        ('80471595', '0', '2', '2023-04-23 11:00:00'),
+        ('321130073', '0', '2', '2023-05-20 10:00:00'),
         ]
 
         for return_ in return_list:
@@ -207,14 +224,13 @@ class Data:
         # def books(num): 
         book_list = []
 
-        for i in range(num%len(file['items'])):
-            book = self.bookformat(file['items'][i])
-            if book:    
-                book_list.append(book)
+        if len(file.keys()) > 1 and 'items' in file.keys(): 
+            for i in range(num%len(file['items'])):
+                book = self.bookformat(file['items'][i])
+                if book:    
+                    book_list.append(book)
         return book_list    
-        
-            # return [self.bookformat(file['items'][i]) for i in range(num % len(file['items']))] 
-        # return books(num)
+
 
     def bookformat(self, file):
 
@@ -264,6 +280,7 @@ class Data:
             # print([[i['isbn'],i['title']] for i in self.books])
 
     def save_bookdata(self, title):
+        print(f'Getting data for {title}')
         def api_title(
             x): return f'https://www.googleapis.com/books/v1/volumes?q=title:{x}'
         def api_isbn(
@@ -276,12 +293,12 @@ class Data:
 
     def download_book_json(self, titles=None):
         if titles is None:
-            self.titles = ['python', 'java', 'javascript', 'html', 'css', 'php', 'sql', 'ruby', 'perl', 'r', 'go', 'swift', 'kotlin', 'rust', 'typescript', 'bash', 'powershell', 'matlab', 'assembly', 'vba', 'visual basic', 'dart', 'groovy', 'scala',
-                           'history', 'calculus',
-                           'the lord of the rings', 'the hobbit', 'the silmarillion', 'the children of hurin', 'the fall of gondolin', 'the book of lost tales',  'the lay of aotrou and itroun', 'the lay of leithian', 'the shaping of middle-earth', 'the lost road and other writings', 'the return of the shadow', 'the treason of isengard', 'the war of the ring', 'sauron defeated', 'morgoths ring', 'the war of the jewels', 'the peoples of middle-earth',
-                           ]
-
+            with open('titles.py', 'r') as f:
+                self.titles = eval(f.read())
+        
         for title in self.titles:
+            if os.path.exists(f'{self.path}/{title}.json'):
+                continue
             self.save_bookdata(title)
 
     def main(self):

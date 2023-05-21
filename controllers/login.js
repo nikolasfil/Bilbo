@@ -7,3 +7,4 @@ exports.checkAuthentication = (req, res, next) => {
         res.redirect('/');
     }
 }
+
