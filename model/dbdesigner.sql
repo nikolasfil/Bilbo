@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS COPIES (
 	book_isbn binary NOT NULL,
 	copy_num INTEGER NOT NULL,
 	library_id INTEGER NOT NULL,
-	PRIMARY KEY (book_isbn, copy_num, library_id),
+	PRIMARY KEY (book_isbn, library_id),
 	FOREIGN KEY (book_isbn) REFERENCES BOOK(isbn) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (library_id) REFERENCES LIBRARY(id) ON DELETE CASCADE ON UPDATE CASCADE
 
@@ -63,26 +63,23 @@ CREATE TABLE IF NOT EXISTS USER (
 
 CREATE TABLE IF NOT EXISTS Borrowing (
 	book_isbn binary NOT NULL,
-	copy_num binary NOT NULL,
 	library_id INTEGER NOT NULL,
 	user_id INTEGER NOT NULL,
-	date_borrowing datetime NOT NULL,
-	date_return datetime,
-	PRIMARY KEY (book_isbn, copy_num, library_id, user_id, date_borrowing),
-	FOREIGN KEY (book_isbn, copy_num, library_id) REFERENCES COPIES(book_isbn, copy_num, library_id) ON DELETE CASCADE ON UPDATE CASCADE,
+	date_reserved datetime NOT NULL,
+	date_borrowed datetime,
+	PRIMARY KEY (book_isbn, library_id, user_id, date_reserved),
+	FOREIGN KEY (book_isbn, library_id) REFERENCES COPIES(book_isbn, library_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (user_id) REFERENCES USER(id) ON DELETE CASCADE ON UPDATE CASCADE
 
 );
 
 CREATE TABLE IF NOT EXISTS Return (
 	book_isbn binary NOT NULL,
-	copy_num binary NOT NULL,
 	library_id INTEGER	NOT NULL,
-	user_id INTEGER 		NOT NULL,
-	date_of_borrowing datetime 		NOT NULL,
-	date_of_return datetime NOT NULL,
-	PRIMARY KEY (book_isbn, copy_num, library_id, user_id, date_of_borrowing, date_of_return),
-	FOREIGN KEY (book_isbn, copy_num, library_id) REFERENCES COPIES(book_isbn, copy_num, library_id) ON DELETE CASCADE ON UPDATE CASCADE,
+	user_id INTEGER NOT NULL,
+	date_returned datetime,
+	PRIMARY KEY (book_isbn, library_id, user_id, date_returned),
+	FOREIGN KEY (book_isbn, library_id) REFERENCES COPIES(book_isbn, library_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (user_id) REFERENCES USER(id) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (date_of_borrowing) REFERENCES Borrowing(date_borrowing) ON DELETE CASCADE ON UPDATE CASCADE
 );
