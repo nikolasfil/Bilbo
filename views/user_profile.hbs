@@ -11,19 +11,19 @@
     <div class="row">
       <!-- card -->
       <div class="col justify-self-center scale">
-        {{>membershipCard name="Konstantinos Kotorenis" id="38459834759384"}}
+        {{>membershipCard name=profile.fname surname=profile.lname id=profile.id}}
       </div>
       
       <!-- Personal information -->
       <div class="profile_info col">
-        <h2><strong>Konstantinos Kotorenis</strong></h2>
+        <h2><strong>{{profile.fname}} {{profile.lname}}</strong></h2>
         <div class="profileInfoDetails">
           <h6><strong>ID</strong></h6>
-          <p>38459834759384</p>
-          <h6><strong>Address</strong></h6>
-          <p>Manolaki 45 Patra 26222</p>
+          <p>{{profile.id}}</p>
+          <h6><strong>E-mail</strong></h6>
+          <p>{{profile.email}}</p>
           <h6><strong>Date of birth</strong></h6>
-          <p>30/2/1960</p>
+          <p>{{profile.birthdate}}</p>
         </div>
       </div>
     </div>

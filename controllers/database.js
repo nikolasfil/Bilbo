@@ -351,6 +351,18 @@ module.exports = {
         callback(null, user)
     },
 
+    userDetails: function (email, callback) {
+        const stmt = betterDb.prepare('Select id, fname, lname, email, birthdate from USER where email = ? ')
+        let user;
+        try {
+            user = stmt.get(email)
+        }
+        catch (err) {
+            callback(err, null)
+        }
+        callback(null, user)
+    },
+
     checkUser: function (email, password, callback) {
 
         let user;
