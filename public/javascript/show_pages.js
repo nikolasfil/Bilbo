@@ -79,6 +79,7 @@ function pageNavigationCreation(number = 2) {
 
     let container = document.getElementById('page-selector');
     container.classList.add('page-selector');
+    
     let nav = document.createElement('nav');
     nav.setAttribute('aria-label', "Page navigation");
 
@@ -91,9 +92,21 @@ function pageNavigationCreation(number = 2) {
 
     createPageNavigationIcon(ul, 'page-previous', 'Previous', function () { previousPage(); })
 
+    middling(ul, number);
+
+    // initial choice for page 
+    document.getElementById('page-1').classList.add('selected')
+
+    createPageNavigationIcon(ul, 'page-next', 'Next', function () { nextPage(); })
+
+
+}
+
+
+function middling(container, number) {
 
     for (let i = 0; i < number; i++) {
-        createPageNavigationIcon(ul, `page-${i + 1}`, `${i + 1}`, function () {
+        createPageNavigationIcon(container, `page-${i + 1}`, `${i + 1}`, function () {
 
             showPage(i + 1)
             
@@ -104,16 +117,9 @@ function pageNavigationCreation(number = 2) {
             // this = is the a element that is appended to the li item to ul (link for the page )
             this.classList.add('selected');
         })
-
     }
-
-    // initial choice for page 
-    document.getElementById('page-1').classList.add('selected')
-
-    createPageNavigationIcon(ul, 'page-next', 'Next', function () { nextPage(); })
-
-
 }
+
 
 
 /**

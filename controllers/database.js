@@ -338,7 +338,7 @@ module.exports = {
         callback(null, books)
     },
 
-
+    
     checkIfUserExists: function (email, callback) {
         const stmt = betterDb.prepare('Select * from USER where email = ? ')
         let user;
