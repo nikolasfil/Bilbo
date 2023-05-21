@@ -80,8 +80,7 @@ CREATE TABLE IF NOT EXISTS Return (
 	date_returned datetime,
 	PRIMARY KEY (book_isbn, library_id, user_id, date_returned),
 	FOREIGN KEY (book_isbn, library_id) REFERENCES COPIES(book_isbn, library_id) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (user_id) REFERENCES USER(id) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (date_of_borrowing) REFERENCES Borrowing(date_borrowing) ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY (user_id) REFERENCES USER(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
