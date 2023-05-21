@@ -104,18 +104,30 @@ class Creation:
              '2610398949', 'bibliothiki@bilbo.gr',
              'img/card_library_1.png', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero possimus hic laboriosam perferendis, veritatis corrupti assumenda reprehenderit ducimus dignissimos quia, doloribus unde! Fugit quas minus est ex ratione dolor possimus!Lorem',
              '8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,closed,closed'),
-            # ('1', 'Not University of Patra', '21.79127500966751,38.29039542648134',
-            #  'Ypatias 4, Panepstimioupoli Patron, 265 04',
-            #  '2610398949', 'bibliothiki@bilbo.gr',
-            #  'img/card_library_2.png', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero possimus hic laboriosam perferendis, veritatis corrupti assumenda reprehenderit ducimus dignissimos quia, doloribus unde! Fugit quas minus est ex ratione dolor possimus!Lorem',
-            #  '8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,8:30 AM–7 PM,closed,closed'),
+            
+            
+            ('1','Municipal Library of Patra', '21.732813401979747,38.24507192398973',
+             'Maizonos 110, Patra 262 21',
+             '261 022 4813', 
+             'library@patrasculture.gr',
+             'img/card_library_3.png', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero possimus hic laboriosam perferendis, veritatis corrupti assumenda reprehenderit ducimus dignissimos quia, doloribus unde! Fugit quas minus est ex ratione dolor possimus!Lorem',"8 AM–2:45 PM,8 AM–7:45 PM,8 AM–2:45 PM,8 AM–2:45 PM,8 AM–2:45 PM,Closed,Closed"),
+           
+            ('2', 'Municipal Library of Nafpaktos', '21.82946039128951,38.40070556275019',
+             'Kozoni 12, Nafpaktos 303 00',
+             '2634 027388', 
+             'mail@vivl-nafpakt.ait.sch.gr',
+             'img/card_library_2.png', 
+             'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero possimus hic laboriosam perferendis, veritatis corrupti assumenda reprehenderit ducimus dignissimos quia, doloribus unde! Fugit quas minus est ex ratione dolor possimus!Lorem',
+             '08:00 AM–02:30 PM,07:00 AM–09:00 PM,07:00 AM–09:00 PM,07:00 AM–02:30 PM,07:00 AM–01:30 PM,closed,closed'),
 
-            ('2', 'Poliendro', '21.735480538324822,38.24616051679194',
-             ' Kanakari 147, Patra 262 21, 265 04',
-             '261 027 7342', 'poliendro@bilbo.gr',
-             'img/card_library_2.png', 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero possimus hic laboriosam perferendis, veritatis corrupti assumenda reprehenderit ducimus dignissimos quia, doloribus unde! Fugit quas minus est ex ratione dolor possimus!Lorem',
-             '09:00 AM–09:00 PM,09:00 AM–09:00 PM,09:00 AM–09:00 PM,09:00 AM–09:00 PM,09:00 AM–09:00 PM,closed,closed')
-
+             ('4','National Library Of Greece', '23.733036542730538,37.98120383072839',
+              '32 Panepistimiou Street, Athens 106 79',
+              '2103 382 541', 
+              'nlg@nlg.gr',
+              'img/card_library_4.png',
+              'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vero possimus hic laboriosam perferendis, veritatis corrupti assumenda reprehenderit ducimus dignissimos quia, doloribus unde! Fugit quas minus est ex ratione dolor possimus!Lorem',
+              '09:00 AM-08:00 PM,09:00 AM-08:00 PM,09:00 AM-08:00 PM,09:00 AM-08:00 PM,09:00 AM-08:00 PM,09:00 AM-08:00 PM,closed'
+              )
 
         ]
 
