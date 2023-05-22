@@ -11,23 +11,43 @@
     </div>
 
     {{#if overdue}}
-    <ul class="col timeline scale">
-        <li class="li overdue">
-        <div class="timestamp">
-            <span class="status1">Reserved<br>{{resDate}}</span>
-        </div>
-        </li>
-        <li class="li overdue">
-        <div class="timestamp">
-            <span class="status2">Borrowed<br>{{borDate}}</span>
-        </div>
-        </li>
-        <li class="li overdue">
-        <div class="timestamp">
-            <span class="status3">Overdue<br>{{retDate}}</span>
-        </div>
-        </li>
-    </ul>
+        {{#if returned}}
+        <ul class="col timeline scale">
+            <li class="li overdue">
+            <div class="timestamp">
+                <span class="status1">Reserved<br>{{resDate}}</span>
+            </div>
+            </li>
+            <li class="li overdue">
+            <div class="timestamp">
+                <span class="status2">Borrowed<br>{{borDate}}</span>
+            </div>
+            </li>
+            <li class="li overdue">
+            <div class="timestamp">
+                <span class="status3">Returned Late<br>{{date_returned}}</span>
+            </div>
+            </li>
+        </ul>
+        {{else}}
+        <ul class="col timeline scale">
+            <li class="li overdue">
+            <div class="timestamp">
+                <span class="status1">Reserved<br>{{resDate}}</span>
+            </div>
+            </li>
+            <li class="li overdue">
+            <div class="timestamp">
+                <span class="status2">Borrowed<br>{{borDate}}</span>
+            </div>
+            </li>
+            <li class="li overdue">
+            <div class="timestamp">
+                <span class="status3">Overdue<br>{{difference}} days</span>
+            </div>
+            </li>
+        </ul>
+        {{/if}}
     {{else}}
     <ul class="col timeline scale">
         <li class="li complete">

@@ -60,6 +60,7 @@ flex-wrap: wrap;
     align-items: center;
     flex-wrap: wrap;
     margin-left: 3%;
+    min-width: 140px;
 }
 .borrowedBookimg{
     height: 60px;
@@ -89,7 +90,8 @@ flex-wrap: wrap;
     border-top: 2px solid #D6DCE0;
     position: relative;
     text-align: left;
-    min-width: 140px;
+    min-width: 150px;
+    white-space:nowrap;
 }
 .status1::before{
     content: '';
@@ -110,7 +112,8 @@ flex-wrap: wrap;
     position: relative;
     text-align: center;
     color: rgba(0, 0, 0, 0);
-    min-width: 140px;
+    min-width: 150px;
+    white-space:nowrap;
 }
 .status2::before{
     content: '';
@@ -132,7 +135,8 @@ flex-wrap: wrap;
     position: relative;
     text-align: right;
     color: rgba(0, 0, 0, 0);
-    min-width: 140px;
+    min-width: 150px;
+    white-space:nowrap;
 }
 .status3::before{
     content: '';
