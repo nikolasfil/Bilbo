@@ -19,16 +19,16 @@ router.post('/sign_in',
             else {
                 if (!result ) {
                     req.session.alert_message = 'Wrong email or password';
-                    // res.redirect(req.get('referer'));
                     res.redirect('/')
                 }
-                
-                req.session.signedIn = true;
-                req.session.email = result.email;
-                // assigning message for the alert
-                req.session.alert_message = 'You have successfully signed in';
-                
-                res.redirect(req.get('referer'));
+                else {
+                    req.session.signedIn = true;
+                    req.session.email = result.email;
+                    // assigning message for the alert
+                    req.session.alert_message = 'You have successfully signed in';
+                    
+                    res.redirect(req.get('referer'));
+                }
             }
         });
     }
