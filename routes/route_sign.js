@@ -25,7 +25,7 @@ router.post('/sign_in',
                     req.session.signedIn = true;
                     req.session.email = result.email;
                     // assigning message for the alert
-                    req.session.alert_message = 'You have successfully signed in';
+                    // req.session.alert_message = 'You have successfully signed in';
                     
                     res.redirect(req.get('referer'));
                 }
@@ -59,6 +59,7 @@ router.post('/sign_up',
             else {
                 // console.log(signedIn);
                 req.session.signedIn = true;
+                req.session.alert_message = 'You have successfully signed up';
                 res.redirect(req.get('referer'));
             }
         });

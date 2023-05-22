@@ -16,9 +16,15 @@ flex-wrap: wrap;
     align-content: bottom;
 }
 
+@media (max-width: 688px) {
+    .profileInfoDetails{
+        margin: 1% 0% 1% 0%;
+
+    }
+}
+
 .profile_info{
     min-width: 200px;
-    margin-bottom: 5%;
 
 }
 
