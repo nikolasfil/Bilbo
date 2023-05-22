@@ -6,7 +6,6 @@ const expbs = require('express-handlebars');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const sqliteStore = require('connect-sqlite3')(session) //store for session
-const flash = require('connect-flash');
 
 // Either use the port number from the environment or use 8080
 const port = process.env.PORT || 8080;
@@ -48,16 +47,9 @@ const hbs = expbs.create({
     helpers: require('./controllers/helpers.js')
 });
 
-app.use(flash())
 // using the engine of handlebars
 app.engine('.hbs', hbs.engine);
 app.set('view engine', '.hbs');
-
-app.use('/', (req, res, next) => {
-    res.locals.success_messages=req.flash('success_messages');
-    res.locals.error_messages=req.flash('error_messages');
-    next();
-})
 
 
 // specifying the routes that the user can access
