@@ -15,14 +15,14 @@ router.post('/sign_in',
         database.checkUser(req.body.email, req.body.psw, (err, result) => {
             if (err) {
                 console.log(err);
-                // res.status(500).send('Internal Server Error');
+
                 res.redirect(req.get('referer'));
             }
             else {
                 req.session.signedIn = true;
                 req.session.email = result.email;
                 console.log(req.session.email);
-                // popup saying you are logged in
+
                 res.redirect(req.get('referer'));
             }
         });
