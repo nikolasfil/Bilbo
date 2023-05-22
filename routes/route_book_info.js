@@ -1,5 +1,6 @@
 const express = require('express');
 
+const login = require('../controllers/login.js')
 const router = express.Router();
 const database = require('../controllers/database.js');
 
@@ -26,6 +27,20 @@ router.get('/map/:isbn',
     },
 )
 
+router.get('/reserve/:isbn/:library_id', login.checkAuthentication,
+    (req, res) => {
+        database.reserveBook(req.params.isbn, req.params.library_id, req.session.email, (err, result) => {
+            if (err) {
+                console.log(err)
+                res.status(500).send('Internal Server Error')
+            } else {
+                req.session.alert_message = 'You have made your reservation. You have 24 hours in order to go to the library and borrow your book';
+                res.send(result);
+            }
+        })
+    }
+
+)
 
 // returns a list of books that have the given title
 router.get('/book_info',
@@ -72,6 +87,7 @@ router.get('/book_info',
         });
     });
 
+    
 
 module.exports = router;
 

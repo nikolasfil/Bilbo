@@ -5,7 +5,7 @@
     </a>
     <p class="col">{{address}}</p>
     <p class="col align-items-center">{{copies}}</p>
-    <button type="button" class="btn btn-reserve btn-primary rounded-pill col" data-bs-toggle="button" autocomplete="off"
+    <a href="/reserve/isbn={{isbn}}/libraryID={{id}}" class="btn btn-reserve btn-primary rounded-pill col" autocomplete="off"
         aria-pressed="false">
         <span>Reserve</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -17,5 +17,5 @@
             
         </svg>
         
-    </button>
+    </a>
 </librariesReservation>

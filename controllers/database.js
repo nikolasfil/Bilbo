@@ -422,6 +422,16 @@ module.exports = {
             callback(null, true)
         else
             callback(null, false)
+    },
+    reserveBook: function (isbn, libraryID, userID, callback) {
+        const stmt = betterDb.prepare("Insert into Borrowing (book_isbn, library_id, user_id, date_reserved) values (?, ?, ?, DATE('now'))")
+        try {
+            stmt.run(isbn, libraryID, userID)
+        }
+        catch (err) {
+            callback(err, null)
+        }
+        callback(null, true)
     }
 
 }

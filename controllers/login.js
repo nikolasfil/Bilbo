@@ -4,6 +4,7 @@ exports.checkAuthentication = (req, res, next) => {
         next();
     }
     else {
+        req.session.alert_message = 'You have to sign up in order to access this function';
         res.redirect('/');
     }
 }
