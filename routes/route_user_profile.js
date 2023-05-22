@@ -13,7 +13,6 @@ router.get('/user_profile', login.checkAuthentication,
             }
             else {
                 res.locals.user = result;
-                console.log(res.locals.user);
                 next();
             }
         });

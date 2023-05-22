@@ -1,16 +1,15 @@
 <script src="javascript/sign_in.js" defer></script>
 
 <div id="sign-in-popup" class="modal">
-
     <!-- Modal content -->
     <div class="modal-content align-items-center">
         <span class="close">&times;</span>
         <div class="d-flex flex-column justify-content-center ">
             <p>Don't have an account? <button class="button-purple sign-up" id="sign-up-btn">Sign Up</button></p>
         </div>
+
         <form action="/sign_in" class="form-container" id="form_sign_in" method="POST">
             
-
             {{!-- add the coloring of the box for validation from front2 --}}
             <div class="d-flex flex-column justify-content-center ">
                 <label for="email">Username</label>
@@ -29,6 +28,7 @@
     </div>
 
 </div>
+
 
 <div id="sign-up-popup" class="modal">
 
