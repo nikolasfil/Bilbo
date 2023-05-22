@@ -41,49 +41,11 @@
           borDate=date_borrowed
           retDate=date_return
           returned=date_returned
-          overdue=0
+          overdue=overdue
+          difference=difference
         }}
       {{/each}}
-      {{>timeline 
-        img="img/card_book_1.png"
-        title="The Polaroid Book"
-        ISBN="HGGJHGjh8787348793"
-        edition="1st"
-        resDate="03/05/2023"
-      }}
-      {{>timeline 
-        img="img/card_book_1.png"
-        title="The Polaroid Book"
-        ISBN="HGGJHGjh8787348793"
-        edition="1st"
-        resDate="03/05/2023"
-        borDate="04/05/2023"
-        retStatus="Return"
-        retDate="14/05/2023"
-      }}
-      {{>timeline 
-        img="img/card_book_1.png"
-        title="The Polaroid Book"
-        ISBN="HGGJHGjh8787348793"
-        edition="1st"
-        resDate="03/05/2023"
-        borDate="04/05/2023"
-        returned="true"
-        retStatus="Returned"
-        retDate="14/05/2023"
-      }}
-      {{>timeline 
-        img="img/card_book_1.png"
-        title="The Polaroid Book"
-        ISBN="HGGJHGjh8787348793"
-        edition="1st"
-        resDate="03/05/2023"
-        borDate="04/05/2023"
-        returned="true"
-        retStatus="Overdue"
-        retDate="10 days over"
-        overdue="true"
-      }}
+      
     </div>
 
 
