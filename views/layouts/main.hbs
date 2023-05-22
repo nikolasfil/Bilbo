@@ -34,15 +34,20 @@
 
     <link rel="shortcut icon" type="image/ico" href="img/logo_small.svg" />
 
-    {{#if success}}
-    <script>
-        alert("{{success}}");
-    </script>
-    {{/if}}
 
 </head>
 
+
+{{#if message}}
+<script >
+    alert("{{message}}");
+</script>
+
+{{/if}}
+
 {{{body}}}
+
+
 
 {{>footer}}
 
