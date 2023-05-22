@@ -13,7 +13,6 @@ router.get('/user_profile', login.checkAuthentication,
             }
             else {
                 res.locals.user = result;
-                console.log(res.locals.user);
                 next();
             }
         });
@@ -28,19 +27,6 @@ router.get('/user_profile', login.checkAuthentication,
     }
 );
 
-
-router.get('/test', (req, res) => {
-    database.getBorrowingState(0,'IOWA:31858029579285',0, (err, result) => {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            console.log('result: ' + result)
-            res.send(result);
-        }
-    }
-    );
-});
 
 module.exports = router;
 

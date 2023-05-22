@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/button.css">
     <link rel="stylesheet" href="css/card.css">
-    {{!-- <link rel="stylesheet" href="css/layout.css"> --}}
+    {{!--
+    <link rel="stylesheet" href="css/layout.css"> --}}
     <link rel="stylesheet" href="css/sign_in.css">
     <link rel="stylesheet" href="css/carousel.css">
     <link rel="stylesheet" href="css/searchbar.css">
@@ -33,6 +34,11 @@
 
     <link rel="shortcut icon" type="image/ico" href="img/logo_small.svg" />
 
+    {{#if success}}
+    <script>
+        alert("{{success}}");
+    </script>
+    {{/if}}
 
 </head>
 
