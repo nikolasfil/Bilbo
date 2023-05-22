@@ -38,7 +38,7 @@ python3 database_managing.py
 ```
  
 
-The python program [database_management.py file](model/database_management.py) looks for the database file (bilboData.sqlite) and if it doesn't it creates it . 
+The python program [database_managing.py file](model/database_managing.py) looks for the database file (bilboData.sqlite) and if it doesn't it creates it . 
 It builds the sql database from the file [dbdesigner.sql](/model/dbdesigner.sql) . 
 
 If the folder [bookdata](model/bookdata) does not exist, it is created and the titles from the file [titles.py](model/titles.py) are downloaded as json files and stored inside bookdata and then loaded in the database . 
