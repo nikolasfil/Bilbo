@@ -4,6 +4,13 @@
 
 @startuml
 skinparam linetype ortho
+skinparam rectangle  {
+    FontSize 24
+}
+
+' skinparam ranksep 50
+' skinparam nodesep 50
+
 
 left to right direction
 
