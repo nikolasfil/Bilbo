@@ -16,15 +16,15 @@ rectangle "Book Info Page" as Book #df80ff
 rectangle "Library Info Page" as Library
 
 Home --> Book #Green
-Home --> About #Green
 Home --> Profile #Green
+Home --> About #Green
 Home --> Search #Green
 Home --> Library #Green
 
-Search --> Book #Blue
-Search --> About #Blue
-Search --> Profile #Blue
 Search --> Home #Blue
+Search --> Profile #Blue
+Search --> About #Blue
+Search --> Book #Blue
 
 Profile --> Book #Red
 Profile --> Home #Red
@@ -42,11 +42,11 @@ Library --> Search
 Library --> About
 
 
-Book --> Library #cc33ff
 Book --> Home #cc33ff
-Book --> Profile #cc33ff
 Book --> Search #cc33ff
+Book --> Profile #cc33ff
 Book --> About #cc33ff
+Book --> Library #cc33ff
 
 
 
