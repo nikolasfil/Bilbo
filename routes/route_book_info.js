@@ -28,14 +28,28 @@ router.get('/map/:isbn',
 )
 
 router.get('/reserve/:isbn/:library_id', login.checkAuthentication,
+    (req, res, next) => {
+        database.userDetails(req.session.email, (err, result) => {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                res.locals.user = result;
+                next();
+            }
+        });
+    },
     (req, res) => {
-        database.reserveBook(req.params.isbn, req.params.library_id, req.session.email, (err, result) => {
+        database.reserveBook(req.params.isbn, req.params.library_id, res.locals.user.id, (err, result) => {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
             } else {
                 req.session.alert_message = 'You have made your reservation. You have 24 hours in order to go to the library and borrow your book';
-                res.send(result);
+                console.log('Reservation made');
+                req.session.save(() => {
+                    res.redirect('/book_info?isbn=' + req.params.isbn);
+                });
             }
         })
     }
@@ -77,7 +91,6 @@ router.get('/book_info',
             }
         });
     },
-
 
     (req, res) => {
         res.render('book_info', {

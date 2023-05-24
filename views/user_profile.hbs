@@ -38,18 +38,33 @@
     <div class="borrowing_state">
       <h2><strong>Borrowings</strong></h2>
       {{#each borrowing}}
-        {{>timeline 
-          img=photo
-          title=book_title
-          ISBN=book_isbn
-          library=library_name
-          resDate=date_reserved
-          borDate=date_borrowed
-          retDate=date_return
-          returned=date_returned
-          overdue=overdue
-          difference=difference
-        }}
+        {{#if date_borrowed}}
+          {{>timeline 
+            img=photo
+            title=book_title
+            ISBN=book_isbn
+            library=library_name
+            resDate=date_reserved
+            borDate=date_borrowed
+            retDate=date_return
+            returned=date_returned
+            overdue=overdue
+            difference=difference
+          }}
+        {{else}}
+          {{>timeline 
+              img=photo
+              title=book_title
+              ISBN=book_isbn
+              library=library_name
+              resDate=date_reserved
+              borDate=date_borrowed
+              retDate=date_return
+              returned=date_returned
+              overdue=0
+              difference=difference
+            }}
+        {{/if}}
       {{/each}}
       
     </div>
