@@ -39,3 +39,6 @@ and RETURN.date_returned<=date('now');
 
 select b.book_isbn,b.library_id,b.user_id,date_borrowed,date_returned from Borrowing as b left outer join Return as r 
 where r.book_isbn=b.book_isbn
+
+
+select count(isbn),title from BOOK join COPIES on isbn=book_isbn group by isbn order by count(isbn)

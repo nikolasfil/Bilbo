@@ -1,9 +1,10 @@
 
 
 // 
-function mapInit(lon, lat, zoom) {
+function mapInit(lon, lat) {
     // console.log(lon,lat,zoom);
 
+    let zoom = 16;
 
     const iconFeature = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.fromLonLat([lon, lat])),
@@ -131,20 +132,18 @@ async function mapMult(isbn) {
     });
 
 
-    
+
 
     // Handle the hover event
     map.addInteraction(selectPointerMove);
 
     selectPointerMove.on('select',
         function (e) {
-            // for (let i = 0; i < e.selected.length; i++) {
             let feature = e.selected[0];
-            // console.log(e.selected[0]['A']['name']);
 
             if (feature) {
                 // returns some errors but works 
-                console.log('hovered')
+                // console.log('hovered')
                 // Change the style when hovering
                 // feature.setStyle(new ol.style.Style({
                 //     image: new ol.style.Icon({
@@ -153,7 +152,6 @@ async function mapMult(isbn) {
                 //     })
                 // } ));
                 document.getElementById(`library-reserve-url-${e.selected[0]['A']['name']}`).style = 'background-color: #ECE5F1; cursor: pointer;';
-                // document.getElementsByClassName('library-reserve-url')[0].style = 'color: #ac8fbf; cursor: pointer;';
             } else {
                 for (i = 0; i < books.length; i++) {
                     document.getElementsByClassName('library-reservations')[i].style.background = '';
@@ -161,7 +159,6 @@ async function mapMult(isbn) {
 
                 }
             }
-            // }
         });
 
 
