@@ -29,13 +29,20 @@
 
 .scrollable-show-more {
   /* margin: 10px; */
-  width: 40vmin;
+  width: 200px;
   overflow-y: auto;
   /* height: 10vw; */
-  max-height: 10vw;
+  max-height: 300px;
+  min-height: 100px;
   height: auto;
   text-overflow: ellipsis;
   /* outline: red solid 1px; */
+}
+.text-truncate--1 {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 /* 
 * {
@@ -111,6 +118,11 @@
   grid-column: 1;
   grid-row: 2;
 
+}
+.scrollable-show-more {
+  width: 100%;
+  min-width: 200px;
+  max-width: 300px;
 }
 
 
