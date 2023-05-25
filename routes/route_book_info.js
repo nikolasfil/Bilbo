@@ -47,9 +47,7 @@ router.get('/reserve/:isbn/:library_id', login.checkAuthentication,
             } else {
                 req.session.alert_message = 'You have made your reservation. You have 24 hours in order to go to the library and borrow your book';
                 console.log('Reservation made');
-                req.session.save(() => {
-                    res.redirect('/book_info?isbn=' + req.params.isbn);
-                });
+                res.redirect('/book_info?isbn=' + req.params.isbn);
             }
         })
     }
