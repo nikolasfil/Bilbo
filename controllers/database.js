@@ -432,6 +432,30 @@ module.exports = {
             callback(err, null)
         }
         callback(null, true)
-    }
+    },
+    checkReservation: function (isbn, userEmail, callback) {
+        const stmt = betterDb.prepare("Select B.library_id, IIF(B.date_reserved IS NOT NULL,IIF(date_returned IS NOT NULL, 0, 1),0) AS resStatus from (Borrowing AS B LEFT OUTER JOIN Return AS R ON B.user_id=R.user_id AND B.book_isbn=R.book_isbn AND B.library_id=R.library_id) JOIN USER AS U ON B.user_id = U.id where U.email=? AND B.book_isbn=?")
+        let reservation;
+        try {
+            reservation = stmt.get(userEmail, isbn)
+        }
+        catch (err) {
+            callback(err, null)
+        }
+        callback(null, reservation)
+    },
+    getLibraryIdAndReservationOfBookByIsbn: function (isbn, userEmail, callback) {
+
+        const stmt = betterDb.prepare('Select l.id,copy_num,name,location,address, B.date_reserved, R.date_returned, U.id AS user_id from (BOOK join COPIES AS C ON C.book_isbn=isbn JOIN LIBRARY AS l ON C.library_id=l.id) LEFT OUTER JOIN ((Borrowing AS B LEFT OUTER JOIN Return AS R ON B.user_id=R.user_id AND B.book_isbn=R.book_isbn AND B.library_id=R.library_id) JOIN USER AS U ON B.user_id = U.id AND U.email=? ) ON isbn=B.book_isbn AND C.library_id=B.library_id where isbn = ?')
+
+        let books;
+        try {
+            books = stmt.all(userEmail, isbn)
+        }
+        catch (err) {
+            callback(err, null)
+        }
+        callback(null, books)
+    },
 
 }

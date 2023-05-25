@@ -79,17 +79,46 @@ router.get('/book_info',
             }
         });
     },
+    // (req, res, next) => {
+    //     // get library info
+    //     database.getLibraryIdOfBookByIsbn(req.query['isbn'], (err, libraryInfo) => {
+    //         if (err) {
+    //             console.log(err)
+    //             res.status(500).send('Internal Server Error')
+    //         } else {
+    //             res.locals.library = libraryInfo;
+    //             next();
+    //         }
+    //     });
+    // },
+
     (req, res, next) => {
-        // get library info
-        database.getLibraryIdOfBookByIsbn(req.query['isbn'], (err, libraryInfo) => {
-            if (err) {
-                console.log(err)
-                res.status(500).send('Internal Server Error')
-            } else {
-                res.locals.library = libraryInfo;
-                next();
-            }
-        });
+        if (req.session.signedIn) {
+            // get library info
+            database.getLibraryIdAndReservationOfBookByIsbn(req.query['isbn'], req.session.email, (err, libraryInfo) => {
+                if (err) {
+                    console.log(err)
+                    res.status(500).send('Internal Server Error')
+                } else {
+                    res.locals.library = libraryInfo;
+                    console.log(res.locals.library);
+                    next();
+                }
+            });
+            
+        }
+        else {
+            // get library info
+            database.getLibraryIdOfBookByIsbn(req.query['isbn'], (err, libraryInfo) => {
+                if (err) {
+                    console.log(err)
+                    res.status(500).send('Internal Server Error')
+                } else {
+                    res.locals.library = libraryInfo;
+                    next();
+                }
+            });
+        }
     },
 
     (req, res) => {
