@@ -34,17 +34,21 @@
 
     <link rel="shortcut icon" type="image/ico" href="img/logo_small.svg" />
 
+    <script src="javascript/alerting.js" defer></script>
 
 </head>
 
+
+
+{{{body}}}
 
 {{#if message}}
 
 <div id="alert-popup" class="modal">
     <!-- Modal content -->
     <div class="modal-content align-items-center">
-        <span class="close">&times;</span>
-        <h5>Error message</h5>
+        <span class="close" id="close-alert">&times;</span>
+        <h5>Message</h5>
         <p class="alert-message">{{message}}</p>
     </div>
 
@@ -52,8 +56,6 @@
 
 
 {{/if}}
-
-{{{body}}}
 
 
 

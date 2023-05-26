@@ -1,5 +1,5 @@
-var button = document.querySelector(".btn-reserve");
-var span = button.querySelector("span");
+// var button = document.querySelector(".btn-reserve");
+// var span = button.querySelector("span");
 
 
 // button.onclick =  function() {

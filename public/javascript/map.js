@@ -154,9 +154,9 @@ async function mapMult(isbn) {
                 document.getElementById(`library-reserve-url-${e.selected[0]['A']['name']}`).style = 'background-color: #ECE5F1; cursor: pointer;';
             } else {
                 for (i = 0; i < books.length; i++) {
+                    
                     document.getElementsByClassName('library-reservations')[i].style.background = '';
                     document.getElementsByClassName('library-reservations')[i].style.opacity = '1';
-
                 }
             }
         });
