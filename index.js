@@ -30,11 +30,10 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        httpOnly: true,
+        // httpOnly: true,
         sameSite: true,
-        // cookie age is 90 minutes 
-        
-        maxAge: 6000000
+        // cookie age is 2 hours
+        maxAge: 2*60*60*1000
     },
     store: new sqliteStore({db: 'session.sqlite',dir: './model/sessions'})
 }))

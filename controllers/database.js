@@ -378,6 +378,10 @@ module.exports = {
         let user;
 
         try {
+
+
+
+
             const stmt = betterDb.prepare('Select * from USER where email = ?')
             user = stmt.get(email)
             if (user) {
@@ -389,6 +393,7 @@ module.exports = {
                     callback('Wrong Password', null)
                 }
             }
+            callback('User not found', null)
         }
         catch (err) {
             callback(err, null)
