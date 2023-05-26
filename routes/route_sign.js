@@ -3,6 +3,8 @@ const express = require('express');
 const router = express.Router();
 
 const database = require('../controllers/database.js');
+const login = require('../controllers/login.js');
+
 
 router.get('/sign_in', (req, res) => {
     res.redirect(req.get('referer'));
@@ -35,7 +37,7 @@ router.post('/sign_in',
 );
 
 router.post('/sign_up',
-
+    login.alerting,
     (req, res, next) => {
         database.checkIfUserExists(req.body.email, (err, result) => {
             if (err) {

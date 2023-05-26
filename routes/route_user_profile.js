@@ -15,7 +15,7 @@ router.get('/user_profile/sign_out', (req, res) => {
     // res.redirect(req.get('referer'));
 });
 
-router.get('/user_profile', login.checkAuthentication, 
+router.get('/user_profile', login.checkAuthentication,
     (req, res, next) => {
         console.log(req.session.email)
         database.userDetails(req.session.email, (err, result) => {
@@ -41,7 +41,7 @@ router.get('/user_profile', login.checkAuthentication,
             }
         });
     },
-
+    login.alerting,
     (req, res) => { 
         res.render('user_profile', {
             title: 'User Profile',

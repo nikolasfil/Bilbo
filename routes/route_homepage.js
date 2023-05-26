@@ -7,7 +7,7 @@ const login = require('../controllers/login.js');
 
 
 router.get('/',
-    // login.alerting,
+    login.alerting,
     (req, res, next) => {
         // return the first 12 books in the database with the number of copies 
         database.getBookInfo(isbn=null,title=null,numOf=null,copies=true,filters=null,limit=12,offset=null, function (err, books) {
