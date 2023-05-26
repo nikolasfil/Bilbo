@@ -117,7 +117,7 @@ module.exports = {
             query = `SELECT distinct ${attribute} as name,COUNT(*) as count FROM BOOK where name IS not NUll `
             
             if (offset ){
-                query+= ` and name not in (select name from (select distinct ${attribute} as name, count(*) as count from BOOK where name IS not NUll group by ${attribute} order by count desc,name ASC LIMIT ${offset}))`
+                query+= ` and name not in (select name from (select distinct ${attribute} as name, count(*) as count from BOOK where name IS not NUll group by ${attribute} order by count desc,name ASC LIMIT ${offset-1}))`
                 
                 query+=` GROUP BY ${attribute} ORDER BY name ASC`
             }
@@ -125,10 +125,6 @@ module.exports = {
                 query+=` GROUP BY ${attribute} ORDER BY count DESC, name ASC`
             }
 
-
-
-        
-        
         }
 
         if (limit) {
