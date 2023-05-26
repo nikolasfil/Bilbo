@@ -25,6 +25,9 @@ class Creation:
             self.conn = sq.connect(database)
             self.sqlfile = sqlfile
             self.salt = bcrypt.gensalt()
+
+            self.booksInLibraries = {i:[] for i in range(1,5)}
+
         except Exception as e:
             print(e)
             sys.exit()
@@ -183,10 +186,17 @@ class Creation:
         for i in range(1,len(self.libraries)+1):
             library_combo.extend(list(itertools.combinations(temp,i)))
         
+
+
+
         for book in self.data.books:         
 
             random_library = random.choice(library_combo)
             
+            if len(self.booksInLibraries[len(random_library)]) < 3 : 
+                self.booksInLibraries[len(random_library)].append([book['isbn'],book['title']])
+
+
             for library in random_library:
                 copy_num = random.randint(1, 5)
                 
@@ -306,3 +316,6 @@ if __name__ == '__main__':
     sqlfile = 'dbdesigner.sql'
     app = Creation(database, sqlfile)
     app.main()
+
+    for i in range(1,5):
+        print(f'{i} - {" , ".join([item[1] for item in app.booksInLibraries[i]])}')
