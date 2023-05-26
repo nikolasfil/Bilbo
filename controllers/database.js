@@ -114,7 +114,7 @@ module.exports = {
 
         }
         else {
-            query = `SELECT distinct ${attribute} as name,COUNT(*) as count FROM BOOK where name IS not NUll GROUP BY genre ORDER BY count DESC, name ASC`
+            query = `SELECT distinct ${attribute} as name,COUNT(*) as count FROM BOOK where name IS not NUll GROUP BY ${attribute} ORDER BY count DESC, name ASC`
         }
 
         if (limit) {

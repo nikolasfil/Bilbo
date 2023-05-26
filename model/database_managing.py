@@ -302,7 +302,7 @@ class Data:
 
 if __name__ == '__main__':
 
-    database = 'bilboData2.sqlite'
+    database = 'bilboData.sqlite'
     sqlfile = 'dbdesigner.sql'
     app = Creation(database, sqlfile)
     app.main()
