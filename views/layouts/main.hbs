@@ -39,9 +39,16 @@
 
 
 {{#if message}}
-<script >
-    alert("{{message}}");
-</script>
+
+<div id="alert-popup" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content align-items-center">
+        <span class="close">&times;</span>
+        <p>{{message}}</p>
+    </div>
+
+</div>
+
 
 {{/if}}
 

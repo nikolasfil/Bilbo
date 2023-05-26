@@ -16,6 +16,7 @@ router.post('/sign_in',
         database.checkUser(req.body.email, req.body.psw, (err, result) => {
             if (err) {
                 console.log(err);
+                req.session.alert_message = err;
                 res.redirect(req.get('referer'));
             }
             else {
@@ -28,7 +29,6 @@ router.post('/sign_in',
                     req.session.email = result.email;
                     // assigning message for the alert
                     // req.session.alert_message = 'You have successfully signed in';
-                    
                     res.redirect(req.get('referer'));
                 }
             }
@@ -37,7 +37,6 @@ router.post('/sign_in',
 );
 
 router.post('/sign_up',
-    login.alerting,
     (req, res, next) => {
         database.checkIfUserExists(req.body.email, (err, result) => {
             if (err) {
