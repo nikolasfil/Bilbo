@@ -1,12 +1,7 @@
 
 
-try {
-    let modalAlert = document.getElementById("alert-popup");
-} catch (error) {
-    console.log(error);
-} finally {
-    modalAlert = document.getElementById("alert-popup");
-}
+let modalAlert = document.getElementById("alert-popup");
+
 
 
 document.onkeydown = function (evt) {
