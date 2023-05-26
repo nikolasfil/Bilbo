@@ -101,9 +101,25 @@ class Creation:
         with open('libraries.py', 'r') as f:
             self.libraries = eval(f.read())
 
+
+        with open('borrowing.py','r') as f:
+            self.borrowing_list = eval(f.read())
+
+
+        with open('return.py','r') as f:
+            self.return_list = eval(f.read())
+
+
+
+        # ----------------- Libraries -----------------
+
+
         for library in self.libraries:
             self.insert_data('LIBRARY', library)
 
+
+        
+        # ----------------- Books -----------------
 
         for book in self.data.books:
             titles = ['isbn', 'title', 'authors', 'edition', 'publisher',
@@ -113,9 +129,13 @@ class Creation:
                 self.insert_book_data('BOOK', [book[key] if type(
                 book[key]) is not list else ','.join(book[key]) for key in titles])
 
-        # Users
+
+        # ----------------- Copies -----------------
 
         self.fill_copies()
+
+
+        # ----------------- Users -----------------
 
         self.insert_data('USER', ('1', 'Nick', 'Fil','test@test.gr' ,'01/01/2001', self.hashing_password(
             'password'), self.binary_to_string(self.salt)))
@@ -123,22 +143,40 @@ class Creation:
         self.insert_data('USER', ('2', 'Konstantinos', 'Kotorenis','konstantinos.kotorenis@gmail.com', '30/2/1960', self.hashing_password(
             'password'), self.binary_to_string(self.salt)))
 
-        with open('borrowing.py','r') as f:
-            borrowing_list = eval(f.read())
 
-        for borrowing in borrowing_list:
+
+        # ----------------- Borrowing and Return -----------------
+
+        # print(self.borrowing_list)
+
+        for i in range(len(self.borrowing_list)):
+            # isbn position 0 
+            self.borrowing_list[i][0] =  self.books_for_borrow[i][0]
+            self.borrowing_list[i][1] =  self.books_for_borrow[i][1]
+        
+
+        
+
+        for borrowing in self.borrowing_list:
             self.insert_data('Borrowing', borrowing )
 
-        with open('return.py','r') as f:
-            return_list = eval(f.read())
 
-        for return_ in return_list:
+        for i in range(len(self.return_list)):
+            # isbn position 0 
+            self.return_list[i][0] =  self.books_for_borrow[i][0]
+            self.return_list[i][1] =  self.books_for_borrow[i][1]
+
+
+        for return_ in self.return_list:
             self.insert_data('Return', return_ )
+
+
 
 
     def fill_copies(self):
         
         # print('\n'.join([book['isbn'] for book in self.data.books]))
+        self.books_for_borrow = []
 
         library_combo = []
         temp = list(map(int, [i[0] for i in self.libraries]))
@@ -151,9 +189,11 @@ class Creation:
             
             for library in random_library:
                 copy_num = random.randint(1, 5)
-
+                
                 self.insert_data('COPIES', (book['isbn'], copy_num, library))
 
+
+            self.books_for_borrow.append((book['isbn'], random_library[0]))
 
 class Data:
     def __init__(self):
@@ -262,7 +302,7 @@ class Data:
 
 if __name__ == '__main__':
 
-    database = 'bilboData.sqlite'
+    database = 'bilboData2.sqlite'
     sqlfile = 'dbdesigner.sql'
     app = Creation(database, sqlfile)
     app.main()
