@@ -17,12 +17,14 @@ router.get('/user_profile/sign_out', (req, res) => {
 
 router.get('/user_profile', login.checkAuthentication, 
     (req, res, next) => {
+        console.log(req.session.email)
         database.userDetails(req.session.email, (err, result) => {
             if (err) {
                 console.log(err);
             }
             else {
                 res.locals.user = result;
+                console.log(result);
                 next();
             }
         });
