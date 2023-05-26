@@ -32,7 +32,7 @@ app.use(session({
         sameSite: true,
         // cookie age is 90 minutes 
         
-        maxAge: 60000
+        maxAge: 6000000
     },
     store: new sqliteStore({db: 'session.sqlite',dir: './model/sessions'})
 }))
