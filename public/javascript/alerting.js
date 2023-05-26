@@ -1,6 +1,12 @@
 
-let modalAlert = document.getElementById("alert-popup");
 
+try {
+    let modalAlert = document.getElementById("alert-popup");
+} catch (error) {
+    console.log(error);
+} finally {
+    modalAlert = document.getElementById("alert-popup");
+}
 
 
 document.onkeydown = function (evt) {
@@ -17,9 +23,9 @@ window.onclick = function (event) {
     }
 }
 
-let btnAlert = document.getElementById("alert-btn");
+let btnAlert = document.getElementById("close-alert");
 if (btnAlert) {
-    btnAlert.addEventListener('click', () => {
+    btnAlert.addEventListener('click', function(){
         modalAlert.style.display = "none";
     })
 }

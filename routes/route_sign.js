@@ -3,7 +3,6 @@ const express = require('express');
 const router = express.Router();
 
 const database = require('../controllers/database.js');
-const login = require('../controllers/login.js');
 
 
 router.get('/sign_in', (req, res) => {
@@ -20,7 +19,7 @@ router.post('/sign_in',
                 res.redirect(req.get('referer'));
             }
             else {
-                if (!result ) {
+                if (!result) {
                     req.session.alert_message = 'Wrong email or password';
                     res.redirect('/')
                 }
@@ -71,22 +70,13 @@ router.post('/sign_up',
 
 
 router.get('/sign_out', (req, res) => {
-    // if (req.referer && req.referer == "user_profile") {
     req.session.destroy((err) => {
         console.log("session destroyed")
     })
+
     res.redirect('/')
-    // }
-    // res.redirect(req.get('referer'));
+
 });
-
-
-// it is not needed 
-// router.get("/session", (req, res) => {
-//     const name = req.session.mySessionName;
-//     console.log(req.sessionID);
-//     res.send(`${name}:${req.sessionID}`)
-// })
 
 
 module.exports = router;

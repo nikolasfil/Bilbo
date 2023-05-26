@@ -6,8 +6,7 @@ let modalSignIn = document.getElementById("sign-in-popup");
 // Get the modalSignIn
 let modalSignUp = document.getElementById("sign-up-popup");
 
-// modalAlert.style.display = "block";
-
+let modalAlert = document.getElementById("alert-popup");
 // Get the button that opens the modalSignIn
 
 let btnSignIn = document.getElementById("sign-in-btn");
@@ -39,6 +38,9 @@ document.onkeydown = function (evt) {
     modalSignIn.style.display = "none";
     modalSignUp.style.display = "none";
 
+    if (modalAlert) {
+      modalAlert.style.display = "none";
+    }
   }
 };
 
@@ -50,18 +52,24 @@ window.onclick = function (event) {
   if (event.target == modalSignUp) {
     modalSignUp.style.display = "none";
   }
-}
-
-
-// const models = [modalSignIn,modalSignUp,modalAlert]
-
-
-
-for (let i = 0; i < 2; i++) {
-document.getElementsByClassName("close")[i].onclick = function () {
-      modalSignIn.style.display = "none";
-      modalSignUp.style.display = "none";
+  if (event.target == modalAlert) {
+    modalAlert.style.display = "none";
   }
 }
 
 
+for (let i = 0; i < 2; i++) {
+  document.getElementsByClassName("close")[i].onclick = function () {
+    modalSignIn.style.display = "none";
+    modalSignUp.style.display = "none";
+  }
+}
+
+
+if (modalAlert) {
+  let btnAlert = document.getElementById("close-alert");
+  
+    btnAlert.addEventListener('click', () => {
+      modalAlert.style.display = "none";
+    });
+}
