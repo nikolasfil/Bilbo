@@ -7,6 +7,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const sqliteStore = require('connect-sqlite3')(session) //store for session
 
+const login = require('./controllers/login.js');
+
 // Either use the port number from the environment or use 8080
 const port = process.env.PORT || 8080;
 
@@ -32,7 +34,7 @@ app.use(session({
         sameSite: true,
         // cookie age is 90 minutes 
         
-        maxAge: 60000
+        maxAge: 6000000
     },
     store: new sqliteStore({db: 'session.sqlite',dir: './model/sessions'})
 }))
@@ -53,6 +55,7 @@ const hbs = expbs.create({
 app.engine('.hbs', hbs.engine);
 app.set('view engine', '.hbs');
 
+app.use(login.alerting);
 
 // specifying the routes that the user can access
 app.use(require('./routes/route_about.js'));

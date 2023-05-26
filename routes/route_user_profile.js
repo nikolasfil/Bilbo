@@ -5,7 +5,9 @@ const database = require('../controllers/database.js');
 
 const router = express.Router();
 
-router.get('/user_profile/sign_out', (req, res) => {
+router.get('/user_profile/sign_out',
+
+    (req, res) => {
     // if (req.referer && req.referer == "user_profile") {
     req.session.destroy((err) => {
         console.log("session destroyed")
@@ -15,14 +17,16 @@ router.get('/user_profile/sign_out', (req, res) => {
     // res.redirect(req.get('referer'));
 });
 
-router.get('/user_profile', login.checkAuthentication, 
+router.get('/user_profile', login.checkAuthentication,
     (req, res, next) => {
+        console.log(req.session.email)
         database.userDetails(req.session.email, (err, result) => {
             if (err) {
                 console.log(err);
             }
             else {
                 res.locals.user = result;
+                console.log(result);
                 next();
             }
         });
@@ -39,7 +43,6 @@ router.get('/user_profile', login.checkAuthentication,
             }
         });
     },
-
     (req, res) => { 
         res.render('user_profile', {
             title: 'User Profile',

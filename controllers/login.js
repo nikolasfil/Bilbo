@@ -1,6 +1,7 @@
 
 exports.checkAuthentication = (req, res, next) => {
     if (req.session.signedIn) {
+        res.locals.signedIn = true;
         next();
     }
     else {
