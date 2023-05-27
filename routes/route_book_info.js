@@ -77,18 +77,6 @@ router.get('/book_info',
             }
         });
     },
-    // (req, res, next) => {
-    //     // get library info
-    //     database.getLibraryIdOfBookByIsbn(req.query['isbn'], (err, libraryInfo) => {
-    //         if (err) {
-    //             console.log(err)
-    //             res.status(500).send('Internal Server Error')
-    //         } else {
-    //             res.locals.library = libraryInfo;
-    //             next();
-    //         }
-    //     });
-    // },
 
     (req, res, next) => {
         if (req.session.signedIn) {

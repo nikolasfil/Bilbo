@@ -5,17 +5,6 @@ const database = require('../controllers/database.js');
 
 const router = express.Router();
 
-router.get('/user_profile/sign_out',
-
-    (req, res) => {
-    // if (req.referer && req.referer == "user_profile") {
-    req.session.destroy((err) => {
-        console.log("session destroyed")
-    })
-    res.redirect('/')
-    // }
-    // res.redirect(req.get('referer'));
-});
 
 router.get('/user_profile', login.checkAuthentication,
     (req, res, next) => {

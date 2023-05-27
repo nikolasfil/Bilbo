@@ -146,16 +146,6 @@ router.get('/search',
             }
         });
     },
-    (req, res, next) => {
-        res.locals.availability = [
-            { name: 'Available' },
-            { name: 'Available in more than a week' },
-            { name: 'Available this week' },
-            { name: 'All' }
-        ]
-
-        next();
-    },
 
     (req, res) => {
         res.render('search', {

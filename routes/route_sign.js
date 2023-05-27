@@ -26,8 +26,6 @@ router.post('/sign_in',
                 else {
                     req.session.signedIn = true;
                     req.session.email = result.email;
-                    // assigning message for the alert
-                    // req.session.alert_message = 'You have successfully signed in';
                     res.redirect(req.get('referer'));
                 }
             }
@@ -46,10 +44,9 @@ router.post('/sign_up',
             else {
                 next();
             }
-
         });
-
-    }, (req, res) => {
+    },
+    (req, res) => {
         database.addUser(req.body, (err, result) => {
             if (err) {
                 console.log(err);
@@ -73,9 +70,7 @@ router.get('/sign_out', (req, res) => {
     req.session.destroy((err) => {
         console.log("session destroyed")
     })
-
     res.redirect('/')
-
 });
 
 
