@@ -375,13 +375,9 @@ module.exports = {
 
     checkUser: function (email, password, callback) {
 
-        let user;
+        let user, error_message;
 
         try {
-
-
-
-
             const stmt = betterDb.prepare('Select * from USER where email = ?')
             user = stmt.get(email)
             if (user) {
@@ -390,10 +386,12 @@ module.exports = {
                     callback(null, user)
                 }
                 else {
+
                     callback('Wrong Password', null)
                 }
+            }else {
+                callback('User not found', null)
             }
-            callback('User not found', null)
         }
         catch (err) {
             callback(err, null)
