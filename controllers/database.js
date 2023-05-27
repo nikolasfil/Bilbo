@@ -115,14 +115,14 @@ module.exports = {
         }
         else {
             query = `SELECT distinct ${attribute} as name,COUNT(*) as count FROM BOOK where name IS not NUll `
-            
-            if (offset ){
-                query+= ` and name not in (select name from (select distinct ${attribute} as name, count(*) as count from BOOK where name IS not NUll group by ${attribute} order by count desc,name ASC LIMIT ${offset-1}))`
-                
-                query+=` GROUP BY ${attribute} ORDER BY name ASC`
+
+            if (offset) {
+                query += ` and name not in (select name from (select distinct ${attribute} as name, count(*) as count from BOOK where name IS not NUll group by ${attribute} order by count desc,name ASC LIMIT ${offset - 1}))`
+
+                query += ` GROUP BY ${attribute} ORDER BY name ASC`
             }
             else {
-                query+=` GROUP BY ${attribute} ORDER BY count DESC, name ASC`
+                query += ` GROUP BY ${attribute} ORDER BY count DESC, name ASC`
             }
 
         }
@@ -356,7 +356,7 @@ module.exports = {
             user = stmt.get(email)
             callback(null, user)
         }
-        catch (err) {            
+        catch (err) {
             callback(err, null)
         }
     },
@@ -366,11 +366,11 @@ module.exports = {
         let user;
         try {
             user = stmt.get(email)
+            callback(null, user)
         }
         catch (err) {
             callback(err, null)
         }
-        callback(null, user)
     },
 
     checkUser: function (email, password, callback) {
@@ -389,7 +389,7 @@ module.exports = {
 
                     callback('Wrong Password', null)
                 }
-            }else {
+            } else {
                 callback('User not found', null)
             }
         }
@@ -403,22 +403,22 @@ module.exports = {
 
         try {
             stmt.run(user.fname, user.lname, user.email, user.birthdate, bcrypt.hashSync(user.psw, 10))
+            callback(null, true)
         }
         catch (err) {
             callback(err, null)
         }
-        callback(null, true)
     },
     getAllBorrowingState: function (userId, callback) {
         const stmt = betterDb.prepare("Select BOOK.title AS book_title, BOOK.photo, B.book_isbn, L.name AS library_name, B.library_id, B.user_id, DATE(B.date_reserved) AS date_reserved, DATE(B.date_borrowed) AS date_borrowed, DATE(R.date_returned) AS date_returned, DATE(B.date_borrowed, '+15 days') AS date_return, IIF(ROUND(JULIANDAY(R.date_returned) - JULIANDAY(DATE(B.date_borrowed, '+15 days'))), ROUND(JULIANDAY(R.date_returned) - JULIANDAY(DATE(B.date_borrowed, '+15 days'))),  ROUND(JULIANDAY(DATE('now')) - JULIANDAY(DATE(B.date_borrowed, '+15 days')))) AS difference, IIF(IIF(ROUND(JULIANDAY(R.date_returned) - JULIANDAY(DATE(B.date_borrowed, '+15 days'))), ROUND(JULIANDAY(R.date_returned) - JULIANDAY(DATE(B.date_borrowed, '+15 days'))),  ROUND(JULIANDAY(DATE('now')) - JULIANDAY(DATE(B.date_borrowed, '+15 days'))))<=0, 0, 1) AS overdue from LIBRARY AS L JOIN(BOOK JOIN(Borrowing AS B LEFT OUTER JOIN Return AS R ON B.user_id=R.user_id AND B.book_isbn=R.book_isbn AND B.library_id=R.library_id) ON BOOK.isbn=B.book_isbn) ON L.id=B.library_id where B.user_id=? ORDER BY B.date_reserved DESC")
         let borrowingStates;
         try {
             borrowingStates = stmt.all(userId)
+            callback(null, borrowingStates)
         }
         catch (err) {
             callback(err, null)
         }
-        callback(null, borrowingStates)
     },
 
     getBorrowingState: function (userId, isbn, libraryId, callback) {

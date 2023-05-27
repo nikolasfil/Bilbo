@@ -1,11 +1,14 @@
 <header class="d-flex flex-column justify-content-center cover-page-img cover-page">
 
     <div class="d-flex flex-row justify-content-end sign-space" id="sign-space">
+
         {{#unless signedIn}}
         <button class="button-light sign-in" id="sign-in-btn">Sign In</button>
-        
         {{>sign_in_up}}
         {{else}}
+
+        <script src="javascript/alerting.js" defer></script>
+
 
         {{>profile_picture color="white"}}
         {{/unless}}
@@ -32,7 +35,8 @@
 
             {{#each booklist }}
 
-            {{> card photo=photo title=title description="This is a description" copies=copy_num location=( encode (concat
+            {{> card photo=photo title=title description="This is a description" copies=copy_num location=( encode
+            (concat
             'book_info/' isbn ))}}
 
             {{/each}}

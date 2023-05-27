@@ -7,15 +7,11 @@
             <img src="./img/logo-horizontal.svg" alt="" width="175" height="34">
         </a>
         {{>searchbar}}
-        {{!-- <div class="headerSearch">
-            {{>searchbar}}
-        </div> --}}
         
         {{#unless signedIn}}
         <div class="headerProfile d-flex flex-row justify-content-center align-items-center" id="sign-space">
             
             <button class="button-light sign-in" id="sign-in-btn">Sign In</button>
-            {{!-- <button class="button-purple sign-up" id="sign-up-btn">Sign Up</button> --}}
 
             {{>sign_in_up}}
            
