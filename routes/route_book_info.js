@@ -12,8 +12,9 @@ router.get('/book_info/:isbn',
     }
 );
 
-
-// returns a list of libraries that have the book with the given isbn
+/**
+ * Returns a list of the locations where the book is located, data needed for the embedded map
+ */
 router.get('/map/:isbn',
     (req, res) => {
         database.getLibraryIdOfBookByIsbn(req.params.isbn, (err, books) => {
@@ -27,6 +28,9 @@ router.get('/map/:isbn',
     },
 )
 
+/**
+ * Route used for reserving a copy of a book
+ */
 router.get('/reserve/:isbn/:library_id', login.checkAuthentication,
     (req, res, next) => {
         database.userDetails(req.session.email, (err, result) => {

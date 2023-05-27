@@ -13,13 +13,6 @@ async function page_initilazation() {
     // for the number of page created 
     numOfResults = await showResult();
 
-    // handle mobile view (currently deactivated)
-    // if (window.innerWidth <= 600) {
-    //     window.booksPerPage = 18;
-    // } else {
-    //     window.booksPerPage = 18;
-    // }
-
     window.booksPerPage = 24;
 
     numOfPages = Math.ceil(numOfResults / window.booksPerPage);
@@ -53,7 +46,6 @@ function nextPage() {
 
 /**
  * Function for the listener of Previous button link of navbar 
- * 
  */
 
 function previousPage() {
@@ -105,6 +97,11 @@ function pageNavigationCreation(number = 2) {
 }
 
 
+/**
+ * Adding the number pages buttons to the navbar
+ * @param {*} container Where to create the buttons
+ * @param {*} number How many buttons to create
+ */
 function middling(container, number) {
 
     for (let i = 0; i < number; i++) {
@@ -126,7 +123,6 @@ function middling(container, number) {
 
 /**
 * Creates the link buttons for page navigation 
-*
 *   @param container is the html item that the button is appended in 
 *  @param id The id for the button link
 *  @param content The textcontent displayed in the button link

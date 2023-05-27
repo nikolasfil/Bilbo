@@ -28,8 +28,8 @@ EXPOSE 8080
 # Run app
 CMD ["npm", "start"]
 
-# docker build -t my-node-project .
+# docker build -t bilbo .
 
-# docker run -d -p 8080:8080 my-node-project
+# docker run -d -p 8080:8080 bilbo
 
 # docker exec -it container_id /bin/sh

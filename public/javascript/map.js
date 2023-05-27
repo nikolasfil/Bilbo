@@ -1,20 +1,17 @@
 
-
-// 
+/**
+ * Initializing the embedded map feature
+ * @param {*} lon longtitude
+ * @param {*} lat latitude
+ */
 function mapInit(lon, lat) {
-    // console.log(lon,lat,zoom);
 
     let zoom = 16;
 
     const iconFeature = new ol.Feature({
         geometry: new ol.geom.Point(ol.proj.fromLonLat([lon, lat])),
-        name: 'Patras',
+        name: 'Icon',
     });
-
-    // const iconFeature2 = new ol.Feature({
-    //     geometry: new ol.geom.Point(ol.proj.fromLonLat([lon+0.01, lat+0.01])),
-    //     name: 'Patras',
-    // });
 
     const map = new ol.Map({
         target: 'map',
@@ -24,8 +21,6 @@ function mapInit(lon, lat) {
             }),
             new ol.layer.Vector({
                 source: new ol.source.Vector({
-                    // for adding more than one icon
-                    // features: [iconFeature, iconFeature2]
                     features: [iconFeature]
 
                 }),
@@ -34,11 +29,8 @@ function mapInit(lon, lat) {
                         anchor: [0.5, 0.5],
                         anchorXUnits: 'fraction',
                         anchorYUnits: 'pixels',
-                        // src: 'https://openlayers.org/en/latest/examples/data/icon.png'
                         src: 'img/geo-alt-fill.svg',
                         scale: 2,
-                        // add event lister tho
-
                     })
                 })
             })
@@ -49,22 +41,12 @@ function mapInit(lon, lat) {
         }),
 
     });
-
-    map.layers = map.getLayers();
-
-    map.layers.getArray()[1].getSource().getFeatures()[0]
-    // .getStyle().addEventListener('click', function () {
-    //     console.log('clicked');
-    // }
-    // );
-
-    // let m = map.layers.getArray()[1].getSource().getFeatures()[0].getStyle().getImage().on('click', function () {
-    //     console.log('clicked');
-    // }
-    // );
-
 }
 
+/**
+ * Initializing the embedded map for books that exist in multiple libraries
+ * @param {*} isbn To get the locations where the book has copies 
+ */
 async function mapMult(isbn) {
 
     let books, center;
@@ -91,8 +73,6 @@ async function mapMult(isbn) {
 
     center = books[0].location.split(',');
 
-
-
     let vectorLayer = new ol.layer.Vector({
 
         source: new ol.source.Vector({ features: icons }),
@@ -102,10 +82,8 @@ async function mapMult(isbn) {
                 anchor: [0.5, 1],
                 anchorXUnits: 'fraction',
                 anchorYUnits: 'pixels',
-                // src: 'https://openlayers.org/en/latest/examples/data/icon.png'
                 src: 'img/geo-alt-fill.svg',
                 scale: 2,
-                // add event lister tho
             })
         })
     });
@@ -126,12 +104,11 @@ async function mapMult(isbn) {
 
     });
 
+    // used for hover interactions
     let selectPointerMove = new ol.interaction.Select({
         condition: ol.events.condition.pointerMove,
         layers: [vectorLayer]
     });
-
-
 
 
     // Handle the hover event
@@ -142,19 +119,9 @@ async function mapMult(isbn) {
             let feature = e.selected[0];
 
             if (feature) {
-                // returns some errors but works 
-                // console.log('hovered')
-                // Change the style when hovering
-                // feature.setStyle(new ol.style.Style({
-                //     image: new ol.style.Icon({
-                //         src: 'path/to/icon-focused.png', // set the path to the focused icon image
-                //         scale: 0.7 // adjust the scale as per your needs
-                //     })
-                // } ));
                 document.getElementById(`library-reserve-url-${e.selected[0]['A']['name']}`).style = 'background-color: #ECE5F1; cursor: pointer;';
             } else {
                 for (i = 0; i < books.length; i++) {
-                    
                     document.getElementsByClassName('library-reservations')[i].style.background = '';
                     document.getElementsByClassName('library-reservations')[i].style.opacity = '1';
                 }
@@ -169,6 +136,4 @@ async function mapMult(isbn) {
         // Fit the view to the extent of the vector layer
         map.getView().fit(extent, { padding: [60, 60, 60, 60] }); // Adjust padding as needed
     }
-
-
 }

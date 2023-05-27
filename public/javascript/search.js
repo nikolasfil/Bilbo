@@ -57,6 +57,7 @@ async function fetchNumOfResults() {
     let link;
 
     link = '/fetchNumOfResults'
+
     return await fetch(link, {
         method: "POST",
         credentials: "same-origin",
@@ -66,7 +67,6 @@ async function fetchNumOfResults() {
         redirect: "follow",
         referrerPolicy: "no-referrer",
         body: JSON.stringify({ "filters": window.gFilters, "title": window.searchBarValue }),
-
     }).then((res) => {
         return res.json();
     }).then((data) => {

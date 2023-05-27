@@ -76,12 +76,12 @@ It runs node index.js
 
 Building the image 
 ```bash
-docker build -t my-node-project .
+docker build -t bilbo .
 ```
 
 Running the image 
 ```bash
-docker run -d -p 8080:8080 my-node-project
+docker run -d -p 8080:8080 bilbo
 ```
 
 ---
