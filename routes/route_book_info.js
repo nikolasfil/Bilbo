@@ -91,7 +91,6 @@ router.get('/book_info',
                     res.status(500).send('Internal Server Error')
                 } else {
                     res.locals.library = libraryInfo;
-                    console.log(res.locals.library);
                     next();
                 }
             });

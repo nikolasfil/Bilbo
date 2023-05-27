@@ -252,7 +252,6 @@ module.exports = {
             query += ` OFFSET ?`
         }
 
-        // console.log(`query: ${query}`)
         stmt = betterDb.prepare(query);
 
 
