@@ -354,11 +354,11 @@ module.exports = {
         let user;
         try {
             user = stmt.get(email)
+            callback(null, user)
         }
         catch (err) {
             callback(err, null)
         }
-        callback(null, user)
     },
 
     userDetails: function (email, callback) {
