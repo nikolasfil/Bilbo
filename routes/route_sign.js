@@ -57,11 +57,9 @@ router.post('/sign_up',
         database.addUser(req.body, (err, result) => {
             if (err) {
                 console.log(err);
-                // res.status(500).send('Internal Server Error');
                 res.redirect(req.get('referer'));
             }
             else {
-                // console.log(signedIn);
                 req.session.signedIn = true;
                 req.session.email = req.body.email;
                 req.session.alert_message = 'You have successfully signed up';
