@@ -79,16 +79,5 @@ router.get('/sign_out', (req, res) => {
 });
 
 
-
-router.get("/session", (req, res) => {
-    const name = req.session.mySessionName;
-    console.log(req.sessionID);
-    
-    res.send(`${name}:${req.sessionID}\n${req.session.alert_message}`)
-    
-})
-
-
-
 module.exports = router;
 
