@@ -356,7 +356,7 @@ module.exports = {
             user = stmt.get(email)
             callback(null, user)
         }
-        catch (err) {
+        catch (err) {            
             callback(err, null)
         }
     },
