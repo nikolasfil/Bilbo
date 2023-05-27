@@ -12,9 +12,9 @@ router.get('/library_info/:id',
 );
 
 
-router.get('/library_info', 
-    (req, res, next) => { 
-        if( req.query['id'] ) { 
+router.get('/library_info',
+    (req, res, next) => {
+        if (req.query['id']) {
             next();
         }
         else {
@@ -22,7 +22,7 @@ router.get('/library_info',
         }
     },
     (req, res, next) => {
-        database.getLibraryInfo(req.query['id'],null, function (err, libraries) {
+        database.getLibraryInfo(req.query['id'], null, function (err, libraries) {
             if (err) {
                 console.log(err)
                 res.status(500).send('Internal Server Error')
@@ -34,7 +34,8 @@ router.get('/library_info',
     },
 
     (req, res, next) => {
-        database.getBooksFromLibrary(req.query['id'],12, function (err, books) {
+        // displaying a static list of 12 books existing in this specific library (id)
+        database.getBooksFromLibrary(req.query['id'], 12, function (err, books) {
             if (err) {
                 console.log(err)
                 console.log('error')
@@ -47,12 +48,12 @@ router.get('/library_info',
         })
     },
     (req, res) => {
-
-    res.render('library_info', {
-        title: 'Library Info',
-        signedIn: req.session.signedIn,
-    });
-});
+        res.render('library_info', {
+            title: 'Library Info',
+            signedIn: req.session.signedIn,
+        });
+    }
+);
 
 
 module.exports = router;
