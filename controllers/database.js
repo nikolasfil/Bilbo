@@ -171,9 +171,6 @@ module.exports = {
         query = `SELECT * FROM BOOK`
 
         if (numOf) {
-            // query = 'SELECT COUNT(isbn) as count_result from BOOK'
-
-            // query = 'SELECT COUNT(isbn) as count_result from BOOK join COPIES on isbn=book_isbn'
 
             query = 'SELECT COUNT(distinct isbn) as count_result,title,library.name as library,genre , language,book.summary as summary,publisher, edition, author  from BOOK join COPIES on isbn=book_isbn join LIBRARY on library_id=LIBRARY.id'
 
@@ -197,8 +194,6 @@ module.exports = {
 
         }
         if (title) {
-            // query += ` title like ?`
-            // title = `%${title}%`
             let matchingPhrases;
             try {
 
@@ -216,10 +211,6 @@ module.exports = {
 
         if (filters && Object.keys(filters) !== 0) {
             filters = JSON.parse(filters);
-
-
-
-
 
             for (let key in filters) {
                 if (filters[key].length) {
