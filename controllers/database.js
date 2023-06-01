@@ -25,8 +25,6 @@ function getRegex(title) {
     title = title.trim();
     const words = title.split(" ");
 
-    // const escapedWords = words.map((word) => escapeRegExp(word));
-
     const partialWords = words.filter(word => !commonWords.includes(word));
 
     const partialPattern = partialWords.map(word => `(?:\\b|\\B)${escapeRegExp(word)}\\w*(?:\\b|\\B)`).join('|');
@@ -37,16 +35,7 @@ function getRegex(title) {
 
     const matchingPhrases = rows.filter(row => new RegExp(pattern, 'i').test(row.title)).map(row => row.title);
 
-
-
-    // const pattern = escapedWords.map(word => `(?:\\b|\\B)${word.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')}\\w*(?:\\b|\\B)`).join('|');
-
-    // const matchingPhrases = rows.filter(row => new RegExp(pattern, 'i').test(row.title)).map(row => row.title);
-
-
     return matchingPhrases;
-
-
 
 }
 
@@ -171,9 +160,6 @@ module.exports = {
         query = `SELECT * FROM BOOK`
 
         if (numOf) {
-            // query = 'SELECT COUNT(isbn) as count_result from BOOK'
-
-            // query = 'SELECT COUNT(isbn) as count_result from BOOK join COPIES on isbn=book_isbn'
 
             query = 'SELECT COUNT(distinct isbn) as count_result,title,library.name as library,genre , language,book.summary as summary,publisher, edition, author  from BOOK join COPIES on isbn=book_isbn join LIBRARY on library_id=LIBRARY.id'
 
@@ -197,8 +183,6 @@ module.exports = {
 
         }
         if (title) {
-            // query += ` title like ?`
-            // title = `%${title}%`
             let matchingPhrases;
             try {
 
@@ -216,10 +200,6 @@ module.exports = {
 
         if (filters && Object.keys(filters) !== 0) {
             filters = JSON.parse(filters);
-
-
-
-
 
             for (let key in filters) {
                 if (filters[key].length) {
@@ -252,7 +232,6 @@ module.exports = {
             query += ` OFFSET ?`
         }
 
-        // console.log(`query: ${query}`)
         stmt = betterDb.prepare(query);
 
 
@@ -409,6 +388,7 @@ module.exports = {
             callback(err, null)
         }
     },
+    
     getAllBorrowingState: function (userId, callback) {
         const stmt = betterDb.prepare("Select BOOK.title AS book_title, BOOK.photo, B.book_isbn, L.name AS library_name, B.library_id, B.user_id, DATE(B.date_reserved) AS date_reserved, DATE(B.date_borrowed) AS date_borrowed, DATE(R.date_returned) AS date_returned, DATE(B.date_borrowed, '+15 days') AS date_return, IIF(ROUND(JULIANDAY(R.date_returned) - JULIANDAY(DATE(B.date_borrowed, '+15 days'))), ROUND(JULIANDAY(R.date_returned) - JULIANDAY(DATE(B.date_borrowed, '+15 days'))),  ROUND(JULIANDAY(DATE('now')) - JULIANDAY(DATE(B.date_borrowed, '+15 days')))) AS difference, IIF(IIF(ROUND(JULIANDAY(R.date_returned) - JULIANDAY(DATE(B.date_borrowed, '+15 days'))), ROUND(JULIANDAY(R.date_returned) - JULIANDAY(DATE(B.date_borrowed, '+15 days'))),  ROUND(JULIANDAY(DATE('now')) - JULIANDAY(DATE(B.date_borrowed, '+15 days'))))<=0, 0, 1) AS overdue from LIBRARY AS L JOIN(BOOK JOIN(Borrowing AS B LEFT OUTER JOIN Return AS R ON B.user_id=R.user_id AND B.book_isbn=R.book_isbn AND B.library_id=R.library_id) ON BOOK.isbn=B.book_isbn) ON L.id=B.library_id where B.user_id=? ORDER BY B.date_reserved DESC")
         let borrowingStates;
